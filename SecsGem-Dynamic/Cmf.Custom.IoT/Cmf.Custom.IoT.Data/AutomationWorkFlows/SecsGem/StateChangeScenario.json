@@ -1,0 +1,516 @@
+{
+    "tasks": [
+        {
+            "id": "task_3371",
+            "reference": {
+                "name": "entityAdjustState",
+                "package": {
+                    "name": "@criticalmanufacturing/connect-iot-controller-engine-core-tasks",
+                    "version": "11.2.0-dev"
+                }
+            },
+            "settings": {
+                "retries": 30,
+                "sleepBetweenRetries": 1000,
+                "baseEntity": {
+                    "$type": "Cmf.Foundation.BusinessObjects.EntityType, Cmf.Foundation.BusinessObjects",
+                    "Name": "Resource"
+                },
+                "entity": {
+                    "$type": "Cmf.Navigo.BusinessObjects.Resource, Cmf.Navigo.BusinessObjects",
+                    "Name": "Etch-01"
+                },
+                "toState": "Productive",
+                "___cmf___name": "Adjust State"
+            }
+        },
+        {
+            "id": "task_3389",
+            "reference": {
+                "name": "entityInstance",
+                "package": {
+                    "name": "@criticalmanufacturing/connect-iot-controller-engine-core-tasks",
+                    "version": "11.2.0-dev"
+                }
+            },
+            "settings": {
+                "_attributes": [],
+                "_autoActivate": false,
+                "loadAllAttributes": false,
+                "reloadEveryChange": false,
+                "levelsToLoad": 0,
+                "retries": 30,
+                "sleepBetweenRetries": 1000,
+                "entityTypeName": "Resource"
+            },
+            "driver": "Main Tool"
+        },
+        {
+            "id": "task_3412",
+            "reference": {
+                "name": "switch",
+                "package": {
+                    "name": "@criticalmanufacturing/connect-iot-controller-engine-core-tasks",
+                    "version": "11.2.0-dev"
+                }
+            },
+            "settings": {
+                "inputs": [
+                    {
+                        "name": "value",
+                        "valueType": {
+                            "name": "Integer",
+                            "type": 5,
+                            "collectionType": 0,
+                            "referenceType": null,
+                            "referenceTypeName": null,
+                            "referenceTypeId": null,
+                            "friendlyName": "Type"
+                        },
+                        "defaultValue": "value",
+                        "settingKey": "name",
+                        "__valueType": {
+                            "name": "default",
+                            "label": "Default",
+                            "settingKey": "defaultValue",
+                            "defaultValue": "value",
+                            "required": false,
+                            "condition": "valueType != null and valueType['name'] != null",
+                            "dataTypeKey": "valueType",
+                            "dataType": "Integer",
+                            "settings": {},
+                            "isMandatory": false,
+                            "valueType": 5
+                        }
+                    }
+                ],
+                "_outputs": [
+                    {
+                        "equalsTo": 1,
+                        "name": "Status1",
+                        "valueType": {
+                            "name": "String",
+                            "type": 4,
+                            "collectionType": 0,
+                            "referenceType": null,
+                            "referenceTypeName": null,
+                            "referenceTypeId": null,
+                            "friendlyName": "Type"
+                        },
+                        "defaultValue": "Nonscheduled",
+                        "dataType": "valueType",
+                        "settingKey": "name",
+                        "___inputType": {
+                            "name": "equalsTo",
+                            "label": "Equals To",
+                            "settingKey": "equalsTo",
+                            "defaultValue": 1,
+                            "required": false,
+                            "dataTypeKey": "/_inputType",
+                            "dataType": "Integer",
+                            "settings": {},
+                            "isMandatory": false,
+                            "valueType": 5
+                        },
+                        "value": "Nonscheduled",
+                        "friendlyName": "Nonscheduled"
+                    },
+                    {
+                        "equalsTo": 2,
+                        "name": "Status2",
+                        "valueType": {
+                            "name": "String",
+                            "type": 4,
+                            "collectionType": 0,
+                            "referenceType": null,
+                            "referenceTypeName": null,
+                            "referenceTypeId": null,
+                            "friendlyName": "Type"
+                        },
+                        "defaultValue": "Unscheduled Down",
+                        "dataType": "valueType",
+                        "settingKey": "name",
+                        "___inputType": {
+                            "name": "equalsTo",
+                            "label": "Equals To",
+                            "settingKey": "equalsTo",
+                            "defaultValue": 2,
+                            "required": false,
+                            "dataTypeKey": "/_inputType",
+                            "dataType": "Integer",
+                            "settings": {},
+                            "isMandatory": false,
+                            "valueType": 5
+                        },
+                        "value": "Unscheduled Down",
+                        "friendlyName": "Unscheduled Down"
+                    },
+                    {
+                        "equalsTo": 3,
+                        "name": "Status3",
+                        "friendlyName": "Scheduled Down",
+                        "valueType": {
+                            "name": "String",
+                            "type": 4,
+                            "collectionType": 0,
+                            "referenceType": null,
+                            "referenceTypeName": null,
+                            "referenceTypeId": null,
+                            "friendlyName": "Type"
+                        },
+                        "defaultValue": "Scheduled Down",
+                        "dataType": "valueType",
+                        "settingKey": "name",
+                        "___inputType": {
+                            "name": "equalsTo",
+                            "label": "Equals To",
+                            "settingKey": "equalsTo",
+                            "defaultValue": 3,
+                            "required": false,
+                            "dataTypeKey": "/_inputType",
+                            "dataType": "Integer",
+                            "settings": {},
+                            "isMandatory": false,
+                            "valueType": 5
+                        },
+                        "value": "Scheduled Down"
+                    },
+                    {
+                        "equalsTo": 4,
+                        "name": "Status4",
+                        "friendlyName": "Engineering",
+                        "valueType": {
+                            "name": "String",
+                            "type": 4,
+                            "collectionType": 0,
+                            "referenceType": null,
+                            "referenceTypeName": null,
+                            "referenceTypeId": null,
+                            "friendlyName": "Type"
+                        },
+                        "defaultValue": "Engineering",
+                        "dataType": "valueType",
+                        "settingKey": "name",
+                        "___inputType": {
+                            "name": "equalsTo",
+                            "label": "Equals To",
+                            "settingKey": "equalsTo",
+                            "defaultValue": 4,
+                            "required": false,
+                            "dataTypeKey": "/_inputType",
+                            "dataType": "Integer",
+                            "settings": {},
+                            "isMandatory": false,
+                            "valueType": 5
+                        },
+                        "value": "Engineering"
+                    },
+                    {
+                        "equalsTo": 5,
+                        "name": "Status5",
+                        "friendlyName": "Standby",
+                        "valueType": {
+                            "name": "String",
+                            "type": 4,
+                            "collectionType": 0,
+                            "referenceType": null,
+                            "referenceTypeName": null,
+                            "referenceTypeId": null,
+                            "friendlyName": "Type"
+                        },
+                        "defaultValue": "Standby",
+                        "dataType": "valueType",
+                        "settingKey": "name",
+                        "___inputType": {
+                            "name": "equalsTo",
+                            "label": "Equals To",
+                            "settingKey": "equalsTo",
+                            "defaultValue": 5,
+                            "required": false,
+                            "dataTypeKey": "/_inputType",
+                            "dataType": "Integer",
+                            "settings": {},
+                            "isMandatory": false,
+                            "valueType": 5
+                        },
+                        "value": "Standby"
+                    },
+                    {
+                        "equalsTo": 6,
+                        "name": "Status6",
+                        "friendlyName": "Productive",
+                        "valueType": {
+                            "name": "String",
+                            "type": 4,
+                            "collectionType": 0,
+                            "referenceType": null,
+                            "referenceTypeName": null,
+                            "referenceTypeId": null,
+                            "friendlyName": "Type"
+                        },
+                        "defaultValue": "Productive",
+                        "dataType": "valueType",
+                        "settingKey": "name",
+                        "___inputType": {
+                            "name": "equalsTo",
+                            "label": "Equals To",
+                            "settingKey": "equalsTo",
+                            "defaultValue": 6,
+                            "required": false,
+                            "dataTypeKey": "/_inputType",
+                            "dataType": "Integer",
+                            "settings": {},
+                            "isMandatory": false,
+                            "valueType": 5
+                        },
+                        "value": "Productive"
+                    }
+                ],
+                "_inputType": {
+                    "name": "Integer",
+                    "type": 5,
+                    "collectionType": 0,
+                    "referenceType": null,
+                    "referenceTypeName": null,
+                    "referenceTypeId": null,
+                    "friendlyName": "Type"
+                },
+                "_defaultOutputValueType": "Any",
+                "___cmf___name": "Switch"
+            }
+        },
+        {
+            "id": "task_2789",
+            "reference": {
+                "name": "equipmentEvent",
+                "package": {
+                    "name": "@criticalmanufacturing/connect-iot-controller-engine-core-tasks",
+                    "version": "11.2.0-dev"
+                }
+            },
+            "settings": {
+                "_outputs": [
+                    {
+                        "name": "Status",
+                        "propertyId": "2011",
+                        "propertyType": "",
+                        "property": {
+                            "DataType": 5,
+                            "$type": "Cmf.Foundation.BusinessObjects.AutomationProperty, Cmf.Foundation.BusinessObjects"
+                        },
+                        "deviceType": {
+                            "$type": "Cmf.Foundation.BusinessObjects.AutomationProtocolDataType, Cmf.Foundation.BusinessObjects",
+                            "Name": "U1"
+                        },
+                        "valueType": {
+                            "collectionType": null,
+                            "friendlyName": "Status",
+                            "type": "Integer",
+                            "name": "Integer"
+                        },
+                        "defaultValue": "",
+                        "outputType": "Value",
+                        "editable": false,
+                        "removable": false,
+                        "settingKey": "name"
+                    }
+                ],
+                "_autoActivate": false,
+                "_customEvents": false,
+                "_acceptAllEvents": false,
+                "_events": [
+                    {
+                        "$type": "Cmf.Foundation.BusinessObjects.AutomationEvent, Cmf.Foundation.BusinessObjects",
+                        "Name": "StatusChanged"
+                    }
+                ],
+                "_workingMode": "AlwaysActive",
+                "_messageFullName": "1000",
+                "___cmf___name": "On Equipment Event",
+                "_automationEventProperties": [
+                    {
+                        "$type": "Cmf.Foundation.BusinessObjects.AutomationProperty, Cmf.Foundation.BusinessObjects",
+                        "Name": "Status"
+                    }
+                ]
+            },
+            "driver": "Main Tool"
+        }
+    ],
+    "converters": [],
+    "links": [
+        {
+            "id": "bcea6cfd-8ca4-45ed-8089-ba32ee71c9a8",
+            "sourceId": "task_3389",
+            "targetId": "task_3371",
+            "inputName": "activate",
+            "outputName": "success"
+        },
+        {
+            "id": "d481343f-c5e6-4085-ad95-bba8ffa5b67c",
+            "sourceId": "task_3412",
+            "targetId": "task_3371",
+            "inputName": "toState",
+            "outputName": "Status1"
+        },
+        {
+            "id": "47c1df4e-6092-4081-b8eb-bfd9e7dd0e55",
+            "sourceId": "task_3412",
+            "targetId": "task_3371",
+            "inputName": "toState",
+            "outputName": "Status2"
+        },
+        {
+            "id": "9a52963d-66b1-4a1f-bbce-d697f9f12c6e",
+            "sourceId": "task_3389",
+            "targetId": "task_3371",
+            "inputName": "entity",
+            "outputName": "instance"
+        },
+        {
+            "id": "78488f91-f3e6-480a-a2af-42b9c0937fa7",
+            "sourceId": "task_3412",
+            "targetId": "task_3371",
+            "inputName": "toState",
+            "outputName": "Status3"
+        },
+        {
+            "id": "8ae30080-7744-4f16-9623-783b794ffbab",
+            "sourceId": "task_3412",
+            "targetId": "task_3371",
+            "inputName": "toState",
+            "outputName": "Status4"
+        },
+        {
+            "id": "2a2737b1-1f6d-4384-8376-adfee3bc8318",
+            "sourceId": "task_3412",
+            "targetId": "task_3371",
+            "inputName": "toState",
+            "outputName": "Status5"
+        },
+        {
+            "id": "cd62df2e-d840-4407-88b4-201ab59e6dc8",
+            "sourceId": "task_3412",
+            "targetId": "task_3371",
+            "inputName": "toState",
+            "outputName": "Status6"
+        },
+        {
+            "id": "f4be3e51-e330-4a5f-8d8b-a0c4d7b64417",
+            "sourceId": "task_2789",
+            "targetId": "task_3412",
+            "inputName": "activate",
+            "outputName": "success"
+        },
+        {
+            "id": "e92a7762-82ce-4e6a-8155-f77b5209b166",
+            "sourceId": "task_2789",
+            "targetId": "task_3389",
+            "inputName": "activate",
+            "outputName": "success"
+        },
+        {
+            "id": "8d143256-05a0-4890-aa4b-bb78d9670484",
+            "sourceId": "task_2789",
+            "targetId": "task_3412",
+            "inputName": "value",
+            "outputName": "Status"
+        }
+    ],
+    "$id": "1",
+    "layout": {
+        "general": {
+            "color": null,
+            "notes": []
+        },
+        "drawers": {
+            "DIAGRAM": {
+                "tasks": {
+                    "task_3371": {
+                        "collapsed": false,
+                        "position": {
+                            "x": 1328,
+                            "y": 283
+                        },
+                        "outdated": false
+                    },
+                    "task_3389": {
+                        "collapsed": true,
+                        "position": {
+                            "x": 594,
+                            "y": 260
+                        },
+                        "outdated": false
+                    },
+                    "task_3412": {
+                        "collapsed": false,
+                        "position": {
+                            "x": 596,
+                            "y": 348
+                        },
+                        "outdated": false
+                    },
+                    "task_2789": {
+                        "collapsed": false,
+                        "position": {
+                            "x": 112,
+                            "y": 418
+                        },
+                        "outdated": false
+                    }
+                },
+                "links": {
+                    "bcea6cfd-8ca4-45ed-8089-ba32ee71c9a8": {
+                        "vertices": [
+                            {
+                                "x": 1060,
+                                "y": 501
+                            }
+                        ]
+                    },
+                    "d481343f-c5e6-4085-ad95-bba8ffa5b67c": {
+                        "vertices": []
+                    },
+                    "47c1df4e-6092-4081-b8eb-bfd9e7dd0e55": {
+                        "vertices": []
+                    },
+                    "9a52963d-66b1-4a1f-bbce-d697f9f12c6e": {
+                        "vertices": []
+                    },
+                    "78488f91-f3e6-480a-a2af-42b9c0937fa7": {
+                        "vertices": []
+                    },
+                    "8ae30080-7744-4f16-9623-783b794ffbab": {
+                        "vertices": []
+                    },
+                    "2a2737b1-1f6d-4384-8376-adfee3bc8318": {
+                        "vertices": []
+                    },
+                    "cd62df2e-d840-4407-88b4-201ab59e6dc8": {
+                        "vertices": [
+                            {
+                                "x": 1119,
+                                "y": 425
+                            }
+                        ]
+                    },
+                    "f4be3e51-e330-4a5f-8d8b-a0c4d7b64417": {
+                        "vertices": []
+                    },
+                    "e92a7762-82ce-4e6a-8155-f77b5209b166": {
+                        "vertices": []
+                    },
+                    "8d143256-05a0-4890-aa4b-bb78d9670484": {
+                        "vertices": []
+                    }
+                },
+                "notes": {},
+                "pan": {
+                    "x": 0,
+                    "y": 0
+                },
+                "zoom": 0.6799999999999997
+            }
+        }
+    }
+}
