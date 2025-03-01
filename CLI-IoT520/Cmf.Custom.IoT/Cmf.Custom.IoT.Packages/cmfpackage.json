@@ -1,0 +1,20 @@
+{
+  "packageId": "Cmf.Custom.IoT.Packages",
+  "version": "1.0.0",
+  "description": "Cmf Custom cmf Cmf.Custom.IoT.Packages Package",
+  "packageType": "IoT",
+  "isInstallable": true,
+  "isUniqueInstall": false,
+  "contentToPack": [
+    {
+      "source": "src/*",
+      "target": "node_modules",
+      "ignoreFiles": [
+        ".npmignore"
+      ]
+    }
+  ],
+  "xmlInjection": [
+    "ui.xml"
+  ]
+}

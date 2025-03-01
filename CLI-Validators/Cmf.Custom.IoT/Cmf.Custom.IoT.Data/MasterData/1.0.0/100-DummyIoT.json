@@ -1,0 +1,617 @@
+{
+  "<DM>AutomationProtocol": {
+    "1": {
+      "Name": "Secs-Gem Protocol [A.1]",
+      "IsTemplate": "No",
+      "Type": "General",
+      "Package": "@criticalmanufacturing/connect-iot-driver-secsgem",
+      "PackageVersion": "11.1.0",
+      "HasCommands": "Yes",
+      "HasEvents": "Yes",
+      "HasProperties": "Yes"
+    }
+  },
+  "AutomationProtocolParameter": {
+    "1": {
+      "AutomationProtocol": "Secs-Gem Protocol [A.1]",
+      "Name": "autoConfigure",
+      "Description": "Automatically establish communications, set online and configure the equipment (reports, events, alarms, links)",
+      "DataType": "Boolean",
+      "DefaultValue": "True",
+      "IsMandatory": "No",
+      "IsTemplate": "No",
+      "Label": "Auto Configure",
+      "ReferenceType": "None"
+    },
+    "2": {
+      "AutomationProtocol": "Secs-Gem Protocol [A.1]",
+      "Name": "customLibrary",
+      "Description": "Enter the full path of a custom SECS/GEM library file (in xsc format). Leave empty to use the default library supplied with this protocol driver.",
+      "DataType": "String",
+      "IsMandatory": "No",
+      "IsTemplate": "No",
+      "Label": "Custom Library File",
+      "ReferenceType": "None"
+    },
+    "3": {
+      "AutomationProtocol": "Secs-Gem Protocol [A.1]",
+      "Name": "variableIdType",
+      "Description": "Type of variable Id (used when linking/requesting/setting values)",
+      "DataType": "String",
+      "DefaultValue": "U4",
+      "IsMandatory": "No",
+      "IsTemplate": "No",
+      "EnumValues": [
+        "U1",
+        "U2",
+        "U4",
+        "U8",
+        "I1",
+        "I2",
+        "I4",
+        "I8",
+        "F4",
+        "F8",
+        "A",
+        "BI",
+        "BO"
+      ],
+      "Label": "Variable Id Type",
+      "ReferenceType": "Enum"
+    },
+    "4": {
+      "AutomationProtocol": "Secs-Gem Protocol [A.1]",
+      "Name": "reportIdType",
+      "Description": "Type of report Id (used when creating/deleting/linking)",
+      "DataType": "String",
+      "DefaultValue": "U4",
+      "IsMandatory": "No",
+      "IsTemplate": "No",
+      "EnumValues": [
+        "U1",
+        "U2",
+        "U4",
+        "U8",
+        "I1",
+        "I2",
+        "I4",
+        "I8",
+        "F4",
+        "F8",
+        "A",
+        "BI",
+        "BO"
+      ],
+      "Label": "Report Id Type",
+      "ReferenceType": "Enum"
+    },
+    "5": {
+      "AutomationProtocol": "Secs-Gem Protocol [A.1]",
+      "Name": "alarmIdType",
+      "Description": "Type of alarm Id (used when enabling/disabling)",
+      "DataType": "String",
+      "DefaultValue": "U4",
+      "IsMandatory": "No",
+      "IsTemplate": "No",
+      "EnumValues": [
+        "U1",
+        "U2",
+        "U4",
+        "U8",
+        "I1",
+        "I2",
+        "I4",
+        "I8",
+        "F4",
+        "F8",
+        "A",
+        "BI",
+        "BO"
+      ],
+      "Label": "Alarm Id Type",
+      "ReferenceType": "Enum"
+    },
+    "6": {
+      "AutomationProtocol": "Secs-Gem Protocol [A.1]",
+      "Name": "eventIdType",
+      "Description": "Type of event Id (used when enabling/disabling/linking)",
+      "DataType": "String",
+      "DefaultValue": "U4",
+      "IsMandatory": "No",
+      "IsTemplate": "No",
+      "EnumValues": [
+        "U1",
+        "U2",
+        "U4",
+        "U8",
+        "I1",
+        "I2",
+        "I4",
+        "I8",
+        "F4",
+        "F8",
+        "A",
+        "BI",
+        "BO"
+      ],
+      "Label": "Event Id Type",
+      "ReferenceType": "Enum"
+    },
+    "7": {
+      "AutomationProtocol": "Secs-Gem Protocol [A.1]",
+      "Name": "dataIdType",
+      "Description": "Type of data Id (used on all messages containing DATAID items)",
+      "DataType": "String",
+      "DefaultValue": "U4",
+      "IsMandatory": "No",
+      "IsTemplate": "No",
+      "EnumValues": [
+        "U1",
+        "U2",
+        "U4",
+        "U8",
+        "I1",
+        "I2",
+        "I4",
+        "I8",
+        "F4",
+        "F8",
+        "A",
+        "BI",
+        "BO"
+      ],
+      "Label": "Data Id Type",
+      "ReferenceType": "Enum"
+    },
+    "8": {
+      "AutomationProtocol": "Secs-Gem Protocol [A.1]",
+      "Name": "commandType",
+      "Description": "Type of command (used when sending command name, aka 'RCMD')",
+      "DataType": "String",
+      "DefaultValue": "A",
+      "IsMandatory": "No",
+      "IsTemplate": "No",
+      "EnumValues": [
+        "U1",
+        "U2",
+        "U4",
+        "U8",
+        "I1",
+        "I2",
+        "I4",
+        "I8",
+        "F4",
+        "F8",
+        "A",
+        "BI",
+        "BO"
+      ],
+      "Label": "Command Type",
+      "ReferenceType": "Enum"
+    },
+    "9": {
+      "AutomationProtocol": "Secs-Gem Protocol [A.1]",
+      "Name": "commandParameterNameType",
+      "Description": "Type of command parameter name (used when sending commands, aka 'CPNAME')",
+      "DataType": "String",
+      "DefaultValue": "A",
+      "IsMandatory": "No",
+      "IsTemplate": "No",
+      "EnumValues": [
+        "U1",
+        "U2",
+        "U4",
+        "U8",
+        "I1",
+        "I2",
+        "I4",
+        "I8",
+        "F4",
+        "F8",
+        "A",
+        "BI",
+        "BO"
+      ],
+      "Label": "Command Parameter Name Type",
+      "ReferenceType": "Enum"
+    },
+    "10": {
+      "AutomationProtocol": "Secs-Gem Protocol [A.1]",
+      "Name": "netCoreSdkVersion",
+      "Description": "Set the .net core SDK version to use, when multiple are installed in the system where the driver is running. Leave empty to ignore this setting.",
+      "DataType": "String",
+      "IsMandatory": "No",
+      "IsTemplate": "No",
+      "Label": ".Net Core SDK Version",
+      "ReferenceType": "None"
+    },
+    "11": {
+      "AutomationProtocol": "Secs-Gem Protocol [A.1]",
+      "Name": "protocol",
+      "Description": "Protocol used to connect to the equipment",
+      "DataType": "String",
+      "DefaultValue": "HSMS",
+      "IsMandatory": "No",
+      "IsTemplate": "No",
+      "EnumValues": [
+        "HSMS",
+        "RS232",
+        "TCP"
+      ],
+      "Label": "Protocol Type",
+      "ReferenceType": "Enum"
+    },
+    "12": {
+      "AutomationProtocol": "Secs-Gem Protocol [A.1]",
+      "Name": "connectionMode",
+      "Description": "(HSMS) Mode used for connection",
+      "DataType": "String",
+      "DefaultValue": "Active",
+      "IsMandatory": "No",
+      "IsTemplate": "No",
+      "EnumValues": [
+        "Active",
+        "Passive"
+      ],
+      "Label": "Connection Mode",
+      "ReferenceType": "Enum"
+    },
+    "13": {
+      "AutomationProtocol": "Secs-Gem Protocol [A.1]",
+      "Name": "networkAddress",
+      "Description": "(HSMS) Address of the remote connection (Active mode) or Address of the local connection (Passive mode)",
+      "DataType": "String",
+      "DefaultValue": "127.0.0.1",
+      "IsMandatory": "No",
+      "IsTemplate": "No",
+      "Label": "Network Address",
+      "ReferenceType": "None"
+    },
+    "14": {
+      "AutomationProtocol": "Secs-Gem Protocol [A.1]",
+      "Name": "networkPort",
+      "Description": "(HSMS) Port of the remote connection (Active mode) or Port of the local connection (Passive mode)",
+      "DataType": "Integer",
+      "DefaultValue": "5000",
+      "IsMandatory": "No",
+      "IsTemplate": "No",
+      "Label": "Network Port",
+      "ReferenceType": "None"
+    },
+    "15": {
+      "AutomationProtocol": "Secs-Gem Protocol [A.1]",
+      "Name": "serialPortName",
+      "Description": "(Serial/TCP) COM port name to use",
+      "DataType": "String",
+      "IsMandatory": "No",
+      "IsTemplate": "No",
+      "Label": "Serial Port Name",
+      "ReferenceType": "None"
+    },
+    "16": {
+      "AutomationProtocol": "Secs-Gem Protocol [A.1]",
+      "Name": "autoBaudRate",
+      "Description": "(Serial/TCP) Automatic adjust the Baud Rate",
+      "DataType": "Boolean",
+      "DefaultValue": "True",
+      "IsMandatory": "No",
+      "IsTemplate": "No",
+      "Label": "Auto Baud Rate",
+      "ReferenceType": "None"
+    },
+    "17": {
+      "AutomationProtocol": "Secs-Gem Protocol [A.1]",
+      "Name": "isSecsHost",
+      "Description": "(Serial/TCP) Define who plays the role of the Host",
+      "DataType": "Boolean",
+      "DefaultValue": "True",
+      "IsMandatory": "No",
+      "IsTemplate": "No",
+      "Label": "Is Secs Host",
+      "ReferenceType": "None"
+    },
+    "18": {
+      "AutomationProtocol": "Secs-Gem Protocol [A.1]",
+      "Name": "baudRate",
+      "Description": "(Serial/TCP) Connection Speed (bps)",
+      "DataType": "Integer",
+      "DefaultValue": "9600",
+      "IsMandatory": "No",
+      "IsTemplate": "No",
+      "Label": "Baud Rate (bps)",
+      "ReferenceType": "None"
+    },
+    "19": {
+      "AutomationProtocol": "Secs-Gem Protocol [A.1]",
+      "Name": "t1",
+      "Description": "(Serial/TCP) T1 Timeout (seconds)",
+      "DataType": "Integer",
+      "DefaultValue": "1",
+      "IsMandatory": "No",
+      "IsTemplate": "No",
+      "Label": "T1 Timeout (s)",
+      "ReferenceType": "None"
+    },
+    "20": {
+      "AutomationProtocol": "Secs-Gem Protocol [A.1]",
+      "Name": "t2",
+      "Description": "(Serial/TCP) T2 Timeout (seconds)",
+      "DataType": "Integer",
+      "DefaultValue": "1",
+      "IsMandatory": "No",
+      "IsTemplate": "No",
+      "Label": "T2 Timeout (s)",
+      "ReferenceType": "None"
+    },
+    "21": {
+      "AutomationProtocol": "Secs-Gem Protocol [A.1]",
+      "Name": "t3",
+      "Description": "T3 Timeout (seconds)",
+      "DataType": "Integer",
+      "DefaultValue": "60",
+      "IsMandatory": "No",
+      "IsTemplate": "No",
+      "Label": "T3 Timeout (s)",
+      "ReferenceType": "None"
+    },
+    "22": {
+      "AutomationProtocol": "Secs-Gem Protocol [A.1]",
+      "Name": "t4",
+      "Description": "T4 Timeout (seconds)",
+      "DataType": "Integer",
+      "DefaultValue": "15",
+      "IsMandatory": "No",
+      "IsTemplate": "No",
+      "Label": "T4 Timeout (s)",
+      "ReferenceType": "None"
+    },
+    "23": {
+      "AutomationProtocol": "Secs-Gem Protocol [A.1]",
+      "Name": "t5",
+      "Description": "(HSMS) T5 Timeout (seconds)",
+      "DataType": "Integer",
+      "DefaultValue": "10",
+      "IsMandatory": "No",
+      "IsTemplate": "No",
+      "Label": "T5 Timeout (s)",
+      "ReferenceType": "None"
+    },
+    "24": {
+      "AutomationProtocol": "Secs-Gem Protocol [A.1]",
+      "Name": "t6",
+      "Description": "(HSMS) T6 Timeout (seconds)",
+      "DataType": "Integer",
+      "DefaultValue": "10",
+      "IsMandatory": "No",
+      "IsTemplate": "No",
+      "Label": "T6 Timeout (s)",
+      "ReferenceType": "None"
+    },
+    "25": {
+      "AutomationProtocol": "Secs-Gem Protocol [A.1]",
+      "Name": "t7",
+      "Description": "T7 Timeout (seconds)",
+      "DataType": "Integer",
+      "DefaultValue": "10",
+      "IsMandatory": "No",
+      "IsTemplate": "No",
+      "Label": "T7 Timeout (s)",
+      "ReferenceType": "None"
+    },
+    "26": {
+      "AutomationProtocol": "Secs-Gem Protocol [A.1]",
+      "Name": "t8",
+      "Description": "T8 Timeout (seconds)",
+      "DataType": "Integer",
+      "DefaultValue": "10",
+      "IsMandatory": "No",
+      "IsTemplate": "No",
+      "Label": "T8 Timeout (s)",
+      "ReferenceType": "None"
+    },
+    "27": {
+      "AutomationProtocol": "Secs-Gem Protocol [A.1]",
+      "Name": "linkTestInterval",
+      "Description": "(HSMS) Interval for testing link (seconds)",
+      "DataType": "Integer",
+      "DefaultValue": "60",
+      "IsMandatory": "No",
+      "IsTemplate": "No",
+      "Label": "Link Test Interval (s)",
+      "ReferenceType": "None"
+    },
+    "28": {
+      "AutomationProtocol": "Secs-Gem Protocol [A.1]",
+      "Name": "monitorEnabled",
+      "Description": "Secs/Gem underlying communication debug mode",
+      "DataType": "Boolean",
+      "DefaultValue": "False",
+      "IsMandatory": "No",
+      "IsTemplate": "No",
+      "Label": "Monitor Enabled",
+      "ReferenceType": "None"
+    },
+    "29": {
+      "AutomationProtocol": "Secs-Gem Protocol [A.1]",
+      "Name": "deviceId",
+      "Description": "Identifier of the device",
+      "DataType": "Integer",
+      "DefaultValue": "0",
+      "IsMandatory": "No",
+      "IsTemplate": "No",
+      "Label": "Device Id",
+      "ReferenceType": "None"
+    },
+    "30": {
+      "AutomationProtocol": "Secs-Gem Protocol [A.1]",
+      "Name": "retryLimit",
+      "Description": "(Serial/TCP) Maximum number of retries",
+      "DataType": "Integer",
+      "DefaultValue": "1",
+      "IsMandatory": "No",
+      "IsTemplate": "No",
+      "Label": "Retry Limit",
+      "ReferenceType": "None"
+    },
+    "31": {
+      "AutomationProtocol": "Secs-Gem Protocol [A.1]",
+      "Name": "allowInterleave",
+      "Description": "(Serial/TCP) Message ordering mode",
+      "DataType": "Boolean",
+      "DefaultValue": "True",
+      "IsMandatory": "No",
+      "IsTemplate": "No",
+      "Label": "Allow Interleave",
+      "ReferenceType": "None"
+    },
+    "32": {
+      "AutomationProtocol": "Secs-Gem Protocol [A.1]",
+      "Name": "allowMultipleOpen",
+      "Description": "(Serial/TCP) Allow Multiple messages requested",
+      "DataType": "Boolean",
+      "DefaultValue": "True",
+      "IsMandatory": "No",
+      "IsTemplate": "No",
+      "Label": "Allow Multiple Open",
+      "ReferenceType": "None"
+    },
+    "33": {
+      "AutomationProtocol": "Secs-Gem Protocol [A.1]",
+      "Name": "allowDuplicatedBlocks",
+      "Description": "(Serial/TCP) Allow duplicated messages",
+      "DataType": "Boolean",
+      "DefaultValue": "True",
+      "IsMandatory": "No",
+      "IsTemplate": "No",
+      "Label": "Allow Duplicated Blocks",
+      "ReferenceType": "None"
+    },
+    "34": {
+      "AutomationProtocol": "Secs-Gem Protocol [A.1]",
+      "Name": "deleteReportsMode",
+      "Description": "Method used for deleting reports during the setup phase",
+      "DataType": "String",
+      "DefaultValue": "DeleteAllCreatedReports",
+      "IsMandatory": "No",
+      "IsTemplate": "No",
+      "EnumValues": [
+        "DeleteAllCreatedReports",
+        "DeleteCreatedReportsOneByOne",
+        "DeleteAllReports",
+        "DeleteNothing"
+      ],
+      "Label": "Delete Reports Mode",
+      "ReferenceType": "Enum"
+    },
+    "35": {
+      "AutomationProtocol": "Secs-Gem Protocol [A.1]",
+      "Name": "enableDisableEventsMode",
+      "Description": "Define behavior regarding enabling/disabling events during setup phase",
+      "DataType": "String",
+      "DefaultValue": "DisableAllEnableSelection",
+      "IsMandatory": "No",
+      "IsTemplate": "No",
+      "EnumValues": [
+        "DisableAllEnableSelection",
+        "EnableAllDisableSelection",
+        "EnableDisableNothing"
+      ],
+      "Label": "Enable/Disable Events Mode",
+      "ReferenceType": "Enum"
+    },
+    "36": {
+      "AutomationProtocol": "Secs-Gem Protocol [A.1]",
+      "Name": "enableDisableAlarmsMode",
+      "Description": "Define behavior regarding enabling/disabling alarms during setup phase",
+      "DataType": "String",
+      "DefaultValue": "DisableAllEnableSelection",
+      "IsMandatory": "No",
+      "IsTemplate": "No",
+      "EnumValues": [
+        "DisableAllEnableSelection",
+        "EnableAllDisableSelection",
+        "EnableDisableNothing"
+      ],
+      "Label": "Enable/Disable Alarms Mode",
+      "ReferenceType": "Enum"
+    }
+  },
+  "<DM>AutomationDriverDefinition": {
+    "1": {
+      "Name": "Secs-Gem Driver Definition [A.1]",
+      "IsTemplate": "No",
+      "Type": "General",
+      "AutomationProtocol": "Secs-Gem Protocol [A]",
+      "ObjectType": "Site"
+    }
+  },
+  "<DM>AutomationController": {
+    "1": {
+      "Name": "Secs-Gem Controller [A.1]",
+      "IsTemplate": "No",
+      "Type": "General",
+      "ControllerPackageVersion": "11.1.0",
+      "ObjectType": "Site",
+      "TasksPackages": [
+        "@criticalmanufacturing/connect-iot-controller-engine-core-tasks",
+        "@criticalmanufacturing/connect-iot-controller-engine-secsgem-tasks"
+      ],
+      "Scope": "ConnectIoT",
+      "LinkConnector": "Smooth",
+      "LinkRouter": "Normal",
+      "TasksLibraryPackages": [
+        "@criticalmanufacturing/connect-iot-controller-engine-core-tasks@11.2.0-dev",
+        "@criticalmanufacturing/connect-iot-controller-engine-secsgem-tasks@11.2.0-dev"
+      ],
+      "DefaultWorkflowType": "DataFlow"
+    }
+  },
+  "AutomationControllerDriverDef": {
+    "1": {
+      "AutomationController": "Secs-Gem Controller [A.1]",
+      "Name": "Secs-Gem",
+      "DisplayName": "Secs-Gem",
+      "AutomationDriverDefinition": "Secs-Gem Driver Definition [A]",
+      "IsTemplate": "No",
+      "Order": "1"
+    }
+  },
+  "AutomationControllerWorkflow": {
+    "1": {
+      "AutomationController": "Secs-Gem Controller [A.1]",
+      "Name": "AutomationWorkflow_fb2e041f-323c-4935-a320-3ced69af37b7",
+      "DisplayName": "Setup",
+      "IsFile": "Yes",
+      "Workflow": "Dummy/Setup.json",
+      "Order": "1",
+      "IsTemplate": "No",
+      "IsShared": "No",
+      "Indentation": "0",
+      "WorkflowType": "DataFlow"
+    },
+    "2": {
+      "AutomationController": "Secs-Gem Controller [A.1]",
+      "Name": "AutomationWorkflow_fb2e041f-323c-4935-a320-3ced69af37b7",
+      "DisplayName": "Setup",
+      "IsFile": "Yes",
+      "Workflow": "Dummy/Workflow.json",
+      "Order": "2",
+      "IsTemplate": "No",
+      "IsShared": "No",
+      "Indentation": "0",
+      "WorkflowType": "DataFlow"
+    },
+    "3": {
+      "AutomationController": "Secs-Gem Controller [A.1]",
+      "Name": "AutomationWorkflow_16ded9d9-003a-481c-b0a2-93424b4db394",
+      "DisplayName": "Setup",
+      "IsFile": "Yes",
+      "Workflow": "Dummy/Subworkflow.json",
+      "Order": "3",
+      "IsTemplate": "No",
+      "IsShared": "No",
+      "Indentation": "0",
+      "WorkflowType": "DataFlow"
+    }
+  }
+}

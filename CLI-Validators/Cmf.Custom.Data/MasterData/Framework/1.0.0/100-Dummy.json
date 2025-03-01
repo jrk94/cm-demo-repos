@@ -1,0 +1,16 @@
+{
+    "<DM>Reason": {
+        "1": {
+            "Name": "AlarmDetected",
+            "Description": "",
+            "ReasonType": "Hold",
+            "SecurityRole": "",
+            "DocumentationURL": "",
+            "IsTemplate": "No",
+            "ExcludeFromStepYield": "No",
+            "ExcludeFromResourceYield": "No",
+            "Category": "",
+            "EnableConcurrentInstances": "No"
+        }
+    }
+}
