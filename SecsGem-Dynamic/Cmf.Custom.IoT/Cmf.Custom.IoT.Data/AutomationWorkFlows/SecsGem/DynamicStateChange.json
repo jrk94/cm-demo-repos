@@ -1,0 +1,425 @@
+{
+    "tasks": [
+        {
+            "id": "task_3371",
+            "reference": {
+                "name": "entityAdjustState",
+                "package": {
+                    "name": "@criticalmanufacturing/connect-iot-controller-engine-core-tasks",
+                    "version": "11.2.0-dev"
+                }
+            },
+            "settings": {
+                "retries": 30,
+                "sleepBetweenRetries": 1000,
+                "baseEntity": {
+                    "$type": "Cmf.Foundation.BusinessObjects.EntityType, Cmf.Foundation.BusinessObjects",
+                    "Name": "Resource"
+                },
+                "entity": {
+                    "$type": "Cmf.Navigo.BusinessObjects.Resource, Cmf.Navigo.BusinessObjects",
+                    "Name": "Etch-01"
+                },
+                "toState": "Productive",
+                "___cmf___name": "Adjust State"
+            }
+        },
+        {
+            "id": "task_3389",
+            "reference": {
+                "name": "entityInstance",
+                "package": {
+                    "name": "@criticalmanufacturing/connect-iot-controller-engine-core-tasks",
+                    "version": "11.2.0-dev"
+                }
+            },
+            "settings": {
+                "_attributes": [],
+                "_autoActivate": false,
+                "loadAllAttributes": false,
+                "reloadEveryChange": false,
+                "levelsToLoad": 0,
+                "retries": 30,
+                "sleepBetweenRetries": 1000,
+                "entityTypeName": "Resource"
+            },
+            "driver": "Main Tool"
+        },
+        {
+            "id": "task_2789",
+            "reference": {
+                "name": "equipmentEvent",
+                "package": {
+                    "name": "@criticalmanufacturing/connect-iot-controller-engine-core-tasks",
+                    "version": "11.2.0-dev"
+                }
+            },
+            "settings": {
+                "_outputs": [
+                    {
+                        "name": "Status",
+                        "propertyId": "2011",
+                        "propertyType": "",
+                        "property": {
+                            "DataType": 5,
+                            "$type": "Cmf.Foundation.BusinessObjects.AutomationProperty, Cmf.Foundation.BusinessObjects"
+                        },
+                        "deviceType": {
+                            "$type": "Cmf.Foundation.BusinessObjects.AutomationProtocolDataType, Cmf.Foundation.BusinessObjects",
+                            "Name": "U1"
+                        },
+                        "valueType": {
+                            "collectionType": null,
+                            "friendlyName": "Status",
+                            "type": "Integer",
+                            "name": "Integer"
+                        },
+                        "defaultValue": "",
+                        "outputType": "Value",
+                        "editable": false,
+                        "removable": false,
+                        "settingKey": "name"
+                    }
+                ],
+                "_autoActivate": true,
+                "_customEvents": false,
+                "_acceptAllEvents": false,
+                "_events": [
+                    {
+                        "$type": "Cmf.Foundation.BusinessObjects.AutomationEvent, Cmf.Foundation.BusinessObjects",
+                        "Name": "StatusChanged"
+                    }
+                ],
+                "_workingMode": "AlwaysActive",
+                "_messageFullName": "1000",
+                "___cmf___name": "On Equipment Event",
+                "_automationEventProperties": [
+                    {
+                        "$type": "Cmf.Foundation.BusinessObjects.AutomationProperty, Cmf.Foundation.BusinessObjects",
+                        "Name": "Status"
+                    }
+                ]
+            },
+            "driver": "Main Tool"
+        },
+        {
+            "id": "task_3478",
+            "reference": {
+                "name": "resolveTable",
+                "package": {
+                    "name": "@criticalmanufacturing/connect-iot-controller-engine-core-tasks",
+                    "version": "11.2.0-dev"
+                }
+            },
+            "settings": {
+                "inputs": [
+                    {
+                        "name": "MachineStatus",
+                        "removable": false,
+                        "editable": true,
+                        "valueType": {
+                            "type": 4,
+                            "referenceType": 0
+                        },
+                        "fields": {
+                            "name": {
+                                "editable": false
+                            }
+                        }
+                    },
+                    {
+                        "name": "ResourceType",
+                        "removable": false,
+                        "editable": true,
+                        "valueType": {
+                            "type": 11,
+                            "referenceType": 2,
+                            "referenceTypeName": "ResourceResourceType"
+                        },
+                        "fields": {
+                            "name": {
+                                "editable": false
+                            }
+                        }
+                    },
+                    {
+                        "name": "Resource",
+                        "removable": false,
+                        "editable": true,
+                        "valueType": {
+                            "type": 11,
+                            "referenceType": 1,
+                            "referenceTypeName": "Resource",
+                            "referencePropertyName": "Name"
+                        },
+                        "fields": {
+                            "name": {
+                                "editable": false
+                            }
+                        }
+                    }
+                ],
+                "outputs": [
+                    {
+                        "name": "MachineStatus",
+                        "removable": false,
+                        "editable": true,
+                        "valueType": {
+                            "type": 4,
+                            "referenceType": 0
+                        },
+                        "fields": {
+                            "name": {
+                                "editable": false
+                            }
+                        }
+                    },
+                    {
+                        "name": "SEMIE10Status",
+                        "removable": false,
+                        "editable": true,
+                        "valueType": {
+                            "type": 4,
+                            "referenceType": 0
+                        },
+                        "fields": {
+                            "name": {
+                                "editable": false
+                            }
+                        }
+                    },
+                    {
+                        "name": "ResourceType",
+                        "removable": false,
+                        "editable": true,
+                        "valueType": {
+                            "type": 11,
+                            "referenceType": 2,
+                            "referenceTypeName": "ResourceResourceType"
+                        },
+                        "fields": {
+                            "name": {
+                                "editable": false
+                            }
+                        }
+                    },
+                    {
+                        "name": "Resource",
+                        "removable": false,
+                        "editable": true,
+                        "valueType": {
+                            "type": 11,
+                            "referenceType": 1,
+                            "referenceTypeName": "Resource",
+                            "referencePropertyName": "Name"
+                        },
+                        "fields": {
+                            "name": {
+                                "editable": false
+                            }
+                        }
+                    }
+                ],
+                "tableType": "SmartTable",
+                "tableName": "CustomMachineStateResolution",
+                "returnedResultsMode": "OnlyFirstRow",
+                "partialResolve": false,
+                "clearInputs": true,
+                "emitOnTableUpdate": false,
+                "___cmf___name": "Resolve Table"
+            }
+        }
+    ],
+    "converters": [
+        {
+            "id": "@criticalmanufacturing/connect-iot-controller-engine-core-tasks#anyToString",
+            "reference": {
+                "name": "anyToString",
+                "package": {
+                    "name": "@criticalmanufacturing/connect-iot-controller-engine-core-tasks",
+                    "version": "11.2.0-dev"
+                }
+            }
+        },
+        {
+            "id": "@criticalmanufacturing/connect-iot-controller-engine-core-tasks#anyToAny",
+            "reference": {
+                "name": "anyToAny",
+                "package": {
+                    "name": "@criticalmanufacturing/connect-iot-controller-engine-core-tasks",
+                    "version": "11.2.0-dev"
+                }
+            }
+        },
+        {
+            "id": "@criticalmanufacturing/connect-iot-controller-engine-core-tasks#objectProperty",
+            "reference": {
+                "name": "objectProperty",
+                "package": {
+                    "name": "@criticalmanufacturing/connect-iot-controller-engine-core-tasks",
+                    "version": "11.2.0-dev"
+                }
+            }
+        }
+    ],
+    "links": [
+        {
+            "id": "9a52963d-66b1-4a1f-bbce-d697f9f12c6e",
+            "sourceId": "task_3389",
+            "targetId": "task_3371",
+            "inputName": "entity",
+            "outputName": "instance"
+        },
+        {
+            "id": "e92a7762-82ce-4e6a-8155-f77b5209b166",
+            "sourceId": "task_2789",
+            "targetId": "task_3389",
+            "inputName": "activate",
+            "outputName": "success"
+        },
+        {
+            "id": "52553b22-cd7d-416a-bb06-48336dbefb0b",
+            "sourceId": "task_2789",
+            "targetId": "task_3478",
+            "inputName": "MachineStatusIn",
+            "outputName": "Status",
+            "converters": [
+                {
+                    "id": "@criticalmanufacturing/connect-iot-controller-engine-core-tasks#anyToString",
+                    "params": {}
+                }
+            ]
+        },
+        {
+            "id": "99dc4ccf-4365-4a41-96f7-9db7aa946155",
+            "sourceId": "task_3478",
+            "targetId": "task_3371",
+            "inputName": "toState",
+            "outputName": "SEMIE10StatusOut"
+        },
+        {
+            "id": "87b8ea9c-054d-4bfe-be5d-987fe823bc86",
+            "sourceId": "task_3478",
+            "targetId": "task_3371",
+            "inputName": "activate",
+            "outputName": "success"
+        },
+        {
+            "id": "4a7285e2-8f4f-4312-b965-a4e01037ad98",
+            "sourceId": "task_3389",
+            "targetId": "task_3478",
+            "inputName": "activate",
+            "outputName": "success"
+        },
+        {
+            "id": "9e85517f-b698-482e-8e4e-09854191e605",
+            "sourceId": "task_3389",
+            "targetId": "task_3478",
+            "inputName": "ResourceIn",
+            "outputName": "instance",
+            "converters": [
+                {
+                    "id": "@criticalmanufacturing/connect-iot-controller-engine-core-tasks#anyToAny",
+                    "params": {}
+                }
+            ]
+        },
+        {
+            "id": "c53aa09f-b445-417f-a48a-e0971305767a",
+            "sourceId": "task_3389",
+            "targetId": "task_3478",
+            "inputName": "ResourceTypeIn",
+            "outputName": "instance",
+            "converters": [
+                {
+                    "id": "@criticalmanufacturing/connect-iot-controller-engine-core-tasks#anyToAny",
+                    "params": {}
+                },
+                {
+                    "id": "@criticalmanufacturing/connect-iot-controller-engine-core-tasks#objectProperty",
+                    "params": {
+                        "path": "ResourceType",
+                        "type": "String"
+                    }
+                }
+            ]
+        }
+    ],
+    "$id": "1",
+    "layout": {
+        "general": {
+            "color": null,
+            "notes": []
+        },
+        "drawers": {
+            "DIAGRAM": {
+                "tasks": {
+                    "task_3478": {
+                        "collapsed": false,
+                        "position": {
+                            "x": 1212,
+                            "y": 407
+                        },
+                        "outdated": false
+                    },
+                    "task_2789": {
+                        "collapsed": false,
+                        "position": {
+                            "x": 112,
+                            "y": 418
+                        },
+                        "outdated": false
+                    },
+                    "task_3389": {
+                        "collapsed": true,
+                        "position": {
+                            "x": 596,
+                            "y": 746
+                        },
+                        "outdated": false
+                    },
+                    "task_3371": {
+                        "collapsed": false,
+                        "position": {
+                            "x": 1792,
+                            "y": 480
+                        },
+                        "outdated": false
+                    }
+                },
+                "links": {
+                    "9a52963d-66b1-4a1f-bbce-d697f9f12c6e": {
+                        "vertices": []
+                    },
+                    "e92a7762-82ce-4e6a-8155-f77b5209b166": {
+                        "vertices": []
+                    },
+                    "99dc4ccf-4365-4a41-96f7-9db7aa946155": {
+                        "vertices": []
+                    },
+                    "87b8ea9c-054d-4bfe-be5d-987fe823bc86": {
+                        "vertices": []
+                    },
+                    "4a7285e2-8f4f-4312-b965-a4e01037ad98": {
+                        "vertices": []
+                    },
+                    "52553b22-cd7d-416a-bb06-48336dbefb0b": {
+                        "vertices": []
+                    },
+                    "9e85517f-b698-482e-8e4e-09854191e605": {
+                        "vertices": []
+                    },
+                    "c53aa09f-b445-417f-a48a-e0971305767a": {
+                        "vertices": []
+                    }
+                },
+                "notes": {},
+                "pan": {
+                    "x": 0,
+                    "y": 0
+                },
+                "zoom": 0.7299999999999999
+            }
+        }
+    }
+}

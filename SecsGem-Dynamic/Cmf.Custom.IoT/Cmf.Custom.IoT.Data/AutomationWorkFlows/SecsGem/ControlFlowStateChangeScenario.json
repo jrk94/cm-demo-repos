@@ -1,0 +1,503 @@
+{
+    "tasks": [
+        {
+            "id": "17405817409055478",
+            "name": "equipmentEvent_0b84",
+            "type": {
+                "name": "equipmentEvent",
+                "package": "@criticalmanufacturing/connect-iot-controller-engine-core-tasks",
+                "version": "11.2.0-dev"
+            },
+            "x": 670,
+            "y": 50,
+            "isCollapsed": false,
+            "isDisabled": true,
+            "settings": {
+                "_autoActivate": true,
+                "_customEvents": false,
+                "_acceptAllEvents": false,
+                "_workingMode": "AlwaysActive",
+                "_events": [
+                    {
+                        "$type": "Cmf.Foundation.BusinessObjects.AutomationEvent, Cmf.Foundation.BusinessObjects",
+                        "Name": "StatusChanged"
+                    }
+                ],
+                "_messageFullName": "1000",
+                "_automationEventProperties": [
+                    {
+                        "$type": "Cmf.Foundation.BusinessObjects.AutomationProperty, Cmf.Foundation.BusinessObjects",
+                        "Name": "Status"
+                    }
+                ],
+                "_outputs": [
+                    {
+                        "name": "Status",
+                        "propertyId": "2011",
+                        "propertyType": "",
+                        "property": {
+                            "DataType": 5,
+                            "$type": "Cmf.Foundation.BusinessObjects.AutomationProperty, Cmf.Foundation.BusinessObjects"
+                        },
+                        "deviceType": {
+                            "$type": "Cmf.Foundation.BusinessObjects.AutomationProtocolDataType, Cmf.Foundation.BusinessObjects",
+                            "Name": "U1"
+                        },
+                        "valueType": {
+                            "collectionType": null,
+                            "friendlyName": "Status",
+                            "type": "Integer",
+                            "name": "Integer"
+                        },
+                        "defaultValue": "",
+                        "outputType": "Value",
+                        "editable": false,
+                        "removable": false
+                    }
+                ]
+            },
+            "inputs": [],
+            "outputs": [
+                {
+                    "name": "event",
+                    "value": "{{ $this.event }}",
+                    "dataType": "Any"
+                },
+                {
+                    "name": "timestamp",
+                    "value": "{{ $this.timestamp }}",
+                    "dataType": "Any"
+                },
+                {
+                    "name": "eventRawData",
+                    "value": "{{ $this.eventRawData }}",
+                    "dataType": "Any"
+                },
+                {
+                    "name": "Status",
+                    "value": "{{ $this.Status }}",
+                    "dataType": "Integer"
+                }
+            ],
+            "driver": "Main Tool",
+            "caption": "When equipment triggers the event {{_messageFullName}}",
+            "color": "#9cff8f",
+            "branches": [
+                {
+                    "name": "handler",
+                    "tasks": [
+                        {
+                            "id": "17405739273344296",
+                            "name": "entityInstance_c712",
+                            "type": {
+                                "name": "entityInstance",
+                                "package": "@criticalmanufacturing/connect-iot-controller-engine-core-tasks",
+                                "version": "11.2.0-dev"
+                            },
+                            "isCollapsed": false,
+                            "isDisabled": false,
+                            "settings": {
+                                "_autoActivate": false,
+                                "loadAllAttributes": false,
+                                "reloadEveryChange": false,
+                                "levelsToLoad": 0,
+                                "retries": 30,
+                                "sleepBetweenRetries": 1000,
+                                "entityTypeName": "Resource"
+                            },
+                            "inputs": [],
+                            "outputs": [
+                                {
+                                    "name": "instance",
+                                    "value": "{{ $this.instance }}",
+                                    "dataType": "Object"
+                                }
+                            ],
+                            "driver": "Main Tool",
+                            "caption": "Retrieve assigned instance entity data",
+                            "color": "#9cff8f",
+                            "branches": []
+                        },
+                        {
+                            "id": "17405739429614320",
+                            "name": "condition_3715",
+                            "type": {
+                                "name": "condition",
+                                "package": "@criticalmanufacturing/connect-iot-controller-engine-core-tasks",
+                                "version": "11.2.0-dev"
+                            },
+                            "isCollapsed": false,
+                            "isDisabled": false,
+                            "settings": {},
+                            "inputs": [],
+                            "outputs": [],
+                            "caption": "Check {{handler.type}} {{handler.condition}}",
+                            "branches": [
+                                {
+                                    "name": "handler",
+                                    "tasks": [
+                                        {
+                                            "id": "17405739994064358",
+                                            "name": "entityAdjustState_2755",
+                                            "type": {
+                                                "name": "entityAdjustState",
+                                                "package": "@criticalmanufacturing/connect-iot-controller-engine-core-tasks",
+                                                "version": "11.2.0-dev"
+                                            },
+                                            "isCollapsed": false,
+                                            "isDisabled": false,
+                                            "settings": {
+                                                "toState": "Nonscheduled",
+                                                "retries": 30,
+                                                "sleepBetweenRetries": 1000
+                                            },
+                                            "inputs": [
+                                                {
+                                                    "name": "entity",
+                                                    "dataType": "Object",
+                                                    "value": "{{ $entityInstance_c712.instance }}"
+                                                }
+                                            ],
+                                            "outputs": [],
+                                            "caption": "Update state of entity to {{ toState }}",
+                                            "branches": []
+                                        }
+                                    ],
+                                    "settings": {
+                                        "type": "If",
+                                        "condition": "{{ $equipmentEvent_0b84.Status == 1 }}"
+                                    }
+                                },
+                                {
+                                    "name": "else",
+                                    "tasks": [
+                                        {
+                                            "id": "17405745029884810",
+                                            "name": "condition_5a97",
+                                            "type": {
+                                                "name": "condition",
+                                                "package": "@criticalmanufacturing/connect-iot-controller-engine-core-tasks",
+                                                "version": "11.2.0-dev"
+                                            },
+                                            "isCollapsed": false,
+                                            "isDisabled": false,
+                                            "settings": {},
+                                            "inputs": [],
+                                            "outputs": [],
+                                            "caption": "Check {{handler.type}} {{handler.condition}}",
+                                            "branches": [
+                                                {
+                                                    "name": "handler",
+                                                    "tasks": [
+                                                        {
+                                                            "id": "17405745029904813",
+                                                            "name": "entityAdjustState_4458",
+                                                            "type": {
+                                                                "name": "entityAdjustState",
+                                                                "package": "@criticalmanufacturing/connect-iot-controller-engine-core-tasks",
+                                                                "version": "11.2.0-dev"
+                                                            },
+                                                            "isCollapsed": false,
+                                                            "isDisabled": false,
+                                                            "settings": {
+                                                                "toState": "Unscheduled Down",
+                                                                "retries": 30,
+                                                                "sleepBetweenRetries": 1000
+                                                            },
+                                                            "inputs": [
+                                                                {
+                                                                    "name": "entity",
+                                                                    "dataType": "Object",
+                                                                    "value": "{{ $entityInstance_c712.instance }}"
+                                                                }
+                                                            ],
+                                                            "outputs": [],
+                                                            "caption": "Update state of entity to {{ toState }}",
+                                                            "branches": []
+                                                        }
+                                                    ],
+                                                    "settings": {
+                                                        "type": "If",
+                                                        "condition": "{{ $equipmentEvent_0b84.Status == 2 }}"
+                                                    }
+                                                },
+                                                {
+                                                    "name": "else",
+                                                    "tasks": [
+                                                        {
+                                                            "id": "17405745051184823",
+                                                            "name": "condition_7d8f",
+                                                            "type": {
+                                                                "name": "condition",
+                                                                "package": "@criticalmanufacturing/connect-iot-controller-engine-core-tasks",
+                                                                "version": "11.2.0-dev"
+                                                            },
+                                                            "isCollapsed": false,
+                                                            "isDisabled": false,
+                                                            "settings": {},
+                                                            "inputs": [],
+                                                            "outputs": [],
+                                                            "caption": "Check {{handler.type}} {{handler.condition}}",
+                                                            "branches": [
+                                                                {
+                                                                    "name": "handler",
+                                                                    "tasks": [
+                                                                        {
+                                                                            "id": "17405745051194826",
+                                                                            "name": "entityAdjustState_2645",
+                                                                            "type": {
+                                                                                "name": "entityAdjustState",
+                                                                                "package": "@criticalmanufacturing/connect-iot-controller-engine-core-tasks",
+                                                                                "version": "11.2.0-dev"
+                                                                            },
+                                                                            "isCollapsed": false,
+                                                                            "isDisabled": false,
+                                                                            "settings": {
+                                                                                "toState": "Scheduled Down",
+                                                                                "retries": 30,
+                                                                                "sleepBetweenRetries": 1000
+                                                                            },
+                                                                            "inputs": [
+                                                                                {
+                                                                                    "name": "entity",
+                                                                                    "dataType": "Object",
+                                                                                    "value": "{{ $entityInstance_c712.instance }}"
+                                                                                }
+                                                                            ],
+                                                                            "outputs": [],
+                                                                            "caption": "Update state of entity to {{ toState }}",
+                                                                            "branches": []
+                                                                        }
+                                                                    ],
+                                                                    "settings": {
+                                                                        "type": "If",
+                                                                        "condition": "{{ $equipmentEvent_0b84.Status == 3 }}"
+                                                                    }
+                                                                },
+                                                                {
+                                                                    "name": "else",
+                                                                    "tasks": [
+                                                                        {
+                                                                            "id": "17405745822064934",
+                                                                            "name": "condition_5558",
+                                                                            "type": {
+                                                                                "name": "condition",
+                                                                                "package": "@criticalmanufacturing/connect-iot-controller-engine-core-tasks",
+                                                                                "version": "11.2.0-dev"
+                                                                            },
+                                                                            "isCollapsed": false,
+                                                                            "isDisabled": false,
+                                                                            "settings": {},
+                                                                            "inputs": [],
+                                                                            "outputs": [],
+                                                                            "caption": "Check {{handler.type}} {{handler.condition}}",
+                                                                            "branches": [
+                                                                                {
+                                                                                    "name": "handler",
+                                                                                    "tasks": [
+                                                                                        {
+                                                                                            "id": "17405745822074937",
+                                                                                            "name": "entityAdjustState_5ce6",
+                                                                                            "type": {
+                                                                                                "name": "entityAdjustState",
+                                                                                                "package": "@criticalmanufacturing/connect-iot-controller-engine-core-tasks",
+                                                                                                "version": "11.2.0-dev"
+                                                                                            },
+                                                                                            "isCollapsed": false,
+                                                                                            "isDisabled": false,
+                                                                                            "settings": {
+                                                                                                "toState": "Engineering",
+                                                                                                "retries": 30,
+                                                                                                "sleepBetweenRetries": 1000
+                                                                                            },
+                                                                                            "inputs": [
+                                                                                                {
+                                                                                                    "name": "entity",
+                                                                                                    "dataType": "Object",
+                                                                                                    "value": "{{ $entityInstance_c712.instance }}"
+                                                                                                }
+                                                                                            ],
+                                                                                            "outputs": [],
+                                                                                            "caption": "Update state of entity to {{ toState }}",
+                                                                                            "branches": []
+                                                                                        }
+                                                                                    ],
+                                                                                    "settings": {
+                                                                                        "type": "If",
+                                                                                        "condition": "{{ $equipmentEvent_0b84.Status == 4 }}"
+                                                                                    }
+                                                                                },
+                                                                                {
+                                                                                    "name": "else",
+                                                                                    "tasks": [
+                                                                                        {
+                                                                                            "id": "17405745974014969",
+                                                                                            "name": "condition_b928",
+                                                                                            "type": {
+                                                                                                "name": "condition",
+                                                                                                "package": "@criticalmanufacturing/connect-iot-controller-engine-core-tasks",
+                                                                                                "version": "11.2.0-dev"
+                                                                                            },
+                                                                                            "isCollapsed": false,
+                                                                                            "isDisabled": false,
+                                                                                            "settings": {},
+                                                                                            "inputs": [],
+                                                                                            "outputs": [],
+                                                                                            "caption": "Check {{handler.type}} {{handler.condition}}",
+                                                                                            "branches": [
+                                                                                                {
+                                                                                                    "name": "handler",
+                                                                                                    "tasks": [
+                                                                                                        {
+                                                                                                            "id": "17405745974024972",
+                                                                                                            "name": "entityAdjustState_1fc7",
+                                                                                                            "type": {
+                                                                                                                "name": "entityAdjustState",
+                                                                                                                "package": "@criticalmanufacturing/connect-iot-controller-engine-core-tasks",
+                                                                                                                "version": "11.2.0-dev"
+                                                                                                            },
+                                                                                                            "isCollapsed": false,
+                                                                                                            "isDisabled": false,
+                                                                                                            "settings": {
+                                                                                                                "toState": "Standby",
+                                                                                                                "retries": 30,
+                                                                                                                "sleepBetweenRetries": 1000
+                                                                                                            },
+                                                                                                            "inputs": [
+                                                                                                                {
+                                                                                                                    "name": "entity",
+                                                                                                                    "dataType": "Object",
+                                                                                                                    "value": "{{ $entityInstance_c712.instance }}"
+                                                                                                                }
+                                                                                                            ],
+                                                                                                            "outputs": [],
+                                                                                                            "caption": "Update state of entity to {{ toState }}",
+                                                                                                            "branches": []
+                                                                                                        }
+                                                                                                    ],
+                                                                                                    "settings": {
+                                                                                                        "type": "If",
+                                                                                                        "condition": "{{ $equipmentEvent_0b84.Status == 5 }}"
+                                                                                                    }
+                                                                                                },
+                                                                                                {
+                                                                                                    "name": "else",
+                                                                                                    "tasks": [
+                                                                                                        {
+                                                                                                            "id": "17405746225815002",
+                                                                                                            "name": "condition_b683",
+                                                                                                            "type": {
+                                                                                                                "name": "condition",
+                                                                                                                "package": "@criticalmanufacturing/connect-iot-controller-engine-core-tasks",
+                                                                                                                "version": "11.2.0-dev"
+                                                                                                            },
+                                                                                                            "isCollapsed": false,
+                                                                                                            "isDisabled": false,
+                                                                                                            "settings": {},
+                                                                                                            "inputs": [],
+                                                                                                            "outputs": [],
+                                                                                                            "caption": "Check {{handler.type}} {{handler.condition}}",
+                                                                                                            "branches": [
+                                                                                                                {
+                                                                                                                    "name": "handler",
+                                                                                                                    "tasks": [
+                                                                                                                        {
+                                                                                                                            "id": "17405746225825005",
+                                                                                                                            "name": "entityAdjustState_8184",
+                                                                                                                            "type": {
+                                                                                                                                "name": "entityAdjustState",
+                                                                                                                                "package": "@criticalmanufacturing/connect-iot-controller-engine-core-tasks",
+                                                                                                                                "version": "11.2.0-dev"
+                                                                                                                            },
+                                                                                                                            "isCollapsed": false,
+                                                                                                                            "isDisabled": false,
+                                                                                                                            "settings": {
+                                                                                                                                "toState": "Productive",
+                                                                                                                                "retries": 30,
+                                                                                                                                "sleepBetweenRetries": 1000
+                                                                                                                            },
+                                                                                                                            "inputs": [
+                                                                                                                                {
+                                                                                                                                    "name": "entity",
+                                                                                                                                    "dataType": "Object",
+                                                                                                                                    "value": "{{ $entityInstance_c712.instance }}"
+                                                                                                                                }
+                                                                                                                            ],
+                                                                                                                            "outputs": [],
+                                                                                                                            "caption": "Update state of entity to {{ toState }}",
+                                                                                                                            "branches": []
+                                                                                                                        }
+                                                                                                                    ],
+                                                                                                                    "settings": {
+                                                                                                                        "type": "If",
+                                                                                                                        "condition": "{{ $equipmentEvent_0b84.Status == 6 }}"
+                                                                                                                    }
+                                                                                                                },
+                                                                                                                {
+                                                                                                                    "name": "else",
+                                                                                                                    "tasks": [],
+                                                                                                                    "settings": {
+                                                                                                                        "type": "Else"
+                                                                                                                    }
+                                                                                                                }
+                                                                                                            ]
+                                                                                                        }
+                                                                                                    ],
+                                                                                                    "settings": {
+                                                                                                        "type": "Else"
+                                                                                                    }
+                                                                                                }
+                                                                                            ]
+                                                                                        }
+                                                                                    ],
+                                                                                    "settings": {
+                                                                                        "type": "Else"
+                                                                                    }
+                                                                                }
+                                                                            ]
+                                                                        }
+                                                                    ],
+                                                                    "settings": {
+                                                                        "type": "Else"
+                                                                    }
+                                                                }
+                                                            ]
+                                                        }
+                                                    ],
+                                                    "settings": {
+                                                        "type": "Else"
+                                                    }
+                                                }
+                                            ]
+                                        }
+                                    ],
+                                    "settings": {
+                                        "type": "Else"
+                                    }
+                                }
+                            ]
+                        }
+                    ],
+                    "settings": {}
+                }
+            ]
+        }
+    ],
+    "$id": "1",
+    "layout": {
+        "general": {
+            "color": null
+        },
+        "drawer": {
+            "tasks": {
+                "17405817409055478": {
+                    "disabled": true
+                }
+            },
+            "x": 0,
+            "y": 42.362858914017124,
+            "zoom": 1.2899450879999999,
+            "fill": true
+        }
+    }
+}
