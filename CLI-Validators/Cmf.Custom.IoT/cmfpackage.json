@@ -1,0 +1,19 @@
+{
+  "packageId": "Cmf.Custom.IoT",
+  "version": "1.0.0",
+  "description": "Cmf Custom cmf Cmf.Custom.IoT Package",
+  "packageType": "Root",
+  "isInstallable": true,
+  "isUniqueInstall": false,
+  "dependencies": [
+    {
+      "id": "Cmf.Environment",
+      "version": "11.1.1",
+      "mandatory": false
+    },
+    {
+      "id": "Cmf.Custom.IoT.Data",
+      "version": "1.0.0"
+    }
+  ]
+}

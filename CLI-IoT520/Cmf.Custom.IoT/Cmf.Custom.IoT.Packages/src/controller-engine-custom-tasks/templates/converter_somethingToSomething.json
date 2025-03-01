@@ -1,0 +1,12 @@
+{
+  "converters": [
+    {
+      "name": "somethingToSomething",
+      "displayName": "Something To Something",
+      "inputDataType": "String",
+      "outputDataType": "String",
+      "parameters": {}
+    }
+  ],
+  "tasks": []
+}
