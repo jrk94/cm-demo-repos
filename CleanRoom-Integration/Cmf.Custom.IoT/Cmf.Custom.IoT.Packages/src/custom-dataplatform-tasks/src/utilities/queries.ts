@@ -3,7 +3,7 @@ import Cmf from "cmf-lbos";
 import QueryObject = System.LBOS.Cmf.Foundation.BusinessObjects.QueryObject;
 
 export class Queries {
-    static GetIsa95QueryFromResource(resourceName: string): QueryObject.QueryObject {
+    static getIsa95QueryFromResource(resourceName: string): QueryObject.QueryObject {
         const filterCollection: Cmf.Foundation.BusinessObjects.QueryObject.FilterCollection = new Cmf.Foundation.BusinessObjects.QueryObject.FilterCollection();
 
         // Filter filter_0
@@ -260,7 +260,7 @@ export class Queries {
         return query;
     }
 
-    static GetIsa95QueryFromArea(areaName: string): QueryObject.QueryObject {
+    static getIsa95QueryFromArea(areaName: string): QueryObject.QueryObject {
         const filterCollection: Cmf.Foundation.BusinessObjects.QueryObject.FilterCollection = new Cmf.Foundation.BusinessObjects.QueryObject.FilterCollection();
 
         // Filter filter_0
@@ -438,7 +438,7 @@ export class Queries {
         return query;
     }
 
-    static GetIsa95QueryFromFacility(facilityName: string): QueryObject.QueryObject {
+    static getIsa95QueryFromFacility(facilityName: string): QueryObject.QueryObject {
         const filterCollection: Cmf.Foundation.BusinessObjects.QueryObject.FilterCollection = new Cmf.Foundation.BusinessObjects.QueryObject.FilterCollection();
 
         // Filter filter_0
@@ -545,7 +545,7 @@ export class Queries {
         return query;
     }
 
-    static GetIsa95QueryFromSite(siteName: string): QueryObject.QueryObject {
+    static getIsa95QueryFromSite(siteName: string): QueryObject.QueryObject {
         const filterCollection: Cmf.Foundation.BusinessObjects.QueryObject.FilterCollection = new Cmf.Foundation.BusinessObjects.QueryObject.FilterCollection();
 
         // Filter filter_0

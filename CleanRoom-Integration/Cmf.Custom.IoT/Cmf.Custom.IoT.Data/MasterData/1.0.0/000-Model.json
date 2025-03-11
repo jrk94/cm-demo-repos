@@ -1,0 +1,228 @@
+{
+	"<SM>LookupTableValues": {
+		"1": {
+			"LookUp Table": "FacilityType",
+			"Lookup Table Value Parent": "",
+			"Lookup Table Value": "Chip Fab",
+			"Lookup Table Value Description": "",
+			"Lookup Table IsEnabled": "True"
+		},
+		"2": {
+			"LookUp Table": "FacilityType",
+			"Lookup Table Value Parent": "",
+			"Lookup Table Value": "R&D Fab",
+			"Lookup Table Value Description": "",
+			"Lookup Table IsEnabled": "True"
+		},
+		"3": {
+			"LookUp Table": "AreaType",
+			"Lookup Table Value Parent": "",
+			"Lookup Table Value": "Chip Production",
+			"Lookup Table Value Description": "",
+			"Lookup Table IsEnabled": "True"
+		},
+		"4": {
+			"LookUp Table": "AreaType",
+			"Lookup Table Value Parent": "",
+			"Lookup Table Value": "Metrology & Inspection Cleanroom",
+			"Lookup Table Value Description": "",
+			"Lookup Table IsEnabled": "True"
+		}
+	},
+	"<DM>Enterprise": {
+		"1": {
+			"Name": "QuantumChip Technologies",
+			"Description": "QuantumChip Technologies Inc",
+			"IsTemplate": "No"
+		}
+	},
+	"<DM>Site": {
+		"1": {
+			"Name": "Silicon Valley Fab",
+			"Enterprise": "QuantumChip Technologies",
+			"IsRemote": "No",
+			"IsTemplate": "No"
+		},
+		"2": {
+			"Name": "Taiwan Advanced Fab",
+			"Enterprise": "QuantumChip Technologies",
+			"IsRemote": "No",
+			"IsTemplate": "No"
+		},
+		"3": {
+			"Name": "Europe R&D",
+			"Enterprise": "QuantumChip Technologies",
+			"IsRemote": "No",
+			"IsTemplate": "No"
+		}
+	},
+	"<DM>Facility": {
+		"1": {
+			"Name": "QuantumChip Fab America",
+			"Description": "QuantumChip Fab America",
+			"Type": "Chip Fab",
+			"DisplayOrder": "1",
+			"DefaultCalendar": "Standard",
+			"TerminateOnShip": "No",
+			"Shipping Facilities": "Distribution Center",
+			"IsTemplate": "No",
+			"Site": "Silicon Valley Fab"
+		},
+		"2": {
+			"Name": "QuantumChip Fab Taiwan",
+			"Description": "QuantumChip Fab Taiwan",
+			"Type": "Chip Fab",
+			"DisplayOrder": "2",
+			"DefaultCalendar": "Standard",
+			"TerminateOnShip": "No",
+			"Shipping Facilities": "Distribution Center",
+			"IsTemplate": "No",
+			"Site": "Taiwan Advanced Fab"
+		},
+		"3": {
+			"Name": "Europe R&D and Pilot Line",
+			"Description": "Europe R&D and Pilot Line",
+			"Type": "R&D Fab",
+			"DisplayOrder": "3",
+			"DefaultCalendar": "Standard",
+			"TerminateOnShip": "No",
+			"Shipping Facilities": "Distribution Center",
+			"IsTemplate": "No",
+			"Site": "Europe R&D"
+		}
+	},
+	"<DM>Area": {
+		"1": {
+			"Name": "Wafer Preparation Cleanroom",
+			"Description": "Wafer Preparation Cleanroom",
+			"Type": "Chip Production",
+			"DisplayOrder": "1",
+			"Facility": "QuantumChip Fab America",
+			"AreaType": "Area",
+			"Calendar": "Standard",
+			"EnableShiftLogbook": "No",
+			"IsTemplate": "No",
+			"HoldCount": "0"
+		},
+		"2": {
+			"Name": "Lithography Cleanroom",
+			"Description": "Lithography Cleanroom",
+			"Type": "Chip Production",
+			"DisplayOrder": "2",
+			"Facility": "QuantumChip Fab America",
+			"AreaType": "Area",
+			"Calendar": "Standard",
+			"EnableShiftLogbook": "No",
+			"IsTemplate": "No",
+			"HoldCount": "0"
+		},
+		"3": {
+			"Name": "Etching & Deposition Cleanroom",
+			"Description": "Etching & Deposition Cleanroom",
+			"Type": "Chip Production",
+			"DisplayOrder": "3",
+			"Facility": "QuantumChip Fab America",
+			"AreaType": "Area",
+			"Calendar": "Standard",
+			"EnableShiftLogbook": "No",
+			"IsTemplate": "No",
+			"HoldCount": "0"
+		},
+		"4": {
+			"Name": "CMP Cleanroom",
+			"Description": "CMP Cleanroom",
+			"Type": "Chip Production",
+			"DisplayOrder": "4",
+			"Facility": "QuantumChip Fab America",
+			"AreaType": "Area",
+			"Calendar": "Standard",
+			"EnableShiftLogbook": "No",
+			"IsTemplate": "No",
+			"HoldCount": "0"
+		},
+		"4": {
+			"Name": "CMP Cleanroom",
+			"Description": "CMP Cleanroom",
+			"Type": "Chip Production",
+			"DisplayOrder": "4",
+			"Facility": "QuantumChip Fab America",
+			"AreaType": "Area",
+			"Calendar": "Standard",
+			"EnableShiftLogbook": "No",
+			"IsTemplate": "No",
+			"HoldCount": "0"
+		},
+		"5": {
+			"Name": "Metrology & Inspection Cleanroom",
+			"Description": "Metrology & Inspection Cleanroom",
+			"Type": "Metrology & Inspection Cleanroom",
+			"DisplayOrder": "5",
+			"Facility": "QuantumChip Fab America",
+			"AreaType": "Area",
+			"Calendar": "Standard",
+			"EnableShiftLogbook": "No",
+			"IsTemplate": "No",
+			"HoldCount": "0"
+		},
+		"6": {
+			"Name": "Photolithography Cleanroom",
+			"Description": "Photolithography Cleanroom",
+			"Type": "Chip Production",
+			"DisplayOrder": "6",
+			"Facility": "QuantumChip Fab Taiwan",
+			"AreaType": "Area",
+			"Calendar": "Standard",
+			"EnableShiftLogbook": "No",
+			"IsTemplate": "No",
+			"HoldCount": "0"
+		},
+		"7": {
+			"Name": "Ion Implantation Cleanroom",
+			"Description": "Ion Implantation Cleanroom",
+			"Type": "Chip Production",
+			"DisplayOrder": "7",
+			"Facility": "QuantumChip Fab Taiwan",
+			"AreaType": "Area",
+			"Calendar": "Standard",
+			"EnableShiftLogbook": "No",
+			"IsTemplate": "No",
+			"HoldCount": "0"
+		},
+		"8": {
+			"Name": "Backend Assembly Cleanroom",
+			"Description": "Backend Assembly Cleanroom",
+			"Type": "Chip Production",
+			"DisplayOrder": "8",
+			"Facility": "QuantumChip Fab Taiwan",
+			"AreaType": "Area",
+			"Calendar": "Standard",
+			"EnableShiftLogbook": "No",
+			"IsTemplate": "No",
+			"HoldCount": "0"
+		},
+		"9": {
+			"Name": "Advanced Packaging Cleanroom",
+			"Description": "Advanced Packaging Cleanroom",
+			"Type": "Chip Production",
+			"DisplayOrder": "9",
+			"Facility": "Europe R&D and Pilot Line",
+			"AreaType": "Area",
+			"Calendar": "Standard",
+			"EnableShiftLogbook": "No",
+			"IsTemplate": "No",
+			"HoldCount": "0"
+		},
+		"10": {
+			"Name": "MEMS & Sensor Cleanroom",
+			"Description": "MEMS & Sensor Cleanroom",
+			"Type": "Chip Production",
+			"DisplayOrder": "10",
+			"Facility": "Europe R&D and Pilot Line",
+			"AreaType": "Area",
+			"Calendar": "Standard",
+			"EnableShiftLogbook": "No",
+			"IsTemplate": "No",
+			"HoldCount": "0"
+		}
+	}
+}

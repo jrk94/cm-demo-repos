@@ -1,13 +1,10 @@
-import { Task, System, TaskBase, Utilities } from "@criticalmanufacturing/connect-iot-controller-engine";
+import { Task, System, TaskBase } from "@criticalmanufacturing/connect-iot-controller-engine";
 import moment from "moment";
-import DataPlatform = System.LBOS.Cmf.Foundation.BusinessOrchestration.DataPlatform;
-import Cmf from "cmf-lbos";
-import { Queries } from "../../utilities/queries";
-import { ISA95, PostTelemetry } from "../../utilities/interfaces";
+import { Data, ISA95, PostTelemetry } from "../../utilities/interfaces";
 import { SystemCalls } from "../../utilities/systemCalls";
 
 /** Default values for settings */
-export const SETTINGS_DEFAULTS: PostNumericTelemetrySettings = {
+export const SETTINGS_DEFAULTS: PostMultipleNumericTelemetrySettings = {
     applicationName: "MES",
     eventTime: null,
     retries: 30,
@@ -34,10 +31,10 @@ export const SETTINGS_DEFAULTS: PostNumericTelemetrySettings = {
  * * `Error` : ** error ** - Triggered when the task failed for some reason
  *
  * ### Settings
- * See {@see PostNumericTelemetrySettings}
+ * See {@see PostMultipleNumericTelemetrySettings}
  */
 @Task.Task()
-export class PostNumericTelemetryTask extends TaskBase implements PostNumericTelemetrySettings {
+export class PostMultipleNumericTelemetryTask extends TaskBase implements PostMultipleNumericTelemetrySettings {
 
     /** Accessor helper for untyped properties and output emitters. */
     // [key: string]: any;
@@ -50,19 +47,19 @@ export class PostNumericTelemetryTask extends TaskBase implements PostNumericTel
     public class: string;
 
     @Task.InputProperty(Task.TaskValueType.String)
-    public unitOfMeasure: string;
+    public unitsOfMeasure: string[];
 
     @Task.InputProperty(Task.TaskValueType.String)
-    public parameterName: string;
+    public parametersName: string[];
 
     @Task.InputProperty(Task.TaskValueType.Object)
     public tags: object;
 
     @Task.InputProperty(Task.TaskValueType.Decimal)
-    public value: number;
+    public values: number[];
 
     @Task.InputProperty(Task.TaskValueType.DateTime)
-    public valueTimestamp: Date;
+    public valuesTimestamp: Date[];
 
     /** **Outputs** */
 
@@ -87,11 +84,12 @@ export class PostNumericTelemetryTask extends TaskBase implements PostNumericTel
                 await this.createData(
                     this.instance,
                     this.class,
-                    this.parameterName,
-                    this.unitOfMeasure,
+                    this.parametersName,
+                    this.unitsOfMeasure,
                     this.tags,
-                    this.value,
-                    this.valueTimestamp.valueOf().toString());
+                    this.values,
+                    this.valuesTimestamp);
+
 
             const output = await SystemCalls.postTelemetry(
                 data,
@@ -132,11 +130,11 @@ export class PostNumericTelemetryTask extends TaskBase implements PostNumericTel
     private async createData(
         instance: System.LBOS.Cmf.Foundation.BusinessObjects.Entity,
         className: string,
-        parameterName: string,
-        unitOfMeasure: string,
+        parametersName: string[],
+        unitsOfMeasure: string[],
         tags: object,
-        value: number,
-        valueTimestamp: string
+        valuesToPost: number[],
+        valuesTimestamp: Date[] | Date
     ): Promise<PostTelemetry> {
 
         // Retrieve from cached memory
@@ -148,14 +146,23 @@ export class PostNumericTelemetryTask extends TaskBase implements PostNumericTel
             this._dataStore.store(`${instance.Name}_ISA95`, isa95, System.DataStoreLocation.Temporary);
         }
 
-        return {
-            Parameters: [{
+        const data: Data[] = [];
+        for (let index = 0; index < parametersName.length; index++) {
+            const timestamp = !Array.isArray(valuesTimestamp) ?
+                new Date(valuesTimestamp).valueOf().toString() :
+                new Date(valuesTimestamp[index]).valueOf().toString();
+
+            data.push({
                 Class: className,
-                Name: parameterName,
-                UnitOfMeasure: unitOfMeasure,
-                NumericValues: [value],
-                Timestamps: [valueTimestamp]
-            }],
+                Name: parametersName[index],
+                UnitOfMeasure: unitsOfMeasure[index],
+                NumericValues: [valuesToPost[index]],
+                Timestamps: [timestamp]
+            });
+        }
+
+        return {
+            Parameters: data,
             Tags: tags,
             Resource: { Name: isa95.Resource },
             Area: { Name: isa95.Area },
@@ -164,13 +171,11 @@ export class PostNumericTelemetryTask extends TaskBase implements PostNumericTel
             Enterprise: { Name: isa95.Enterprise },
         };
     }
-
-
 }
 
 // Add settings here
-/** PostNumericTelemetry Settings object */
-export interface PostNumericTelemetrySettings extends System.TaskDefaultSettings {
+/** PostMultipleNumericTelemetry Settings object */
+export interface PostMultipleNumericTelemetrySettings extends System.TaskDefaultSettings {
     /** Application name */
     applicationName: string;
     /** Event Time */

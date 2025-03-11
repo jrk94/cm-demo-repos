@@ -2,8 +2,8 @@
   "converters": [],
   "tasks": [
     {
-      "name": "postNumericTelemetry",
-      "displayName": "Post Numeric Telemetry",
+      "name": "postMultipleNumericTelemetry",
+      "displayName": "Post Multiple Numeric Telemetry",
       "iconClass": "icon-coreatl-tasks-connect-iot-lg-automationevent",
       "isProtocol": false,
       "isController": true,
@@ -27,30 +27,30 @@
           "dataType": "String",
           "displayName": "class"
         },
-        "unitOfMeasure": {
+        "unitsOfMeasure": {
           "type": "Static",
-          "dataType": "String",
-          "displayName": "unitOfMeasure"
+          "dataType": "Object",
+          "displayName": "unitsOfMeasure"
         },
         "tags": {
           "type": "Static",
           "dataType": "Object",
           "displayName": "tags"
         },
-        "parameterName": {
+        "parametersName": {
           "type": "Static",
-          "dataType": "String",
-          "displayName": "name"
+          "dataType": "Object",
+          "displayName": "names"
         },
-        "value": {
+        "values": {
           "type": "Static",
-          "dataType": "Decimal",
-          "displayName": "value"
+          "dataType": "Object",
+          "displayName": "values"
         },
-        "valueTimestamp": {
+        "valuesTimestamp": {
           "type": "Static",
-          "dataType": "DateTime",
-          "displayName": "valueTimestamp"
+          "dataType": "Object",
+          "displayName": "valuesTimestamp"
         }
       },
       "outputs": {
