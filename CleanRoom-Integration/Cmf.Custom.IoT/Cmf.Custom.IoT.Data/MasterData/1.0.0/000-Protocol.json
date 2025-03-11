@@ -1,0 +1,182 @@
+{
+  "<DM>AutomationProtocol": {
+    "1": {
+      "Name": "MQTT Protocol [A.1]",
+      "IsTemplate": "No",
+      "Type": "General",
+      "Package": "@criticalmanufacturing/connect-iot-driver-mqtt",
+      "PackageVersion": "11.1.2",
+      "HasCommands": "No",
+      "HasEvents": "Yes",
+      "HasProperties": "Yes"
+    },
+    "2": {
+      "Name": "Rest Server [A.1]",
+      "IsTemplate": "No",
+      "Type": "General",
+      "Package": "@criticalmanufacturing/connect-iot-driver-restserver",
+      "PackageVersion": "11.1.2",
+      "HasCommands": "Yes",
+      "HasEvents": "Yes",
+      "HasProperties": "Yes"
+    }
+  },
+  "AutomationProtocolParameter": {
+    "1": {
+      "AutomationProtocol": "MQTT Protocol [A.1]",
+      "Name": "address",
+      "Description": "Address of MQTT broker",
+      "DataType": "String",
+      "IsMandatory": "No",
+      "IsTemplate": "No",
+      "Label": "Address",
+      "ReferenceType": "None"
+    },
+    "2": {
+      "AutomationProtocol": "MQTT Protocol [A.1]",
+      "Name": "port",
+      "Description": "Port of MQTT broker",
+      "DataType": "Integer",
+      "DefaultValue": "1883",
+      "IsMandatory": "No",
+      "IsTemplate": "No",
+      "Label": "Port",
+      "ReferenceType": "None"
+    },
+    "3": {
+      "AutomationProtocol": "MQTT Protocol [A.1]",
+      "Name": "user",
+      "Description": "Login User",
+      "DataType": "String",
+      "IsMandatory": "No",
+      "IsTemplate": "No",
+      "Label": "Username",
+      "ReferenceType": "None"
+    },
+    "4": {
+      "AutomationProtocol": "MQTT Protocol [A.1]",
+      "Name": "password",
+      "Description": "Login Password",
+      "DataType": "Password",
+      "IsMandatory": "No",
+      "IsTemplate": "No",
+      "Label": "Password",
+      "ReferenceType": "None"
+    },
+    "5": {
+      "AutomationProtocol": "MQTT Protocol [A.1]",
+      "Name": "pollInterval",
+      "Description": "Time between variable polling when no change value notification is available. Only used in events. (milliseconds)",
+      "DataType": "Integer",
+      "DefaultValue": "2000",
+      "IsMandatory": "No",
+      "IsTemplate": "No",
+      "Label": "Poll Interval (ms)",
+      "ReferenceType": "None"
+    },
+    "6": {
+      "AutomationProtocol": "MQTT Protocol [A.1]",
+      "Name": "byteOrder",
+      "Description": "Byte order of the data of the message",
+      "DataType": "String",
+      "DefaultValue": "BigEndian",
+      "IsMandatory": "No",
+      "IsTemplate": "No",
+      "EnumValues": [
+        "BigEndian",
+        "LittleEndian"
+      ],
+      "Label": "Byte Order",
+      "ReferenceType": "Enum"
+    },
+    "7": {
+      "AutomationProtocol": "MQTT Protocol [A.1]",
+      "Name": "convertNonPrintableASCIICharsOnSend",
+      "Description": "Does character substitution on values sent. Replaces ASCII name tokens with the correspondent ASCII value.(e.g.: <NUL> to #00, ..., <DEL> to #07, on set values).",
+      "DataType": "Boolean",
+      "DefaultValue": "False",
+      "IsMandatory": "No",
+      "IsTemplate": "No",
+      "Label": "Convert Non Printable ASCII Chars on Send:",
+      "ReferenceType": "None"
+    },
+    "8": {
+      "AutomationProtocol": "MQTT Protocol [A.1]",
+      "Name": "convertNonPrintableASCIICharsOnReceive",
+      "Description": "Does character substitution on values received. Replaces non printable ascii codes to correspondent <NAME>.(e.g.: #00 to <NUL>, #01 to <SOH>,...,#7F to <DEL>)",
+      "DataType": "Boolean",
+      "DefaultValue": "False",
+      "IsMandatory": "No",
+      "IsTemplate": "No",
+      "Label": "Convert Non Printable ASCII Chars on Receive:",
+      "ReferenceType": "None"
+    },
+    "9": {
+      "AutomationProtocol": "Rest Server [A.1]",
+      "Name": "address",
+      "Description": "Address (Ip) to listen to. Leave empty for all network addresses (0.0.0.0)",
+      "DataType": "String",
+      "DefaultValue": "0.0.0.0",
+      "IsMandatory": "No",
+      "IsTemplate": "No",
+      "Label": "Address",
+      "ReferenceType": "None"
+    },
+    "10": {
+      "AutomationProtocol": "Rest Server [A.1]",
+      "Name": "port",
+      "Description": "Port number the server will be listening. Defaults to 80",
+      "DataType": "Integer",
+      "DefaultValue": "5000",
+      "IsMandatory": "No",
+      "IsTemplate": "No",
+      "Label": "Port",
+      "ReferenceType": "None"
+    },
+    "11": {
+      "AutomationProtocol": "Rest Server [A.1]",
+      "Name": "protocol",
+      "Description": "The protocol used for exchanging data",
+      "DataType": "String",
+      "DefaultValue": "HTTP",
+      "IsMandatory": "No",
+      "IsTemplate": "No",
+      "EnumValues": [
+        "HTTP",
+        "HTTPS"
+      ],
+      "Label": "Protocol",
+      "ReferenceType": "Enum"
+    },
+    "12": {
+      "AutomationProtocol": "Rest Server [A.1]",
+      "Name": "certificateAuthority",
+      "Description": "Certificate Authority - can be either a path to a file or the contents of the file in plain text. Format should be 'pem'. The certificateAuthority property is used to define a set of trusted Certificate Authority (CA) certificates that an application or system uses to verify the authenticity of SSL/TLS certificates presented by servers during secure communication. It serves as a trust anchor, allowing the application to establish the legitimacy of certificates in the trust chain presented by the server.",
+      "DataType": "Text",
+      "IsMandatory": "No",
+      "IsTemplate": "No",
+      "Label": "Certificate Authority",
+      "ReferenceType": "None"
+    },
+    "13": {
+      "AutomationProtocol": "Rest Server [A.1]",
+      "Name": "certificate",
+      "Description": "Own server certificate - can be either a path to a file or the contents of the file in plain text. Format should be 'pem'.",
+      "DataType": "Text",
+      "IsMandatory": "No",
+      "IsTemplate": "No",
+      "Label": "Certificate",
+      "ReferenceType": "None"
+    },
+    "14": {
+      "AutomationProtocol": "Rest Server [A.1]",
+      "Name": "key",
+      "Description": "Own server private key - can be either a path to a file or the contents of the file in plain text. Format should be 'pem'.",
+      "DataType": "Text",
+      "IsMandatory": "No",
+      "IsTemplate": "No",
+      "Label": "key",
+      "ReferenceType": "None"
+    }
+  },
+}

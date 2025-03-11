@@ -4,5 +4,6 @@
 // full contents and packed
 
 
+export { PostMultipleNumericTelemetryTask } from "./tasks/postNumericTelemetry/postMultipleNumericTelemetry.task";
 export { PostNumericTelemetryTask } from "./tasks/postNumericTelemetry/postNumericTelemetry.task";
 

@@ -1,0 +1,92 @@
+{
+    "tasks": [
+        {
+            "id": "task_727",
+            "reference": {
+                "name": "workflow",
+                "package": {
+                    "name": "@criticalmanufacturing/connect-iot-controller-engine-core-tasks",
+                    "version": "11.2.0-dev"
+                }
+            },
+            "settings": {
+                "inputs": [],
+                "outputs": [],
+                "automationWorkflow": {
+                    "DisplayName": "SubWorkflow",
+                    "IsShared": false,
+                    "Name": "AutomationWorkflow_16ded9d9-003a-481c-b0a2-93424b4db394"
+                },
+                "retries": 30,
+                "contextsExpirationInMilliseconds": 60000,
+                "executionExpirationInMilliseconds": 1200000,
+                "executeWhenAllInputsDefined": false,
+                "___cmf___name": "Call SubWorkflow"
+            }
+        },
+        {
+            "id": "task_735",
+            "reference": {
+                "name": "onTimer",
+                "package": {
+                    "name": "@criticalmanufacturing/connect-iot-controller-engine-core-tasks",
+                    "version": "11.2.0-dev"
+                }
+            },
+            "settings": {
+                "autoEnable": true,
+                "interval": 10000,
+                "numberOfOccurrences": 0
+            }
+        }
+    ],
+    "converters": [],
+    "links": [
+        {
+            "id": "f1f4cc77-173b-487a-a65b-1fe2d64e3737",
+            "sourceId": "task_735",
+            "targetId": "task_727",
+            "inputName": "activate",
+            "outputName": "success"
+        }
+    ],
+    "$id": "1",
+    "layout": {
+        "general": {
+            "color": null,
+            "notes": []
+        },
+        "drawers": {
+            "DIAGRAM": {
+                "tasks": {
+                    "task_727": {
+                        "collapsed": false,
+                        "position": {
+                            "x": 766,
+                            "y": 461
+                        },
+                        "outdated": false
+                    },
+                    "task_735": {
+                        "collapsed": false,
+                        "position": {
+                            "x": 188,
+                            "y": 335.5555419921875
+                        },
+                        "outdated": false
+                    }
+                },
+                "links": {
+                    "f1f4cc77-173b-487a-a65b-1fe2d64e3737": {
+                        "vertices": []
+                    }
+                },
+                "notes": {},
+                "pan": {
+                    "x": 0,
+                    "y": 0
+                }
+            }
+        }
+    }
+}
