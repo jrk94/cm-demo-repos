@@ -1,0 +1,52 @@
+﻿[
+  {
+    "Id": "temp1",
+    "Protocol": "MQTT",
+    "Settings": {
+      "Topic": "cleanroom/temperature/temp1",
+      "ClientId":  "Sensor",
+      "Address": "localhost",
+      "Port": 1883
+    },
+    "Scenarios": [
+      {
+        "T": 0,
+        "Context": { "Behavior": "high" }
+      }
+    ],
+    "DefaultValue": 23,
+    "Interval": 1.5,
+    "LoopScenario": {
+      "T": 100,
+      "Context": {
+        "Behavior": "temperatureControl",
+        "Setpoint": 35
+      }
+    }
+  },
+  {
+    "Id": "temp2",
+    "Protocol": "MQTT",
+    "Settings": {
+      "Topic": "cleanroom/temperature/temp2",
+      "ClientId": "Sensor",
+      "Address": "localhost",
+      "Port": 1883
+    },
+    "Scenarios": [
+      {
+        "T": 0,
+        "Context": { "Behavior": "high" }
+      }
+    ],
+    "DefaultValue": 23,
+    "Interval": 1.5,
+    "LoopScenario": {
+      "T": 100,
+      "Context": {
+        "Behavior": "temperatureControl",
+        "Setpoint": 35
+      }
+    }
+  }
+]
