@@ -1,0 +1,26 @@
+﻿[
+  {
+    "Id": "AQM-12345",
+    "Protocol": "RESTClient",
+    "Settings": {
+      "Address": "http://localhost:5000",
+      "Endpoint": "/api/air-quality"
+    },
+    "Scenarios": [
+      {
+        "T": 0,
+        "Context": { "Behavior": "high" }
+      }
+    ],
+    "DefaultValue": 45,
+    "Interval": 1.5,
+    "LoopScenario": {
+      "T": 10,
+      "MaximumSetpoint": 50,
+      "Context": {
+        "Behavior": "particleControl",
+        "Setpoint":60
+      }
+    }
+  }
+]

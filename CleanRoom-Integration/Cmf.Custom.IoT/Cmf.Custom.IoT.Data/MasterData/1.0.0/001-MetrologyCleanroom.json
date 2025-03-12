@@ -284,13 +284,13 @@
         "@criticalmanufacturing/connect-iot-controller-engine-custom-dataplatform-tasks"
       ],
       "Scope": "ConnectIoT",
-      "DefaultWorkflowType": "DataFlow",
       "LinkConnector": "Smooth",
       "LinkRouter": "Normal",
       "TasksLibraryPackages": [
         "@criticalmanufacturing/connect-iot-controller-engine-core-tasks@11.1.2",
         "@criticalmanufacturing/connect-iot-controller-engine-custom-dataplatform-tasks@0.0.0"
-      ]
+      ],
+      "DefaultWorkflowType": "DataFlow"
     }
   },
   "AutomationControllerDriverDef": {
@@ -634,9 +634,73 @@
               "command": "Connect",
               "___cmf___description": "Connect"
             }
+          },
+          {
+            "id": "task_4062",
+            "reference": {
+              "name": "store",
+              "package": {
+                "name": "@criticalmanufacturing/connect-iot-controller-engine-core-tasks",
+                "version": "11.1.2"
+              }
+            },
+            "settings": {
+              "_inputs": [
+                {
+                  "name": "instance",
+                  "identifier": "instance",
+                  "valueType": {
+                    "name": "Object",
+                    "type": 10,
+                    "collectionType": 0,
+                    "referenceType": null,
+                    "referenceTypeName": null,
+                    "referenceTypeId": null,
+                    "friendlyName": "Type"
+                  },
+                  "storage": "Temporary",
+                  "settingKey": "name",
+                  "defaultValue": "instance"
+                }
+              ],
+              "_workingMode": "StoreOnValueChange",
+              "___cmf___name": "Store Data",
+              "___cmf___description": "Instance"
+            }
+          },
+          {
+            "id": "task_4063",
+            "reference": {
+              "name": "entityInstance",
+              "package": {
+                "name": "@criticalmanufacturing/connect-iot-controller-engine-core-tasks",
+                "version": "11.1.2"
+              }
+            },
+            "settings": {
+              "_attributes": [],
+              "_autoActivate": false,
+              "loadAllAttributes": false,
+              "reloadEveryChange": false,
+              "levelsToLoad": 0,
+              "retries": 30,
+              "sleepBetweenRetries": 1000,
+              "entityTypeName": "Area"
+            }
           }
         ],
-        "converters": [],
+        "converters": [
+          {
+            "id": "@criticalmanufacturing/connect-iot-controller-engine-core-tasks#anyToAny",
+            "reference": {
+              "name": "anyToAny",
+              "package": {
+                "name": "@criticalmanufacturing/connect-iot-controller-engine-core-tasks",
+                "version": "11.1.2"
+              }
+            }
+          }
+        ],
         "links": [
           {
             "id": "task_7119_success-task_7120_activate",
@@ -665,6 +729,34 @@
             "targetId": "task_7124",
             "inputName": "activate",
             "outputName": "success"
+          },
+          {
+            "id": "task_4063_instance-task_4062_instance",
+            "sourceId": "task_4063",
+            "targetId": "task_4062",
+            "inputName": "instance",
+            "outputName": "instance",
+            "converters": [
+              {
+                "id": "@criticalmanufacturing/connect-iot-controller-engine-core-tasks#anyToAny",
+                "params": {}
+              }
+            ]
+          },
+          {
+            "id": "task_4063_success-task_4062_activate",
+            "sourceId": "task_4063",
+            "targetId": "task_4062",
+            "inputName": "activate",
+            "outputName": "success",
+            "converters": []
+          },
+          {
+            "id": "dfbb6e66-c16d-4748-9483-13f1d0fa77f7",
+            "sourceId": "task_7119",
+            "targetId": "task_4063",
+            "inputName": "activate",
+            "outputName": "success"
           }
         ],
         "$id": "1",
@@ -676,10 +768,18 @@
           "drawers": {
             "DIAGRAM": {
               "tasks": {
-                "task_7123": {
+                "task_7119": {
                   "collapsed": false,
                   "position": {
-                    "x": 2100,
+                    "x": 100,
+                    "y": 100
+                  },
+                  "outdated": false
+                },
+                "task_7120": {
+                  "collapsed": true,
+                  "position": {
+                    "x": 600,
                     "y": 100
                   },
                   "outdated": false
@@ -688,14 +788,6 @@
                   "collapsed": false,
                   "position": {
                     "x": 1100,
-                    "y": 100
-                  },
-                  "outdated": false
-                },
-                "task_7120": {
-                  "collapsed": false,
-                  "position": {
-                    "x": 600,
                     "y": 100
                   },
                   "outdated": false
@@ -716,11 +808,27 @@
                   },
                   "outdated": false
                 },
-                "task_7119": {
-                  "collapsed": false,
+                "task_7123": {
+                  "collapsed": true,
                   "position": {
-                    "x": 100,
+                    "x": 2100,
                     "y": 100
+                  },
+                  "outdated": false
+                },
+                "task_4062": {
+                  "collapsed": true,
+                  "position": {
+                    "x": 1062,
+                    "y": 406
+                  },
+                  "outdated": false
+                },
+                "task_4063": {
+                  "collapsed": true,
+                  "position": {
+                    "x": 538,
+                    "y": 405
                   },
                   "outdated": false
                 }
@@ -737,12 +845,21 @@
                 },
                 "task_7123_success-task_7124_activate": {
                   "vertices": []
+                },
+                "task_4063_success-task_4062_activate": {
+                  "vertices": []
+                },
+                "dfbb6e66-c16d-4748-9483-13f1d0fa77f7": {
+                  "vertices": []
+                },
+                "task_4063_instance-task_4062_instance": {
+                  "vertices": []
                 }
               },
               "notes": {},
               "pan": {
-                "x": 560,
-                "y": 25
+                "x": 0,
+                "y": 13.333333015441895
               },
               "zoom": 1
             }
@@ -750,9 +867,9 @@
         }
       },
       "Order": "1",
-      "Indentation": "0",
-      "IsShared": "No",
       "IsTemplate": "No",
+      "IsShared": "No",
+      "Indentation": "0",
       "WorkflowType": "DataFlow"
     },
     "2": {
@@ -762,258 +879,6 @@
       "IsFile": "false",
       "Workflow": {
         "tasks": [
-          {
-            "id": "1741003210647804",
-            "name": "evt_cleanroom_temp",
-            "type": {
-              "name": "equipmentEvent",
-              "package": "@criticalmanufacturing/connect-iot-controller-engine-core-tasks",
-              "version": "11.1.2"
-            },
-            "x": 250,
-            "y": 150,
-            "isCollapsed": false,
-            "isDisabled": false,
-            "settings": {
-              "_autoActivate": true,
-              "_customEvents": false,
-              "_acceptAllEvents": false,
-              "_events": [
-                {
-                  "$type": "Cmf.Foundation.BusinessObjects.AutomationEvent, Cmf.Foundation.BusinessObjects",
-                  "Name": "Clean Room Monitor Temperature"
-                }
-              ],
-              "_workingMode": "AlwaysActive",
-              "_messageFullName": "Clean Room Monitor Temperature",
-              "_automationEventProperties": [
-                {
-                  "$type": "Cmf.Foundation.BusinessObjects.AutomationProperty, Cmf.Foundation.BusinessObjects",
-                  "Name": "temperature"
-                }
-              ],
-              "_outputs": [
-                {
-                  "name": "temperature",
-                  "propertyId": "metrology/Metro-Temperature/#",
-                  "propertyType": "",
-                  "property": {
-                    "DataType": 4,
-                    "$type": "Cmf.Foundation.BusinessObjects.AutomationProperty, Cmf.Foundation.BusinessObjects"
-                  },
-                  "deviceType": {
-                    "$type": "Cmf.Foundation.BusinessObjects.AutomationProtocolDataType, Cmf.Foundation.BusinessObjects",
-                    "Name": "String"
-                  },
-                  "valueType": {
-                    "collectionType": null,
-                    "friendlyName": "temperature",
-                    "type": "Decimal",
-                    "name": "Decimal"
-                  },
-                  "defaultValue": "",
-                  "outputType": "Value",
-                  "editable": false,
-                  "removable": false
-                }
-              ]
-            },
-            "inputs": [],
-            "outputs": [
-              {
-                "name": "topic",
-                "dataType": "String",
-                "value": "{{ $this.eventRawData.values[0].originalValue.topic }}"
-              },
-              {
-                "name": "event",
-                "value": "{{ $this.event }}",
-                "dataType": "Any"
-              },
-              {
-                "name": "timestamp",
-                "value": "{{ $this.timestamp }}",
-                "dataType": "Any"
-              },
-              {
-                "name": "eventRawData",
-                "value": "{{ $this.eventRawData }}",
-                "dataType": "Any"
-              },
-              {
-                "name": "temperature",
-                "value": "{{ $this.temperature }}",
-                "dataType": "Decimal"
-              }
-            ],
-            "driver": "MQTT",
-            "caption": "When equipment triggers the event {{_messageFullName}}",
-            "branches": [
-              {
-                "name": "handler",
-                "tasks": [
-                  {
-                    "id": "1741003260688910",
-                    "name": "regex_topic_temp",
-                    "type": {
-                      "name": "expressionEvaluatorRegular",
-                      "package": "@criticalmanufacturing/connect-iot-controller-engine-core-tasks",
-                      "version": "11.1.2"
-                    },
-                    "isCollapsed": false,
-                    "isDisabled": false,
-                    "settings": {
-                      "_evaluatorBehavior": "EvaluateAll",
-                      "_clearInputs": false,
-                      "_inputs": [
-                        {
-                          "name": "topic",
-                          "valueType": "String",
-                          "defaultValue": "{{ $evt_cleanroom_temp.topic }}",
-                          "required": true,
-                          "settingKey": "name"
-                        }
-                      ],
-                      "_outputs": [
-                        {
-                          "name": "sensor",
-                          "valueType": {
-                            "name": "String",
-                            "type": 4,
-                            "collectionType": 0,
-                            "referenceType": null,
-                            "referenceTypeName": null,
-                            "referenceTypeId": null,
-                            "friendlyName": "Type"
-                          },
-                          "expression": "[^/]+$",
-                          "settingKey": "name",
-                          "__valueType": {
-                            "name": "default",
-                            "label": "Default value",
-                            "settingKey": "defaultValue",
-                            "required": true,
-                            "condition": "valueType != null and valueType['name'] != null",
-                            "dataTypeKey": "valueType",
-                            "dataType": "String",
-                            "settings": {},
-                            "isMandatory": false,
-                            "valueType": 4
-                          }
-                        }
-                      ]
-                    },
-                    "inputs": [
-                      {
-                        "name": "topic",
-                        "value": "{{ $evt_cleanroom_temp.topic }}",
-                        "dataType": "String"
-                      }
-                    ],
-                    "outputs": [
-                      {
-                        "name": "sensor",
-                        "value": "{{ $this.sensor }}",
-                        "dataType": "String"
-                      }
-                    ],
-                    "caption": "Get everything after the last /",
-                    "branches": []
-                  },
-                  {
-                    "id": "1741003241339865",
-                    "name": "instance_temp",
-                    "type": {
-                      "name": "entityInstance",
-                      "package": "@criticalmanufacturing/connect-iot-controller-engine-core-tasks",
-                      "version": "11.1.2"
-                    },
-                    "isCollapsed": false,
-                    "isDisabled": false,
-                    "settings": {
-                      "_autoActivate": false,
-                      "loadAllAttributes": false,
-                      "reloadEveryChange": false,
-                      "levelsToLoad": 0,
-                      "retries": 30,
-                      "sleepBetweenRetries": 1000,
-                      "entityTypeName": "Area"
-                    },
-                    "inputs": [],
-                    "outputs": [
-                      {
-                        "name": "instance",
-                        "value": "{{ $this.instance }}",
-                        "dataType": "Object"
-                      }
-                    ],
-                    "driver": "MQTT",
-                    "caption": "Retrieve assigned instance entity data",
-                    "branches": []
-                  },
-                  {
-                    "id": "1741109313331903",
-                    "name": "postNumericTelemetry_c266",
-                    "type": {
-                      "name": "postNumericTelemetry",
-                      "package": "@criticalmanufacturing/connect-iot-controller-engine-custom-dataplatform-tasks",
-                      "version": "0.0.0"
-                    },
-                    "isCollapsed": false,
-                    "isDisabled": false,
-                    "settings": {
-                      "applicationName": "MES",
-                      "retries": 30,
-                      "numberOfRetries": 30,
-                      "ignoreLastServiceId": false,
-                      "sleepBetweenRetries": 1000
-                    },
-                    "inputs": [
-                      {
-                        "name": "instance",
-                        "value": "{{ $instance_temp.instance }}",
-                        "dataType": "Object"
-                      },
-                      {
-                        "name": "class",
-                        "value": "Sensor",
-                        "dataType": "String"
-                      },
-                      {
-                        "name": "unitOfMeasure",
-                        "value": "ºC",
-                        "dataType": "String"
-                      },
-                      {
-                        "name": "tags",
-                        "value": "{{ [{\"Key\": \"Sensor Name\", \"Value\": $regex_topic_temp.sensor }] }}",
-                        "dataType": "Object"
-                      },
-                      {
-                        "name": "value",
-                        "value": "{{ $evt_cleanroom_temp.temperature }}",
-                        "dataType": "Decimal"
-                      },
-                      {
-                        "name": "valueTimestamp",
-                        "value": "{{ $evt_cleanroom_temp.timestamp }}",
-                        "dataType": "DateTime"
-                      },
-                      {
-                        "name": "parameterName",
-                        "value": "Temperature",
-                        "dataType": "String"
-                      }
-                    ],
-                    "outputs": [],
-                    "caption": "Send Post Telemetry Numeric data to Data Platform",
-                    "branches": []
-                  }
-                ],
-                "settings": {}
-              }
-            ]
-          },
           {
             "id": "17410862405841948",
             "name": "evt_cleanroom_humid",
@@ -1173,23 +1038,31 @@
                     "branches": []
                   },
                   {
-                    "id": "17410862405851953",
+                    "id": "17416895434104189",
                     "name": "instance_humid",
                     "type": {
-                      "name": "entityInstance",
+                      "name": "retrieve",
                       "package": "@criticalmanufacturing/connect-iot-controller-engine-core-tasks",
                       "version": "11.1.2"
                     },
                     "isCollapsed": false,
                     "isDisabled": false,
                     "settings": {
-                      "_autoActivate": false,
-                      "loadAllAttributes": false,
-                      "reloadEveryChange": false,
-                      "levelsToLoad": 0,
-                      "retries": 30,
-                      "sleepBetweenRetries": 1000,
-                      "entityTypeName": "Area"
+                      "_outputs": [
+                        {
+                          "name": "instance",
+                          "identifier": "instance",
+                          "valueType": {
+                            "collectionType": 0,
+                            "type": 10,
+                            "name": "Object"
+                          },
+                          "defaultValue": {},
+                          "dataType": "Object",
+                          "settingKey": "name",
+                          "deviceType": null
+                        }
+                      ]
                     },
                     "inputs": [],
                     "outputs": [
@@ -1199,8 +1072,7 @@
                         "dataType": "Object"
                       }
                     ],
-                    "driver": "MQTT",
-                    "caption": "Retrieve assigned instance entity data",
+                    "caption": "Retrieve Instance",
                     "branches": []
                   },
                   {
@@ -1265,6 +1137,265 @@
                 "settings": {}
               }
             ]
+          },
+          {
+            "id": "1741003210647804",
+            "name": "evt_cleanroom_temp",
+            "type": {
+              "name": "equipmentEvent",
+              "package": "@criticalmanufacturing/connect-iot-controller-engine-core-tasks",
+              "version": "11.1.2"
+            },
+            "x": 250,
+            "y": 150,
+            "isCollapsed": false,
+            "isDisabled": false,
+            "settings": {
+              "_autoActivate": true,
+              "_customEvents": false,
+              "_acceptAllEvents": false,
+              "_events": [
+                {
+                  "$type": "Cmf.Foundation.BusinessObjects.AutomationEvent, Cmf.Foundation.BusinessObjects",
+                  "Name": "Clean Room Monitor Temperature"
+                }
+              ],
+              "_workingMode": "AlwaysActive",
+              "_messageFullName": "Clean Room Monitor Temperature",
+              "_automationEventProperties": [
+                {
+                  "$type": "Cmf.Foundation.BusinessObjects.AutomationProperty, Cmf.Foundation.BusinessObjects",
+                  "Name": "temperature"
+                }
+              ],
+              "_outputs": [
+                {
+                  "name": "temperature",
+                  "propertyId": "metrology/Metro-Temperature/#",
+                  "propertyType": "",
+                  "property": {
+                    "DataType": 4,
+                    "$type": "Cmf.Foundation.BusinessObjects.AutomationProperty, Cmf.Foundation.BusinessObjects"
+                  },
+                  "deviceType": {
+                    "$type": "Cmf.Foundation.BusinessObjects.AutomationProtocolDataType, Cmf.Foundation.BusinessObjects",
+                    "Name": "String"
+                  },
+                  "valueType": {
+                    "collectionType": null,
+                    "friendlyName": "temperature",
+                    "type": "Decimal",
+                    "name": "Decimal"
+                  },
+                  "defaultValue": "",
+                  "outputType": "Value",
+                  "editable": false,
+                  "removable": false
+                }
+              ]
+            },
+            "inputs": [],
+            "outputs": [
+              {
+                "name": "topic",
+                "dataType": "String",
+                "value": "{{ $this.eventRawData.values[0].originalValue.topic }}"
+              },
+              {
+                "name": "event",
+                "value": "{{ $this.event }}",
+                "dataType": "Any"
+              },
+              {
+                "name": "timestamp",
+                "value": "{{ $this.timestamp }}",
+                "dataType": "Any"
+              },
+              {
+                "name": "eventRawData",
+                "value": "{{ $this.eventRawData }}",
+                "dataType": "Any"
+              },
+              {
+                "name": "temperature",
+                "value": "{{ $this.temperature }}",
+                "dataType": "Decimal"
+              }
+            ],
+            "driver": "MQTT",
+            "caption": "When equipment triggers the event {{_messageFullName}}",
+            "branches": [
+              {
+                "name": "handler",
+                "tasks": [
+                  {
+                    "id": "1741003260688910",
+                    "name": "regex_topic_temp",
+                    "type": {
+                      "name": "expressionEvaluatorRegular",
+                      "package": "@criticalmanufacturing/connect-iot-controller-engine-core-tasks",
+                      "version": "11.1.2"
+                    },
+                    "isCollapsed": false,
+                    "isDisabled": false,
+                    "settings": {
+                      "_evaluatorBehavior": "EvaluateAll",
+                      "_clearInputs": false,
+                      "_inputs": [
+                        {
+                          "name": "topic",
+                          "valueType": "String",
+                          "defaultValue": "{{ $evt_cleanroom_temp.topic }}",
+                          "required": true,
+                          "settingKey": "name"
+                        }
+                      ],
+                      "_outputs": [
+                        {
+                          "name": "sensor",
+                          "valueType": {
+                            "name": "String",
+                            "type": 4,
+                            "collectionType": 0,
+                            "referenceType": null,
+                            "referenceTypeName": null,
+                            "referenceTypeId": null,
+                            "friendlyName": "Type"
+                          },
+                          "expression": "[^/]+$",
+                          "settingKey": "name",
+                          "__valueType": {
+                            "name": "default",
+                            "label": "Default value",
+                            "settingKey": "defaultValue",
+                            "required": true,
+                            "condition": "valueType != null and valueType['name'] != null",
+                            "dataTypeKey": "valueType",
+                            "dataType": "String",
+                            "settings": {},
+                            "isMandatory": false,
+                            "valueType": 4
+                          }
+                        }
+                      ]
+                    },
+                    "inputs": [
+                      {
+                        "name": "topic",
+                        "value": "{{ $evt_cleanroom_temp.topic }}",
+                        "dataType": "String"
+                      }
+                    ],
+                    "outputs": [
+                      {
+                        "name": "sensor",
+                        "value": "{{ $this.sensor }}",
+                        "dataType": "String"
+                      }
+                    ],
+                    "caption": "Get everything after the last /",
+                    "branches": []
+                  },
+                  {
+                    "id": "1741688673129725",
+                    "name": "instance_temp",
+                    "type": {
+                      "name": "retrieve",
+                      "package": "@criticalmanufacturing/connect-iot-controller-engine-core-tasks",
+                      "version": "11.1.2"
+                    },
+                    "isCollapsed": false,
+                    "isDisabled": false,
+                    "settings": {
+                      "_outputs": [
+                        {
+                          "name": "instance",
+                          "identifier": "instance",
+                          "valueType": {
+                            "collectionType": 0,
+                            "type": 10,
+                            "name": "Object"
+                          },
+                          "defaultValue": {},
+                          "dataType": "Object",
+                          "settingKey": "name",
+                          "deviceType": null
+                        }
+                      ]
+                    },
+                    "inputs": [],
+                    "outputs": [
+                      {
+                        "name": "instance",
+                        "value": "{{ $this.instance }}",
+                        "dataType": "Object"
+                      }
+                    ],
+                    "caption": "Retrieve Instance",
+                    "branches": []
+                  },
+                  {
+                    "id": "1741109313331903",
+                    "name": "postNumericTelemetry_c266",
+                    "type": {
+                      "name": "postNumericTelemetry",
+                      "package": "@criticalmanufacturing/connect-iot-controller-engine-custom-dataplatform-tasks",
+                      "version": "0.0.0"
+                    },
+                    "isCollapsed": false,
+                    "isDisabled": false,
+                    "settings": {
+                      "applicationName": "MES",
+                      "retries": 30,
+                      "numberOfRetries": 30,
+                      "ignoreLastServiceId": false,
+                      "sleepBetweenRetries": 1000
+                    },
+                    "inputs": [
+                      {
+                        "name": "instance",
+                        "value": "{{ $instance_temp.instance }}",
+                        "dataType": "Object"
+                      },
+                      {
+                        "name": "class",
+                        "value": "Sensor",
+                        "dataType": "String"
+                      },
+                      {
+                        "name": "unitOfMeasure",
+                        "value": "ºC",
+                        "dataType": "String"
+                      },
+                      {
+                        "name": "tags",
+                        "value": "{{ [{\"Key\": \"Sensor Name\", \"Value\": $regex_topic_temp.sensor }] }}",
+                        "dataType": "Object"
+                      },
+                      {
+                        "name": "value",
+                        "value": "{{ $evt_cleanroom_temp.temperature }}",
+                        "dataType": "Decimal"
+                      },
+                      {
+                        "name": "valueTimestamp",
+                        "value": "{{ $evt_cleanroom_temp.timestamp }}",
+                        "dataType": "DateTime"
+                      },
+                      {
+                        "name": "parameterName",
+                        "value": "Temperature",
+                        "dataType": "String"
+                      }
+                    ],
+                    "outputs": [],
+                    "caption": "Send Post Telemetry Numeric data to Data Platform",
+                    "branches": []
+                  }
+                ],
+                "settings": {}
+              }
+            ]
           }
         ],
         "$id": "1",
@@ -1282,9 +1413,9 @@
         }
       },
       "Order": "2",
-      "Indentation": "0",
-      "IsShared": "No",
       "IsTemplate": "No",
+      "IsShared": "No",
+      "Indentation": "0",
       "WorkflowType": "ControlFlow"
     },
     "3": {
@@ -1572,23 +1703,31 @@
                 "name": "handler",
                 "tasks": [
                   {
-                    "id": "1741003241339865",
+                    "id": "1741688673129725",
                     "name": "instance_air",
                     "type": {
-                      "name": "entityInstance",
+                      "name": "retrieve",
                       "package": "@criticalmanufacturing/connect-iot-controller-engine-core-tasks",
                       "version": "11.1.2"
                     },
                     "isCollapsed": false,
                     "isDisabled": false,
                     "settings": {
-                      "_autoActivate": false,
-                      "loadAllAttributes": false,
-                      "reloadEveryChange": false,
-                      "levelsToLoad": 0,
-                      "retries": 30,
-                      "sleepBetweenRetries": 1000,
-                      "entityTypeName": "Area"
+                      "_outputs": [
+                        {
+                          "name": "instance",
+                          "identifier": "instance",
+                          "valueType": {
+                            "collectionType": 0,
+                            "type": 10,
+                            "name": "Object"
+                          },
+                          "defaultValue": {},
+                          "dataType": "Object",
+                          "settingKey": "name",
+                          "deviceType": null
+                        }
+                      ]
                     },
                     "inputs": [],
                     "outputs": [
@@ -1598,8 +1737,7 @@
                         "dataType": "Object"
                       }
                     ],
-                    "driver": "REST",
-                    "caption": "Retrieve assigned instance entity data",
+                    "caption": "Retrieve Instance",
                     "branches": []
                   },
                   {
@@ -1681,9 +1819,9 @@
         }
       },
       "Order": "3",
-      "Indentation": "0",
-      "IsShared": "No",
       "IsTemplate": "No",
+      "IsShared": "No",
+      "Indentation": "0",
       "WorkflowType": "ControlFlow"
     }
   }

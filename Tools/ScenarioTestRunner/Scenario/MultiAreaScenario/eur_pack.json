@@ -1,0 +1,973 @@
+﻿[
+  {
+    "Id": "Pack-Temp1",
+    "Protocol": "MQTT",
+    "Settings": {
+      "Topic": "packing/Pack-Temperature/Pack-Temp1"
+    },
+    "Scenarios": [
+      {
+        "T": 0,
+        "Context": {
+          "Behavior": "randomControl",
+          "Setpoint": 1.7
+        }
+      },
+      {
+        "T": 120,
+        "Context": { "Behavior": "high" }
+      },
+      {
+        "T": 250,
+        "Context": {
+          "Behavior": "temperatureControl",
+          "Setpoint": 17
+        }
+      },
+      {
+        "T": 450,
+        "Context": {
+          "Behavior": "randomControl",
+          "Setpoint": 1.7
+        }
+      },
+      {
+        "T": 950,
+        "Context": {
+          "Behavior": "randomControl",
+          "Setpoint": 1.7
+        }
+      },
+      {
+        "T": 120,
+        "Context": { "Behavior": "high" }
+      }
+    ],
+    "DefaultValue": 21,
+    "Interval": 2,
+    "LoopScenario": {
+      "T": 1000,
+      "Context": {
+        "Behavior": "temperatureControl",
+        "Setpoint": 34
+      }
+    }
+  },
+  {
+    "Id": "Pack-Temp2",
+    "Protocol": "MQTT",
+    "Settings": {
+      "Topic": "packing/Pack-Temperature/Pack-Temp2"
+    },
+    "Scenarios": [
+      {
+        "T": 0,
+        "Context": {
+          "Behavior": "randomControl",
+          "Setpoint": 1.7
+        }
+      },
+      {
+        "T": 150,
+        "Context": { "Behavior": "low" }
+      },
+      {
+        "T": 300,
+        "Context": {
+          "Behavior": "temperatureControl",
+          "Setpoint": 17
+        }
+      },
+      {
+        "T": 700,
+        "Context": { "Behavior": "decreaseLow" }
+      },
+      {
+        "T": 850,
+        "Context": {
+          "Behavior": "randomControl",
+          "Setpoint": 1.7
+        }
+      }
+    ],
+    "DefaultValue": 19,
+    "Interval": 3,
+    "LoopScenario": {
+      "T": 1000,
+      "Context": {
+        "Behavior": "temperatureControl",
+        "Setpoint": 33
+      }
+    }
+  },
+  {
+    "Id": "Pack-Temp3",
+    "Protocol": "MQTT",
+    "Settings": {
+      "Topic": "packing/Pack-Temperature/Pack-Temp3"
+    },
+    "Scenarios": [
+      {
+        "T": 0,
+        "Context": {
+          "Behavior": "randomControl",
+          "Setpoint": 1.7
+        }
+      },
+      {
+        "T": 200,
+        "Context": { "Behavior": "low" }
+      },
+      {
+        "T": 400,
+        "Context": { "Behavior": "decreaseLow" }
+      },
+      {
+        "T": 650,
+        "Context": {
+          "Behavior": "randomControl",
+          "Setpoint": 1.7
+        }
+      }
+    ],
+    "DefaultValue": 21,
+    "Interval": 5,
+    "LoopScenario": {
+      "T": 900,
+      "Context": {
+        "Behavior": "temperatureControl",
+        "Setpoint": 30
+      }
+    }
+  },
+  {
+    "Id": "Pack-Temp4",
+    "Protocol": "MQTT",
+    "Settings": {
+      "Topic": "packing/Pack-Temperature/Pack-Temp4"
+    },
+    "Scenarios": [
+      {
+        "T": 0,
+        "Context": {
+          "Behavior": "randomControl",
+          "Setpoint": 1.7
+        }
+      },
+      {
+        "T": 300,
+        "Context": { "Behavior": "mid" }
+      },
+      {
+        "T": 600,
+        "Context": {
+          "Behavior": "temperatureControl",
+          "Setpoint": 17
+        }
+      },
+      {
+        "T": 850,
+        "Context": {
+          "Behavior": "randomControl",
+          "Setpoint": 1.7
+        }
+      }
+    ],
+    "DefaultValue": 22,
+    "Interval": 4,
+    "LoopScenario": {
+      "T": 1500,
+      "Context": {
+        "Behavior": "temperatureControl",
+        "Setpoint": 27
+      }
+    }
+  },
+  {
+    "Id": "Pack-Temp5",
+    "Protocol": "MQTT",
+    "Settings": {
+      "Topic": "packing/Pack-Temperature/Pack-Temp5"
+    },
+    "Scenarios": [
+      {
+        "T": 0,
+        "Context": {
+          "Behavior": "randomControl",
+          "Setpoint": 1.7
+        }
+      },
+      {
+        "T": 120,
+        "Context": { "Behavior": "high" }
+      },
+      {
+        "T": 400,
+        "Context": {
+          "Behavior": "temperatureControl",
+          "Setpoint": 20
+        }
+      },
+      {
+        "T": 700,
+        "Context": {
+          "Behavior": "randomControl",
+          "Setpoint": 1.7
+        }
+      }
+    ],
+    "DefaultValue": 18,
+    "Interval": 6,
+    "LoopScenario": {
+      "T": 1500,
+      "Context": {
+        "Behavior": "temperatureControl",
+        "Setpoint": 28
+      }
+    }
+  },
+  {
+    "Id": "Pack-Temp6",
+    "Protocol": "MQTT",
+    "Settings": {
+      "Topic": "packing/Pack-Temperature/Pack-Temp6"
+    },
+    "Scenarios": [
+      {
+        "T": 0,
+        "Context": {
+          "Behavior": "randomControl",
+          "Setpoint": 1.7
+        }
+      },
+      {
+        "T": 200,
+        "Context": { "Behavior": "high" }
+      },
+      {
+        "T": 230,
+        "Context": {
+          "Behavior": "temperatureControl",
+          "Setpoint": 17
+        }
+      },
+      {
+        "T": 750,
+        "Context": {
+          "Behavior": "randomControl",
+          "Setpoint": 1.7
+        }
+      }
+    ],
+    "DefaultValue": 20,
+    "Interval": 7,
+    "LoopScenario": {
+      "T": 1500,
+      "Context": {
+        "Behavior": "temperatureControl",
+        "Setpoint": 30
+      }
+    }
+  },
+  {
+    "Id": "Pack-Temp7",
+    "Protocol": "MQTT",
+    "Settings": {
+      "Topic": "packing/Pack-Temperature/Pack-Temp7"
+    },
+    "Scenarios": [
+      {
+        "T": 0,
+        "Context": {
+          "Behavior": "randomControl",
+          "Setpoint": 1.7
+        }
+      },
+      {
+        "T": 120,
+        "Context": { "Behavior": "low" }
+      },
+      {
+        "T": 350,
+        "Context": {
+          "Behavior": "decreaseMid"
+        }
+      },
+      {
+        "T": 450,
+        "Context": {
+          "Behavior": "randomControl",
+          "Setpoint": 1.7
+        }
+      },
+      {
+        "T": 950,
+        "Context": {
+          "Behavior": "randomControl",
+          "Setpoint": 1.7
+        }
+      }
+    ],
+    "DefaultValue": 21,
+    "Interval": 2,
+    "LoopScenario": {
+      "T": 1500,
+      "Context": {
+        "Behavior": "temperatureControl",
+        "Setpoint": 33
+      }
+    }
+  },
+  {
+    "Id": "Pack-Temp8",
+    "Protocol": "MQTT",
+    "Settings": {
+      "Topic": "packing/Pack-Temperature/Pack-Temp8"
+    },
+    "Scenarios": [
+      {
+        "T": 0,
+        "Context": {
+          "Behavior": "randomControl",
+          "Setpoint": 1.7
+        }
+      },
+      {
+        "T": 150,
+        "Context": { "Behavior": "decreaseLow" }
+      },
+      {
+        "T": 300,
+        "Context": {
+          "Behavior": "temperatureControl",
+          "Setpoint": 17
+        }
+      },
+      {
+        "T": 700,
+        "Context": { "Behavior": "mid" }
+      },
+      {
+        "T": 850,
+        "Context": {
+          "Behavior": "randomControl",
+          "Setpoint": 1.7
+        }
+      }
+    ],
+    "DefaultValue": 19,
+    "Interval": 3,
+    "LoopScenario": {
+      "T": 1100,
+      "Context": {
+        "Behavior": "temperatureControl",
+        "Setpoint": 31
+      }
+    }
+  },
+  {
+    "Id": "Pack-Temp9",
+    "Protocol": "MQTT",
+    "Settings": {
+      "Topic": "packing/Pack-Temperature/Pack-Temp9"
+    },
+    "Scenarios": [
+      {
+        "T": 0,
+        "Context": {
+          "Behavior": "randomControl",
+          "Setpoint": 1.7
+        }
+      },
+      {
+        "T": 200,
+        "Context": { "Behavior": "mid" }
+      },
+      {
+        "T": 400,
+        "Context": {
+          "Behavior": "temperatureControl"
+        }
+      },
+      {
+        "T": 650,
+        "Context": {
+          "Behavior": "randomControl",
+          "Setpoint": 1.7
+        }
+      }
+    ],
+    "DefaultValue": 21,
+    "Interval": 5,
+    "LoopScenario": {
+      "T": 800,
+      "Context": {
+        "Behavior": "temperatureControl",
+        "Setpoint": 30.5
+      }
+    }
+  },
+  {
+    "Id": "Pack-Temp10",
+    "Protocol": "MQTT",
+    "Settings": {
+      "Topic": "packing/Pack-Temperature/Pack-Temp10"
+    },
+    "Scenarios": [
+      {
+        "T": 0,
+        "Context": {
+          "Behavior": "randomControl",
+          "Setpoint": 1.7
+        }
+      },
+      {
+        "T": 300,
+        "Context": { "Behavior": "mid" }
+      },
+      {
+        "T": 600,
+        "Context": {
+          "Behavior": "decreaseLow"
+        }
+      },
+      {
+        "T": 850,
+        "Context": {
+          "Behavior": "randomControl",
+          "Setpoint": 1.7
+        }
+      }
+    ],
+    "DefaultValue": 22,
+    "Interval": 4,
+    "LoopScenario": {
+      "T": 1000,
+      "Context": {
+        "Behavior": "temperatureControl",
+        "Setpoint": 29
+      }
+    }
+  },
+  {
+    "Id": "Pack-Temp11",
+    "Protocol": "MQTT",
+    "Settings": {
+      "Topic": "packing/Pack-Temperature/Pack-Temp11"
+    },
+    "Scenarios": [
+      {
+        "T": 0,
+        "Context": {
+          "Behavior": "randomControl",
+          "Setpoint": 1.7
+        }
+      },
+      {
+        "T": 120,
+        "Context": { "Behavior": "low" }
+      },
+      {
+        "T": 400,
+        "Context": {
+          "Behavior": "temperatureControl"
+        }
+      },
+      {
+        "T": 700,
+        "Context": {
+          "Behavior": "randomControl",
+          "Setpoint": 1.7
+        }
+      }
+    ],
+    "DefaultValue": 18,
+    "Interval": 6,
+    "LoopScenario": {
+      "T": 800,
+      "Context": {
+        "Behavior": "temperatureControl",
+        "Setpoint": 32
+      }
+    }
+  },
+  {
+    "Id": "Pack-Temp12",
+    "Protocol": "MQTT",
+    "Settings": {
+      "Topic": "packing/Pack-Temperature/Pack-Temp12"
+    },
+    "Scenarios": [
+      {
+        "T": 0,
+        "Context": {
+          "Behavior": "randomControl",
+          "Setpoint": 1.7
+        }
+      },
+      {
+        "T": 200,
+        "Context": { "Behavior": "high" }
+      },
+      {
+        "T": 500,
+        "Context": {
+          "Behavior": "temperatureControl",
+          "Setpoint": 17,
+          "Settings": {
+            "Kp": 0.85,
+            "Ki": 0.05,
+            "Kd": 0.1
+          }
+        }
+      },
+      {
+        "T": 750,
+        "Context": {
+          "Behavior": "randomControl",
+          "Setpoint": 1.7
+        }
+      }
+    ],
+    "DefaultValue": 20,
+    "Interval": 7,
+    "LoopScenario": {
+      "T": 800,
+      "Context": {
+        "Behavior": "temperatureControl",
+        "Setpoint": 31
+      }
+    }
+  },
+  {
+    "Id": "Pack-Humidity1",
+    "Protocol": "MQTT",
+    "Settings": {
+      "Topic": "packing/Pack-Humidity/Pack-Humidity1"
+    },
+    "Scenarios": [
+      {
+        "T": 0,
+        "Context": {
+          "Behavior": "randomControl",
+          "Setpoint": 5
+        }
+      },
+      {
+        "T": 120,
+        "Context": { "Behavior": "mid" }
+      },
+      {
+        "T": 250,
+        "Context": {
+          "Behavior": "humidityControl"
+        }
+      },
+      {
+        "T": 450,
+        "Context": {
+          "Behavior": "randomControl",
+          "Setpoint": 5
+        }
+      },
+      {
+        "T": 950,
+        "Context": {
+          "Behavior": "randomControl",
+          "Setpoint": 5
+        }
+      }
+    ],
+    "DefaultValue": 45,
+    "Interval": 2,
+    "LoopScenario": {
+      "T": 1100,
+      "Context": {
+        "Behavior": "humidityControl",
+        "Setpoint": 60
+      }
+    }
+  },
+  {
+    "Id": "Pack-Humidity2",
+    "Protocol": "MQTT",
+    "Settings": {
+      "Topic": "packing/Pack-Humidity/Pack-Humidity2"
+    },
+    "Scenarios": [
+      {
+        "T": 0,
+        "Context": {
+          "Behavior": "randomControl",
+          "Setpoint": 5
+        }
+      },
+      {
+        "T": 120,
+        "Context": { "Behavior": "mid" }
+      },
+      {
+        "T": 250,
+        "Context": {
+          "Behavior": "humidityControl",
+          "Setpoint": 45
+        }
+      },
+      {
+        "T": 450,
+        "Context": {
+          "Behavior": "randomControl",
+          "Setpoint": 5
+        }
+      },
+      {
+        "T": 950,
+        "Context": {
+          "Behavior": "randomControl",
+          "Setpoint": 5
+        }
+      }
+    ],
+    "DefaultValue": 45,
+    "Interval": 3,
+    "LoopScenario": {
+      "T": 1300,
+      "Context": {
+        "Behavior": "humidityControl",
+        "Setpoint": 65
+      }
+    }
+  },
+  {
+    "Id": "Pack-Humidity3",
+    "Protocol": "MQTT",
+    "Settings": {
+      "Topic": "packing/Pack-Humidity/Pack-Humidity3"
+    },
+    "Scenarios": [
+      {
+        "T": 0,
+        "Context": {
+          "Behavior": "randomControl",
+          "Setpoint": 5
+        }
+      },
+      {
+        "T": 120,
+        "Context": { "Behavior": "mid" }
+      },
+      {
+        "T": 250,
+        "Context": {
+          "Behavior": "humidityControl",
+          "Setpoint": 42
+        }
+      },
+      {
+        "T": 450,
+        "Context": {
+          "Behavior": "randomControl",
+          "Setpoint": 5
+        }
+      },
+      {
+        "T": 950,
+        "Context": {
+          "Behavior": "randomControl",
+          "Setpoint": 5
+        }
+      }
+    ],
+    "DefaultValue": 45,
+    "Interval": 1,
+    "LoopScenario": {
+      "T": 1100,
+      "Context": {
+        "Behavior": "humidityControl",
+        "Setpoint": 66
+      }
+    }
+  },
+  {
+    "Id": "Pack-Humidity4",
+    "Protocol": "MQTT",
+    "Settings": {
+      "Topic": "packing/Pack-Humidity/Pack-Humidity4"
+    },
+    "Scenarios": [
+      {
+        "T": 0,
+        "Context": {
+          "Behavior": "randomControl",
+          "Setpoint": 5
+        }
+      },
+      {
+        "T": 120,
+        "Context": { "Behavior": "low" }
+      },
+      {
+        "T": 200,
+        "Context": { "Behavior": "decreaseLow" }
+      },
+      {
+        "T": 450,
+        "Context": {
+          "Behavior": "randomControl",
+          "Setpoint": 5
+        }
+      },
+      {
+        "T": 950,
+        "Context": {
+          "Behavior": "randomControl",
+          "Setpoint": 5
+        }
+      }
+    ],
+    "DefaultValue": 45,
+    "Interval": 3,
+    "LoopScenario": {
+      "T": 1300,
+      "Context": {
+        "Behavior": "humidityControl",
+        "Setpoint": 67
+      }
+    }
+  },
+  {
+    "Id": "Pack-Humidity5",
+    "Protocol": "MQTT",
+    "Settings": {
+      "Topic": "packing/Pack-Humidity/Pack-Humidity5"
+    },
+    "Scenarios": [
+      {
+        "T": 0,
+        "Context": {
+          "Behavior": "randomControl",
+          "Setpoint": 5
+        }
+      },
+      {
+        "T": 120,
+        "Context": { "Behavior": "high" }
+      },
+      {
+        "T": 250,
+        "Context": {
+          "Behavior": "humidityControl",
+          "Setpoint": 35
+        }
+      },
+      {
+        "T": 450,
+        "Context": {
+          "Behavior": "randomControl",
+          "Setpoint": 5
+        }
+      },
+      {
+        "T": 950,
+        "Context": {
+          "Behavior": "randomControl",
+          "Setpoint": 5
+        }
+      }
+    ],
+    "DefaultValue": 45,
+    "Interval": 1.5,
+    "LoopScenario": {
+      "T": 1500,
+      "Context": {
+        "Behavior": "humidityControl",
+        "Setpoint": 63
+      }
+    }
+  },
+  {
+    "Id": "Pack-Humidity6",
+    "Protocol": "MQTT",
+    "Settings": {
+      "Topic": "packing/Pack-Humidity/Pack-Humidity6"
+    },
+    "Scenarios": [
+      {
+        "T": 0,
+        "Context": {
+          "Behavior": "randomControl",
+          "Setpoint": 5
+        }
+      },
+      {
+        "T": 120,
+        "Context": { "Behavior": "low" }
+      },
+      {
+        "T": 250,
+        "Context": {
+          "Behavior": "humidityControl",
+          "Setpoint": 42
+        }
+      },
+      {
+        "T": 800,
+        "Context": {
+          "Context": { "Behavior": "high" },
+          "Setpoint": 5
+        }
+      },
+      {
+        "T": 900,
+        "Context": { "Behavior": "decreaseHigh" }
+      },
+      {
+        "T": 950,
+        "Context": {
+          "Behavior": "randomControl",
+          "Setpoint": 5
+        }
+      }
+    ],
+    "DefaultValue": 45,
+    "Interval": 1.5,
+    "LoopScenario": {
+      "T": 1500,
+      "Context": {
+        "Behavior": "humidityControl",
+        "Setpoint": 58
+      }
+    }
+  },
+  {
+    "Id": "Pack-Humidity7",
+    "Protocol": "MQTT",
+    "Settings": {
+      "Topic": "packing/Pack-Humidity/Pack-Humidity7"
+    },
+    "Scenarios": [
+      {
+        "T": 0,
+        "Context": { "Behavior": "high" }
+      },
+      {
+        "T": 300,
+        "Context": {
+          "Behavior": "humidityControl"
+        }
+      }
+    ],
+    "DefaultValue": 45,
+    "Interval": 1.5,
+    "LoopScenario": {
+      "T": 1500,
+      "Context": {
+        "Behavior": "humidityControl",
+        "Setpoint": 57
+      }
+    }
+  },
+  {
+    "Id": "Pack-AQM-1",
+    "Protocol": "RESTClient",
+    "Settings": {
+      "Address": "http://localhost:5008",
+      "Endpoint": "/api/pack/air-quality",
+      "DefaultLocation": {
+        "Latitude": 51.0301,
+        "Longitude": 13.7333
+      }
+    },
+    "Scenarios": [
+      {
+        "T": 0,
+        "Context": { "Behavior": "high" }
+      }
+    ],
+    "DefaultValue": 5,
+    "Interval": 1.5,
+    "LoopScenario": {
+      "T": 10,
+      "Context": {
+        "Behavior": "particleControl",
+        "Setpoint": 110
+      }
+    }
+  },
+  {
+    "Id": "Pack-AQM-2",
+    "Protocol": "RESTClient",
+    "Settings": {
+      "Address": "http://localhost:5008",
+      "Endpoint": "/api/pack/air-quality",
+      "DefaultLocation": {
+        "Latitude": 51.0301,
+        "Longitude": 13.7333
+      }
+    },
+    "Scenarios": [
+      {
+        "T": 0,
+        "Context": { "Behavior": "mid" }
+      },
+      {
+        "T": 100,
+        "Context": {
+          "Behavior": "randomControl",
+          "Setpoint": 1.7
+        }
+      },
+      {
+        "T": 200,
+        "Context": { "Behavior": "decreaseMid" }
+      },
+      {
+        "T": 300,
+        "Context": { "Behavior": "low" }
+      },
+      {
+        "T": 500,
+        "Context": {
+          "Behavior": "randomControl",
+          "Setpoint": 1.7
+        }
+      }
+    ],
+    "DefaultValue": 7,
+    "Interval": 14,
+    "LoopScenario": {
+      "T": 800,
+      "Context": {
+        "Behavior": "particleControl",
+        "Setpoint": 90
+      }
+    }
+  },
+  {
+    "Id": "Pack-AQM-3",
+    "Protocol": "RESTClient",
+    "Settings": {
+      "Address": "http://localhost:5008",
+      "Endpoint": "/api/pack/air-quality",
+      "DefaultLocation": {
+        "Latitude": 51.0301,
+        "Longitude": 13.7333
+      }
+    },
+    "Scenarios": [
+      {
+        "T": 0,
+        "Context": { "Behavior": "low" }
+      }
+    ],
+    "DefaultValue": 0,
+    "Interval": 15,
+    "LoopScenario": {
+      "T": 300,
+      "Context": {
+        "Behavior": "particleControl",
+        "Setpoint": 100
+      }
+    }
+  }
+]

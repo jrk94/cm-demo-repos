@@ -1,0 +1,27 @@
+﻿[
+  {
+    "Id": "humid7",
+    "Protocol": "MQTT",
+    "Settings": {
+      "Topic": "cleanroom/humidity/humid7",
+      "ClientId": "Sensor",
+      "Address": "localhost",
+      "Port": 1883
+    },
+    "Scenarios": [
+      {
+        "T": 0,
+        "Context": { "Behavior": "high" }
+      }
+    ],
+    "DefaultValue": 45,
+    "Interval": 1.5,
+    "LoopScenario": {
+      "T": 3,
+      "Context": {
+        "Behavior": "humidityControl",
+        "Setpoint": 65
+      }
+    }
+  }
+]

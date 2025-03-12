@@ -1,0 +1,973 @@
+﻿[
+  {
+    "Id": "WPF-Temp1",
+    "Protocol": "MQTT",
+    "Settings": {
+      "Topic": "waferprep/WPF-Temperature/WPF-Temp1"
+    },
+    "Scenarios": [
+      {
+        "T": 0,
+        "Context": {
+          "Behavior": "randomControl",
+          "Setpoint": 1.7
+        }
+      },
+      {
+        "T": 120,
+        "Context": { "Behavior": "high" }
+      },
+      {
+        "T": 250,
+        "Context": {
+          "Behavior": "temperatureControl",
+          "Setpoint": 17
+        }
+      },
+      {
+        "T": 450,
+        "Context": {
+          "Behavior": "randomControl",
+          "Setpoint": 1.7
+        }
+      },
+      {
+        "T": 950,
+        "Context": {
+          "Behavior": "randomControl",
+          "Setpoint": 1.7
+        }
+      },
+      {
+        "T": 120,
+        "Context": { "Behavior": "high" }
+      }
+    ],
+    "DefaultValue": 21,
+    "Interval": 2,
+    "LoopScenario": {
+      "T": 1000,
+      "Context": {
+        "Behavior": "temperatureControl",
+        "Setpoint": 34
+      }
+    }
+  },
+  {
+    "Id": "WPF-Temp2",
+    "Protocol": "MQTT",
+    "Settings": {
+      "Topic": "waferprep/WPF-Temperature/WPF-Temp2"
+    },
+    "Scenarios": [
+      {
+        "T": 0,
+        "Context": {
+          "Behavior": "randomControl",
+          "Setpoint": 1.7
+        }
+      },
+      {
+        "T": 150,
+        "Context": { "Behavior": "low" }
+      },
+      {
+        "T": 300,
+        "Context": {
+          "Behavior": "temperatureControl",
+          "Setpoint": 17
+        }
+      },
+      {
+        "T": 700,
+        "Context": { "Behavior": "decreaseLow" }
+      },
+      {
+        "T": 850,
+        "Context": {
+          "Behavior": "randomControl",
+          "Setpoint": 1.7
+        }
+      }
+    ],
+    "DefaultValue": 19,
+    "Interval": 3,
+    "LoopScenario": {
+      "T": 1000,
+      "Context": {
+        "Behavior": "temperatureControl",
+        "Setpoint": 33
+      }
+    }
+  },
+  {
+    "Id": "WPF-Temp3",
+    "Protocol": "MQTT",
+    "Settings": {
+      "Topic": "waferprep/WPF-Temperature/WPF-Temp3"
+    },
+    "Scenarios": [
+      {
+        "T": 0,
+        "Context": {
+          "Behavior": "randomControl",
+          "Setpoint": 1.7
+        }
+      },
+      {
+        "T": 200,
+        "Context": { "Behavior": "low" }
+      },
+      {
+        "T": 400,
+        "Context": { "Behavior": "decreaseLow" }
+      },
+      {
+        "T": 650,
+        "Context": {
+          "Behavior": "randomControl",
+          "Setpoint": 1.7
+        }
+      }
+    ],
+    "DefaultValue": 21,
+    "Interval": 5,
+    "LoopScenario": {
+      "T": 900,
+      "Context": {
+        "Behavior": "temperatureControl",
+        "Setpoint": 30
+      }
+    }
+  },
+  {
+    "Id": "WPF-Temp4",
+    "Protocol": "MQTT",
+    "Settings": {
+      "Topic": "waferprep/WPF-Temperature/WPF-Temp4"
+    },
+    "Scenarios": [
+      {
+        "T": 0,
+        "Context": {
+          "Behavior": "randomControl",
+          "Setpoint": 1.7
+        }
+      },
+      {
+        "T": 300,
+        "Context": { "Behavior": "mid" }
+      },
+      {
+        "T": 600,
+        "Context": {
+          "Behavior": "temperatureControl",
+          "Setpoint": 17
+        }
+      },
+      {
+        "T": 850,
+        "Context": {
+          "Behavior": "randomControl",
+          "Setpoint": 1.7
+        }
+      }
+    ],
+    "DefaultValue": 22,
+    "Interval": 4,
+    "LoopScenario": {
+      "T": 1500,
+      "Context": {
+        "Behavior": "temperatureControl",
+        "Setpoint": 27
+      }
+    }
+  },
+  {
+    "Id": "WPF-Temp5",
+    "Protocol": "MQTT",
+    "Settings": {
+      "Topic": "waferprep/WPF-Temperature/WPF-Temp5"
+    },
+    "Scenarios": [
+      {
+        "T": 0,
+        "Context": {
+          "Behavior": "randomControl",
+          "Setpoint": 1.7
+        }
+      },
+      {
+        "T": 120,
+        "Context": { "Behavior": "high" }
+      },
+      {
+        "T": 400,
+        "Context": {
+          "Behavior": "temperatureControl",
+          "Setpoint": 20
+        }
+      },
+      {
+        "T": 700,
+        "Context": {
+          "Behavior": "randomControl",
+          "Setpoint": 1.7
+        }
+      }
+    ],
+    "DefaultValue": 18,
+    "Interval": 6,
+    "LoopScenario": {
+      "T": 1500,
+      "Context": {
+        "Behavior": "temperatureControl",
+        "Setpoint": 28
+      }
+    }
+  },
+  {
+    "Id": "WPF-Temp6",
+    "Protocol": "MQTT",
+    "Settings": {
+      "Topic": "waferprep/WPF-Temperature/WPF-Temp6"
+    },
+    "Scenarios": [
+      {
+        "T": 0,
+        "Context": {
+          "Behavior": "randomControl",
+          "Setpoint": 1.7
+        }
+      },
+      {
+        "T": 200,
+        "Context": { "Behavior": "high" }
+      },
+      {
+        "T": 230,
+        "Context": {
+          "Behavior": "temperatureControl",
+          "Setpoint": 17
+        }
+      },
+      {
+        "T": 750,
+        "Context": {
+          "Behavior": "randomControl",
+          "Setpoint": 1.7
+        }
+      }
+    ],
+    "DefaultValue": 20,
+    "Interval": 7,
+    "LoopScenario": {
+      "T": 1500,
+      "Context": {
+        "Behavior": "temperatureControl",
+        "Setpoint": 30
+      }
+    }
+  },
+  {
+    "Id": "WPF-Temp7",
+    "Protocol": "MQTT",
+    "Settings": {
+      "Topic": "waferprep/WPF-Temperature/WPF-Temp7"
+    },
+    "Scenarios": [
+      {
+        "T": 0,
+        "Context": {
+          "Behavior": "randomControl",
+          "Setpoint": 1.7
+        }
+      },
+      {
+        "T": 120,
+        "Context": { "Behavior": "low" }
+      },
+      {
+        "T": 350,
+        "Context": {
+          "Behavior": "decreaseMid"
+        }
+      },
+      {
+        "T": 450,
+        "Context": {
+          "Behavior": "randomControl",
+          "Setpoint": 1.7
+        }
+      },
+      {
+        "T": 950,
+        "Context": {
+          "Behavior": "randomControl",
+          "Setpoint": 1.7
+        }
+      }
+    ],
+    "DefaultValue": 21,
+    "Interval": 2,
+    "LoopScenario": {
+      "T": 1500,
+      "Context": {
+        "Behavior": "temperatureControl",
+        "Setpoint": 33
+      }
+    }
+  },
+  {
+    "Id": "WPF-Temp8",
+    "Protocol": "MQTT",
+    "Settings": {
+      "Topic": "waferprep/WPF-Temperature/WPF-Temp8"
+    },
+    "Scenarios": [
+      {
+        "T": 0,
+        "Context": {
+          "Behavior": "randomControl",
+          "Setpoint": 1.7
+        }
+      },
+      {
+        "T": 150,
+        "Context": { "Behavior": "decreaseLow" }
+      },
+      {
+        "T": 300,
+        "Context": {
+          "Behavior": "temperatureControl",
+          "Setpoint": 17
+        }
+      },
+      {
+        "T": 700,
+        "Context": { "Behavior": "mid" }
+      },
+      {
+        "T": 850,
+        "Context": {
+          "Behavior": "randomControl",
+          "Setpoint": 1.7
+        }
+      }
+    ],
+    "DefaultValue": 19,
+    "Interval": 3,
+    "LoopScenario": {
+      "T": 1100,
+      "Context": {
+        "Behavior": "temperatureControl",
+        "Setpoint": 31
+      }
+    }
+  },
+  {
+    "Id": "WPF-Temp9",
+    "Protocol": "MQTT",
+    "Settings": {
+      "Topic": "waferprep/WPF-Temperature/WPF-Temp9"
+    },
+    "Scenarios": [
+      {
+        "T": 0,
+        "Context": {
+          "Behavior": "randomControl",
+          "Setpoint": 1.7
+        }
+      },
+      {
+        "T": 200,
+        "Context": { "Behavior": "mid" }
+      },
+      {
+        "T": 400,
+        "Context": {
+          "Behavior": "temperatureControl"
+        }
+      },
+      {
+        "T": 650,
+        "Context": {
+          "Behavior": "randomControl",
+          "Setpoint": 1.7
+        }
+      }
+    ],
+    "DefaultValue": 21,
+    "Interval": 5,
+    "LoopScenario": {
+      "T": 800,
+      "Context": {
+        "Behavior": "temperatureControl",
+        "Setpoint": 30.5
+      }
+    }
+  },
+  {
+    "Id": "WPF-Temp10",
+    "Protocol": "MQTT",
+    "Settings": {
+      "Topic": "waferprep/WPF-Temperature/WPF-Temp10"
+    },
+    "Scenarios": [
+      {
+        "T": 0,
+        "Context": {
+          "Behavior": "randomControl",
+          "Setpoint": 1.7
+        }
+      },
+      {
+        "T": 300,
+        "Context": { "Behavior": "mid" }
+      },
+      {
+        "T": 600,
+        "Context": {
+          "Behavior": "decreaseLow"
+        }
+      },
+      {
+        "T": 850,
+        "Context": {
+          "Behavior": "randomControl",
+          "Setpoint": 1.7
+        }
+      }
+    ],
+    "DefaultValue": 22,
+    "Interval": 4,
+    "LoopScenario": {
+      "T": 1000,
+      "Context": {
+        "Behavior": "temperatureControl",
+        "Setpoint": 29
+      }
+    }
+  },
+  {
+    "Id": "WPF-Temp11",
+    "Protocol": "MQTT",
+    "Settings": {
+      "Topic": "waferprep/WPF-Temperature/WPF-Temp11"
+    },
+    "Scenarios": [
+      {
+        "T": 0,
+        "Context": {
+          "Behavior": "randomControl",
+          "Setpoint": 1.7
+        }
+      },
+      {
+        "T": 120,
+        "Context": { "Behavior": "low" }
+      },
+      {
+        "T": 400,
+        "Context": {
+          "Behavior": "temperatureControl"
+        }
+      },
+      {
+        "T": 700,
+        "Context": {
+          "Behavior": "randomControl",
+          "Setpoint": 1.7
+        }
+      }
+    ],
+    "DefaultValue": 18,
+    "Interval": 6,
+    "LoopScenario": {
+      "T": 800,
+      "Context": {
+        "Behavior": "temperatureControl",
+        "Setpoint": 32
+      }
+    }
+  },
+  {
+    "Id": "WPF-Temp12",
+    "Protocol": "MQTT",
+    "Settings": {
+      "Topic": "waferprep/WPF-Temperature/WPF-Temp12"
+    },
+    "Scenarios": [
+      {
+        "T": 0,
+        "Context": {
+          "Behavior": "randomControl",
+          "Setpoint": 1.7
+        }
+      },
+      {
+        "T": 200,
+        "Context": { "Behavior": "high" }
+      },
+      {
+        "T": 500,
+        "Context": {
+          "Behavior": "temperatureControl",
+          "Setpoint": 17,
+          "Settings": {
+            "Kp": 0.85,
+            "Ki": 0.05,
+            "Kd": 0.1
+          }
+        }
+      },
+      {
+        "T": 750,
+        "Context": {
+          "Behavior": "randomControl",
+          "Setpoint": 1.7
+        }
+      }
+    ],
+    "DefaultValue": 20,
+    "Interval": 7,
+    "LoopScenario": {
+      "T": 800,
+      "Context": {
+        "Behavior": "temperatureControl",
+        "Setpoint": 31
+      }
+    }
+  },
+  {
+    "Id": "WPF-Humidity1",
+    "Protocol": "MQTT",
+    "Settings": {
+      "Topic": "waferprep/WPF-Humidity/WPF-Humidity1"
+    },
+    "Scenarios": [
+      {
+        "T": 0,
+        "Context": {
+          "Behavior": "randomControl",
+          "Setpoint": 5
+        }
+      },
+      {
+        "T": 120,
+        "Context": { "Behavior": "mid" }
+      },
+      {
+        "T": 250,
+        "Context": {
+          "Behavior": "humidityControl"
+        }
+      },
+      {
+        "T": 450,
+        "Context": {
+          "Behavior": "randomControl",
+          "Setpoint": 5
+        }
+      },
+      {
+        "T": 950,
+        "Context": {
+          "Behavior": "randomControl",
+          "Setpoint": 5
+        }
+      }
+    ],
+    "DefaultValue": 45,
+    "Interval": 2,
+    "LoopScenario": {
+      "T": 1100,
+      "Context": {
+        "Behavior": "humidityControl",
+        "Setpoint": 60
+      }
+    }
+  },
+  {
+    "Id": "WPF-Humidity2",
+    "Protocol": "MQTT",
+    "Settings": {
+      "Topic": "waferprep/WPF-Humidity/WPF-Humidity2"
+    },
+    "Scenarios": [
+      {
+        "T": 0,
+        "Context": {
+          "Behavior": "randomControl",
+          "Setpoint": 5
+        }
+      },
+      {
+        "T": 120,
+        "Context": { "Behavior": "mid" }
+      },
+      {
+        "T": 250,
+        "Context": {
+          "Behavior": "humidityControl",
+          "Setpoint": 45
+        }
+      },
+      {
+        "T": 450,
+        "Context": {
+          "Behavior": "randomControl",
+          "Setpoint": 5
+        }
+      },
+      {
+        "T": 950,
+        "Context": {
+          "Behavior": "randomControl",
+          "Setpoint": 5
+        }
+      }
+    ],
+    "DefaultValue": 45,
+    "Interval": 3,
+    "LoopScenario": {
+      "T": 1300,
+      "Context": {
+        "Behavior": "humidityControl",
+        "Setpoint": 65
+      }
+    }
+  },
+  {
+    "Id": "WPF-Humidity3",
+    "Protocol": "MQTT",
+    "Settings": {
+      "Topic": "waferprep/WPF-Humidity/WPF-Humidity3"
+    },
+    "Scenarios": [
+      {
+        "T": 0,
+        "Context": {
+          "Behavior": "randomControl",
+          "Setpoint": 5
+        }
+      },
+      {
+        "T": 120,
+        "Context": { "Behavior": "mid" }
+      },
+      {
+        "T": 250,
+        "Context": {
+          "Behavior": "humidityControl",
+          "Setpoint": 42
+        }
+      },
+      {
+        "T": 450,
+        "Context": {
+          "Behavior": "randomControl",
+          "Setpoint": 5
+        }
+      },
+      {
+        "T": 950,
+        "Context": {
+          "Behavior": "randomControl",
+          "Setpoint": 5
+        }
+      }
+    ],
+    "DefaultValue": 45,
+    "Interval": 1,
+    "LoopScenario": {
+      "T": 1100,
+      "Context": {
+        "Behavior": "humidityControl",
+        "Setpoint": 66
+      }
+    }
+  },
+  {
+    "Id": "WPF-Humidity4",
+    "Protocol": "MQTT",
+    "Settings": {
+      "Topic": "waferprep/WPF-Humidity/WPF-Humidity4"
+    },
+    "Scenarios": [
+      {
+        "T": 0,
+        "Context": {
+          "Behavior": "randomControl",
+          "Setpoint": 5
+        }
+      },
+      {
+        "T": 120,
+        "Context": { "Behavior": "low" }
+      },
+      {
+        "T": 200,
+        "Context": { "Behavior": "decreaseLow" }
+      },
+      {
+        "T": 450,
+        "Context": {
+          "Behavior": "randomControl",
+          "Setpoint": 5
+        }
+      },
+      {
+        "T": 950,
+        "Context": {
+          "Behavior": "randomControl",
+          "Setpoint": 5
+        }
+      }
+    ],
+    "DefaultValue": 45,
+    "Interval": 3,
+    "LoopScenario": {
+      "T": 1300,
+      "Context": {
+        "Behavior": "humidityControl",
+        "Setpoint": 67
+      }
+    }
+  },
+  {
+    "Id": "WPF-Humidity5",
+    "Protocol": "MQTT",
+    "Settings": {
+      "Topic": "waferprep/WPF-Humidity/WPF-Humidity5"
+    },
+    "Scenarios": [
+      {
+        "T": 0,
+        "Context": {
+          "Behavior": "randomControl",
+          "Setpoint": 5
+        }
+      },
+      {
+        "T": 120,
+        "Context": { "Behavior": "high" }
+      },
+      {
+        "T": 250,
+        "Context": {
+          "Behavior": "humidityControl",
+          "Setpoint": 35
+        }
+      },
+      {
+        "T": 450,
+        "Context": {
+          "Behavior": "randomControl",
+          "Setpoint": 5
+        }
+      },
+      {
+        "T": 950,
+        "Context": {
+          "Behavior": "randomControl",
+          "Setpoint": 5
+        }
+      }
+    ],
+    "DefaultValue": 45,
+    "Interval": 1.5,
+    "LoopScenario": {
+      "T": 1500,
+      "Context": {
+        "Behavior": "humidityControl",
+        "Setpoint": 63
+      }
+    }
+  },
+  {
+    "Id": "WPF-Humidity6",
+    "Protocol": "MQTT",
+    "Settings": {
+      "Topic": "waferprep/WPF-Humidity/WPF-Humidity6"
+    },
+    "Scenarios": [
+      {
+        "T": 0,
+        "Context": {
+          "Behavior": "randomControl",
+          "Setpoint": 5
+        }
+      },
+      {
+        "T": 120,
+        "Context": { "Behavior": "low" }
+      },
+      {
+        "T": 250,
+        "Context": {
+          "Behavior": "humidityControl",
+          "Setpoint": 42
+        }
+      },
+      {
+        "T": 800,
+        "Context": {
+          "Context": { "Behavior": "high" },
+          "Setpoint": 5
+        }
+      },
+      {
+        "T": 900,
+        "Context": { "Behavior": "decreaseHigh" }
+      },
+      {
+        "T": 950,
+        "Context": {
+          "Behavior": "randomControl",
+          "Setpoint": 5
+        }
+      }
+    ],
+    "DefaultValue": 45,
+    "Interval": 1.5,
+    "LoopScenario": {
+      "T": 1500,
+      "Context": {
+        "Behavior": "humidityControl",
+        "Setpoint": 58
+      }
+    }
+  },
+  {
+    "Id": "WPF-Humidity7",
+    "Protocol": "MQTT",
+    "Settings": {
+      "Topic": "waferprep/WPF-Humidity/WPF-Humidity7"
+    },
+    "Scenarios": [
+      {
+        "T": 0,
+        "Context": { "Behavior": "high" }
+      },
+      {
+        "T": 300,
+        "Context": {
+          "Behavior": "humidityControl"
+        }
+      }
+    ],
+    "DefaultValue": 45,
+    "Interval": 1.5,
+    "LoopScenario": {
+      "T": 1500,
+      "Context": {
+        "Behavior": "humidityControl",
+        "Setpoint": 57
+      }
+    }
+  },
+  {
+    "Id": "WPF-AQM-1",
+    "Protocol": "RESTClient",
+    "Settings": {
+      "Address": "http://localhost:5010",
+      "Endpoint": "/api/waferprep/air-quality",
+      "DefaultLocation": {
+        "Latitude": 37.3947,
+        "Longitude": -122.0784
+      }
+    },
+    "Scenarios": [
+      {
+        "T": 0,
+        "Context": { "Behavior": "high" }
+      }
+    ],
+    "DefaultValue": 5,
+    "Interval": 1.5,
+    "LoopScenario": {
+      "T": 10,
+      "Context": {
+        "Behavior": "particleControl",
+        "Setpoint": 110
+      }
+    }
+  },
+  {
+    "Id": "WPF-AQM-2",
+    "Protocol": "RESTClient",
+    "Settings": {
+      "Address": "http://localhost:5010",
+      "Endpoint": "/api/waferprep/air-quality",
+      "DefaultLocation": {
+        "Latitude": 37.3947,
+        "Longitude": -122.0784
+      }
+    },
+    "Scenarios": [
+      {
+        "T": 0,
+        "Context": { "Behavior": "mid" }
+      },
+      {
+        "T": 100,
+        "Context": {
+          "Behavior": "randomControl",
+          "Setpoint": 1.7
+        }
+      },
+      {
+        "T": 200,
+        "Context": { "Behavior": "decreaseMid" }
+      },
+      {
+        "T": 300,
+        "Context": { "Behavior": "low" }
+      },
+      {
+        "T": 500,
+        "Context": {
+          "Behavior": "randomControl",
+          "Setpoint": 1.7
+        }
+      }
+    ],
+    "DefaultValue": 7,
+    "Interval": 14,
+    "LoopScenario": {
+      "T": 800,
+      "Context": {
+        "Behavior": "particleControl",
+        "Setpoint": 90
+      }
+    }
+  },
+  {
+    "Id": "WPF-AQM-3",
+    "Protocol": "RESTClient",
+    "Settings": {
+      "Address": "http://localhost:5010",
+      "Endpoint": "/api/waferprep/air-quality",
+      "DefaultLocation": {
+        "Latitude": 37.3947,
+        "Longitude": -122.0784
+      }
+    },
+    "Scenarios": [
+      {
+        "T": 0,
+        "Context": { "Behavior": "low" }
+      }
+    ],
+    "DefaultValue": 0,
+    "Interval": 15,
+    "LoopScenario": {
+      "T": 300,
+      "Context": {
+        "Behavior": "particleControl",
+        "Setpoint": 100
+      }
+    }
+  }
+]

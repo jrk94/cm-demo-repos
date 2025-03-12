@@ -64,7 +64,6 @@
 			"DisplayOrder": "1",
 			"DefaultCalendar": "Standard",
 			"TerminateOnShip": "No",
-			"Shipping Facilities": "Distribution Center",
 			"IsTemplate": "No",
 			"Site": "Silicon Valley Fab"
 		},
@@ -75,7 +74,6 @@
 			"DisplayOrder": "2",
 			"DefaultCalendar": "Standard",
 			"TerminateOnShip": "No",
-			"Shipping Facilities": "Distribution Center",
 			"IsTemplate": "No",
 			"Site": "Taiwan Advanced Fab"
 		},
@@ -86,7 +84,6 @@
 			"DisplayOrder": "3",
 			"DefaultCalendar": "Standard",
 			"TerminateOnShip": "No",
-			"Shipping Facilities": "Distribution Center",
 			"IsTemplate": "No",
 			"Site": "Europe R&D"
 		}

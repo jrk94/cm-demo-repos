@@ -1,0 +1,1055 @@
+﻿[
+  {
+    "Id": "Metro-Temp1",
+    "Protocol": "MQTT",
+    "Settings": {
+      "Topic": "metrology/Metro-Temperature/Metro-Temp1"
+    },
+    "Scenarios": [
+      {
+        "T": 0,
+        "Context": {
+          "Behavior": "randomControl",
+          "Setpoint": 1.7
+        }
+      },
+      {
+        "T": 120,
+        "Context": { "Behavior": "high" }
+      },
+      {
+        "T": 250,
+        "Context": {
+          "Behavior": "temperatureControl",
+          "Setpoint": 17
+        }
+      },
+      {
+        "T": 450,
+        "Context": {
+          "Behavior": "randomControl",
+          "Setpoint": 1.7
+        }
+      },
+      {
+        "T": 950,
+        "Context": {
+          "Behavior": "randomControl",
+          "Setpoint": 1.7
+        }
+      },
+      {
+        "T": 120,
+        "Context": { "Behavior": "high" }
+      }
+    ],
+    "DefaultValue": 21,
+    "Interval": 2,
+    "LoopScenario": {
+      "T": 1000,
+      "Context": {
+        "Behavior": "temperatureControl",
+        "Setpoint": 34
+      }
+    }
+  },
+  {
+    "Id": "Metro-Temp2",
+    "Protocol": "MQTT",
+    "Settings": {
+      "Topic": "metrology/Metro-Temperature/Metro-Temp2"
+    },
+    "Scenarios": [
+      {
+        "T": 0,
+        "Context": {
+          "Behavior": "randomControl",
+          "Setpoint": 1.7
+        }
+      },
+      {
+        "T": 150,
+        "Context": { "Behavior": "low" }
+      },
+      {
+        "T": 300,
+        "Context": {
+          "Behavior": "temperatureControl",
+          "Setpoint": 17
+        }
+      },
+      {
+        "T": 700,
+        "Context": { "Behavior": "decreaseLow" }
+      },
+      {
+        "T": 850,
+        "Context": {
+          "Behavior": "randomControl",
+          "Setpoint": 1.7
+        }
+      }
+    ],
+    "DefaultValue": 19,
+    "Interval": 3,
+    "LoopScenario": {
+      "T": 1000,
+      "Context": {
+        "Behavior": "temperatureControl",
+        "Setpoint": 33
+      }
+    }
+  },
+  {
+    "Id": "Metro-Temp3",
+    "Protocol": "MQTT",
+    "Settings": {
+      "Topic": "metrology/Metro-Temperature/Metro-Temp3"
+    },
+    "Scenarios": [
+      {
+        "T": 0,
+        "Context": {
+          "Behavior": "randomControl",
+          "Setpoint": 1.7
+        }
+      },
+      {
+        "T": 200,
+        "Context": { "Behavior": "low" }
+      },
+      {
+        "T": 400,
+        "Context": { "Behavior": "decreaseLow" }
+      },
+      {
+        "T": 650,
+        "Context": {
+          "Behavior": "randomControl",
+          "Setpoint": 1.7
+        }
+      }
+    ],
+    "DefaultValue": 21,
+    "Interval": 5,
+    "LoopScenario": {
+      "T": 900,
+      "Context": {
+        "Behavior": "temperatureControl",
+        "Setpoint": 30
+      }
+    }
+  },
+  {
+    "Id": "Metro-Temp4",
+    "Protocol": "MQTT",
+    "Settings": {
+      "Topic": "metrology/Metro-Temperature/Metro-Temp4"
+    },
+    "Scenarios": [
+      {
+        "T": 0,
+        "Context": {
+          "Behavior": "randomControl",
+          "Setpoint": 1.7
+        }
+      },
+      {
+        "T": 300,
+        "Context": { "Behavior": "mid" }
+      },
+      {
+        "T": 600,
+        "Context": {
+          "Behavior": "temperatureControl",
+          "Setpoint": 17
+        }
+      },
+      {
+        "T": 850,
+        "Context": {
+          "Behavior": "randomControl",
+          "Setpoint": 1.7
+        }
+      }
+    ],
+    "DefaultValue": 22,
+    "Interval": 4,
+    "LoopScenario": {
+      "T": 1500,
+      "Context": {
+        "Behavior": "temperatureControl",
+        "Setpoint": 27
+      }
+    }
+  },
+  {
+    "Id": "Metro-Temp5",
+    "Protocol": "MQTT",
+    "Settings": {
+      "Topic": "metrology/Metro-Temperature/Metro-Temp5"
+    },
+    "Scenarios": [
+      {
+        "T": 0,
+        "Context": {
+          "Behavior": "randomControl",
+          "Setpoint": 1.7
+        }
+      },
+      {
+        "T": 120,
+        "Context": { "Behavior": "high" }
+      },
+      {
+        "T": 400,
+        "Context": {
+          "Behavior": "temperatureControl",
+          "Setpoint": 20
+        }
+      },
+      {
+        "T": 700,
+        "Context": {
+          "Behavior": "randomControl",
+          "Setpoint": 1.7
+        }
+      }
+    ],
+    "DefaultValue": 18,
+    "Interval": 6,
+    "LoopScenario": {
+      "T": 1500,
+      "Context": {
+        "Behavior": "temperatureControl",
+        "Setpoint": 28
+      }
+    }
+  },
+  {
+    "Id": "Metro-Temp6",
+    "Protocol": "MQTT",
+    "Settings": {
+      "Topic": "metrology/Metro-Temperature/Metro-Temp6"
+    },
+    "Scenarios": [
+      {
+        "T": 0,
+        "Context": {
+          "Behavior": "randomControl",
+          "Setpoint": 1.7
+        }
+      },
+      {
+        "T": 200,
+        "Context": { "Behavior": "high" }
+      },
+      {
+        "T": 230,
+        "Context": {
+          "Behavior": "temperatureControl",
+          "Setpoint": 17
+        }
+      },
+      {
+        "T": 750,
+        "Context": {
+          "Behavior": "randomControl",
+          "Setpoint": 1.7
+        }
+      }
+    ],
+    "DefaultValue": 20,
+    "Interval": 7,
+    "LoopScenario": {
+      "T": 1500,
+      "Context": {
+        "Behavior": "temperatureControl",
+        "Setpoint": 30
+      }
+    }
+  },
+  {
+    "Id": "Metro-Temp7",
+    "Protocol": "MQTT",
+    "Settings": {
+      "Topic": "metrology/Metro-Temperature/Metro-Temp7"
+    },
+    "Scenarios": [
+      {
+        "T": 0,
+        "Context": {
+          "Behavior": "randomControl",
+          "Setpoint": 1.7
+        }
+      },
+      {
+        "T": 120,
+        "Context": { "Behavior": "low" }
+      },
+      {
+        "T": 350,
+        "Context": {
+          "Behavior": "decreaseMid"
+        }
+      },
+      {
+        "T": 450,
+        "Context": {
+          "Behavior": "randomControl",
+          "Setpoint": 1.7
+        }
+      },
+      {
+        "T": 950,
+        "Context": {
+          "Behavior": "randomControl",
+          "Setpoint": 1.7
+        }
+      }
+    ],
+    "DefaultValue": 21,
+    "Interval": 2,
+    "LoopScenario": {
+      "T": 1500,
+      "Context": {
+        "Behavior": "temperatureControl",
+        "Setpoint": 33
+      }
+    }
+  },
+  {
+    "Id": "Metro-Temp8",
+    "Protocol": "MQTT",
+    "Settings": {
+      "Topic": "metrology/Metro-Temperature/Metro-Temp8"
+    },
+    "Scenarios": [
+      {
+        "T": 0,
+        "Context": {
+          "Behavior": "randomControl",
+          "Setpoint": 1.7
+        }
+      },
+      {
+        "T": 150,
+        "Context": { "Behavior": "decreaseLow" }
+      },
+      {
+        "T": 300,
+        "Context": {
+          "Behavior": "temperatureControl",
+          "Setpoint": 17
+        }
+      },
+      {
+        "T": 700,
+        "Context": { "Behavior": "mid" }
+      },
+      {
+        "T": 850,
+        "Context": {
+          "Behavior": "randomControl",
+          "Setpoint": 1.7
+        }
+      }
+    ],
+    "DefaultValue": 19,
+    "Interval": 3,
+    "LoopScenario": {
+      "T": 1100,
+      "Context": {
+        "Behavior": "temperatureControl",
+        "Setpoint": 31
+      }
+    }
+  },
+  {
+    "Id": "Metro-Temp9",
+    "Protocol": "MQTT",
+    "Settings": {
+      "Topic": "metrology/Metro-Temperature/Metro-Temp9"
+    },
+    "Scenarios": [
+      {
+        "T": 0,
+        "Context": {
+          "Behavior": "randomControl",
+          "Setpoint": 1.7
+        }
+      },
+      {
+        "T": 200,
+        "Context": { "Behavior": "mid" }
+      },
+      {
+        "T": 400,
+        "Context": {
+          "Behavior": "temperatureControl"
+        }
+      },
+      {
+        "T": 650,
+        "Context": {
+          "Behavior": "randomControl",
+          "Setpoint": 1.7
+        }
+      }
+    ],
+    "DefaultValue": 21,
+    "Interval": 5,
+    "LoopScenario": {
+      "T": 800,
+      "Context": {
+        "Behavior": "temperatureControl",
+        "Setpoint": 30.5
+      }
+    }
+  },
+  {
+    "Id": "Metro-Temp10",
+    "Protocol": "MQTT",
+    "Settings": {
+      "Topic": "metrology/Metro-Temperature/Metro-Temp10"
+    },
+    "Scenarios": [
+      {
+        "T": 0,
+        "Context": {
+          "Behavior": "randomControl",
+          "Setpoint": 1.7
+        }
+      },
+      {
+        "T": 300,
+        "Context": { "Behavior": "mid" }
+      },
+      {
+        "T": 600,
+        "Context": {
+          "Behavior": "decreaseLow"
+        }
+      },
+      {
+        "T": 850,
+        "Context": {
+          "Behavior": "randomControl",
+          "Setpoint": 1.7
+        }
+      }
+    ],
+    "DefaultValue": 22,
+    "Interval": 4,
+    "LoopScenario": {
+      "T": 1000,
+      "Context": {
+        "Behavior": "temperatureControl",
+        "Setpoint": 29
+      }
+    }
+  },
+  {
+    "Id": "Metro-Temp11",
+    "Protocol": "MQTT",
+    "Settings": {
+      "Topic": "metrology/Metro-Temperature/Metro-Temp11"
+    },
+    "Scenarios": [
+      {
+        "T": 0,
+        "Context": {
+          "Behavior": "randomControl",
+          "Setpoint": 1.7
+        }
+      },
+      {
+        "T": 120,
+        "Context": { "Behavior": "low" }
+      },
+      {
+        "T": 400,
+        "Context": {
+          "Behavior": "temperatureControl"
+        }
+      },
+      {
+        "T": 700,
+        "Context": {
+          "Behavior": "randomControl",
+          "Setpoint": 1.7
+        }
+      }
+    ],
+    "DefaultValue": 18,
+    "Interval": 6,
+    "LoopScenario": {
+      "T": 800,
+      "Context": {
+        "Behavior": "temperatureControl",
+        "Setpoint": 32
+      }
+    }
+  },
+  {
+    "Id": "Metro-Temp12",
+    "Protocol": "MQTT",
+    "Settings": {
+      "Topic": "metrology/Metro-Temperature/Metro-Temp12"
+    },
+    "Scenarios": [
+      {
+        "T": 0,
+        "Context": {
+          "Behavior": "randomControl",
+          "Setpoint": 1.7
+        }
+      },
+      {
+        "T": 200,
+        "Context": { "Behavior": "high" }
+      },
+      {
+        "T": 500,
+        "Context": {
+          "Behavior": "temperatureControl",
+          "Setpoint": 17,
+          "Settings": {
+            "Kp": 0.85,
+            "Ki": 0.05,
+            "Kd": 0.1
+          }
+        }
+      },
+      {
+        "T": 750,
+        "Context": {
+          "Behavior": "randomControl",
+          "Setpoint": 1.7
+        }
+      }
+    ],
+    "DefaultValue": 20,
+    "Interval": 7,
+    "LoopScenario": {
+      "T": 800,
+      "Context": {
+        "Behavior": "temperatureControl",
+        "Setpoint": 31
+      }
+    }
+  },
+  {
+    "Id": "Metro-Humidity1",
+    "Protocol": "MQTT",
+    "Settings": {
+      "Topic": "metrology/Metro-Humidity/Metro-Humidity1"
+    },
+    "Scenarios": [
+      {
+        "T": 0,
+        "Context": {
+          "Behavior": "randomControl",
+          "Setpoint": 5
+        }
+      },
+      {
+        "T": 120,
+        "Context": { "Behavior": "mid" }
+      },
+      {
+        "T": 250,
+        "Context": {
+          "Behavior": "humidityControl"
+        }
+      },
+      {
+        "T": 450,
+        "Context": {
+          "Behavior": "randomControl",
+          "Setpoint": 5
+        }
+      },
+      {
+        "T": 950,
+        "Context": {
+          "Behavior": "randomControl",
+          "Setpoint": 5
+        }
+      }
+    ],
+    "DefaultValue": 45,
+    "Interval": 2,
+    "LoopScenario": {
+      "T": 1100,
+      "Context": {
+        "Behavior": "humidityControl",
+        "Setpoint": 60
+      }
+    }
+  },
+  {
+    "Id": "Metro-Humidity2",
+    "Protocol": "MQTT",
+    "Settings": {
+      "Topic": "metrology/Metro-Humidity/Metro-Humidity2"
+    },
+    "Scenarios": [
+      {
+        "T": 0,
+        "Context": {
+          "Behavior": "randomControl",
+          "Setpoint": 5
+        }
+      },
+      {
+        "T": 120,
+        "Context": { "Behavior": "mid" }
+      },
+      {
+        "T": 250,
+        "Context": {
+          "Behavior": "humidityControl",
+          "Setpoint": 45
+        }
+      },
+      {
+        "T": 450,
+        "Context": {
+          "Behavior": "randomControl",
+          "Setpoint": 5
+        }
+      },
+      {
+        "T": 950,
+        "Context": {
+          "Behavior": "randomControl",
+          "Setpoint": 5
+        }
+      }
+    ],
+    "DefaultValue": 45,
+    "Interval": 3,
+    "LoopScenario": {
+      "T": 1300,
+      "Context": {
+        "Behavior": "humidityControl",
+        "Setpoint": 65
+      }
+    }
+  },
+  {
+    "Id": "Metro-Humidity3",
+    "Protocol": "MQTT",
+    "Settings": {
+      "Topic": "metrology/Metro-Humidity/Metro-Humidity3"
+    },
+    "Scenarios": [
+      {
+        "T": 0,
+        "Context": {
+          "Behavior": "randomControl",
+          "Setpoint": 5
+        }
+      },
+      {
+        "T": 120,
+        "Context": { "Behavior": "mid" }
+      },
+      {
+        "T": 250,
+        "Context": {
+          "Behavior": "humidityControl",
+          "Setpoint": 42
+        }
+      },
+      {
+        "T": 450,
+        "Context": {
+          "Behavior": "randomControl",
+          "Setpoint": 5
+        }
+      },
+      {
+        "T": 950,
+        "Context": {
+          "Behavior": "randomControl",
+          "Setpoint": 5
+        }
+      }
+    ],
+    "DefaultValue": 45,
+    "Interval": 1,
+    "LoopScenario": {
+      "T": 1100,
+      "Context": {
+        "Behavior": "humidityControl",
+        "Setpoint": 66
+      }
+    }
+  },
+  {
+    "Id": "Metro-Humidity4",
+    "Protocol": "MQTT",
+    "Settings": {
+      "Topic": "metrology/Metro-Humidity/Metro-Humidity4"
+    },
+    "Scenarios": [
+      {
+        "T": 0,
+        "Context": {
+          "Behavior": "randomControl",
+          "Setpoint": 5
+        }
+      },
+      {
+        "T": 120,
+        "Context": { "Behavior": "low" }
+      },
+      {
+        "T": 200,
+        "Context": { "Behavior": "decreaseLow" }
+      },
+      {
+        "T": 450,
+        "Context": {
+          "Behavior": "randomControl",
+          "Setpoint": 5
+        }
+      },
+      {
+        "T": 950,
+        "Context": {
+          "Behavior": "randomControl",
+          "Setpoint": 5
+        }
+      }
+    ],
+    "DefaultValue": 45,
+    "Interval": 3,
+    "LoopScenario": {
+      "T": 1300,
+      "Context": {
+        "Behavior": "humidityControl",
+        "Setpoint": 67
+      }
+    }
+  },
+  {
+    "Id": "Metro-Humidity5",
+    "Protocol": "MQTT",
+    "Settings": {
+      "Topic": "metrology/Metro-Humidity/Metro-Humidity5"
+    },
+    "Scenarios": [
+      {
+        "T": 0,
+        "Context": {
+          "Behavior": "randomControl",
+          "Setpoint": 5
+        }
+      },
+      {
+        "T": 120,
+        "Context": { "Behavior": "high" }
+      },
+      {
+        "T": 250,
+        "Context": {
+          "Behavior": "humidityControl",
+          "Setpoint": 35
+        }
+      },
+      {
+        "T": 450,
+        "Context": {
+          "Behavior": "randomControl",
+          "Setpoint": 5
+        }
+      },
+      {
+        "T": 950,
+        "Context": {
+          "Behavior": "randomControl",
+          "Setpoint": 5
+        }
+      }
+    ],
+    "DefaultValue": 45,
+    "Interval": 1.5,
+    "LoopScenario": {
+      "T": 1500,
+      "Context": {
+        "Behavior": "humidityControl",
+        "Setpoint": 63
+      }
+    }
+  },
+  {
+    "Id": "Metro-Humidity6",
+    "Protocol": "MQTT",
+    "Settings": {
+      "Topic": "metrology/Metro-Humidity/Metro-Humidity6"
+    },
+    "Scenarios": [
+      {
+        "T": 0,
+        "Context": {
+          "Behavior": "randomControl",
+          "Setpoint": 5
+        }
+      },
+      {
+        "T": 120,
+        "Context": { "Behavior": "low" }
+      },
+      {
+        "T": 250,
+        "Context": {
+          "Behavior": "humidityControl",
+          "Setpoint": 42
+        }
+      },
+      {
+        "T": 800,
+        "Context": {
+          "Context": { "Behavior": "high" },
+          "Setpoint": 5
+        }
+      },
+      {
+        "T": 900,
+        "Context": { "Behavior": "decreaseHigh" }
+      },
+      {
+        "T": 950,
+        "Context": {
+          "Behavior": "randomControl",
+          "Setpoint": 5
+        }
+      }
+    ],
+    "DefaultValue": 45,
+    "Interval": 1.5,
+    "LoopScenario": {
+      "T": 1500,
+      "Context": {
+        "Behavior": "humidityControl",
+        "Setpoint": 58
+      }
+    }
+  },
+  {
+    "Id": "Metro-Humidity7",
+    "Protocol": "MQTT",
+    "Settings": {
+      "Topic": "metrology/Metro-Humidity/Metro-Humidity7"
+    },
+    "Scenarios": [
+      {
+        "T": 0,
+        "Context": { "Behavior": "high" }
+      },
+      {
+        "T": 300,
+        "Context": {
+          "Behavior": "humidityControl"
+        }
+      }
+    ],
+    "DefaultValue": 45,
+    "Interval": 1.5,
+    "LoopScenario": {
+      "T": 1500,
+      "Context": {
+        "Behavior": "humidityControl",
+        "Setpoint": 57
+      }
+    }
+  },
+  {
+    "Id": "Metro-AQM-1",
+    "Protocol": "RESTClient",
+    "Settings": {
+      "Address": "http://localhost:5007",
+      "Endpoint": "/api/metrology/air-quality",
+      "DefaultLocation": {
+        "Latitude": 37.3951,
+        "Longitude": -122.0788
+      }
+    },
+    "Scenarios": [
+      {
+        "T": 0,
+        "Context": { "Behavior": "high" }
+      },
+      {
+        "T": 100,
+        "Context": {
+          "Behavior": "randomControl",
+          "Setpoint": 20
+        }
+      }
+    ],
+    "DefaultValue": 5,
+    "Interval": 1.5,
+    "LoopScenario": {
+      "T": 600,
+      "Context": {
+        "Behavior": "particleControl",
+        "Setpoint": 110
+      }
+    }
+  },
+  {
+    "Id": "Metro-AQM-2",
+    "Protocol": "RESTClient",
+    "Settings": {
+      "Address": "http://localhost:5007",
+      "Endpoint": "/api/metrology/air-quality",
+      "DefaultLocation": {
+        "Latitude": 37.3951,
+        "Longitude": -122.0788
+      }
+    },
+    "Scenarios": [
+      {
+        "T": 0,
+        "Context": { "Behavior": "mid" }
+      },
+      {
+        "T": 100,
+        "Context": {
+          "Behavior": "randomControl",
+          "Setpoint": 1.7
+        }
+      },
+      {
+        "T": 200,
+        "Context": { "Behavior": "decreaseMid" }
+      },
+      {
+        "T": 300,
+        "Context": { "Behavior": "low" }
+      },
+      {
+        "T": 500,
+        "Context": {
+          "Behavior": "randomControl",
+          "Setpoint": 1.7
+        }
+      }
+    ],
+    "DefaultValue": 7,
+    "Interval": 14,
+    "LoopScenario": {
+      "T": 800,
+      "Context": {
+        "Behavior": "particleControl",
+        "Setpoint": 90
+      }
+    }
+  },
+  {
+    "Id": "Metro-AQM-3",
+    "Protocol": "RESTClient",
+    "Settings": {
+      "Address": "http://localhost:5007",
+      "Endpoint": "/api/metrology/air-quality",
+      "DefaultLocation": {
+        "Latitude": 37.3951,
+        "Longitude": -122.0788
+      }
+    },
+    "Scenarios": [
+      {
+        "T": 0,
+        "Context": { "Behavior": "low" }
+      },
+      {
+        "T": 100,
+        "Context": {
+          "Behavior": "randomControl",
+          "Setpoint": 20
+        }
+      }
+    ],
+    "DefaultValue": 0,
+    "Interval": 15,
+    "LoopScenario": {
+      "T": 300,
+      "Context": {
+        "Behavior": "particleControl",
+        "Setpoint": 100
+      }
+    }
+  },
+  {
+    "Id": "Metro-AQM-4",
+    "Protocol": "RESTClient",
+    "Settings": {
+      "Address": "http://localhost:5007",
+      "Endpoint": "/api/metrology/air-quality",
+      "DefaultLocation": {
+        "Latitude": 37.3951,
+        "Longitude": -122.0788
+      }
+    },
+    "Scenarios": [
+      {
+        "T": 0,
+        "Context": { "Behavior": "low" }
+      },
+      {
+        "T": 100,
+        "Context": {
+          "Behavior": "randomControl",
+          "Setpoint": 20
+        }
+      }
+    ],
+    "DefaultValue": 0,
+    "Interval": 20,
+    "LoopScenario": {
+      "T": 300,
+      "Context": {
+        "Behavior": "particleControl",
+        "Setpoint": 100
+      }
+    }
+  },
+  {
+    "Id": "Metro-AQM-5",
+    "Protocol": "RESTClient",
+    "Settings": {
+      "Address": "http://localhost:5007",
+      "Endpoint": "/api/metrology/air-quality",
+      "DefaultLocation": {
+        "Latitude": 37.3951,
+        "Longitude": -122.0788
+      }
+    },
+    "Scenarios": [
+      {
+        "T": 0,
+        "Context": { "Behavior": "low" }
+      },
+      {
+        "T": 100,
+        "Context": {
+          "Behavior": "randomControl",
+          "Setpoint": 10
+        }
+      }
+    ],
+    "DefaultValue": 0,
+    "Interval": 30,
+    "LoopScenario": {
+      "T": 300,
+      "Context": {
+        "Behavior": "particleControl",
+        "Setpoint": 100
+      }
+    }
+  }
+]

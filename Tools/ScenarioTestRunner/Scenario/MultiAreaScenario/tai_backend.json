@@ -1,0 +1,392 @@
+﻿[
+  {
+    "Id": "Back-Temp1",
+    "Protocol": "MQTT",
+    "Settings": {
+      "Topic": "backend/Back-Temperature/Back-Temp1"
+    },
+    "Scenarios": [
+      {
+        "T": 0,
+        "Context": {
+          "Behavior": "randomControl",
+          "Setpoint": 1.7
+        }
+      },
+      {
+        "T": 120,
+        "Context": { "Behavior": "high" }
+      },
+      {
+        "T": 250,
+        "Context": {
+          "Behavior": "temperatureControl",
+          "Setpoint": 17
+        }
+      },
+      {
+        "T": 450,
+        "Context": {
+          "Behavior": "randomControl",
+          "Setpoint": 1.7
+        }
+      },
+      {
+        "T": 950,
+        "Context": {
+          "Behavior": "randomControl",
+          "Setpoint": 1.7
+        }
+      },
+      {
+        "T": 120,
+        "Context": { "Behavior": "high" }
+      }
+    ],
+    "DefaultValue": 21,
+    "Interval": 2,
+    "LoopScenario": {
+      "T": 1000,
+      "Context": {
+        "Behavior": "temperatureControl",
+        "Setpoint": 34
+      }
+    }
+  },
+  {
+    "Id": "Back-Humidity1",
+    "Protocol": "MQTT",
+    "Settings": {
+      "Topic": "backend/Back-Humidity/Back-Humidity1"
+    },
+    "Scenarios": [
+      {
+        "T": 0,
+        "Context": {
+          "Behavior": "randomControl",
+          "Setpoint": 5
+        }
+      },
+      {
+        "T": 120,
+        "Context": { "Behavior": "mid" }
+      },
+      {
+        "T": 250,
+        "Context": {
+          "Behavior": "humidityControl"
+        }
+      },
+      {
+        "T": 450,
+        "Context": {
+          "Behavior": "randomControl",
+          "Setpoint": 5
+        }
+      },
+      {
+        "T": 950,
+        "Context": {
+          "Behavior": "randomControl",
+          "Setpoint": 5
+        }
+      }
+    ],
+    "DefaultValue": 45,
+    "Interval": 2,
+    "LoopScenario": {
+      "T": 1100,
+      "Context": {
+        "Behavior": "humidityControl",
+        "Setpoint": 60
+      }
+    }
+  },
+  {
+    "Id": "Back-AQM-1",
+    "Protocol": "RESTClient",
+    "Settings": {
+      "Address": "http://localhost:5001",
+      "Endpoint": "/api/backend/air-quality",
+      "DefaultLocation": {
+        "Latitude": 24.7894,
+        "Longitude": 121.0003
+      }
+    },
+    "Scenarios": [
+      {
+        "T": 0,
+        "Context": { "Behavior": "high" }
+      },
+      {
+        "T": 100,
+        "Context": {
+          "Behavior": "randomControl",
+          "Setpoint": 20
+        }
+      }
+    ],
+    "DefaultValue": 5,
+    "Interval": 1.5,
+    "LoopScenario": {
+      "T": 600,
+      "Context": {
+        "Behavior": "particleControl",
+        "Setpoint": 110
+      }
+    }
+  },
+  {
+    "Id": "Back-AQM-2",
+    "Protocol": "RESTClient",
+    "Settings": {
+      "Address": "http://localhost:5001",
+      "Endpoint": "/api/backend/air-quality",
+      "DefaultLocation": {
+        "Latitude": 24.7894,
+        "Longitude": 121.0003
+      }
+    },
+    "Scenarios": [
+      {
+        "T": 0,
+        "Context": { "Behavior": "mid" }
+      },
+      {
+        "T": 100,
+        "Context": {
+          "Behavior": "randomControl",
+          "Setpoint": 1.7
+        }
+      },
+      {
+        "T": 200,
+        "Context": { "Behavior": "decreaseMid" }
+      },
+      {
+        "T": 300,
+        "Context": { "Behavior": "low" }
+      },
+      {
+        "T": 500,
+        "Context": {
+          "Behavior": "randomControl",
+          "Setpoint": 1.7
+        }
+      }
+    ],
+    "DefaultValue": 7,
+    "Interval": 14,
+    "LoopScenario": {
+      "T": 800,
+      "Context": {
+        "Behavior": "particleControl",
+        "Setpoint": 90
+      }
+    }
+  },
+  {
+    "Id": "Back-AQM-3",
+    "Protocol": "RESTClient",
+    "Settings": {
+      "Address": "http://localhost:5001",
+      "Endpoint": "/api/backend/air-quality",
+      "DefaultLocation": {
+        "Latitude": 24.7894,
+        "Longitude": 121.0003
+      }
+    },
+    "Scenarios": [
+      {
+        "T": 0,
+        "Context": { "Behavior": "low" }
+      },
+      {
+        "T": 100,
+        "Context": {
+          "Behavior": "randomControl",
+          "Setpoint": 20
+        }
+      }
+    ],
+    "DefaultValue": 0,
+    "Interval": 15,
+    "LoopScenario": {
+      "T": 300,
+      "Context": {
+        "Behavior": "particleControl",
+        "Setpoint": 100
+      }
+    }
+  },
+  {
+    "Id": "Back-AQM-4",
+    "Protocol": "RESTClient",
+    "Settings": {
+      "Address": "http://localhost:5001",
+      "Endpoint": "/api/backend/air-quality",
+      "DefaultLocation": {
+        "Latitude": 24.7894,
+        "Longitude": 121.0003
+      }
+    },
+    "Scenarios": [
+      {
+        "T": 0,
+        "Context": { "Behavior": "low" }
+      },
+      {
+        "T": 100,
+        "Context": {
+          "Behavior": "randomControl",
+          "Setpoint": 20
+        }
+      }
+    ],
+    "DefaultValue": 0,
+    "Interval": 20,
+    "LoopScenario": {
+      "T": 300,
+      "Context": {
+        "Behavior": "particleControl",
+        "Setpoint": 100
+      }
+    }
+  },
+  {
+    "Id": "Back-AQM-5",
+    "Protocol": "RESTClient",
+    "Settings": {
+      "Address": "http://localhost:5001",
+      "Endpoint": "/api/backend/air-quality",
+      "DefaultLocation": {
+        "Latitude": 24.7894,
+        "Longitude": 121.0003
+      }
+    },
+    "Scenarios": [
+      {
+        "T": 0,
+        "Context": { "Behavior": "low" }
+      },
+      {
+        "T": 100,
+        "Context": {
+          "Behavior": "randomControl",
+          "Setpoint": 10
+        }
+      }
+    ],
+    "DefaultValue": 0,
+    "Interval": 30,
+    "LoopScenario": {
+      "T": 300,
+      "Context": {
+        "Behavior": "particleControl",
+        "Setpoint": 100
+      }
+    }
+  },
+  {
+    "Id": "Back-AQM-6",
+    "Protocol": "RESTClient",
+    "Settings": {
+      "Address": "http://localhost:5001",
+      "Endpoint": "/api/backend/air-quality",
+      "DefaultLocation": {
+        "Latitude": 24.7894,
+        "Longitude": 121.0003
+      }
+    },
+    "Scenarios": [
+      {
+        "T": 0,
+        "Context": { "Behavior": "low" }
+      },
+      {
+        "T": 100,
+        "Context": {
+          "Behavior": "randomControl",
+          "Setpoint": 20
+        }
+      }
+    ],
+    "DefaultValue": 0,
+    "Interval": 15,
+    "LoopScenario": {
+      "T": 300,
+      "Context": {
+        "Behavior": "particleControl",
+        "Setpoint": 100
+      }
+    }
+  },
+  {
+    "Id": "Back-AQM-7",
+    "Protocol": "RESTClient",
+    "Settings": {
+      "Address": "http://localhost:5001",
+      "Endpoint": "/api/backend/air-quality",
+      "DefaultLocation": {
+        "Latitude": 24.7894,
+        "Longitude": 121.0003
+      }
+    },
+    "Scenarios": [
+      {
+        "T": 0,
+        "Context": { "Behavior": "low" }
+      },
+      {
+        "T": 100,
+        "Context": {
+          "Behavior": "randomControl",
+          "Setpoint": 20
+        }
+      }
+    ],
+    "DefaultValue": 0,
+    "Interval": 15,
+    "LoopScenario": {
+      "T": 300,
+      "Context": {
+        "Behavior": "particleControl",
+        "Setpoint": 100
+      }
+    }
+  },
+  {
+    "Id": "Back-AQM-8",
+    "Protocol": "RESTClient",
+    "Settings": {
+      "Address": "http://localhost:5001",
+      "Endpoint": "/api/backend/air-quality",
+      "DefaultLocation": {
+        "Latitude": 24.7894,
+        "Longitude": 121.0003
+      }
+    },
+    "Scenarios": [
+      {
+        "T": 0,
+        "Context": { "Behavior": "low" }
+      },
+      {
+        "T": 100,
+        "Context": {
+          "Behavior": "randomControl",
+          "Setpoint": 20
+        }
+      }
+    ],
+    "DefaultValue": 0,
+    "Interval": 15,
+    "LoopScenario": {
+      "T": 300,
+      "Context": {
+        "Behavior": "particleControl",
+        "Setpoint": 100
+      }
+    }
+  }
+]

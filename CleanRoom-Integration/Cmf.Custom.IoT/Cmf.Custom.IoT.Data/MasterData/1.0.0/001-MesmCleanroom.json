@@ -284,13 +284,13 @@
         "@criticalmanufacturing/connect-iot-controller-engine-custom-dataplatform-tasks"
       ],
       "Scope": "ConnectIoT",
-      "DefaultWorkflowType": "DataFlow",
       "LinkConnector": "Smooth",
       "LinkRouter": "Normal",
       "TasksLibraryPackages": [
         "@criticalmanufacturing/connect-iot-controller-engine-core-tasks@11.1.2",
         "@criticalmanufacturing/connect-iot-controller-engine-custom-dataplatform-tasks@0.0.0"
-      ]
+      ],
+      "DefaultWorkflowType": "DataFlow"
     }
   },
   "AutomationControllerDriverDef": {
@@ -627,9 +627,73 @@
               "command": "Connect",
               "___cmf___description": "Connect"
             }
+          },
+          {
+            "id": "task_3560",
+            "reference": {
+              "name": "store",
+              "package": {
+                "name": "@criticalmanufacturing/connect-iot-controller-engine-core-tasks",
+                "version": "11.1.2"
+              }
+            },
+            "settings": {
+              "_inputs": [
+                {
+                  "name": "instance",
+                  "identifier": "instance",
+                  "valueType": {
+                    "name": "Object",
+                    "type": 10,
+                    "collectionType": 0,
+                    "referenceType": null,
+                    "referenceTypeName": null,
+                    "referenceTypeId": null,
+                    "friendlyName": "Type"
+                  },
+                  "storage": "Temporary",
+                  "settingKey": "name",
+                  "defaultValue": "instance"
+                }
+              ],
+              "_workingMode": "StoreOnValueChange",
+              "___cmf___name": "Store Data",
+              "___cmf___description": "Instance"
+            }
+          },
+          {
+            "id": "task_3611",
+            "reference": {
+              "name": "entityInstance",
+              "package": {
+                "name": "@criticalmanufacturing/connect-iot-controller-engine-core-tasks",
+                "version": "11.1.2"
+              }
+            },
+            "settings": {
+              "_attributes": [],
+              "_autoActivate": false,
+              "loadAllAttributes": false,
+              "reloadEveryChange": false,
+              "levelsToLoad": 0,
+              "retries": 30,
+              "sleepBetweenRetries": 1000,
+              "entityTypeName": "Area"
+            }
           }
         ],
-        "converters": [],
+        "converters": [
+          {
+            "id": "@criticalmanufacturing/connect-iot-controller-engine-core-tasks#anyToAny",
+            "reference": {
+              "name": "anyToAny",
+              "package": {
+                "name": "@criticalmanufacturing/connect-iot-controller-engine-core-tasks",
+                "version": "11.1.2"
+              }
+            }
+          }
+        ],
         "links": [
           {
             "id": "task_7119_success-task_7120_activate",
@@ -658,6 +722,33 @@
             "targetId": "task_7124",
             "inputName": "activate",
             "outputName": "success"
+          },
+          {
+            "id": "acbc54cc-0ccc-4071-bd4c-f23ef2fd1377",
+            "sourceId": "task_3611",
+            "targetId": "task_3560",
+            "inputName": "instance",
+            "outputName": "instance",
+            "converters": [
+              {
+                "id": "@criticalmanufacturing/connect-iot-controller-engine-core-tasks#anyToAny",
+                "params": {}
+              }
+            ]
+          },
+          {
+            "id": "b6a6f5bb-278c-4597-92f8-ec9a8d9383ef",
+            "sourceId": "task_3611",
+            "targetId": "task_3560",
+            "inputName": "activate",
+            "outputName": "success"
+          },
+          {
+            "id": "2f780366-88a0-4f04-ac41-e8afbfc522f4",
+            "sourceId": "task_7119",
+            "targetId": "task_3611",
+            "inputName": "activate",
+            "outputName": "success"
           }
         ],
         "$id": "1",
@@ -669,10 +760,18 @@
           "drawers": {
             "DIAGRAM": {
               "tasks": {
-                "task_7122": {
+                "task_7119": {
                   "collapsed": false,
                   "position": {
-                    "x": 1600,
+                    "x": 100,
+                    "y": 100
+                  },
+                  "outdated": false
+                },
+                "task_7120": {
+                  "collapsed": true,
+                  "position": {
+                    "x": 600,
                     "y": 100
                   },
                   "outdated": false
@@ -686,26 +785,26 @@
                   "outdated": false
                 },
                 "task_7123": {
-                  "collapsed": false,
+                  "collapsed": true,
                   "position": {
                     "x": 2100,
                     "y": 100
                   },
                   "outdated": false
                 },
-                "task_7120": {
+                "task_7122": {
                   "collapsed": false,
                   "position": {
-                    "x": 600,
+                    "x": 1600,
                     "y": 100
                   },
                   "outdated": false
                 },
-                "task_7119": {
-                  "collapsed": false,
+                "task_3560": {
+                  "collapsed": true,
                   "position": {
-                    "x": 100,
-                    "y": 100
+                    "x": 1062,
+                    "y": 406
                   },
                   "outdated": false
                 },
@@ -714,6 +813,14 @@
                   "position": {
                     "x": 2600,
                     "y": 100
+                  },
+                  "outdated": false
+                },
+                "task_3611": {
+                  "collapsed": true,
+                  "position": {
+                    "x": 538,
+                    "y": 405
                   },
                   "outdated": false
                 }
@@ -730,6 +837,15 @@
                 },
                 "task_7123_success-task_7124_activate": {
                   "vertices": []
+                },
+                "b6a6f5bb-278c-4597-92f8-ec9a8d9383ef": {
+                  "vertices": []
+                },
+                "2f780366-88a0-4f04-ac41-e8afbfc522f4": {
+                  "vertices": []
+                },
+                "acbc54cc-0ccc-4071-bd4c-f23ef2fd1377": {
+                  "vertices": []
                 }
               },
               "notes": {},
@@ -743,9 +859,9 @@
         }
       },
       "Order": "1",
-      "Indentation": "0",
-      "IsShared": "No",
       "IsTemplate": "No",
+      "IsShared": "No",
+      "Indentation": "0",
       "WorkflowType": "DataFlow"
     },
     "2": {
@@ -914,23 +1030,31 @@
                     "branches": []
                   },
                   {
-                    "id": "1741003241339865",
+                    "id": "1741688673129725",
                     "name": "instance_temp",
                     "type": {
-                      "name": "entityInstance",
+                      "name": "retrieve",
                       "package": "@criticalmanufacturing/connect-iot-controller-engine-core-tasks",
                       "version": "11.1.2"
                     },
                     "isCollapsed": false,
                     "isDisabled": false,
                     "settings": {
-                      "_autoActivate": false,
-                      "loadAllAttributes": false,
-                      "reloadEveryChange": false,
-                      "levelsToLoad": 0,
-                      "retries": 30,
-                      "sleepBetweenRetries": 1000,
-                      "entityTypeName": "Area"
+                      "_outputs": [
+                        {
+                          "name": "instance",
+                          "identifier": "instance",
+                          "valueType": {
+                            "collectionType": 0,
+                            "type": 10,
+                            "name": "Object"
+                          },
+                          "defaultValue": {},
+                          "dataType": "Object",
+                          "settingKey": "name",
+                          "deviceType": null
+                        }
+                      ]
                     },
                     "inputs": [],
                     "outputs": [
@@ -940,8 +1064,7 @@
                         "dataType": "Object"
                       }
                     ],
-                    "driver": "MQTT",
-                    "caption": "Retrieve assigned instance entity data",
+                    "caption": "Retrieve Instance",
                     "branches": []
                   },
                   {
@@ -1166,23 +1289,31 @@
                     "branches": []
                   },
                   {
-                    "id": "17410862405851953",
+                    "id": "17416894704053743",
                     "name": "instance_humid",
                     "type": {
-                      "name": "entityInstance",
+                      "name": "retrieve",
                       "package": "@criticalmanufacturing/connect-iot-controller-engine-core-tasks",
                       "version": "11.1.2"
                     },
                     "isCollapsed": false,
                     "isDisabled": false,
                     "settings": {
-                      "_autoActivate": false,
-                      "loadAllAttributes": false,
-                      "reloadEveryChange": false,
-                      "levelsToLoad": 0,
-                      "retries": 30,
-                      "sleepBetweenRetries": 1000,
-                      "entityTypeName": "Area"
+                      "_outputs": [
+                        {
+                          "name": "instance",
+                          "identifier": "instance",
+                          "valueType": {
+                            "collectionType": 0,
+                            "type": 10,
+                            "name": "Object"
+                          },
+                          "defaultValue": {},
+                          "dataType": "Object",
+                          "settingKey": "name",
+                          "deviceType": null
+                        }
+                      ]
                     },
                     "inputs": [],
                     "outputs": [
@@ -1192,8 +1323,7 @@
                         "dataType": "Object"
                       }
                     ],
-                    "driver": "MQTT",
-                    "caption": "Retrieve assigned instance entity data",
+                    "caption": "Retrieve Instance",
                     "branches": []
                   },
                   {
@@ -1275,9 +1405,9 @@
         }
       },
       "Order": "2",
-      "Indentation": "0",
-      "IsShared": "No",
       "IsTemplate": "No",
+      "IsShared": "No",
+      "Indentation": "0",
       "WorkflowType": "ControlFlow"
     },
     "3": {
@@ -1565,23 +1695,31 @@
                 "name": "handler",
                 "tasks": [
                   {
-                    "id": "1741003241339865",
+                    "id": "1741688673129725",
                     "name": "instance_air",
                     "type": {
-                      "name": "entityInstance",
+                      "name": "retrieve",
                       "package": "@criticalmanufacturing/connect-iot-controller-engine-core-tasks",
                       "version": "11.1.2"
                     },
                     "isCollapsed": false,
                     "isDisabled": false,
                     "settings": {
-                      "_autoActivate": false,
-                      "loadAllAttributes": false,
-                      "reloadEveryChange": false,
-                      "levelsToLoad": 0,
-                      "retries": 30,
-                      "sleepBetweenRetries": 1000,
-                      "entityTypeName": "Area"
+                      "_outputs": [
+                        {
+                          "name": "instance",
+                          "identifier": "instance",
+                          "valueType": {
+                            "collectionType": 0,
+                            "type": 10,
+                            "name": "Object"
+                          },
+                          "defaultValue": {},
+                          "dataType": "Object",
+                          "settingKey": "name",
+                          "deviceType": null
+                        }
+                      ]
                     },
                     "inputs": [],
                     "outputs": [
@@ -1591,8 +1729,7 @@
                         "dataType": "Object"
                       }
                     ],
-                    "driver": "REST",
-                    "caption": "Retrieve assigned instance entity data",
+                    "caption": "Retrieve Instance",
                     "branches": []
                   },
                   {
@@ -1666,17 +1803,17 @@
           },
           "drawer": {
             "tasks": {},
-            "x": 77.21584006933267,
-            "y": 130.6122530053326,
+            "x": -2.2737367544323206E-13,
+            "y": 0,
             "zoom": 0.743778910593135,
             "fill": true
           }
         }
       },
       "Order": "3",
-      "Indentation": "0",
-      "IsShared": "No",
       "IsTemplate": "No",
+      "IsShared": "No",
+      "Indentation": "0",
       "WorkflowType": "ControlFlow"
     }
   }
