@@ -1,0 +1,381 @@
+{
+    "tasks": [
+        {
+            "id": "17422242384254860",
+            "name": "evt",
+            "type": {
+                "name": "equipmentEvent",
+                "package": "@criticalmanufacturing/connect-iot-controller-engine-core-tasks",
+                "version": "11.1.2"
+            },
+            "x": 450,
+            "y": 290,
+            "isCollapsed": false,
+            "isDisabled": false,
+            "settings": {
+                "_autoActivate": true,
+                "_customEvents": false,
+                "_acceptAllEvents": false,
+                "_events": [
+                    {
+                        "$type": "Cmf.Foundation.BusinessObjects.AutomationEvent, Cmf.Foundation.BusinessObjects",
+                        "Name": "Ambient Monitoring"
+                    }
+                ],
+                "_workingMode": "AlwaysActive",
+                "_messageFullName": "Ambient Monitoring",
+                "_automationEventProperties": [
+                    {
+                        "$type": "Cmf.Foundation.BusinessObjects.AutomationProperty, Cmf.Foundation.BusinessObjects",
+                        "Name": "temperature"
+                    },
+                    {
+                        "$type": "Cmf.Foundation.BusinessObjects.AutomationProperty, Cmf.Foundation.BusinessObjects",
+                        "Name": "humidity"
+                    }
+                ],
+                "_outputs": [
+                    {
+                        "name": "temperature",
+                        "propertyId": "waferprep/temperature/#",
+                        "propertyType": "",
+                        "property": {
+                            "DataType": 4,
+                            "$type": "Cmf.Foundation.BusinessObjects.AutomationProperty, Cmf.Foundation.BusinessObjects"
+                        },
+                        "deviceType": {
+                            "$type": "Cmf.Foundation.BusinessObjects.AutomationProtocolDataType, Cmf.Foundation.BusinessObjects",
+                            "Name": "String"
+                        },
+                        "valueType": "Decimal",
+                        "defaultValue": "",
+                        "outputType": "Value",
+                        "editable": false,
+                        "removable": false
+                    },
+                    {
+                        "name": "humidity",
+                        "propertyId": "waferprep/humidity/#",
+                        "propertyType": "",
+                        "property": {
+                            "DataType": 4,
+                            "$type": "Cmf.Foundation.BusinessObjects.AutomationProperty, Cmf.Foundation.BusinessObjects"
+                        },
+                        "deviceType": {
+                            "$type": "Cmf.Foundation.BusinessObjects.AutomationProtocolDataType, Cmf.Foundation.BusinessObjects",
+                            "Name": "String"
+                        },
+                        "valueType": "Decimal",
+                        "defaultValue": "",
+                        "outputType": "Value",
+                        "editable": false,
+                        "removable": false
+                    }
+                ]
+            },
+            "inputs": [],
+            "outputs": [
+                {
+                    "name": "event",
+                    "value": "{{ $this.event }}",
+                    "dataType": "Any"
+                },
+                {
+                    "name": "timestamp",
+                    "value": "{{ $this.timestamp }}",
+                    "dataType": "Any"
+                },
+                {
+                    "name": "eventRawData",
+                    "value": "{{ $this.eventRawData }}",
+                    "dataType": "Any"
+                },
+                {
+                    "name": "temperature",
+                    "value": "{{ $this.temperature }}",
+                    "dataType": "Decimal"
+                },
+                {
+                    "name": "humidity",
+                    "value": "{{ $this.humidity }}",
+                    "dataType": "Decimal"
+                },
+                {
+                    "name": "tempNormalized",
+                    "dataType": "Decimal",
+                    "value": "{{ $this.temperature != null ? $this.temperature : 0 }}"
+                },
+                {
+                    "name": "humidityNormalized",
+                    "dataType": "Decimal",
+                    "value": "{{ $this.humidity != null ? $this.humidity : 0 }}"
+                }
+            ],
+            "driver": "MQTT",
+            "caption": "When equipment triggers the event {{_messageFullName}}",
+            "color": "#ff9494",
+            "branches": [
+                {
+                    "name": "handler",
+                    "tasks": [
+                        {
+                            "id": "17422242546684898",
+                            "name": "condition_1482",
+                            "type": {
+                                "name": "condition",
+                                "package": "@criticalmanufacturing/connect-iot-controller-engine-core-tasks",
+                                "version": "11.1.2"
+                            },
+                            "isCollapsed": false,
+                            "isDisabled": false,
+                            "settings": {},
+                            "inputs": [],
+                            "outputs": [],
+                            "caption": "Check {{handler.type}} {{handler.condition}}",
+                            "branches": [
+                                {
+                                    "name": "handler",
+                                    "tasks": [
+                                        {
+                                            "id": "17422248349085578",
+                                            "name": "logMessage_6275",
+                                            "type": {
+                                                "name": "logMessage",
+                                                "package": "@criticalmanufacturing/connect-iot-controller-engine-core-tasks",
+                                                "version": "11.1.2"
+                                            },
+                                            "isCollapsed": false,
+                                            "isDisabled": false,
+                                            "settings": {
+                                                "mode": "RawText",
+                                                "verbosity": "Information",
+                                                "clearInputs": true,
+                                                "message": "Invalid Temperature {{ $evt.tempNormalized.toString() }}"
+                                            },
+                                            "inputs": [],
+                                            "outputs": [],
+                                            "caption": "Log {{message}} as {{verbosity}}",
+                                            "color": "#74fb8f",
+                                            "branches": []
+                                        },
+                                        {
+                                            "id": "1742844966813715",
+                                            "name": "retrieve_resource_temp",
+                                            "type": {
+                                                "name": "entityInstance",
+                                                "package": "@criticalmanufacturing/connect-iot-controller-engine-core-tasks",
+                                                "version": "11.1.2"
+                                            },
+                                            "isCollapsed": false,
+                                            "isDisabled": false,
+                                            "settings": {
+                                                "_autoActivate": false,
+                                                "loadAllAttributes": false,
+                                                "reloadEveryChange": false,
+                                                "levelsToLoad": 0,
+                                                "retries": 30,
+                                                "sleepBetweenRetries": 1000,
+                                                "entityTypeName": "Resource"
+                                            },
+                                            "inputs": [],
+                                            "outputs": [
+                                                {
+                                                    "name": "instance",
+                                                    "value": "{{ $this.instance }}",
+                                                    "dataType": "Object"
+                                                }
+                                            ],
+                                            "caption": "Retrieve assigned instance entity data",
+                                            "color": "#74fb8f",
+                                            "branches": []
+                                        },
+                                        {
+                                            "id": "17422248480525597",
+                                            "name": "entityAdjustState_5d10",
+                                            "type": {
+                                                "name": "entityAdjustState",
+                                                "package": "@criticalmanufacturing/connect-iot-controller-engine-core-tasks",
+                                                "version": "11.1.2"
+                                            },
+                                            "isCollapsed": false,
+                                            "isDisabled": false,
+                                            "settings": {
+                                                "baseEntity": {
+                                                    "$type": "Cmf.Foundation.BusinessObjects.EntityType, Cmf.Foundation.BusinessObjects",
+                                                    "Name": "Resource"
+                                                },
+                                                "entity": {
+                                                    "$type": "Cmf.Navigo.BusinessObjects.Resource, Cmf.Navigo.BusinessObjects"
+                                                },
+                                                "toState": "Unscheduled Down",
+                                                "retries": 30,
+                                                "sleepBetweenRetries": 1000
+                                            },
+                                            "inputs": [
+                                                {
+                                                    "name": "entity",
+                                                    "dataType": "Object",
+                                                    "value": "{{ $retrieve_resource_temp.instance }}"
+                                                }
+                                            ],
+                                            "outputs": [],
+                                            "caption": "Update state of entity - Unscheduled Down",
+                                            "color": "#74fb8f",
+                                            "branches": []
+                                        }
+                                    ],
+                                    "settings": {
+                                        "type": "If",
+                                        "condition": "{{ $evt.tempNormalized > 27 }}"
+                                    }
+                                },
+                                {
+                                    "name": "else",
+                                    "tasks": [
+                                        {
+                                            "id": "17422247436455550",
+                                            "name": "condition_7241",
+                                            "type": {
+                                                "name": "condition",
+                                                "package": "@criticalmanufacturing/connect-iot-controller-engine-core-tasks",
+                                                "version": "11.1.2"
+                                            },
+                                            "isCollapsed": false,
+                                            "isDisabled": false,
+                                            "settings": {},
+                                            "inputs": [],
+                                            "outputs": [],
+                                            "caption": "Check {{handler.type}} {{handler.condition}}",
+                                            "branches": [
+                                                {
+                                                    "name": "handler",
+                                                    "tasks": [
+                                                        {
+                                                            "id": "17422253307106182",
+                                                            "name": "logMessage_1156",
+                                                            "type": {
+                                                                "name": "logMessage",
+                                                                "package": "@criticalmanufacturing/connect-iot-controller-engine-core-tasks",
+                                                                "version": "11.1.2"
+                                                            },
+                                                            "isCollapsed": false,
+                                                            "isDisabled": false,
+                                                            "settings": {
+                                                                "mode": "RawText",
+                                                                "verbosity": "Information",
+                                                                "clearInputs": true,
+                                                                "message": "Invalid Humidity {{ $evt.humidityNormalized.toString() }}"
+                                                            },
+                                                            "inputs": [],
+                                                            "outputs": [],
+                                                            "caption": "Log {{message}} as {{verbosity}}",
+                                                            "color": "#ffc370",
+                                                            "branches": []
+                                                        },
+                                                        {
+                                                            "id": "1742845024612898",
+                                                            "name": "retrieve_resource_humid",
+                                                            "type": {
+                                                                "name": "entityInstance",
+                                                                "package": "@criticalmanufacturing/connect-iot-controller-engine-core-tasks",
+                                                                "version": "11.1.2"
+                                                            },
+                                                            "isCollapsed": false,
+                                                            "isDisabled": false,
+                                                            "settings": {
+                                                                "_autoActivate": false,
+                                                                "loadAllAttributes": false,
+                                                                "reloadEveryChange": false,
+                                                                "levelsToLoad": 0,
+                                                                "retries": 30,
+                                                                "sleepBetweenRetries": 1000,
+                                                                "entityTypeName": "Resource"
+                                                            },
+                                                            "inputs": [],
+                                                            "outputs": [
+                                                                {
+                                                                    "name": "instance",
+                                                                    "value": "{{ $this.instance }}",
+                                                                    "dataType": "Object"
+                                                                }
+                                                            ],
+                                                            "caption": "Retrieve assigned instance entity data",
+                                                            "color": "#ffc370",
+                                                            "branches": []
+                                                        },
+                                                        {
+                                                            "id": "17425797373202709",
+                                                            "name": "entityAdjustState_c3bb",
+                                                            "type": {
+                                                                "name": "entityAdjustState",
+                                                                "package": "@criticalmanufacturing/connect-iot-controller-engine-core-tasks",
+                                                                "version": "11.1.2"
+                                                            },
+                                                            "isCollapsed": false,
+                                                            "isDisabled": false,
+                                                            "settings": {
+                                                                "baseEntity": {
+                                                                    "$type": "Cmf.Foundation.BusinessObjects.EntityType, Cmf.Foundation.BusinessObjects",
+                                                                    "Name": "Resource"
+                                                                },
+                                                                "entity": {
+                                                                    "$type": "Cmf.Navigo.BusinessObjects.Resource, Cmf.Navigo.BusinessObjects"
+                                                                },
+                                                                "toState": "Unscheduled Down",
+                                                                "retries": 30,
+                                                                "sleepBetweenRetries": 1000
+                                                            },
+                                                            "inputs": [
+                                                                {
+                                                                    "name": "entity",
+                                                                    "dataType": "Object",
+                                                                    "value": "{{ $retrieve_resource_humid.instance }}"
+                                                                }
+                                                            ],
+                                                            "outputs": [],
+                                                            "caption": "Update state of entity - Unscheduled Down",
+                                                            "color": "#ffc370",
+                                                            "branches": []
+                                                        }
+                                                    ],
+                                                    "settings": {
+                                                        "type": "If",
+                                                        "condition": "{{ $evt.humidityNormalized > 50 }}"
+                                                    }
+                                                },
+                                                {
+                                                    "name": "else",
+                                                    "tasks": [],
+                                                    "settings": {
+                                                        "type": "Else"
+                                                    }
+                                                }
+                                            ]
+                                        }
+                                    ],
+                                    "settings": {
+                                        "type": "Else"
+                                    }
+                                }
+                            ]
+                        }
+                    ],
+                    "settings": {}
+                }
+            ]
+        }
+    ],
+    "$id": "1",
+    "layout": {
+        "general": {
+            "color": null
+        },
+        "drawer": {
+            "tasks": {},
+            "x": 1.1368683772161603e-13,
+            "y": 0,
+            "zoom": 0.7932466912966376,
+            "fill": true
+        }
+    }
+}

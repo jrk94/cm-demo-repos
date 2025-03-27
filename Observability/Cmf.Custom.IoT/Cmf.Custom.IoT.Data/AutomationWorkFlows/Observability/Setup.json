@@ -1,0 +1,672 @@
+{
+    "tasks": [
+        {
+            "id": "task_3936",
+            "reference": {
+                "name": "driverEvent",
+                "package": {
+                    "name": "@criticalmanufacturing/connect-iot-controller-engine-core-tasks",
+                    "version": "11.1.2"
+                }
+            },
+            "driver": "MQTT",
+            "settings": {
+                "autoEnable": true,
+                "event": "OnInitialize",
+                "autoSetup": true,
+                "___cmf___description": "OnInitialize"
+            }
+        },
+        {
+            "id": "task_3938",
+            "reference": {
+                "name": "driverCommand",
+                "package": {
+                    "name": "@criticalmanufacturing/connect-iot-controller-engine-core-tasks",
+                    "version": "11.1.2"
+                }
+            },
+            "driver": "MQTT",
+            "settings": {
+                "command": "Connect",
+                "___cmf___description": "Connect"
+            }
+        },
+        {
+            "id": "task_3939",
+            "reference": {
+                "name": "driverEvent",
+                "package": {
+                    "name": "@criticalmanufacturing/connect-iot-controller-engine-core-tasks",
+                    "version": "11.1.2"
+                }
+            },
+            "driver": "TCP-IP",
+            "settings": {
+                "autoEnable": true,
+                "event": "OnInitialize",
+                "autoSetup": true,
+                "___cmf___description": "OnInitialize"
+            }
+        },
+        {
+            "id": "task_3940",
+            "reference": {
+                "name": "equipmentConfig",
+                "package": {
+                    "name": "@criticalmanufacturing/connect-iot-controller-engine-core-tasks",
+                    "version": "11.1.2"
+                }
+            },
+            "driver": "TCP-IP",
+            "settings": {
+                "_inputs": [
+                    {
+                        "name": "mode",
+                        "label": "TCP/IP Mode",
+                        "defaultValue": "Active",
+                        "parameter": {
+                            "$type": "Cmf.Foundation.BusinessObjects.AutomationProtocolParameter, Cmf.Foundation.BusinessObjects",
+                            "Name": "mode"
+                        },
+                        "dataType": "Enum",
+                        "automationDataType": 0,
+                        "referenceType": 1,
+                        "description": "Actively connects to the device (Active) or passively waits for the device to connect (Passive).\nOn Active mode:  Driver uses .connect(), Device uses .listen().\nOn Passive mode: Device uses .connect(), Driver uses .listen()",
+                        "valueReferenceType": 6,
+                        "settings": {
+                            "enumValues": [
+                                "Active",
+                                "Passive"
+                            ]
+                        },
+                        "settingKey": "name"
+                    },
+                    {
+                        "name": "host",
+                        "label": "Host Address",
+                        "defaultValue": "0.0.0.0",
+                        "parameter": {
+                            "$type": "Cmf.Foundation.BusinessObjects.AutomationProtocolParameter, Cmf.Foundation.BusinessObjects",
+                            "Name": "host"
+                        },
+                        "dataType": "String",
+                        "automationDataType": 0,
+                        "referenceType": 0,
+                        "description": "Active Mode: Host that the driver should connect to. Default: '0.0.0.0'.\nPassive Mode: Address to bind the listen() call",
+                        "settingKey": "name"
+                    },
+                    {
+                        "name": "port",
+                        "label": "TCP/IP Port",
+                        "defaultValue": 5000,
+                        "parameter": {
+                            "$type": "Cmf.Foundation.BusinessObjects.AutomationProtocolParameter, Cmf.Foundation.BusinessObjects",
+                            "Name": "port"
+                        },
+                        "dataType": "Integer",
+                        "automationDataType": 5,
+                        "referenceType": 0,
+                        "description": "Active Mode: Port that the socket should connect to.\nPassive Mode: Port where the driver will listen to device connections. If port is 0, the operating system will assign an arbitrary unused port, which can be retrieved on driver execution log during runtime.",
+                        "settingKey": "name"
+                    },
+                    {
+                        "name": "localAddress",
+                        "label": "Local Address",
+                        "defaultValue": "0.0.0.0",
+                        "parameter": {
+                            "$type": "Cmf.Foundation.BusinessObjects.AutomationProtocolParameter, Cmf.Foundation.BusinessObjects",
+                            "Name": "localAddress"
+                        },
+                        "dataType": "String",
+                        "automationDataType": 0,
+                        "referenceType": 0,
+                        "description": "Active mode only: Local address the socket should connect from.",
+                        "settingKey": "name"
+                    },
+                    {
+                        "name": "localPort",
+                        "label": "Local Port",
+                        "defaultValue": "0",
+                        "parameter": {
+                            "$type": "Cmf.Foundation.BusinessObjects.AutomationProtocolParameter, Cmf.Foundation.BusinessObjects",
+                            "Name": "localPort"
+                        },
+                        "dataType": "Integer",
+                        "automationDataType": 5,
+                        "referenceType": 0,
+                        "description": "Active mode only: Local port the socket should connect from.",
+                        "settingKey": "name"
+                    },
+                    {
+                        "name": "family",
+                        "label": "IP stack family",
+                        "defaultValue": "4",
+                        "parameter": {
+                            "$type": "Cmf.Foundation.BusinessObjects.AutomationProtocolParameter, Cmf.Foundation.BusinessObjects",
+                            "Name": "family"
+                        },
+                        "dataType": "Enum",
+                        "automationDataType": 0,
+                        "referenceType": 1,
+                        "description": "Version of IP stack, can be either 4 or 6. Default: 4.",
+                        "valueReferenceType": 6,
+                        "settings": {
+                            "enumValues": [
+                                "4",
+                                "6"
+                            ]
+                        },
+                        "settingKey": "name"
+                    },
+                    {
+                        "name": "maxClients",
+                        "label": "Max Clients",
+                        "defaultValue": "1",
+                        "parameter": {
+                            "$type": "Cmf.Foundation.BusinessObjects.AutomationProtocolParameter, Cmf.Foundation.BusinessObjects",
+                            "Name": "maxClients"
+                        },
+                        "dataType": "Integer",
+                        "automationDataType": 5,
+                        "referenceType": 0,
+                        "description": "Passive mode only: Maximum number of clients sockets allowed.",
+                        "settingKey": "name"
+                    },
+                    {
+                        "name": "keepAliveTime",
+                        "label": "KeepAlive Time",
+                        "defaultValue": "10000",
+                        "parameter": {
+                            "$type": "Cmf.Foundation.BusinessObjects.AutomationProtocolParameter, Cmf.Foundation.BusinessObjects",
+                            "Name": "keepAliveTime"
+                        },
+                        "dataType": "Integer",
+                        "automationDataType": 5,
+                        "referenceType": 0,
+                        "description": "(Passive & Active Mode): Keep Alive Time (ms)",
+                        "settingKey": "name"
+                    },
+                    {
+                        "name": "socketEncoding",
+                        "label": "Socket Encoding",
+                        "defaultValue": "ascii",
+                        "parameter": {
+                            "$type": "Cmf.Foundation.BusinessObjects.AutomationProtocolParameter, Cmf.Foundation.BusinessObjects",
+                            "Name": "socketEncoding"
+                        },
+                        "dataType": "Enum",
+                        "automationDataType": 0,
+                        "referenceType": 1,
+                        "description": "Stream Encoding",
+                        "valueReferenceType": 6,
+                        "settings": {
+                            "enumValues": [
+                                "ascii",
+                                "utf8",
+                                "utf16le",
+                                "ucs2",
+                                "base64",
+                                "binary",
+                                "hex"
+                            ]
+                        },
+                        "settingKey": "name"
+                    },
+                    {
+                        "name": "parserType",
+                        "label": "Parser Type",
+                        "defaultValue": "Readline",
+                        "parameter": {
+                            "$type": "Cmf.Foundation.BusinessObjects.AutomationProtocolParameter, Cmf.Foundation.BusinessObjects",
+                            "Name": "parserType"
+                        },
+                        "dataType": "Enum",
+                        "automationDataType": 0,
+                        "referenceType": 1,
+                        "description": "Parser to use to pre process received data",
+                        "valueReferenceType": 6,
+                        "settings": {
+                            "enumValues": [
+                                "Raw",
+                                "Readline",
+                                "ByteLength",
+                                "Delimiter",
+                                "InterByteTimeout",
+                                "Ready",
+                                "Regex"
+                            ]
+                        },
+                        "settingKey": "name"
+                    },
+                    {
+                        "name": "delimiter",
+                        "label": "Delimiter",
+                        "defaultValue": "\\r\\n",
+                        "parameter": {
+                            "$type": "Cmf.Foundation.BusinessObjects.AutomationProtocolParameter, Cmf.Foundation.BusinessObjects",
+                            "Name": "delimiter"
+                        },
+                        "dataType": "String",
+                        "automationDataType": 0,
+                        "referenceType": 0,
+                        "description": "(Parsers: Readline, Delimiter, Ready, RegularExpression): String delimiter to split incoming text. Simple string substitutions can be used like \\r\\n\\t. If parser is RegularExpression you can use regular expressions such as: [\\r\\n]+",
+                        "settingKey": "name"
+                    },
+                    {
+                        "name": "encoding",
+                        "label": "Encoding",
+                        "defaultValue": "ascii",
+                        "parameter": {
+                            "$type": "Cmf.Foundation.BusinessObjects.AutomationProtocolParameter, Cmf.Foundation.BusinessObjects",
+                            "Name": "encoding"
+                        },
+                        "dataType": "Enum",
+                        "automationDataType": 0,
+                        "referenceType": 1,
+                        "description": "(Parsers: Readline, Regex): Text encoding for the stream.",
+                        "valueReferenceType": 6,
+                        "settings": {
+                            "enumValues": [
+                                "ascii",
+                                "utf8",
+                                "utf16le",
+                                "ucs2",
+                                "base64",
+                                "binary",
+                                "hex"
+                            ]
+                        },
+                        "settingKey": "name"
+                    },
+                    {
+                        "name": "byteLengthNumber",
+                        "label": "ByteLength Number",
+                        "defaultValue": "8",
+                        "parameter": {
+                            "$type": "Cmf.Foundation.BusinessObjects.AutomationProtocolParameter, Cmf.Foundation.BusinessObjects",
+                            "Name": "byteLengthNumber"
+                        },
+                        "dataType": "Integer",
+                        "automationDataType": 5,
+                        "referenceType": 0,
+                        "description": "(Parsers: ByteLength): Number of bytes to be emitted on each data event",
+                        "settingKey": "name"
+                    },
+                    {
+                        "name": "timeoutValue",
+                        "label": "Timeout Value",
+                        "defaultValue": "1000",
+                        "parameter": {
+                            "$type": "Cmf.Foundation.BusinessObjects.AutomationProtocolParameter, Cmf.Foundation.BusinessObjects",
+                            "Name": "timeoutValue"
+                        },
+                        "dataType": "Integer",
+                        "automationDataType": 5,
+                        "referenceType": 0,
+                        "description": "(Parsers: InterByteTimeout): Period of silence in milliseconds after which data is emited",
+                        "settingKey": "name"
+                    },
+                    {
+                        "name": "maxBufferSize",
+                        "label": "Max Buffer Size",
+                        "defaultValue": "65536",
+                        "parameter": {
+                            "$type": "Cmf.Foundation.BusinessObjects.AutomationProtocolParameter, Cmf.Foundation.BusinessObjects",
+                            "Name": "maxBufferSize"
+                        },
+                        "dataType": "Integer",
+                        "automationDataType": 5,
+                        "referenceType": 0,
+                        "description": "(Parsers: InterByteTimeout): Maximum number of bytes after which data will be emited (Defaults to 65536)",
+                        "settingKey": "name"
+                    },
+                    {
+                        "name": "defaultConvertNonPrintableASCIICharsOnSend",
+                        "label": "Default Convert Non Printable ASCII Chars on Send",
+                        "defaultValue": "False",
+                        "parameter": {
+                            "$type": "Cmf.Foundation.BusinessObjects.AutomationProtocolParameter, Cmf.Foundation.BusinessObjects",
+                            "Name": "defaultConvertNonPrintableASCIICharsOnSend"
+                        },
+                        "dataType": "Boolean",
+                        "automationDataType": 8,
+                        "referenceType": 0,
+                        "description": "Does character substitution on values sent. Replaces ASCII name tokens with the correspondent ASCII value.(e.g.: <NUL> to #00, ..., <DEL> to #07, on command values).",
+                        "settingKey": "name"
+                    },
+                    {
+                        "name": "defaultConvertNonPrintableASCIICharsOnReceive",
+                        "label": "Default Convert Non Printable ASCII Chars on Receive",
+                        "defaultValue": "False",
+                        "parameter": {
+                            "$type": "Cmf.Foundation.BusinessObjects.AutomationProtocolParameter, Cmf.Foundation.BusinessObjects",
+                            "Name": "defaultConvertNonPrintableASCIICharsOnReceive"
+                        },
+                        "dataType": "Boolean",
+                        "automationDataType": 8,
+                        "referenceType": 0,
+                        "description": "Does character substitution on values received. Replaces non printable ascii codes to correspondent <NAME>.(e.g.: #00 to <NUL>, #01 to <SOH>,...,#7F to <DEL>)",
+                        "settingKey": "name"
+                    },
+                    {
+                        "name": "commandMessageStart",
+                        "label": "Default Command Message Start Token",
+                        "defaultValue": "",
+                        "parameter": {
+                            "$type": "Cmf.Foundation.BusinessObjects.AutomationProtocolParameter, Cmf.Foundation.BusinessObjects",
+                            "Name": "commandMessageStart"
+                        },
+                        "dataType": "String",
+                        "automationDataType": 0,
+                        "referenceType": 0,
+                        "description": "Default value used in the beginning of the command",
+                        "settingKey": "name"
+                    },
+                    {
+                        "name": "commandMessageSeparator",
+                        "label": "Default Command Message Separator Token",
+                        "defaultValue": "",
+                        "parameter": {
+                            "$type": "Cmf.Foundation.BusinessObjects.AutomationProtocolParameter, Cmf.Foundation.BusinessObjects",
+                            "Name": "commandMessageSeparator"
+                        },
+                        "dataType": "String",
+                        "automationDataType": 0,
+                        "referenceType": 0,
+                        "description": "Default value used between command parameters",
+                        "settingKey": "name"
+                    },
+                    {
+                        "name": "commandMessageDeviceIdSeparator",
+                        "label": "Default Command Message Device Id Separator Token",
+                        "defaultValue": "",
+                        "parameter": {
+                            "$type": "Cmf.Foundation.BusinessObjects.AutomationProtocolParameter, Cmf.Foundation.BusinessObjects",
+                            "Name": "commandMessageDeviceIdSeparator"
+                        },
+                        "dataType": "String",
+                        "automationDataType": 0,
+                        "referenceType": 0,
+                        "description": "Default value used between command and first command parameter",
+                        "settingKey": "name"
+                    },
+                    {
+                        "name": "commandMessageEnd",
+                        "label": "Default Command Message End Token",
+                        "defaultValue": "",
+                        "parameter": {
+                            "$type": "Cmf.Foundation.BusinessObjects.AutomationProtocolParameter, Cmf.Foundation.BusinessObjects",
+                            "Name": "commandMessageEnd"
+                        },
+                        "dataType": "String",
+                        "automationDataType": 0,
+                        "referenceType": 0,
+                        "description": "Default value used in the end of the command",
+                        "settingKey": "name"
+                    }
+                ],
+                "connectingTimeout": 30000,
+                "setupTimeout": 10000,
+                "intervalBeforeReconnect": 5000,
+                "heartbeatInterval": 60000,
+                "___cmf___name": "Equipment Configuration"
+            }
+        },
+        {
+            "id": "task_3941",
+            "reference": {
+                "name": "driverCommand",
+                "package": {
+                    "name": "@criticalmanufacturing/connect-iot-controller-engine-core-tasks",
+                    "version": "11.1.2"
+                }
+            },
+            "driver": "TCP-IP",
+            "settings": {
+                "command": "Connect",
+                "___cmf___description": "Connect"
+            }
+        },
+        {
+            "id": "task_4554",
+            "reference": {
+                "name": "equipmentConfig",
+                "package": {
+                    "name": "@criticalmanufacturing/connect-iot-controller-engine-core-tasks",
+                    "version": "11.1.2"
+                }
+            },
+            "settings": {
+                "_inputs": [
+                    {
+                        "name": "address",
+                        "label": "Address",
+                        "defaultValue": "localhost",
+                        "parameter": {
+                            "$type": "Cmf.Foundation.BusinessObjects.AutomationProtocolParameter, Cmf.Foundation.BusinessObjects",
+                            "Name": "address"
+                        },
+                        "dataType": "String",
+                        "automationDataType": 0,
+                        "referenceType": 0,
+                        "description": "Address of MQTT broker"
+                    },
+                    {
+                        "name": "port",
+                        "label": "Port",
+                        "defaultValue": "1883",
+                        "parameter": {
+                            "$type": "Cmf.Foundation.BusinessObjects.AutomationProtocolParameter, Cmf.Foundation.BusinessObjects",
+                            "Name": "port"
+                        },
+                        "dataType": "Integer",
+                        "automationDataType": 5,
+                        "referenceType": 0,
+                        "description": "Port of MQTT broker"
+                    },
+                    {
+                        "name": "user",
+                        "label": "Username",
+                        "parameter": {
+                            "$type": "Cmf.Foundation.BusinessObjects.AutomationProtocolParameter, Cmf.Foundation.BusinessObjects",
+                            "Name": "user"
+                        },
+                        "dataType": "String",
+                        "automationDataType": 0,
+                        "referenceType": 0,
+                        "description": "Login User"
+                    },
+                    {
+                        "name": "password",
+                        "label": "Password",
+                        "parameter": {
+                            "$type": "Cmf.Foundation.BusinessObjects.AutomationProtocolParameter, Cmf.Foundation.BusinessObjects",
+                            "Name": "password"
+                        },
+                        "dataType": "Password",
+                        "automationDataType": 10,
+                        "referenceType": 0,
+                        "description": "Login Password"
+                    },
+                    {
+                        "name": "pollInterval",
+                        "label": "Poll Interval (ms)",
+                        "defaultValue": "2000",
+                        "parameter": {
+                            "$type": "Cmf.Foundation.BusinessObjects.AutomationProtocolParameter, Cmf.Foundation.BusinessObjects",
+                            "Name": "pollInterval"
+                        },
+                        "dataType": "Integer",
+                        "automationDataType": 5,
+                        "referenceType": 0,
+                        "description": "Time between variable polling when no change value notification is available. Only used in events. (milliseconds)"
+                    },
+                    {
+                        "name": "byteOrder",
+                        "label": "Byte Order",
+                        "defaultValue": "BigEndian",
+                        "parameter": {
+                            "$type": "Cmf.Foundation.BusinessObjects.AutomationProtocolParameter, Cmf.Foundation.BusinessObjects",
+                            "Name": "byteOrder"
+                        },
+                        "dataType": "Enum",
+                        "automationDataType": 0,
+                        "referenceType": 1,
+                        "description": "Byte order of the data of the message",
+                        "valueReferenceType": 6,
+                        "settings": {
+                            "enumValues": [
+                                "BigEndian",
+                                "LittleEndian"
+                            ]
+                        }
+                    },
+                    {
+                        "name": "convertNonPrintableASCIICharsOnSend",
+                        "label": "Convert Non Printable ASCII Chars on Send:",
+                        "defaultValue": "False",
+                        "parameter": {
+                            "$type": "Cmf.Foundation.BusinessObjects.AutomationProtocolParameter, Cmf.Foundation.BusinessObjects",
+                            "Name": "convertNonPrintableASCIICharsOnSend"
+                        },
+                        "dataType": "Boolean",
+                        "automationDataType": 8,
+                        "referenceType": 0,
+                        "description": "Does character substitution on values sent. Replaces ASCII name tokens with the correspondent ASCII value.(e.g.: <NUL> to #00, ..., <DEL> to #07, on set values)."
+                    },
+                    {
+                        "name": "convertNonPrintableASCIICharsOnReceive",
+                        "label": "Convert Non Printable ASCII Chars on Receive:",
+                        "defaultValue": "False",
+                        "parameter": {
+                            "$type": "Cmf.Foundation.BusinessObjects.AutomationProtocolParameter, Cmf.Foundation.BusinessObjects",
+                            "Name": "convertNonPrintableASCIICharsOnReceive"
+                        },
+                        "dataType": "Boolean",
+                        "automationDataType": 8,
+                        "referenceType": 0,
+                        "description": "Does character substitution on values received. Replaces non printable ascii codes to correspondent <NAME>.(e.g.: #00 to <NUL>, #01 to <SOH>,...,#7F to <DEL>)"
+                    }
+                ],
+                "connectingTimeout": 30000,
+                "setupTimeout": 10000,
+                "intervalBeforeReconnect": 5000,
+                "heartbeatInterval": 60000
+            },
+            "driver": "MQTT"
+        }
+    ],
+    "converters": [],
+    "links": [
+        {
+            "id": "task_3939_success-task_3940_activate",
+            "sourceId": "task_3939",
+            "targetId": "task_3940",
+            "inputName": "activate",
+            "outputName": "success"
+        },
+        {
+            "id": "task_3940_success-task_3941_activate",
+            "sourceId": "task_3940",
+            "targetId": "task_3941",
+            "inputName": "activate",
+            "outputName": "success"
+        },
+        {
+            "id": "87bd18c3-b54e-4865-b980-6aeaad424aff",
+            "sourceId": "task_3936",
+            "targetId": "task_4554",
+            "inputName": "activate",
+            "outputName": "success"
+        },
+        {
+            "id": "ba679332-1844-4ad6-94b1-5ffd4d9f9f3f",
+            "sourceId": "task_4554",
+            "targetId": "task_3938",
+            "inputName": "activate",
+            "outputName": "success"
+        }
+    ],
+    "$id": "1",
+    "layout": {
+        "general": {
+            "color": null,
+            "notes": []
+        },
+        "drawers": {
+            "DIAGRAM": {
+                "tasks": {
+                    "task_3941": {
+                        "collapsed": true,
+                        "position": {
+                            "x": 1770,
+                            "y": 268
+                        },
+                        "outdated": false
+                    },
+                    "task_3940": {
+                        "collapsed": false,
+                        "position": {
+                            "x": 1363,
+                            "y": 267
+                        },
+                        "outdated": false
+                    },
+                    "task_4554": {
+                        "collapsed": false,
+                        "position": {
+                            "x": 494,
+                            "y": 265
+                        },
+                        "outdated": false
+                    },
+                    "task_3939": {
+                        "collapsed": true,
+                        "position": {
+                            "x": 922,
+                            "y": 267
+                        },
+                        "outdated": false
+                    },
+                    "task_3936": {
+                        "collapsed": true,
+                        "position": {
+                            "x": 69,
+                            "y": 267
+                        },
+                        "outdated": false
+                    },
+                    "task_3938": {
+                        "collapsed": true,
+                        "position": {
+                            "x": 923,
+                            "y": 313
+                        },
+                        "outdated": false
+                    }
+                },
+                "links": {
+                    "task_3939_success-task_3940_activate": {
+                        "vertices": []
+                    },
+                    "task_3940_success-task_3941_activate": {
+                        "vertices": []
+                    },
+                    "87bd18c3-b54e-4865-b980-6aeaad424aff": {
+                        "vertices": []
+                    },
+                    "ba679332-1844-4ad6-94b1-5ffd4d9f9f3f": {
+                        "vertices": []
+                    }
+                },
+                "notes": {},
+                "pan": {
+                    "x": 34,
+                    "y": 192
+                },
+                "zoom": 0.7500000000000003
+            }
+        }
+    }
+}
