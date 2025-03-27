@@ -1,0 +1,712 @@
+{
+  "<DM>AutomationProtocol": {
+    "1": {
+      "Name": "MQTT Protocol [A.1]",
+      "IsTemplate": "No",
+      "Type": "General",
+      "Package": "@criticalmanufacturing/connect-iot-driver-mqtt",
+      "PackageVersion": "11.1.2",
+      "HasCommands": "No",
+      "HasEvents": "Yes",
+      "HasProperties": "Yes"
+    },
+    "2": {
+      "Name": "TCP-IP Protocol [A.1]",
+      "IsTemplate": "No",
+      "Type": "General",
+      "Package": "@criticalmanufacturing/connect-iot-driver-tcpip",
+      "PackageVersion": "11.1.2",
+      "HasCommands": "Yes",
+      "HasEvents": "Yes",
+      "HasProperties": "Yes"
+    }
+  },
+  "AutomationProtocolParameter": {
+    "1": {
+      "AutomationProtocol": "MQTT Protocol [A.1]",
+      "Name": "address",
+      "Description": "Address of MQTT broker",
+      "DataType": "String",
+      "IsMandatory": "No",
+      "IsTemplate": "No",
+      "Label": "Address",
+      "ReferenceType": "None"
+    },
+    "2": {
+      "AutomationProtocol": "MQTT Protocol [A.1]",
+      "Name": "port",
+      "Description": "Port of MQTT broker",
+      "DataType": "Integer",
+      "DefaultValue": "1883",
+      "IsMandatory": "No",
+      "IsTemplate": "No",
+      "Label": "Port",
+      "ReferenceType": "None"
+    },
+    "3": {
+      "AutomationProtocol": "MQTT Protocol [A.1]",
+      "Name": "user",
+      "Description": "Login User",
+      "DataType": "String",
+      "IsMandatory": "No",
+      "IsTemplate": "No",
+      "Label": "Username",
+      "ReferenceType": "None"
+    },
+    "4": {
+      "AutomationProtocol": "MQTT Protocol [A.1]",
+      "Name": "password",
+      "Description": "Login Password",
+      "DataType": "Password",
+      "IsMandatory": "No",
+      "IsTemplate": "No",
+      "Label": "Password",
+      "ReferenceType": "None"
+    },
+    "5": {
+      "AutomationProtocol": "MQTT Protocol [A.1]",
+      "Name": "pollInterval",
+      "Description": "Time between variable polling when no change value notification is available. Only used in events. (milliseconds)",
+      "DataType": "Integer",
+      "DefaultValue": "2000",
+      "IsMandatory": "No",
+      "IsTemplate": "No",
+      "Label": "Poll Interval (ms)",
+      "ReferenceType": "None"
+    },
+    "6": {
+      "AutomationProtocol": "MQTT Protocol [A.1]",
+      "Name": "byteOrder",
+      "Description": "Byte order of the data of the message",
+      "DataType": "String",
+      "DefaultValue": "BigEndian",
+      "EnumValues": [
+        "BigEndian",
+        "LittleEndian"
+      ],
+      "IsMandatory": "No",
+      "IsTemplate": "No",
+      "Label": "Byte Order",
+      "ReferenceType": "Enum"
+    },
+    "7": {
+      "AutomationProtocol": "MQTT Protocol [A.1]",
+      "Name": "convertNonPrintableASCIICharsOnSend",
+      "Description": "Does character substitution on values sent. Replaces ASCII name tokens with the correspondent ASCII value.(e.g.: <NUL> to #00, ..., <DEL> to #07, on set values).",
+      "DataType": "Boolean",
+      "DefaultValue": "False",
+      "IsMandatory": "No",
+      "IsTemplate": "No",
+      "Label": "Convert Non Printable ASCII Chars on Send:",
+      "ReferenceType": "None"
+    },
+    "8": {
+      "AutomationProtocol": "MQTT Protocol [A.1]",
+      "Name": "convertNonPrintableASCIICharsOnReceive",
+      "Description": "Does character substitution on values received. Replaces non printable ascii codes to correspondent <NAME>.(e.g.: #00 to <NUL>, #01 to <SOH>,...,#7F to <DEL>)",
+      "DataType": "Boolean",
+      "DefaultValue": "False",
+      "IsMandatory": "No",
+      "IsTemplate": "No",
+      "Label": "Convert Non Printable ASCII Chars on Receive:",
+      "ReferenceType": "None"
+    },
+    "9": {
+      "AutomationProtocol": "TCP-IP Protocol [A.1]",
+      "Name": "mode",
+      "Description": "Actively connects to the device (Active) or passively waits for the device to connect (Passive).\nOn Active mode:  Driver uses .connect(), Device uses .listen().\nOn Passive mode: Device uses .connect(), Driver uses .listen()",
+      "DataType": "String",
+      "DefaultValue": "Active",
+      "EnumValues": [
+        "Active",
+        "Passive"
+      ],
+      "IsMandatory": "No",
+      "IsTemplate": "No",
+      "Label": "TCP/IP Mode",
+      "ReferenceType": "Enum"
+    },
+    "10": {
+      "AutomationProtocol": "TCP-IP Protocol [A.1]",
+      "Name": "host",
+      "Description": "Active Mode: Host that the driver should connect to. Default: '0.0.0.0'.\nPassive Mode: Address to bind the listen() call",
+      "DataType": "String",
+      "DefaultValue": "0.0.0.0",
+      "IsMandatory": "No",
+      "IsTemplate": "No",
+      "Label": "Host Address",
+      "ReferenceType": "None"
+    },
+    "11": {
+      "AutomationProtocol": "TCP-IP Protocol [A.1]",
+      "Name": "port",
+      "Description": "Active Mode: Port that the socket should connect to.\nPassive Mode: Port where the driver will listen to device connections. If port is 0, the operating system will assign an arbitrary unused port, which can be retrieved on driver execution log during runtime.",
+      "DataType": "Integer",
+      "DefaultValue": "0",
+      "IsMandatory": "No",
+      "IsTemplate": "No",
+      "Label": "TCP/IP Port",
+      "ReferenceType": "None"
+    },
+    "12": {
+      "AutomationProtocol": "TCP-IP Protocol [A.1]",
+      "Name": "localAddress",
+      "Description": "Active mode only: Local address the socket should connect from.",
+      "DataType": "String",
+      "DefaultValue": "0.0.0.0",
+      "IsMandatory": "No",
+      "IsTemplate": "No",
+      "Label": "Local Address",
+      "ReferenceType": "None"
+    },
+    "13": {
+      "AutomationProtocol": "TCP-IP Protocol [A.1]",
+      "Name": "localPort",
+      "Description": "Active mode only: Local port the socket should connect from.",
+      "DataType": "Integer",
+      "DefaultValue": "0",
+      "IsMandatory": "No",
+      "IsTemplate": "No",
+      "Label": "Local Port",
+      "ReferenceType": "None"
+    },
+    "14": {
+      "AutomationProtocol": "TCP-IP Protocol [A.1]",
+      "Name": "family",
+      "Description": "Version of IP stack, can be either 4 or 6. Default: 4.",
+      "DataType": "String",
+      "DefaultValue": "4",
+      "EnumValues": [
+        "4",
+        "6"
+      ],
+      "IsMandatory": "No",
+      "IsTemplate": "No",
+      "Label": "IP stack family",
+      "ReferenceType": "Enum"
+    },
+    "15": {
+      "AutomationProtocol": "TCP-IP Protocol [A.1]",
+      "Name": "maxClients",
+      "Description": "Passive mode only: Maximum number of clients sockets allowed.",
+      "DataType": "Integer",
+      "DefaultValue": "1",
+      "IsMandatory": "No",
+      "IsTemplate": "No",
+      "Label": "Max Clients",
+      "ReferenceType": "None"
+    },
+    "16": {
+      "AutomationProtocol": "TCP-IP Protocol [A.1]",
+      "Name": "keepAliveTime",
+      "Description": "(Passive & Active Mode): Keep Alive Time (ms)",
+      "DataType": "Integer",
+      "DefaultValue": "10000",
+      "IsMandatory": "No",
+      "IsTemplate": "No",
+      "Label": "KeepAlive Time",
+      "ReferenceType": "None"
+    },
+    "17": {
+      "AutomationProtocol": "TCP-IP Protocol [A.1]",
+      "Name": "socketEncoding",
+      "Description": "Stream Encoding",
+      "DataType": "String",
+      "DefaultValue": "ascii",
+      "EnumValues": [
+        "ascii",
+        "utf8",
+        "utf16le",
+        "ucs2",
+        "base64",
+        "binary",
+        "hex"
+      ],
+      "IsMandatory": "No",
+      "IsTemplate": "No",
+      "Label": "Socket Encoding",
+      "ReferenceType": "Enum"
+    },
+    "18": {
+      "AutomationProtocol": "TCP-IP Protocol [A.1]",
+      "Name": "parserType",
+      "Description": "Parser to use to pre process received data",
+      "DataType": "String",
+      "DefaultValue": "Readline",
+      "EnumValues": [
+        "Raw",
+        "Readline",
+        "ByteLength",
+        "Delimiter",
+        "InterByteTimeout",
+        "Ready",
+        "Regex"
+      ],
+      "IsMandatory": "No",
+      "IsTemplate": "No",
+      "Label": "Parser Type",
+      "ReferenceType": "Enum"
+    },
+    "19": {
+      "AutomationProtocol": "TCP-IP Protocol [A.1]",
+      "Name": "delimiter",
+      "Description": "(Parsers: Readline, Delimiter, Ready, RegularExpression): String delimiter to split incoming text. Simple string substitutions can be used like \\r\\n\\t. If parser is RegularExpression you can use regular expressions such as: [\\r\\n]+",
+      "DataType": "String",
+      "DefaultValue": "\\r\\n",
+      "IsMandatory": "No",
+      "IsTemplate": "No",
+      "Label": "Delimiter",
+      "ReferenceType": "None"
+    },
+    "20": {
+      "AutomationProtocol": "TCP-IP Protocol [A.1]",
+      "Name": "encoding",
+      "Description": "(Parsers: Readline, Regex): Text encoding for the stream.",
+      "DataType": "String",
+      "DefaultValue": "ascii",
+      "EnumValues": [
+        "ascii",
+        "utf8",
+        "utf16le",
+        "ucs2",
+        "base64",
+        "binary",
+        "hex"
+      ],
+      "IsMandatory": "No",
+      "IsTemplate": "No",
+      "Label": "Encoding",
+      "ReferenceType": "Enum"
+    },
+    "21": {
+      "AutomationProtocol": "TCP-IP Protocol [A.1]",
+      "Name": "byteLengthNumber",
+      "Description": "(Parsers: ByteLength): Number of bytes to be emitted on each data event",
+      "DataType": "Integer",
+      "DefaultValue": "8",
+      "IsMandatory": "No",
+      "IsTemplate": "No",
+      "Label": "ByteLength Number",
+      "ReferenceType": "None"
+    },
+    "22": {
+      "AutomationProtocol": "TCP-IP Protocol [A.1]",
+      "Name": "timeoutValue",
+      "Description": "(Parsers: InterByteTimeout): Period of silence in milliseconds after which data is emited",
+      "DataType": "Integer",
+      "DefaultValue": "1000",
+      "IsMandatory": "No",
+      "IsTemplate": "No",
+      "Label": "Timeout Value",
+      "ReferenceType": "None"
+    },
+    "23": {
+      "AutomationProtocol": "TCP-IP Protocol [A.1]",
+      "Name": "maxBufferSize",
+      "Description": "(Parsers: InterByteTimeout): Maximum number of bytes after which data will be emited (Defaults to 65536)",
+      "DataType": "Integer",
+      "DefaultValue": "65536",
+      "IsMandatory": "No",
+      "IsTemplate": "No",
+      "Label": "Max Buffer Size",
+      "ReferenceType": "None"
+    },
+    "24": {
+      "AutomationProtocol": "TCP-IP Protocol [A.1]",
+      "Name": "defaultConvertNonPrintableASCIICharsOnSend",
+      "Description": "Does character substitution on values sent. Replaces ASCII name tokens with the correspondent ASCII value.(e.g.: <NUL> to #00, ..., <DEL> to #07, on command values).",
+      "DataType": "Boolean",
+      "DefaultValue": "False",
+      "IsMandatory": "No",
+      "IsTemplate": "No",
+      "Label": "Default Convert Non Printable ASCII Chars on Send",
+      "ReferenceType": "None"
+    },
+    "25": {
+      "AutomationProtocol": "TCP-IP Protocol [A.1]",
+      "Name": "defaultConvertNonPrintableASCIICharsOnReceive",
+      "Description": "Does character substitution on values received. Replaces non printable ascii codes to correspondent <NAME>.(e.g.: #00 to <NUL>, #01 to <SOH>,...,#7F to <DEL>)",
+      "DataType": "Boolean",
+      "DefaultValue": "False",
+      "IsMandatory": "No",
+      "IsTemplate": "No",
+      "Label": "Default Convert Non Printable ASCII Chars on Receive",
+      "ReferenceType": "None"
+    },
+    "26": {
+      "AutomationProtocol": "TCP-IP Protocol [A.1]",
+      "Name": "commandMessageStart",
+      "Description": "Default value used in the beginning of the command",
+      "DataType": "String",
+      "IsMandatory": "No",
+      "IsTemplate": "No",
+      "Label": "Default Command Message Start Token",
+      "ReferenceType": "None"
+    },
+    "27": {
+      "AutomationProtocol": "TCP-IP Protocol [A.1]",
+      "Name": "commandMessageSeparator",
+      "Description": "Default value used between command parameters",
+      "DataType": "String",
+      "IsMandatory": "No",
+      "IsTemplate": "No",
+      "Label": "Default Command Message Separator Token",
+      "ReferenceType": "None"
+    },
+    "28": {
+      "AutomationProtocol": "TCP-IP Protocol [A.1]",
+      "Name": "commandMessageDeviceIdSeparator",
+      "Description": "Default value used between command and first command parameter",
+      "DataType": "String",
+      "IsMandatory": "No",
+      "IsTemplate": "No",
+      "Label": "Default Command Message Device Id Separator Token",
+      "ReferenceType": "None"
+    },
+    "29": {
+      "AutomationProtocol": "TCP-IP Protocol [A.1]",
+      "Name": "commandMessageEnd",
+      "Description": "Default value used in the end of the command",
+      "DataType": "String",
+      "IsMandatory": "No",
+      "IsTemplate": "No",
+      "Label": "Default Command Message End Token",
+      "ReferenceType": "None"
+    }
+  },
+  "<DM>AutomationDriverDefinition": {
+    "1": {
+      "Name": "MQTT Wafer Preparation Station [A.1]",
+      "IsTemplate": "No",
+      "Type": "General",
+      "AutomationProtocol": "MQTT Protocol [A]",
+      "ObjectType": "Resource"
+    },
+    "2": {
+      "Name": "TCP-IP Driver Definition [A.1]",
+      "IsTemplate": "No",
+      "Type": "General",
+      "AutomationProtocol": "TCP-IP Protocol [A]",
+      "ObjectType": "Resource"
+    }
+  },
+  "AutomationProperty": {
+    "1": {
+      "AutomationDriverDefinition": "MQTT Wafer Preparation Station [A.1]",
+      "Name": "temperature",
+      "DevicePropertyId": "waferprep/temperature/#",
+      "IsReadable": "Yes",
+      "IsWritable": "No",
+      "DataType": "Decimal",
+      "AutomationProtocolDataType": "String",
+      "ExtendedData": {
+        "identifierType": "None",
+        "identifierValue": "",
+        "convertIdentifierNonPrintableASCIIChars": "false",
+        "qos": "0",
+        "retain": "false",
+        "$id": "1"
+      },
+      "IsTemplate": "No"
+    },
+    "2": {
+      "AutomationDriverDefinition": "MQTT Wafer Preparation Station [A.1]",
+      "Name": "humidity",
+      "DevicePropertyId": "waferprep/humidity/#",
+      "IsReadable": "Yes",
+      "IsWritable": "No",
+      "DataType": "Decimal",
+      "AutomationProtocolDataType": "String",
+      "ExtendedData": {
+        "identifierType": "None",
+        "identifierValue": "",
+        "convertIdentifierNonPrintableASCIIChars": "false",
+        "qos": "0",
+        "retain": "false",
+        "$id": "1"
+      },
+      "IsTemplate": "No"
+    },
+    "3": {
+      "AutomationDriverDefinition": "TCP-IP Driver Definition [A.1]",
+      "Name": "material",
+      "IsReadable": "Yes",
+      "IsWritable": "Yes",
+      "DataType": "String",
+      "AutomationProtocolDataType": "String",
+      "ExtendedData": {
+        "identifierType": "RegularExpression",
+        "convertIdentifierNonPrintableASCIIChars": true,
+        "parserIdentifierValue": "(?<=Material:)(.*)(?=<ETX>)",
+        "useIdentifierValueAsParser": true
+      },
+      "IsTemplate": "No"
+    },
+    "4": {
+      "AutomationDriverDefinition": "TCP-IP Driver Definition [A.1]",
+      "Name": "product",
+      "IsReadable": "Yes",
+      "IsWritable": "Yes",
+      "DataType": "String",
+      "AutomationProtocolDataType": "String",
+      "ExtendedData": {
+        "identifierType": "RegularExpression",
+        "convertIdentifierNonPrintableASCIIChars": true,
+        "parserIdentifierValue": "(?<=Product:)[^,]+",
+        "useIdentifierValueAsParser": true
+      },
+      "IsTemplate": "No"
+    },
+    "5": {
+      "AutomationDriverDefinition": "TCP-IP Driver Definition [A.1]",
+      "Name": "quantity",
+      "IsReadable": "Yes",
+      "IsWritable": "Yes",
+      "DataType": "String",
+      "AutomationProtocolDataType": "String",
+      "ExtendedData": {
+        "identifierType": "RegularExpression",
+        "convertIdentifierNonPrintableASCIIChars": true,
+        "parserIdentifierValue": "(?<=Quantity:)[^,]+",
+        "useIdentifierValueAsParser": true
+      },
+      "IsTemplate": "No"
+    },
+    "6": {
+      "AutomationDriverDefinition": "TCP-IP Driver Definition [A.1]",
+      "Name": "eventId",
+      "IsReadable": "Yes",
+      "IsWritable": "Yes",
+      "DataType": "String",
+      "AutomationProtocolDataType": "String",
+      "ExtendedData": {
+        "identifierType": "RegularExpression",
+        "convertIdentifierNonPrintableASCIIChars": true,
+        "parserIdentifierValue": "(?<=<STX>)[^,]+",
+        "useIdentifierValueAsParser": true
+      },
+      "IsTemplate": "No"
+    }
+  },
+  "AutomationEvent": {
+    "1": {
+      "AutomationDriverDefinition": "MQTT Wafer Preparation Station [A.1]",
+      "Name": "Ambient Monitoring",
+      "IsEnabled": "Yes",
+      "ExtendedData": {
+        "triggerMode": "Always",
+        "interval": "1000"
+      },
+      "IsTemplate": "No"
+    },
+    "2": {
+      "AutomationDriverDefinition": "TCP-IP Driver Definition [A.1]",
+      "Name": "Event",
+      "IsEnabled": "Yes",
+      "ExtendedData": {
+        "workingMode": "AllValues",
+        "periodicDataInterval": "1000"
+      },
+      "IsTemplate": "No"
+    }
+  },
+  "AutomationEventProperties": {
+    "1": {
+      "AutomationDriverDefinition": "MQTT Wafer Preparation Station [A.1]",
+      "AutomationEvent": "Ambient Monitoring",
+      "AutomationProperty": "temperature",
+      "Order": "1",
+      "ExtendedData": {},
+      "IsTemplate": "No"
+    },
+    "2": {
+      "AutomationDriverDefinition": "MQTT Wafer Preparation Station [A.1]",
+      "AutomationEvent": "Ambient Monitoring",
+      "AutomationProperty": "humidity",
+      "Order": "2",
+      "ExtendedData": {},
+      "IsTemplate": "No"
+    },
+    "3": {
+      "AutomationDriverDefinition": "TCP-IP Driver Definition [A.1]",
+      "AutomationEvent": "Event",
+      "AutomationProperty": "eventId",
+      "Order": "1",
+      "ExtendedData": {},
+      "IsTemplate": "No"
+    },
+    "4": {
+      "AutomationDriverDefinition": "TCP-IP Driver Definition [A.1]",
+      "AutomationEvent": "Event",
+      "AutomationProperty": "product",
+      "Order": "2",
+      "ExtendedData": {
+        "isTrigger": false
+      },
+      "IsTemplate": "No"
+    },
+    "5": {
+      "AutomationDriverDefinition": "TCP-IP Driver Definition [A.1]",
+      "AutomationEvent": "Event",
+      "AutomationProperty": "quantity",
+      "Order": "3",
+      "ExtendedData": {
+        "isTrigger": false
+      },
+      "IsTemplate": "No"
+    },
+    "6": {
+      "AutomationDriverDefinition": "TCP-IP Driver Definition [A.1]",
+      "AutomationEvent": "Event",
+      "AutomationProperty": "material",
+      "Order": "4",
+      "ExtendedData": {
+        "isTrigger": false
+      },
+      "IsTemplate": "No"
+    }
+  },
+  "AutomationCommand": {
+    "1": {
+      "AutomationDriverDefinition": "TCP-IP Driver Definition [A.1]",
+      "Name": "MaterialInAck",
+      "DeviceCommandId": "MaterialIn",
+      "ExtendedData": {
+        "commandBehavior": "UseCurrentCommandSettings",
+        "deviceIdUsage": "AtBeginning",
+        "convertNonPrintableASCIICharsOnCommandSend": "False",
+        "messageStart": "<STX>",
+        "messageSeparator": ",",
+        "messageDeviceIdSeparator": ",",
+        "messageEnd": "<ETX>",
+        "expectsReply": "False",
+        "convertNonPrintableASCIICharsOnReplyReceived": "False",
+        "replyTimeOut": "1000"
+      },
+      "IsTemplate": "No"
+    },
+    "2": {
+      "AutomationDriverDefinition": "TCP-IP Driver Definition [A.1]",
+      "Name": "MaterialOutAck",
+      "DeviceCommandId": "MaterialOut",
+      "ExtendedData": {
+        "commandBehavior": "UseCurrentCommandSettings",
+        "deviceIdUsage": "AtBeginning",
+        "convertNonPrintableASCIICharsOnCommandSend": "False",
+        "messageStart": "<STX>",
+        "messageSeparator": ",",
+        "messageDeviceIdSeparator": ",",
+        "messageEnd": "<ETX>",
+        "expectsReply": "False",
+        "convertNonPrintableASCIICharsOnReplyReceived": "False",
+        "replyTimeOut": "1000"
+      },
+      "IsTemplate": "No"
+    }
+  },
+  "AutomationCommandParameter": {
+    "1": {
+      "AutomationDriverDefinition": "TCP-IP Driver Definition [A.1]",
+      "AutomationCommand": "MaterialInAck",
+      "Name": "Material",
+      "DataType": "String",
+      "AutomationProtocolDataType": "String",
+      "IsMandatory": "Yes",
+      "Order": "1",
+      "ExtendedData": {
+        "parameterType": "CommandParameter"
+      },
+      "IsTemplate": "No"
+    },
+    "2": {
+      "AutomationDriverDefinition": "TCP-IP Driver Definition [A.1]",
+      "AutomationCommand": "MaterialOutAck",
+      "Name": "Material",
+      "DataType": "String",
+      "AutomationProtocolDataType": "String",
+      "IsMandatory": "Yes",
+      "Order": "1",
+      "ExtendedData": {
+        "parameterType": "CommandParameter"
+      },
+      "IsTemplate": "No"
+    }
+  },
+  "<DM>AutomationController": {
+    "1": {
+      "Name": "Wafer Preparation Station Controller [C.1]",
+      "IsTemplate": "No",
+      "Type": "General",
+      "ControllerPackageVersion": "11.1.2",
+      "ObjectType": "Resource",
+      "TasksPackages": [
+        "@criticalmanufacturing/connect-iot-controller-engine-core-tasks"
+      ],
+      "Scope": "ConnectIoT",
+      "DefaultWorkflowType": "DataFlow",
+      "LinkConnector": "Smooth",
+      "LinkRouter": "Normal",
+      "TasksLibraryPackages": [
+        "@criticalmanufacturing/connect-iot-controller-engine-core-tasks@11.1.2"
+      ]
+    }
+  },
+  "AutomationControllerDriverDef": {
+    "1": {
+      "AutomationController": "Wafer Preparation Station Controller [C.1]",
+      "Name": "MQTT",
+      "DisplayName": "MQTT",
+      "AutomationDriverDefinition": "MQTT Wafer Preparation Station [A]",
+      "Color": "#ff9494",
+      "IsTemplate": "No",
+      "Order": "1"
+    },
+    "2": {
+      "AutomationController": "Wafer Preparation Station Controller [C.1]",
+      "Name": "TCP-IP",
+      "DisplayName": "TCP-IP",
+      "AutomationDriverDefinition": "TCP-IP Driver Definition [A]",
+      "Color": "#2fd7f9",
+      "IsTemplate": "No",
+      "Order": "2"
+    }
+  },
+  "AutomationControllerWorkflow": {
+    "1": {
+      "AutomationController": "Wafer Preparation Station Controller [C.1]",
+      "Name": "AutomationWorkflow_99b0a703-b05d-4a2f-bcd9-4cdd9e73e132",
+      "DisplayName": "Setup",
+      "IsFile": "true",
+      "Workflow": "Observability/Setup.json",
+      "Order": "1",
+      "Indentation": "0",
+      "IsShared": "No",
+      "IsTemplate": "No",
+      "WorkflowType": "DataFlow"
+    },
+    "2": {
+      "AutomationController": "Wafer Preparation Station Controller [C.1]",
+      "Name": "AutomationWorkflow_3f6eac97-69f6-4e0d-ad5c-6d70b6c82a37",
+      "DisplayName": "Material Handling",
+      "IsFile": "true",
+      "Workflow": "Observability/MaterialHandling.json",
+      "Order": "2",
+      "Indentation": "0",
+      "IsShared": "No",
+      "IsTemplate": "No",
+      "WorkflowType": "ControlFlow"
+    },
+    "3": {
+      "AutomationController": "Wafer Preparation Station Controller [C.1]",
+      "Name": "AutomationWorkflow_0684be86-5222-461b-afd7-29554fe3bcf2",
+      "DisplayName": "Control Temperature",
+      "IsFile": "true",
+      "Workflow": "Observability/ControlTemperature.json",
+      "Order": "3",
+      "Indentation": "0",
+      "IsShared": "No",
+      "IsTemplate": "No",
+      "WorkflowType": "ControlFlow"
+    }
+  }
+}

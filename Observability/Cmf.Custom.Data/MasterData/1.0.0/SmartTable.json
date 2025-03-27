@@ -1,0 +1,75 @@
+{
+    "<ST>SmartTable": {
+        "1": {
+            "Name": "CustomMachineStateResolution",
+            "Description": "Smart Table to perform dynamic machine state resolution",
+            "HistoryRetentionTime": "180",
+            "IsHistoryEnabled": "Yes",
+            "IsRepeatedValuesAllowed": "Yes",
+            "DataGroup": "",
+            "PreValidationRule": "",
+            "PostValidationRule": ""
+        }
+    },
+    "SmartTableProperties": {
+        "1": {
+            "SmartTable": "CustomMachineStateResolution",
+            "Name": "Resource",
+            "Position": "1",
+            "Description": "Resource Name",
+            "IsKey": "Yes",
+            "IsIndexed": "No",
+            "IsMandatory": "No",
+            "ScalarType": "NVarChar",
+            "Size": "256",
+            "ReferenceType": "EntityType",
+            "ReferenceName": "Resource.Name"
+        },
+        "2": {
+            "SmartTable": "CustomMachineStateResolution",
+            "Name": "ResourceType",
+            "Position": "0",
+            "Description": "Resource Type",
+            "IsKey": "Yes",
+            "IsIndexed": "No",
+            "IsMandatory": "No",
+            "ScalarType": "NVarChar",
+            "Size": "256",
+            "ReferenceType": "LookupValue",
+            "ReferenceName": "ResourceType"
+        },
+        "3": {
+            "SmartTable": "CustomMachineStateResolution",
+            "Name": "MachineStatus",
+            "Position": "2",
+            "Description": "Machine Status",
+            "IsKey": "No",
+            "IsIndexed": "No",
+            "IsMandatory": "Yes",
+            "ScalarType": "NVarChar",
+            "Size": "256",
+            "ReferenceType": "None",
+            "ReferenceName": ""
+        },
+        "4": {
+            "SmartTable": "CustomMachineStateResolution",
+            "Name": "SEMIE10Status",
+            "Position": "3",
+            "Description": "SEMIE10 Status Mapping",
+            "IsKey": "No",
+            "IsIndexed": "No",
+            "IsMandatory": "Yes",
+            "ScalarType": "NVarChar",
+            "Size": "256",
+            "ReferenceType": "None",
+            "ReferenceName": ""
+        }
+    },
+    "SmartTablePrecedenceKeys": {
+        "1": {
+            "SmartTable": "CustomMachineStateResolution",
+            "PrecedenceKey1": "Resource+MachineStatus",
+            "PrecedenceKey2": "ResourceType+MachineStatus"
+        }
+    }
+}
