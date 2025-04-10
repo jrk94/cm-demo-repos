@@ -1,0 +1,423 @@
+{
+    "tasks": [
+        {
+            "id": "task_447",
+            "reference": {
+                "name": "equipmentCommand",
+                "package": {
+                    "name": "@criticalmanufacturing/connect-iot-controller-engine-core-tasks",
+                    "version": "11.1.4-dev"
+                }
+            },
+            "settings": {
+                "_inputs": [
+                    {
+                        "name": "id",
+                        "friendlyName": "id",
+                        "propertyId": "Id",
+                        "deviceType": {
+                            "$type": "Cmf.Foundation.BusinessObjects.AutomationProtocolDataType, Cmf.Foundation.BusinessObjects",
+                            "Name": "String"
+                        },
+                        "valueType": {
+                            "collectionType": null,
+                            "friendlyName": "id",
+                            "type": "String",
+                            "name": "String"
+                        },
+                        "settingKey": "name"
+                    }
+                ],
+                "_customCommands": false,
+                "_clearInputs": false,
+                "_command": {
+                    "$type": "Cmf.Foundation.BusinessObjects.AutomationCommand, Cmf.Foundation.BusinessObjects",
+                    "Name": "DownloadRecipe",
+                    "Parameters": [
+                        {
+                            "$type": "Cmf.Foundation.BusinessObjects.AutomationCommandParameter, Cmf.Foundation.BusinessObjects",
+                            "Name": "id",
+                            "IsMandatory": true,
+                            "DataType": 0,
+                            "AutomationProtocolDataType": {
+                                "$type": "Cmf.Foundation.BusinessObjects.AutomationProtocolDataType, Cmf.Foundation.BusinessObjects",
+                                "Name": "String"
+                            },
+                            "ExtendedData": "{\"$id\":\"1\",\"operationParameters\":\"PathParameter\"}"
+                        }
+                    ],
+                    "DeviceCommandId": "/api/downloads/files/local/:id",
+                    "ExtendedData": "{\"$id\":\"1\",\"requestMethod\":\"GET\",\"timeout\":\"30000\",\"successfulStatusCodes\":\"200\"}"
+                },
+                "_messageFullName": "DownloadRecipe",
+                "_timeout": 10000,
+                "___cmf___name": "Execute Equipment Command",
+                "___cmf___description": "DownloadRecipe",
+                "___cmf___color": "#3488bc"
+            },
+            "driver": "octopi"
+        },
+        {
+            "id": "task_448",
+            "reference": {
+                "name": "calculateChecksum",
+                "package": {
+                    "name": "@criticalmanufacturing/connect-iot-controller-engine-core-tasks",
+                    "version": "11.1.4-dev"
+                }
+            },
+            "settings": {
+                "hashFunctionSetting": "Sha256",
+                "___cmf___name": "Calculate Checksum",
+                "___cmf___color": "#b3b2b2"
+            }
+        },
+        {
+            "id": "task_564",
+            "reference": {
+                "name": "systemActionListener",
+                "package": {
+                    "name": "@criticalmanufacturing/connect-iot-controller-engine-core-tasks",
+                    "version": "11.1.4-dev"
+                }
+            },
+            "settings": {
+                "autoEnable": true,
+                "actionGroup": "ValidateRecipe",
+                "replyTimeout": 60000,
+                "___cmf___name": "System Action Listener",
+                "___cmf___description": "ValidateRecipe",
+                "___cmf___color": "#37b35c"
+            }
+        },
+        {
+            "id": "task_570",
+            "reference": {
+                "name": "systemActionReply",
+                "package": {
+                    "name": "@criticalmanufacturing/connect-iot-controller-engine-core-tasks",
+                    "version": "11.1.4-dev"
+                }
+            },
+            "settings": {
+                "defaultReply": {},
+                "___cmf___name": "Send System Action Reply",
+                "___cmf___color": "#37b35c"
+            }
+        },
+        {
+            "id": "task_677",
+            "reference": {
+                "name": "expressionEvaluatorGeneric",
+                "package": {
+                    "name": "@criticalmanufacturing/connect-iot-controller-engine-core-tasks",
+                    "version": "11.1.4-dev"
+                }
+            },
+            "settings": {
+                "_inputs": [
+                    {
+                        "name": "MESRecipeHash",
+                        "valueType": {
+                            "name": "String",
+                            "type": 4,
+                            "collectionType": 0,
+                            "referenceType": null,
+                            "referenceTypeName": null,
+                            "referenceTypeId": null,
+                            "friendlyName": "Type"
+                        },
+                        "defaultValue": " 0",
+                        "settingKey": "name"
+                    },
+                    {
+                        "name": "MachineRecipeHash",
+                        "valueType": {
+                            "name": "String",
+                            "type": 4,
+                            "collectionType": 0,
+                            "referenceType": null,
+                            "referenceTypeName": null,
+                            "referenceTypeId": null,
+                            "friendlyName": "Type"
+                        },
+                        "defaultValue": "0",
+                        "settingKey": "name"
+                    }
+                ],
+                "_outputs": [
+                    {
+                        "name": "IsEqual",
+                        "valueType": {
+                            "name": "Boolean",
+                            "type": 3,
+                            "collectionType": 0,
+                            "referenceType": null,
+                            "referenceTypeName": null,
+                            "referenceTypeId": null,
+                            "friendlyName": "Type"
+                        },
+                        "expression": "compareText(MESRecipeHash, MachineRecipeHash) == 0",
+                        "settingKey": "name",
+                        "defaultValue": "IsEqual"
+                    }
+                ],
+                "_evaluatorBehavior": "EvaluateAll",
+                "___cmf___name": "Generic Expression Evaluator",
+                "___cmf___color": "#b3b2b2"
+            }
+        },
+        {
+            "id": "task_2044",
+            "reference": {
+                "name": "mergeObject",
+                "package": {
+                    "name": "@criticalmanufacturing/connect-iot-controller-engine-core-tasks",
+                    "version": "11.1.4-dev"
+                }
+            },
+            "settings": {
+                "inputs": [
+                    {
+                        "name": "recipeValidationResult",
+                        "valueType": {
+                            "name": "Boolean",
+                            "type": 3,
+                            "collectionType": 0,
+                            "referenceType": null,
+                            "referenceTypeName": null,
+                            "referenceTypeId": null,
+                            "friendlyName": "Type"
+                        },
+                        "settingKey": "name"
+                    }
+                ],
+                "useInputAsKey": true,
+                "___cmf___name": "Merge Object",
+                "___cmf___color": "#b3b3b3"
+            }
+        }
+    ],
+    "converters": [
+        {
+            "id": "@criticalmanufacturing/connect-iot-controller-engine-core-tasks#objectProperty",
+            "reference": {
+                "name": "objectProperty",
+                "package": {
+                    "name": "@criticalmanufacturing/connect-iot-controller-engine-core-tasks",
+                    "version": "11.1.4-dev"
+                }
+            }
+        }
+    ],
+    "links": [
+        {
+            "id": "task_447_reply-task_448_data",
+            "sourceId": "task_447",
+            "targetId": "task_448",
+            "inputName": "data",
+            "outputName": "reply",
+            "converters": []
+        },
+        {
+            "id": "task_447_success-task_448_activate",
+            "sourceId": "task_447",
+            "targetId": "task_448",
+            "inputName": "activate",
+            "outputName": "success",
+            "converters": []
+        },
+        {
+            "id": "2b287bdc-3729-43f3-9b9f-818072bd2e4a",
+            "sourceId": "task_564",
+            "targetId": "task_447",
+            "inputName": "id",
+            "outputName": "data",
+            "converters": [
+                {
+                    "id": "@criticalmanufacturing/connect-iot-controller-engine-core-tasks#objectProperty",
+                    "params": {
+                        "path": "recipe",
+                        "type": "String"
+                    }
+                }
+            ]
+        },
+        {
+            "id": "c63fd910-4171-480a-9a98-239f3fe7fc21",
+            "sourceId": "task_448",
+            "targetId": "task_677",
+            "inputName": "MachineRecipeHash",
+            "outputName": "checksum"
+        },
+        {
+            "id": "f388b520-703c-46a0-9e0e-65e6412abb63",
+            "sourceId": "task_564",
+            "targetId": "task_677",
+            "inputName": "MESRecipeHash",
+            "outputName": "data",
+            "converters": [
+                {
+                    "id": "@criticalmanufacturing/connect-iot-controller-engine-core-tasks#objectProperty",
+                    "params": {
+                        "path": "recipeHash",
+                        "type": "String"
+                    }
+                }
+            ]
+        },
+        {
+            "id": "a1421b4d-23e9-4762-84c7-7638f697e470",
+            "sourceId": "task_564",
+            "targetId": "task_447",
+            "inputName": "activate",
+            "outputName": "success"
+        },
+        {
+            "id": "d6550fd3-c106-4985-9c74-31b967d8d16e",
+            "sourceId": "task_448",
+            "targetId": "task_677",
+            "inputName": "activate",
+            "outputName": "success"
+        },
+        {
+            "id": "bf033dc8-caa1-4f91-b925-33dd353a9446",
+            "sourceId": "task_677",
+            "targetId": "task_2044",
+            "inputName": "recipeValidationResultIn",
+            "outputName": "IsEqual"
+        },
+        {
+            "id": "68f3ab7d-7300-4e5d-90c0-a046180403eb",
+            "sourceId": "task_677",
+            "targetId": "task_2044",
+            "inputName": "activate",
+            "outputName": "success"
+        },
+        {
+            "id": "6b27b508-5485-46ca-8fe6-c1d94f5a1d67",
+            "sourceId": "task_2044",
+            "targetId": "task_570",
+            "inputName": "reply",
+            "outputName": "mergedObject"
+        },
+        {
+            "id": "585755a3-8d98-46c1-b86c-f1857393fe8e",
+            "sourceId": "task_2044",
+            "targetId": "task_570",
+            "inputName": "activate",
+            "outputName": "success"
+        }
+    ],
+    "$id": "1",
+    "layout": {
+        "general": {
+            "color": "#80a9f9",
+            "notes": []
+        },
+        "drawers": {
+            "DIAGRAM": {
+                "tasks": {
+                    "task_570": {
+                        "collapsed": false,
+                        "position": {
+                            "x": 2814,
+                            "y": 599
+                        },
+                        "outdated": false
+                    },
+                    "task_447": {
+                        "collapsed": false,
+                        "position": {
+                            "x": 997,
+                            "y": 578
+                        },
+                        "outdated": false
+                    },
+                    "task_448": {
+                        "collapsed": false,
+                        "position": {
+                            "x": 1434,
+                            "y": 571
+                        },
+                        "outdated": false
+                    },
+                    "task_564": {
+                        "collapsed": false,
+                        "position": {
+                            "x": 526,
+                            "y": 558
+                        },
+                        "outdated": false
+                    },
+                    "task_2044": {
+                        "collapsed": false,
+                        "position": {
+                            "x": 2323,
+                            "y": 578
+                        },
+                        "outdated": false
+                    },
+                    "task_677": {
+                        "collapsed": false,
+                        "position": {
+                            "x": 1883,
+                            "y": 578
+                        },
+                        "outdated": false
+                    }
+                },
+                "links": {
+                    "task_447_reply-task_448_data": {
+                        "vertices": []
+                    },
+                    "task_447_success-task_448_activate": {
+                        "vertices": []
+                    },
+                    "c63fd910-4171-480a-9a98-239f3fe7fc21": {
+                        "vertices": []
+                    },
+                    "a1421b4d-23e9-4762-84c7-7638f697e470": {
+                        "vertices": []
+                    },
+                    "d6550fd3-c106-4985-9c74-31b967d8d16e": {
+                        "vertices": []
+                    },
+                    "bf033dc8-caa1-4f91-b925-33dd353a9446": {
+                        "vertices": []
+                    },
+                    "68f3ab7d-7300-4e5d-90c0-a046180403eb": {
+                        "vertices": []
+                    },
+                    "6b27b508-5485-46ca-8fe6-c1d94f5a1d67": {
+                        "vertices": []
+                    },
+                    "585755a3-8d98-46c1-b86c-f1857393fe8e": {
+                        "vertices": []
+                    },
+                    "2b287bdc-3729-43f3-9b9f-818072bd2e4a": {
+                        "vertices": []
+                    },
+                    "f388b520-703c-46a0-9e0e-65e6412abb63": {
+                        "vertices": [
+                            {
+                                "x": 1169,
+                                "y": 473
+                            },
+                            {
+                                "x": 1712,
+                                "y": 499
+                            }
+                        ]
+                    }
+                },
+                "notes": {},
+                "zoom": 0.8200000000000001,
+                "pan": {
+                    "x": 1116,
+                    "y": 355
+                }
+            }
+        }
+    }
+}

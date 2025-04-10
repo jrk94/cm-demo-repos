@@ -1,0 +1,20 @@
+{
+  "WorksheetNameMapping": {
+    "1": {
+      "WorksheetName": "AutomationInstances",
+      "Value": "<DM>AutomationControllerInstance"
+    }
+  },
+  "<DM>AutomationManager": {
+    "1": {
+      "Name": "3D Printer Manager",
+      "IsTemplate": "No",
+      "Type": "General",
+      "LogicalAddress": "3DPrinterManager",
+      "MonitorPackageVersion": "11.1.2",
+      "ManagerPackageVersion": "11.1.2",
+      "DeploymentMode": "Manual",
+      "DeploymentState": "Unknown"
+    }
+  }
+}

@@ -1,0 +1,729 @@
+{
+    "tasks": [
+        {
+            "id": "1743500452400820",
+            "name": "driverEvent_c5ef",
+            "type": {
+                "name": "driverEvent",
+                "package": "@criticalmanufacturing/connect-iot-controller-engine-core-tasks",
+                "version": "11.1.4-dev"
+            },
+            "x": 142,
+            "y": 118,
+            "isCollapsed": false,
+            "isDisabled": false,
+            "settings": {
+                "autoEnable": true,
+                "event": "OnInitialize",
+                "autoSetup": false
+            },
+            "inputs": [],
+            "outputs": [
+                {
+                    "name": "communicationState",
+                    "value": "{{ $this.communicationState }}",
+                    "dataType": "String"
+                }
+            ],
+            "driver": "octopi",
+            "caption": "When connection to driver notifies a {{event}} event",
+            "color": "#fbdc0e",
+            "branches": [
+                {
+                    "name": "handler",
+                    "tasks": [
+                        {
+                            "id": "1743500452401821",
+                            "name": "equipmentConfig_7b8c",
+                            "type": {
+                                "name": "equipmentConfig",
+                                "package": "@criticalmanufacturing/connect-iot-controller-engine-core-tasks",
+                                "version": "11.1.4-dev"
+                            },
+                            "isCollapsed": false,
+                            "isDisabled": false,
+                            "settings": {
+                                "connectingTimeout": 30000,
+                                "setupTimeout": 10000,
+                                "intervalBeforeReconnect": 5000,
+                                "heartbeatInterval": 60000,
+                                "_inputs": [
+                                    {
+                                        "name": "baseUrl",
+                                        "label": "Base URL",
+                                        "defaultValue": "raspberrypi-octopi.local",
+                                        "parameter": {
+                                            "$type": "Cmf.Foundation.BusinessObjects.AutomationProtocolParameter, Cmf.Foundation.BusinessObjects",
+                                            "Name": "baseUrl"
+                                        },
+                                        "dataType": "String",
+                                        "automationDataType": 0,
+                                        "referenceType": 0,
+                                        "description": "Hostname or IP-Address of the REST server.\nThe host can be a fully qualified domain or IP address.\nNote: Base URL must not include query string parameters.\nE.g. api.example.com/v1",
+                                        "settingKey": "name"
+                                    },
+                                    {
+                                        "name": "port",
+                                        "label": "Port",
+                                        "defaultValue": "80",
+                                        "parameter": {
+                                            "$type": "Cmf.Foundation.BusinessObjects.AutomationProtocolParameter, Cmf.Foundation.BusinessObjects",
+                                            "Name": "port"
+                                        },
+                                        "dataType": "Integer",
+                                        "automationDataType": 5,
+                                        "referenceType": 0,
+                                        "description": "Port number of the REST server.",
+                                        "settingKey": "name"
+                                    },
+                                    {
+                                        "name": "protocol",
+                                        "label": "Protocol",
+                                        "defaultValue": "HTTP",
+                                        "parameter": {
+                                            "$type": "Cmf.Foundation.BusinessObjects.AutomationProtocolParameter, Cmf.Foundation.BusinessObjects",
+                                            "Name": "protocol"
+                                        },
+                                        "dataType": "Enum",
+                                        "automationDataType": 0,
+                                        "referenceType": 1,
+                                        "description": "The protocol used for fetching resources.",
+                                        "valueReferenceType": 6,
+                                        "settings": {
+                                            "enumValues": [
+                                                "HTTP",
+                                                "HTTPS"
+                                            ]
+                                        },
+                                        "settingKey": "name"
+                                    },
+                                    {
+                                        "name": "authenticationMode",
+                                        "label": "Authentication Mode",
+                                        "defaultValue": "APIKey",
+                                        "parameter": {
+                                            "$type": "Cmf.Foundation.BusinessObjects.AutomationProtocolParameter, Cmf.Foundation.BusinessObjects",
+                                            "Name": "authenticationMode"
+                                        },
+                                        "dataType": "Enum",
+                                        "automationDataType": 0,
+                                        "referenceType": 1,
+                                        "description": "The authentication mode can be:\nBasic Authentication (username and password)\nBearerToken (authentication token e.g. PAT)\nAPI Key (api authentication token)",
+                                        "valueReferenceType": 6,
+                                        "settings": {
+                                            "enumValues": [
+                                                "None",
+                                                "BasicAuthentication",
+                                                "BearerToken",
+                                                "APIKey"
+                                            ]
+                                        },
+                                        "settingKey": "name"
+                                    },
+                                    {
+                                        "name": "username",
+                                        "label": "Username",
+                                        "defaultValue": "",
+                                        "parameter": {
+                                            "$type": "Cmf.Foundation.BusinessObjects.AutomationProtocolParameter, Cmf.Foundation.BusinessObjects",
+                                            "Name": "username"
+                                        },
+                                        "dataType": "String",
+                                        "automationDataType": 0,
+                                        "referenceType": 0,
+                                        "description": "Username to use for REST server authentication.",
+                                        "settingKey": "name"
+                                    },
+                                    {
+                                        "name": "password",
+                                        "label": "Password",
+                                        "defaultValue": "",
+                                        "parameter": {
+                                            "$type": "Cmf.Foundation.BusinessObjects.AutomationProtocolParameter, Cmf.Foundation.BusinessObjects",
+                                            "Name": "password"
+                                        },
+                                        "dataType": "Password",
+                                        "automationDataType": 10,
+                                        "referenceType": 0,
+                                        "description": "Password to use for REST server authentication.",
+                                        "settingKey": "name"
+                                    },
+                                    {
+                                        "name": "authenticationToken",
+                                        "label": "Authentication Token",
+                                        "defaultValue": "hTEsCL_WUDMPdRXodHezHdaZ-ASG1Ex5V4rikZtKoas",
+                                        "parameter": {
+                                            "$type": "Cmf.Foundation.BusinessObjects.AutomationProtocolParameter, Cmf.Foundation.BusinessObjects",
+                                            "Name": "authenticationToken"
+                                        },
+                                        "dataType": "String",
+                                        "automationDataType": 11,
+                                        "referenceType": 0,
+                                        "description": "API-Key or Bearer Token. The bearer token used for REST server authentication. Bearer tokens are sent in the 'Authorization' header of HTTP requests and are prefixed with the word 'Bearer,' e.g., Authorization: Bearer <token>. PATs are supported and are commonly used to authenticate API requests made by scripts, command-line tools, or applications on behalf of a user. An API Key, also known as an Application Programming Interface Key, is a type of security credential used to authenticate and authorize access to web-based services, APIs, or resources.",
+                                        "settingKey": "name"
+                                    },
+                                    {
+                                        "name": "apiKeyTransmitter",
+                                        "label": "API Key Transmitter",
+                                        "defaultValue": "Header",
+                                        "parameter": {
+                                            "$type": "Cmf.Foundation.BusinessObjects.AutomationProtocolParameter, Cmf.Foundation.BusinessObjects",
+                                            "Name": "apiKeyTransmitter"
+                                        },
+                                        "dataType": "Enum",
+                                        "automationDataType": 0,
+                                        "referenceType": 1,
+                                        "description": "Responsible for handling and transmitting the API key in various modes (header, cookie, or parameter).",
+                                        "valueReferenceType": 6,
+                                        "settings": {
+                                            "enumValues": [
+                                                "Header",
+                                                "Cookie",
+                                                "QueryParameter"
+                                            ]
+                                        },
+                                        "settingKey": "name"
+                                    },
+                                    {
+                                        "name": "apiKeyName",
+                                        "label": "API Key Name",
+                                        "defaultValue": "X-Api-Key",
+                                        "parameter": {
+                                            "$type": "Cmf.Foundation.BusinessObjects.AutomationProtocolParameter, Cmf.Foundation.BusinessObjects",
+                                            "Name": "apiKeyName"
+                                        },
+                                        "dataType": "String",
+                                        "automationDataType": 0,
+                                        "referenceType": 0,
+                                        "description": "Defines an API key name to be sent either as request header, cookie or query parameter. e.g. 'X-API-KEY'",
+                                        "settingKey": "name"
+                                    },
+                                    {
+                                        "name": "clientCertificate",
+                                        "label": "Client Certificate",
+                                        "defaultValue": "",
+                                        "parameter": {
+                                            "$type": "Cmf.Foundation.BusinessObjects.AutomationProtocolParameter, Cmf.Foundation.BusinessObjects",
+                                            "Name": "clientCertificate"
+                                        },
+                                        "dataType": "String",
+                                        "automationDataType": 11,
+                                        "referenceType": 0,
+                                        "description": "Own client certificate - can be either a path to a file or the contents of the file in plain text. Format should be 'pem'.",
+                                        "settingKey": "name"
+                                    },
+                                    {
+                                        "name": "clientPrivateKey",
+                                        "label": "Client Private Key",
+                                        "defaultValue": "",
+                                        "parameter": {
+                                            "$type": "Cmf.Foundation.BusinessObjects.AutomationProtocolParameter, Cmf.Foundation.BusinessObjects",
+                                            "Name": "clientPrivateKey"
+                                        },
+                                        "dataType": "String",
+                                        "automationDataType": 11,
+                                        "referenceType": 0,
+                                        "description": "Own client private key - can be either a path to a file or the contents of the file in plain text. Format should be 'pem'.",
+                                        "settingKey": "name"
+                                    },
+                                    {
+                                        "name": "certificateAuthority",
+                                        "label": "Certificate Authority",
+                                        "defaultValue": "",
+                                        "parameter": {
+                                            "$type": "Cmf.Foundation.BusinessObjects.AutomationProtocolParameter, Cmf.Foundation.BusinessObjects",
+                                            "Name": "certificateAuthority"
+                                        },
+                                        "dataType": "String",
+                                        "automationDataType": 11,
+                                        "referenceType": 0,
+                                        "description": "Certificate Authority - can be either a path to a file or the contents of the file in plain text. Format should be 'pem'. The certificateAuthority property is used to define a set of trusted Certificate Authority (CA) certificates that an application or system uses to verify the authenticity of SSL/TLS certificates presented by servers during secure communication. It serves as a trust anchor, allowing the application to establish the legitimacy of certificates in the trust chain presented by the server.",
+                                        "settingKey": "name"
+                                    },
+                                    {
+                                        "name": "defaultContentType",
+                                        "label": "Default Content Type",
+                                        "defaultValue": "application/json",
+                                        "parameter": {
+                                            "$type": "Cmf.Foundation.BusinessObjects.AutomationProtocolParameter, Cmf.Foundation.BusinessObjects",
+                                            "Name": "defaultContentType"
+                                        },
+                                        "dataType": "String",
+                                        "automationDataType": 0,
+                                        "referenceType": 0,
+                                        "description": "Default content type the media types consumed by the operation (such as application/json).\nRequest bodies are optional by default.\nJSON is 'application/json'\nXML is 'application/xml'\nText is 'text/plain'\nFormData is 'application/x-www-form-urlencoded'\nBinary is 'multipart/form-data'.",
+                                        "settingKey": "name"
+                                    }
+                                ]
+                            },
+                            "inputs": [
+                                {
+                                    "name": "baseUrl",
+                                    "value": "raspberrypi-octopi.local",
+                                    "dataType": "String"
+                                },
+                                {
+                                    "name": "port",
+                                    "value": "80",
+                                    "dataType": "Integer"
+                                },
+                                {
+                                    "name": "protocol",
+                                    "value": "HTTP",
+                                    "dataType": "Enum"
+                                },
+                                {
+                                    "name": "authenticationMode",
+                                    "value": "APIKey",
+                                    "dataType": "Enum"
+                                },
+                                {
+                                    "name": "username",
+                                    "value": "",
+                                    "dataType": "String"
+                                },
+                                {
+                                    "name": "password",
+                                    "value": "",
+                                    "dataType": "Password"
+                                },
+                                {
+                                    "name": "authenticationToken",
+                                    "value": "hTEsCL_WUDMPdRXodHezHdaZ-ASG1Ex5V4rikZtKoas",
+                                    "dataType": "String"
+                                },
+                                {
+                                    "name": "apiKeyTransmitter",
+                                    "value": "Header",
+                                    "dataType": "Enum"
+                                },
+                                {
+                                    "name": "apiKeyName",
+                                    "value": "X-Api-Key",
+                                    "dataType": "String"
+                                },
+                                {
+                                    "name": "clientCertificate",
+                                    "value": "",
+                                    "dataType": "String"
+                                },
+                                {
+                                    "name": "clientPrivateKey",
+                                    "value": "",
+                                    "dataType": "String"
+                                },
+                                {
+                                    "name": "certificateAuthority",
+                                    "value": "",
+                                    "dataType": "String"
+                                },
+                                {
+                                    "name": "defaultContentType",
+                                    "value": "application/json",
+                                    "dataType": "String"
+                                }
+                            ],
+                            "outputs": [],
+                            "driver": "octopi",
+                            "caption": "Configure connection with equipment",
+                            "color": "#fbdc0e",
+                            "branches": []
+                        },
+                        {
+                            "id": "17435018793442704",
+                            "name": "driverCommand_c6e3",
+                            "type": {
+                                "name": "driverCommand",
+                                "package": "@criticalmanufacturing/connect-iot-controller-engine-core-tasks",
+                                "version": "11.1.4-dev"
+                            },
+                            "isCollapsed": false,
+                            "isDisabled": false,
+                            "settings": {
+                                "command": "Connect"
+                            },
+                            "inputs": [],
+                            "outputs": [],
+                            "driver": "octopi",
+                            "caption": "Send {{command}} message to driver connection",
+                            "color": "#fbdc0e",
+                            "branches": []
+                        }
+                    ],
+                    "settings": {}
+                }
+            ]
+        },
+        {
+            "id": "17435031399333916",
+            "name": "driverEvent_8c81",
+            "type": {
+                "name": "driverEvent",
+                "package": "@criticalmanufacturing/connect-iot-controller-engine-core-tasks",
+                "version": "11.1.4-dev"
+            },
+            "x": 150,
+            "y": 370,
+            "isCollapsed": false,
+            "isDisabled": false,
+            "settings": {
+                "autoEnable": true,
+                "event": "OnSetup",
+                "autoSetup": true
+            },
+            "inputs": [],
+            "outputs": [
+                {
+                    "name": "communicationState",
+                    "value": "{{ $this.communicationState }}",
+                    "dataType": "String"
+                }
+            ],
+            "driver": "octopi",
+            "caption": "When connection to driver notifies a {{event}} event",
+            "color": "#75ce2c",
+            "branches": [
+                {
+                    "name": "handler",
+                    "tasks": [
+                        {
+                            "id": "17435018642162620",
+                            "name": "callFunction_e4b8",
+                            "type": {
+                                "name": "callFunction",
+                                "package": "@criticalmanufacturing/connect-iot-controller-engine-core-tasks",
+                                "version": "11.1.4-dev"
+                            },
+                            "isCollapsed": false,
+                            "isDisabled": false,
+                            "settings": {
+                                "functionName": "Setup"
+                            },
+                            "inputs": [],
+                            "outputs": [],
+                            "caption": "Call Function {{functionName}}",
+                            "color": "#158a28",
+                            "branches": []
+                        },
+                        {
+                            "id": "17435031530583975",
+                            "name": "driverCommand_1a72",
+                            "type": {
+                                "name": "driverCommand",
+                                "package": "@criticalmanufacturing/connect-iot-controller-engine-core-tasks",
+                                "version": "11.1.4-dev"
+                            },
+                            "isCollapsed": false,
+                            "isDisabled": false,
+                            "settings": {
+                                "command": "SetupSuccess"
+                            },
+                            "inputs": [],
+                            "outputs": [],
+                            "driver": "octopi",
+                            "caption": "Send {{command}} message to driver connection",
+                            "color": "#75ce2c",
+                            "branches": []
+                        }
+                    ],
+                    "settings": {}
+                }
+            ]
+        },
+        {
+            "id": "17435006584231079",
+            "name": "function_0377",
+            "type": {
+                "name": "function",
+                "package": "@criticalmanufacturing/connect-iot-controller-engine-core-tasks",
+                "version": "11.1.4-dev"
+            },
+            "x": 770,
+            "y": 110,
+            "isCollapsed": false,
+            "isDisabled": false,
+            "settings": {
+                "name": "Setup"
+            },
+            "inputs": [],
+            "outputs": [],
+            "caption": "Define Function named as {{name}}",
+            "color": "#158a28",
+            "branches": [
+                {
+                    "name": "handler",
+                    "tasks": [
+                        {
+                            "id": "1743500477257924",
+                            "name": "connectionStatus",
+                            "type": {
+                                "name": "equipmentCommand",
+                                "package": "@criticalmanufacturing/connect-iot-controller-engine-core-tasks",
+                                "version": "11.1.4-dev"
+                            },
+                            "isCollapsed": false,
+                            "isDisabled": false,
+                            "settings": {
+                                "_customCommands": false,
+                                "_clearInputs": false,
+                                "_command": {
+                                    "$type": "Cmf.Foundation.BusinessObjects.AutomationCommand, Cmf.Foundation.BusinessObjects",
+                                    "Name": "ConnectionStatus",
+                                    "Parameters": [],
+                                    "DeviceCommandId": "/api/connection",
+                                    "ExtendedData": "{\"$id\":\"1\",\"requestMethod\":\"GET\",\"timeout\":\"30000\",\"successfulStatusCodes\":\"200\"}"
+                                },
+                                "_messageFullName": "ConnectionStatus",
+                                "_timeout": 10000,
+                                "_inputs": []
+                            },
+                            "inputs": [],
+                            "outputs": [
+                                {
+                                    "value": "{{ $this.reply.current.state }}",
+                                    "dataType": "String",
+                                    "name": "state"
+                                },
+                                {
+                                    "name": "reply",
+                                    "value": "{{ $this.reply }}",
+                                    "dataType": "Any"
+                                }
+                            ],
+                            "driver": "octopi",
+                            "caption": "Execute the command {{_messageFullName}} in the equipment",
+                            "color": "#158a28",
+                            "branches": []
+                        },
+                        {
+                            "id": "17435025869643214",
+                            "name": "logMessage_5012",
+                            "type": {
+                                "name": "logMessage",
+                                "package": "@criticalmanufacturing/connect-iot-controller-engine-core-tasks",
+                                "version": "11.1.4-dev"
+                            },
+                            "isCollapsed": false,
+                            "isDisabled": false,
+                            "settings": {
+                                "mode": "RawText",
+                                "verbosity": "Debug",
+                                "clearInputs": true,
+                                "message": "Current Status {{ $connectionStatus.state}}"
+                            },
+                            "inputs": [],
+                            "outputs": [],
+                            "caption": "Log {{message}} as {{verbosity}}",
+                            "color": "#158a28",
+                            "branches": []
+                        },
+                        {
+                            "id": "1743500543599959",
+                            "name": "condition_26df",
+                            "type": {
+                                "name": "condition",
+                                "package": "@criticalmanufacturing/connect-iot-controller-engine-core-tasks",
+                                "version": "11.1.4-dev"
+                            },
+                            "isCollapsed": false,
+                            "isDisabled": false,
+                            "settings": {},
+                            "inputs": [],
+                            "outputs": [],
+                            "caption": "Check {{handler.type}} {{handler.condition}}",
+                            "color": "#57e2f4",
+                            "branches": [
+                                {
+                                    "name": "handler",
+                                    "tasks": [
+                                        {
+                                            "id": "17435006276781042",
+                                            "name": "equipmentCommand_c0a8",
+                                            "type": {
+                                                "name": "equipmentCommand",
+                                                "package": "@criticalmanufacturing/connect-iot-controller-engine-core-tasks",
+                                                "version": "11.1.4-dev"
+                                            },
+                                            "isCollapsed": false,
+                                            "isDisabled": false,
+                                            "settings": {
+                                                "_customCommands": false,
+                                                "_clearInputs": false,
+                                                "_command": {
+                                                    "$type": "Cmf.Foundation.BusinessObjects.AutomationCommand, Cmf.Foundation.BusinessObjects",
+                                                    "Name": "ConnectToPrinter",
+                                                    "Parameters": [
+                                                        {
+                                                            "$type": "Cmf.Foundation.BusinessObjects.AutomationCommandParameter, Cmf.Foundation.BusinessObjects",
+                                                            "Name": "Body",
+                                                            "DefaultValue": "{   \"command\": \"connect\",   \"port\": \"AUTO\",   \"baudrate\": 0,   \"printerProfile\": \"_default\",   \"save\": false,   \"autoconnect\": true }",
+                                                            "IsMandatory": true,
+                                                            "DataType": 9,
+                                                            "AutomationProtocolDataType": {
+                                                                "$type": "Cmf.Foundation.BusinessObjects.AutomationProtocolDataType, Cmf.Foundation.BusinessObjects",
+                                                                "Name": "Object"
+                                                            },
+                                                            "ExtendedData": "{\"$id\":\"1\",\"operationParameters\":\"RequestBody\"}"
+                                                        }
+                                                    ],
+                                                    "DeviceCommandId": "/api/connection",
+                                                    "ExtendedData": "{\"$id\":\"1\",\"requestMethod\":\"POST\",\"timeout\":\"30000\",\"successfulStatusCodes\":\"200\"}"
+                                                },
+                                                "_messageFullName": "ConnectToPrinter",
+                                                "_timeout": 10000,
+                                                "_inputs": [
+                                                    {
+                                                        "name": "Body",
+                                                        "friendlyName": "Body",
+                                                        "propertyId": "Body",
+                                                        "deviceType": {
+                                                            "$type": "Cmf.Foundation.BusinessObjects.AutomationProtocolDataType, Cmf.Foundation.BusinessObjects",
+                                                            "Name": "Object"
+                                                        },
+                                                        "valueType": {
+                                                            "collectionType": null,
+                                                            "friendlyName": "Body",
+                                                            "type": "Object",
+                                                            "name": "Object"
+                                                        },
+                                                        "defaultValue": "{   \"command\": \"connect\",   \"port\": \"AUTO\",   \"baudrate\": 0,   \"printerProfile\": \"_default\",   \"save\": false,   \"autoconnect\": true }"
+                                                    }
+                                                ]
+                                            },
+                                            "inputs": [
+                                                {
+                                                    "name": "Body",
+                                                    "value": "{   \"command\": \"connect\",   \"port\": \"AUTO\",   \"baudrate\": 0,   \"printerProfile\": \"_default\",   \"save\": false,   \"autoconnect\": true }",
+                                                    "dataType": "Object"
+                                                }
+                                            ],
+                                            "outputs": [
+                                                {
+                                                    "name": "reply",
+                                                    "value": "{{ $this.reply }}",
+                                                    "dataType": "Any"
+                                                }
+                                            ],
+                                            "driver": "octopi",
+                                            "caption": "Execute the command {{_messageFullName}} in the equipment",
+                                            "color": "#7ef5f7",
+                                            "branches": []
+                                        }
+                                    ],
+                                    "settings": {
+                                        "type": "If",
+                                        "condition": "{{ $connectionStatus.state == \"Closed\" }}"
+                                    }
+                                },
+                                {
+                                    "name": "else",
+                                    "tasks": [
+                                        {
+                                            "id": "17435008494581336",
+                                            "name": "condition_af8e",
+                                            "type": {
+                                                "name": "condition",
+                                                "package": "@criticalmanufacturing/connect-iot-controller-engine-core-tasks",
+                                                "version": "11.1.4-dev"
+                                            },
+                                            "isCollapsed": false,
+                                            "isDisabled": false,
+                                            "settings": {},
+                                            "inputs": [],
+                                            "outputs": [],
+                                            "caption": "Check {{handler.type}} {{handler.condition}}",
+                                            "color": "#0084ff",
+                                            "branches": [
+                                                {
+                                                    "name": "handler",
+                                                    "tasks": [
+                                                        {
+                                                            "id": "17435008903841390",
+                                                            "name": "logMessage_f6aa",
+                                                            "type": {
+                                                                "name": "logMessage",
+                                                                "package": "@criticalmanufacturing/connect-iot-controller-engine-core-tasks",
+                                                                "version": "11.1.4-dev"
+                                                            },
+                                                            "isCollapsed": false,
+                                                            "isDisabled": false,
+                                                            "settings": {
+                                                                "mode": "RawText",
+                                                                "verbosity": "Information",
+                                                                "clearInputs": true,
+                                                                "message": "Printer is already Connected"
+                                                            },
+                                                            "inputs": [],
+                                                            "outputs": [],
+                                                            "caption": "Log {{message}} as {{verbosity}}",
+                                                            "color": "#0084ff",
+                                                            "branches": []
+                                                        }
+                                                    ],
+                                                    "settings": {
+                                                        "type": "If",
+                                                        "condition": "{{ $connectionStatus.state == \"Operational\" or $connectionStatus.state == \"Printing\" }}"
+                                                    }
+                                                },
+                                                {
+                                                    "name": "else",
+                                                    "tasks": [
+                                                        {
+                                                            "id": "17435009087661444",
+                                                            "name": "throw_1e1a",
+                                                            "type": {
+                                                                "name": "throw",
+                                                                "package": "@criticalmanufacturing/connect-iot-controller-engine-core-tasks",
+                                                                "version": "11.1.4-dev"
+                                                            },
+                                                            "isCollapsed": false,
+                                                            "isDisabled": false,
+                                                            "settings": {
+                                                                "errorText": "Printer is in an invalid state {{ $connectionStatus.state }}"
+                                                            },
+                                                            "inputs": [
+                                                                {
+                                                                    "name": "errorObject",
+                                                                    "value": "{}",
+                                                                    "dataType": "Object"
+                                                                }
+                                                            ],
+                                                            "outputs": [],
+                                                            "caption": "Throw error {{errorText}}",
+                                                            "color": "#e04d4d",
+                                                            "branches": []
+                                                        }
+                                                    ],
+                                                    "settings": {
+                                                        "type": "Else"
+                                                    }
+                                                }
+                                            ]
+                                        }
+                                    ],
+                                    "settings": {
+                                        "type": "Else"
+                                    }
+                                }
+                            ]
+                        }
+                    ],
+                    "settings": {}
+                }
+            ]
+        }
+    ],
+    "$id": "1",
+    "layout": {
+        "general": {
+            "color": "#fbf556"
+        },
+        "drawer": {
+            "tasks": {},
+            "x": 0,
+            "y": 2.842170943040401e-14,
+            "zoom": 1,
+            "fill": true
+        }
+    }
+}

@@ -1,0 +1,45 @@
+{
+    "<SM>DEEAction": {
+        "1": {
+            "Action": "StartPrintingJob",
+            "Description": "DEE to Control Start of the printing process",
+            "CodeFileRelativePath": "3DPrinter//StartPrintingJob.cs",
+            "IsEnabled": "Yes",
+            "Classification": ""
+        },
+        "2": {
+            "Action": "LoadMaterial",
+            "Description": "DEE to change resource state",
+            "CodeFileRelativePath": "3DPrinter//LoadMaterial.cs",
+            "IsEnabled": "Yes",
+            "Classification": ""
+        }
+    },
+    "DEEActionOrder": {
+        "1": {
+            "ActionGroup": "MaterialManagement.MaterialManagementOrchestration.TrackInMaterials.Pre",
+            "Action": "StartPrintingJob",
+            "Order": "100"
+        },
+        "2": {
+            "ActionGroup": "MaterialManagement.MaterialManagementOrchestration.TrackInMaterials.Post",
+            "Action": "StartPrintingJob",
+            "Order": "101"
+        },
+        "3": {
+            "ActionGroup": "MaterialManagement.MaterialManagement.TrackOutMaterial.Pre",
+            "Action": "LoadMaterial",
+            "Order": "102"
+        },
+        "4": {
+            "ActionGroup": "MaterialManagement.MaterialManagement.CombineMaterial.Pre",
+            "Action": "LoadMaterial",
+            "Order": "103"
+        },
+        "5": {
+            "ActionGroup": "MaterialManagement.MaterialManagement.AssembleMaterial.Pre",
+            "Action": "LoadMaterial",
+            "Order": "104"
+        }
+    }
+}

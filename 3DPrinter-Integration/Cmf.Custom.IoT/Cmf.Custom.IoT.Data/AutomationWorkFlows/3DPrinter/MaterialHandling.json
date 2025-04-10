@@ -1,0 +1,1458 @@
+{
+    "tasks": [
+        {
+            "id": "17440312020237154",
+            "name": "systemActionListener_c06d",
+            "type": {
+                "name": "systemActionListener",
+                "package": "@criticalmanufacturing/connect-iot-controller-engine-core-tasks",
+                "version": "11.1.4-dev"
+            },
+            "x": 710,
+            "y": 190,
+            "isCollapsed": false,
+            "isDisabled": false,
+            "settings": {
+                "autoEnable": true,
+                "actionGroup": "BOMData",
+                "replyTimeout": 60000
+            },
+            "inputs": [],
+            "outputs": [
+                {
+                    "name": "data",
+                    "value": "{{ $this.data }}",
+                    "dataType": "Any"
+                },
+                {
+                    "name": "timestamp",
+                    "value": "{{ $this.timestamp }}",
+                    "dataType": "DateTime"
+                },
+                {
+                    "name": "$global.BOMProduct",
+                    "dataType": "String",
+                    "value": "{{ $this.data.BOMProduct }}"
+                },
+                {
+                    "name": "$global.BOMName",
+                    "dataType": "String",
+                    "value": "{{ $this.data.BOMName}}"
+                },
+                {
+                    "name": "$global.feederMaterial",
+                    "dataType": "String",
+                    "value": "{{ $this.data.feederMaterial }}"
+                },
+                {
+                    "name": "$global.feederMaterialProduct",
+                    "dataType": "String",
+                    "value": "{{ $this.data.feederMaterialProduct }}"
+                }
+            ],
+            "caption": "When a message of type {{actionGroup}} from System arrives Store Globally",
+            "color": "#399d4a",
+            "branches": [
+                {
+                    "name": "handler",
+                    "tasks": [],
+                    "settings": {}
+                }
+            ]
+        },
+        {
+            "id": "17435151741849614",
+            "name": "onTrackIn",
+            "type": {
+                "name": "systemActionListener",
+                "package": "@criticalmanufacturing/connect-iot-controller-engine-core-tasks",
+                "version": "11.1.4-dev"
+            },
+            "x": 170,
+            "y": 190,
+            "isCollapsed": false,
+            "isDisabled": false,
+            "settings": {
+                "autoEnable": true,
+                "actionGroup": "OnTrackIn",
+                "replyTimeout": 60000
+            },
+            "inputs": [],
+            "outputs": [
+                {
+                    "name": "data",
+                    "value": "{{ $this.data }}",
+                    "dataType": "Any"
+                },
+                {
+                    "name": "timestamp",
+                    "value": "{{ $this.timestamp }}",
+                    "dataType": "DateTime"
+                },
+                {
+                    "name": "$global.material",
+                    "dataType": "String",
+                    "value": "{{ $this.data.material }}"
+                },
+                {
+                    "name": "$global.recipe",
+                    "dataType": "String",
+                    "value": "{{ $this.data.recipe }}"
+                },
+                {
+                    "name": "$global.feederMaterial",
+                    "dataType": "String",
+                    "value": "{{ $this.data.feederMaterial }}"
+                }
+            ],
+            "caption": "When a message of type {{actionGroup}} from System arrives",
+            "color": "#399d4a",
+            "branches": [
+                {
+                    "name": "handler",
+                    "tasks": [
+                        {
+                            "id": "17435153736919790",
+                            "name": "equipmentCommand_1169",
+                            "type": {
+                                "name": "equipmentCommand",
+                                "package": "@criticalmanufacturing/connect-iot-controller-engine-core-tasks",
+                                "version": "11.1.4-dev"
+                            },
+                            "isCollapsed": false,
+                            "isDisabled": false,
+                            "settings": {
+                                "_customCommands": false,
+                                "_clearInputs": false,
+                                "_command": {
+                                    "$type": "Cmf.Foundation.BusinessObjects.AutomationCommand, Cmf.Foundation.BusinessObjects",
+                                    "Name": "SelectRecipe",
+                                    "Parameters": [
+                                        {
+                                            "$type": "Cmf.Foundation.BusinessObjects.AutomationCommandParameter, Cmf.Foundation.BusinessObjects",
+                                            "Name": "id",
+                                            "IsMandatory": true,
+                                            "DataType": 0,
+                                            "AutomationProtocolDataType": {
+                                                "$type": "Cmf.Foundation.BusinessObjects.AutomationProtocolDataType, Cmf.Foundation.BusinessObjects",
+                                                "Name": "String"
+                                            },
+                                            "ExtendedData": "{\"$id\":\"1\",\"operationParameters\":\"PathParameter\"}",
+                                            "DefaultValue": "{{ $global.recipe }}"
+                                        },
+                                        {
+                                            "$type": "Cmf.Foundation.BusinessObjects.AutomationCommandParameter, Cmf.Foundation.BusinessObjects",
+                                            "Name": "Body",
+                                            "DefaultValue": "{\"command\": \"select\", \"print\": false}",
+                                            "IsMandatory": true,
+                                            "DataType": 9,
+                                            "AutomationProtocolDataType": {
+                                                "$type": "Cmf.Foundation.BusinessObjects.AutomationProtocolDataType, Cmf.Foundation.BusinessObjects",
+                                                "Name": "Object"
+                                            },
+                                            "ExtendedData": "{\"$id\":\"1\",\"operationParameters\":\"PathParameter\"}"
+                                        }
+                                    ],
+                                    "DeviceCommandId": "/api/files/local/:id",
+                                    "ExtendedData": "{\"$id\":\"1\",\"requestMethod\":\"POST\",\"timeout\":\"30000\",\"successfulStatusCodes\":\"200,204\"}"
+                                },
+                                "_messageFullName": "SelectRecipe",
+                                "_timeout": 10000,
+                                "_inputs": [
+                                    {
+                                        "name": "id",
+                                        "friendlyName": "id",
+                                        "propertyId": "Id",
+                                        "deviceType": {
+                                            "$type": "Cmf.Foundation.BusinessObjects.AutomationProtocolDataType, Cmf.Foundation.BusinessObjects",
+                                            "Name": "String"
+                                        },
+                                        "valueType": "String",
+                                        "defaultValue": "{{ $global.recipe }}"
+                                    },
+                                    {
+                                        "name": "Body",
+                                        "friendlyName": "Body",
+                                        "propertyId": "Body",
+                                        "deviceType": {
+                                            "$type": "Cmf.Foundation.BusinessObjects.AutomationProtocolDataType, Cmf.Foundation.BusinessObjects",
+                                            "Name": "Object"
+                                        },
+                                        "valueType": {
+                                            "collectionType": null,
+                                            "friendlyName": "Body",
+                                            "type": "Object",
+                                            "name": "Object"
+                                        },
+                                        "defaultValue": "{\"command\": \"select\", \"print\": false}"
+                                    }
+                                ]
+                            },
+                            "inputs": [
+                                {
+                                    "name": "id",
+                                    "value": "{{ $global.recipe }}",
+                                    "dataType": "String"
+                                },
+                                {
+                                    "name": "Body",
+                                    "value": "{\"command\": \"select\", \"print\": false}",
+                                    "dataType": "Object"
+                                }
+                            ],
+                            "outputs": [
+                                {
+                                    "name": "reply",
+                                    "value": "{{ $this.reply }}",
+                                    "dataType": "Any"
+                                }
+                            ],
+                            "driver": "octopi",
+                            "caption": "Execute the command {{_messageFullName}} in the equipment",
+                            "color": "#0085eb",
+                            "branches": []
+                        },
+                        {
+                            "id": "17435152066319694",
+                            "name": "equipmentCommand_7df5",
+                            "type": {
+                                "name": "equipmentCommand",
+                                "package": "@criticalmanufacturing/connect-iot-controller-engine-core-tasks",
+                                "version": "11.1.4-dev"
+                            },
+                            "isCollapsed": false,
+                            "isDisabled": false,
+                            "settings": {
+                                "_customCommands": false,
+                                "_clearInputs": false,
+                                "_command": {
+                                    "$type": "Cmf.Foundation.BusinessObjects.AutomationCommand, Cmf.Foundation.BusinessObjects",
+                                    "Name": "StartJob",
+                                    "Parameters": [
+                                        {
+                                            "$type": "Cmf.Foundation.BusinessObjects.AutomationCommandParameter, Cmf.Foundation.BusinessObjects",
+                                            "Name": "Body",
+                                            "DefaultValue": "{   \"command\": \"start\" }",
+                                            "IsMandatory": true,
+                                            "DataType": 9,
+                                            "AutomationProtocolDataType": {
+                                                "$type": "Cmf.Foundation.BusinessObjects.AutomationProtocolDataType, Cmf.Foundation.BusinessObjects",
+                                                "Name": "Object"
+                                            },
+                                            "ExtendedData": "{\"$id\":\"1\",\"operationParameters\":\"RequestBody\"}"
+                                        }
+                                    ],
+                                    "DeviceCommandId": "/api/job",
+                                    "ExtendedData": "{\"$id\":\"1\",\"requestMethod\":\"GET\",\"timeout\":\"30000\",\"successfulStatusCodes\":\"200\"}"
+                                },
+                                "_messageFullName": "StartJob",
+                                "_timeout": 10000,
+                                "_inputs": [
+                                    {
+                                        "name": "Body",
+                                        "friendlyName": "Body",
+                                        "propertyId": "Body",
+                                        "deviceType": {
+                                            "$type": "Cmf.Foundation.BusinessObjects.AutomationProtocolDataType, Cmf.Foundation.BusinessObjects",
+                                            "Name": "Object"
+                                        },
+                                        "valueType": {
+                                            "collectionType": null,
+                                            "friendlyName": "Body",
+                                            "type": "Object",
+                                            "name": "Object"
+                                        },
+                                        "defaultValue": "{   \"command\": \"start\" }"
+                                    }
+                                ]
+                            },
+                            "inputs": [
+                                {
+                                    "name": "Body",
+                                    "value": "{   \"command\": \"start\" }",
+                                    "dataType": "Object"
+                                }
+                            ],
+                            "outputs": [
+                                {
+                                    "name": "$global.JobStarted",
+                                    "dataType": "Boolean",
+                                    "value": "true"
+                                },
+                                {
+                                    "name": "reply",
+                                    "value": "{{ $this.reply }}",
+                                    "dataType": "Any"
+                                }
+                            ],
+                            "driver": "octopi",
+                            "caption": "Execute the command {{_messageFullName}} in the equipment",
+                            "color": "#0085eb",
+                            "branches": []
+                        }
+                    ],
+                    "settings": {}
+                }
+            ]
+        },
+        {
+            "id": "174352280505410464",
+            "name": "onTimer_4c4a",
+            "type": {
+                "name": "onTimer",
+                "package": "@criticalmanufacturing/connect-iot-controller-engine-core-tasks",
+                "version": "11.1.4-dev"
+            },
+            "x": 223,
+            "y": 417,
+            "isCollapsed": false,
+            "isDisabled": false,
+            "settings": {
+                "autoEnable": false,
+                "interval": 30000,
+                "numberOfOccurrences": 0
+            },
+            "inputs": [
+                {
+                    "name": "activate",
+                    "dataType": "Object",
+                    "value": "{{ on( \"$global.JobStarted\") }}"
+                }
+            ],
+            "outputs": [
+                {
+                    "name": "timestamp",
+                    "value": "{{ $this.timestamp }}",
+                    "dataType": "DateTime"
+                }
+            ],
+            "caption": "Every {{interval}} milliseconds",
+            "color": "#2bbf35",
+            "branches": [
+                {
+                    "name": "handler",
+                    "tasks": [
+                        {
+                            "id": "174352302299510752",
+                            "name": "jobStatus",
+                            "type": {
+                                "name": "equipmentCommand",
+                                "package": "@criticalmanufacturing/connect-iot-controller-engine-core-tasks",
+                                "version": "11.1.4-dev"
+                            },
+                            "isCollapsed": false,
+                            "isDisabled": false,
+                            "settings": {
+                                "_customCommands": false,
+                                "_clearInputs": false,
+                                "_command": {
+                                    "$type": "Cmf.Foundation.BusinessObjects.AutomationCommand, Cmf.Foundation.BusinessObjects",
+                                    "Name": "JobStatus",
+                                    "Parameters": [],
+                                    "DeviceCommandId": "/api/job",
+                                    "ExtendedData": "{\"$id\":\"1\",\"requestMethod\":\"GET\",\"timeout\":\"30000\",\"successfulStatusCodes\":\"200\"}"
+                                },
+                                "_timeout": 10000,
+                                "_inputs": [],
+                                "_messageFullName": "JobStatus"
+                            },
+                            "inputs": [],
+                            "outputs": [
+                                {
+                                    "name": "jobFinished",
+                                    "dataType": "Boolean",
+                                    "value": "{{ $this.reply.progress.completion == 100 }}"
+                                },
+                                {
+                                    "name": "completion",
+                                    "dataType": "String",
+                                    "value": "{{ $this.reply.progress.completion }}"
+                                },
+                                {
+                                    "name": "state",
+                                    "dataType": "String",
+                                    "value": "{{ $this.reply.state }}"
+                                },
+                                {
+                                    "name": "filamentSpent",
+                                    "dataType": "Decimal",
+                                    "value": "{{ $this.reply.job.filament.tool0.length }}"
+                                },
+                                {
+                                    "name": "reply",
+                                    "value": "{{ $this.reply }}",
+                                    "dataType": "Any"
+                                }
+                            ],
+                            "driver": "octopi",
+                            "caption": "Execute the command {{_messageFullName}} in the equipment",
+                            "color": "#0085eb",
+                            "branches": []
+                        },
+                        {
+                            "id": "174352307120110880",
+                            "name": "condition_499b",
+                            "type": {
+                                "name": "condition",
+                                "package": "@criticalmanufacturing/connect-iot-controller-engine-core-tasks",
+                                "version": "11.1.4-dev"
+                            },
+                            "isCollapsed": false,
+                            "isDisabled": false,
+                            "settings": {},
+                            "inputs": [],
+                            "outputs": [],
+                            "caption": "Check {{handler.type}} {{handler.condition}}",
+                            "branches": [
+                                {
+                                    "name": "handler",
+                                    "tasks": [
+                                        {
+                                            "id": "174352329344911092",
+                                            "name": "condition_4b4c",
+                                            "type": {
+                                                "name": "condition",
+                                                "package": "@criticalmanufacturing/connect-iot-controller-engine-core-tasks",
+                                                "version": "11.1.4-dev"
+                                            },
+                                            "isCollapsed": false,
+                                            "isDisabled": false,
+                                            "settings": {},
+                                            "inputs": [],
+                                            "outputs": [],
+                                            "caption": "Check {{handler.type}} {{handler.condition}}",
+                                            "branches": [
+                                                {
+                                                    "name": "handler",
+                                                    "tasks": [
+                                                        {
+                                                            "id": "17436075795022238",
+                                                            "name": "executeServiceCall_9662",
+                                                            "type": {
+                                                                "name": "executeServiceCall",
+                                                                "package": "@criticalmanufacturing/connect-iot-controller-engine-core-tasks",
+                                                                "version": "11.1.4-dev"
+                                                            },
+                                                            "isCollapsed": false,
+                                                            "isDisabled": false,
+                                                            "settings": {
+                                                                "retries": 30,
+                                                                "sleepBetweenRetries": 1000,
+                                                                "_serviceContractName": "Material",
+                                                                "_serviceCallName": "AssembleMaterial",
+                                                                "_serviceCall": {
+                                                                    "Description": "AssembleMaterial",
+                                                                    "Input": {
+                                                                        "Name": "AssembleMaterialInput",
+                                                                        "FullNamespace": "Cmf.Navigo.BusinessOrchestration.MaterialManagement.InputObjects.AssembleMaterialInput",
+                                                                        "Properties": [
+                                                                            {
+                                                                                "Name": "Material",
+                                                                                "ReferenceType": "EntityType",
+                                                                                "ReferenceTypeName": "Material",
+                                                                                "ScalarType": null,
+                                                                                "CollectionType": "None",
+                                                                                "FullNamespace": "Cmf.Navigo.BusinessObjects.Material"
+                                                                            },
+                                                                            {
+                                                                                "Name": "AssembleQuantity",
+                                                                                "ReferenceType": "None",
+                                                                                "ReferenceTypeName": null,
+                                                                                "ScalarType": "Decimal",
+                                                                                "CollectionType": "None",
+                                                                                "FullNamespace": null
+                                                                            },
+                                                                            {
+                                                                                "Name": "SourceMaterials",
+                                                                                "ReferenceType": "None",
+                                                                                "ReferenceTypeName": null,
+                                                                                "ScalarType": null,
+                                                                                "CollectionType": "None",
+                                                                                "FullNamespace": "Cmf.Navigo.BusinessObjects.AssembleMaterialCollection"
+                                                                            },
+                                                                            {
+                                                                                "Name": "IgnoreLastServiceId",
+                                                                                "ReferenceType": "None",
+                                                                                "ReferenceTypeName": null,
+                                                                                "ScalarType": "Bit",
+                                                                                "CollectionType": "None",
+                                                                                "FullNamespace": null
+                                                                            },
+                                                                            {
+                                                                                "Name": "OperationTarget",
+                                                                                "ReferenceType": "Enum",
+                                                                                "ReferenceTypeName": "Cmf.Foundation.BusinessObjects.EntityTypeSource",
+                                                                                "ScalarType": null,
+                                                                                "CollectionType": "None",
+                                                                                "FullNamespace": "Cmf.Foundation.BusinessObjects.EntityTypeSource"
+                                                                            },
+                                                                            {
+                                                                                "Name": "NumberOfRetries",
+                                                                                "ReferenceType": "None",
+                                                                                "ReferenceTypeName": null,
+                                                                                "ScalarType": "Int",
+                                                                                "CollectionType": "None",
+                                                                                "FullNamespace": null
+                                                                            },
+                                                                            {
+                                                                                "Name": "OperationAttributes",
+                                                                                "ReferenceType": "None",
+                                                                                "ReferenceTypeName": null,
+                                                                                "ScalarType": null,
+                                                                                "CollectionType": "None",
+                                                                                "FullNamespace": "Cmf.Foundation.BusinessObjects.OperationAttributeCollection"
+                                                                            },
+                                                                            {
+                                                                                "Name": "PageNumber",
+                                                                                "ReferenceType": "None",
+                                                                                "ReferenceTypeName": null,
+                                                                                "ScalarType": "Int",
+                                                                                "CollectionType": "None",
+                                                                                "FullNamespace": null
+                                                                            },
+                                                                            {
+                                                                                "Name": "PageSize",
+                                                                                "ReferenceType": "None",
+                                                                                "ReferenceTypeName": null,
+                                                                                "ScalarType": "Int",
+                                                                                "CollectionType": "None",
+                                                                                "FullNamespace": null
+                                                                            },
+                                                                            {
+                                                                                "Name": "ServiceComments",
+                                                                                "ReferenceType": "None",
+                                                                                "ReferenceTypeName": null,
+                                                                                "ScalarType": "NVarChar",
+                                                                                "CollectionType": "None",
+                                                                                "FullNamespace": null
+                                                                            },
+                                                                            {
+                                                                                "Name": "ExtraParameters",
+                                                                                "ReferenceType": "None",
+                                                                                "ReferenceTypeName": null,
+                                                                                "ScalarType": null,
+                                                                                "CollectionType": "Map",
+                                                                                "FullNamespace": "string,System.Object"
+                                                                            }
+                                                                        ]
+                                                                    },
+                                                                    "Output": {
+                                                                        "Name": "AssembleMaterialOutput",
+                                                                        "FullNamespace": "Cmf.Navigo.BusinessOrchestration.MaterialManagement.OutputObjects.AssembleMaterialOutput",
+                                                                        "Properties": [
+                                                                            {
+                                                                                "Name": "Material",
+                                                                                "ReferenceType": "EntityType",
+                                                                                "ReferenceTypeName": "Material",
+                                                                                "ScalarType": null,
+                                                                                "CollectionType": "None",
+                                                                                "FullNamespace": "Cmf.Navigo.BusinessObjects.Material"
+                                                                            },
+                                                                            {
+                                                                                "Name": "Message",
+                                                                                "ReferenceType": "None",
+                                                                                "ReferenceTypeName": null,
+                                                                                "ScalarType": "NVarChar",
+                                                                                "CollectionType": "None",
+                                                                                "FullNamespace": null
+                                                                            },
+                                                                            {
+                                                                                "Name": "FeedbackMessages",
+                                                                                "ReferenceType": "None",
+                                                                                "ReferenceTypeName": null,
+                                                                                "ScalarType": null,
+                                                                                "CollectionType": "None",
+                                                                                "FullNamespace": "Cmf.Foundation.BusinessOrchestration.FeedbackMessage"
+                                                                            },
+                                                                            {
+                                                                                "Name": "TotalRows",
+                                                                                "ReferenceType": "None",
+                                                                                "ReferenceTypeName": null,
+                                                                                "ScalarType": "Int",
+                                                                                "CollectionType": "None",
+                                                                                "FullNamespace": null
+                                                                            }
+                                                                        ]
+                                                                    },
+                                                                    "Area": "Material"
+                                                                },
+                                                                "_serviceCallAdditionalInfo": {
+                                                                    "_CMFInternal_URLSuffix": "api/Material/AssembleMaterial",
+                                                                    "_CMFInternal_FullNamespace": "Cmf.Navigo.BusinessOrchestration.MaterialManagement.InputObjects.AssembleMaterialInput",
+                                                                    "_CMFInternal_HTTPMethod": "POST",
+                                                                    "_type": "Cmf.Navigo.BusinessOrchestration.MaterialManagement.InputObjects.AssembleMaterialInput, Cmf.Navigo.BusinessOrchestration"
+                                                                },
+                                                                "_inputs": [
+                                                                    {
+                                                                        "name": "Material",
+                                                                        "friendlyName": "Material",
+                                                                        "collectionType": "None",
+                                                                        "valueType": "Object",
+                                                                        "defaultValue": "{{ stringToEntityInstance($global.material, \"Material\", \"Name\") }}"
+                                                                    },
+                                                                    {
+                                                                        "name": "AssembleQuantity",
+                                                                        "friendlyName": "AssembleQuantity",
+                                                                        "collectionType": "None",
+                                                                        "valueType": "Decimal",
+                                                                        "defaultValue": "1"
+                                                                    },
+                                                                    {
+                                                                        "name": "SourceMaterials",
+                                                                        "friendlyName": "SourceMaterials",
+                                                                        "collectionType": "None",
+                                                                        "valueType": "Object",
+                                                                        "defaultValue": "[   {     \"$type\": \"Cmf.Navigo.BusinessObjects.AssembleMaterial, Cmf.Navigo.BusinessObjects\",     \"BOMProduct\": { \t\t\"$type\": \"Cmf.Navigo.BusinessObjects.BOMProduct, Cmf.Navigo.BusinessObjects\", \t\t\"Name\": {{ $global.BOMProduct }}, \t\t\"SourceEntity\": { \t\t\t\"$type\": \"Cmf.Navigo.BusinessObjects.BOM, Cmf.Navigo.BusinessObjects\", \t\t\t\"Name\": {{ $global.BOMName }} \t\t}, \t\t\"TargetEntity\": { \t\t\t\"$type\": \"Cmf.Navigo.BusinessObjects.Product, Cmf.Navigo.BusinessObjects\", \t\t\t\"Name\": {{ $global.feederMaterialProduct }} \t\t} \t  },     \"Material\": {       \"$type\": \"Cmf.Navigo.BusinessObjects.Material, Cmf.Navigo.BusinessObjects\",       \"Name\": {{ $global.feederMaterial }}     },     \"Quantity\": {{ round($jobStatus.filamentSpent, 2) }}, \t\"SourceProduct\":{ \t\t\"$type\": \"Cmf.Navigo.BusinessObjects.Product, Cmf.Navigo.BusinessObjects\", \t\t\"Name\": {{ $global.feederMaterialProduct }} \t}   } ]"
+                                                                    },
+                                                                    {
+                                                                        "name": "IgnoreLastServiceId",
+                                                                        "friendlyName": "IgnoreLastServiceId",
+                                                                        "collectionType": "None",
+                                                                        "valueType": {
+                                                                            "name": "Boolean",
+                                                                            "type": 3,
+                                                                            "collectionType": 0,
+                                                                            "referenceType": 0,
+                                                                            "referenceTypeName": null
+                                                                        }
+                                                                    },
+                                                                    {
+                                                                        "name": "OperationTarget",
+                                                                        "friendlyName": "OperationTarget",
+                                                                        "collectionType": "None",
+                                                                        "valueType": {
+                                                                            "name": "Object",
+                                                                            "type": 10,
+                                                                            "collectionType": 0,
+                                                                            "referenceType": 6,
+                                                                            "referenceTypeName": "Cmf.Foundation.BusinessObjects.EntityTypeSource"
+                                                                        }
+                                                                    },
+                                                                    {
+                                                                        "name": "NumberOfRetries",
+                                                                        "friendlyName": "NumberOfRetries",
+                                                                        "collectionType": "None",
+                                                                        "valueType": {
+                                                                            "name": "Integer",
+                                                                            "type": 5,
+                                                                            "collectionType": 0,
+                                                                            "referenceType": 0,
+                                                                            "referenceTypeName": null
+                                                                        }
+                                                                    },
+                                                                    {
+                                                                        "name": "OperationAttributes",
+                                                                        "friendlyName": "OperationAttributes",
+                                                                        "collectionType": "None",
+                                                                        "valueType": {
+                                                                            "name": "Object",
+                                                                            "type": 10,
+                                                                            "collectionType": 0,
+                                                                            "referenceType": 0,
+                                                                            "referenceTypeName": null
+                                                                        }
+                                                                    },
+                                                                    {
+                                                                        "name": "PageNumber",
+                                                                        "friendlyName": "PageNumber",
+                                                                        "collectionType": "None",
+                                                                        "valueType": {
+                                                                            "name": "Integer",
+                                                                            "type": 5,
+                                                                            "collectionType": 0,
+                                                                            "referenceType": 0,
+                                                                            "referenceTypeName": null
+                                                                        }
+                                                                    },
+                                                                    {
+                                                                        "name": "PageSize",
+                                                                        "friendlyName": "PageSize",
+                                                                        "collectionType": "None",
+                                                                        "valueType": {
+                                                                            "name": "Integer",
+                                                                            "type": 5,
+                                                                            "collectionType": 0,
+                                                                            "referenceType": 0,
+                                                                            "referenceTypeName": null
+                                                                        }
+                                                                    },
+                                                                    {
+                                                                        "name": "ServiceComments",
+                                                                        "friendlyName": "ServiceComments",
+                                                                        "collectionType": "None",
+                                                                        "valueType": {
+                                                                            "name": "String",
+                                                                            "type": 4,
+                                                                            "collectionType": 0,
+                                                                            "referenceType": 0,
+                                                                            "referenceTypeName": null
+                                                                        }
+                                                                    },
+                                                                    {
+                                                                        "name": "ExtraParameters",
+                                                                        "friendlyName": "ExtraParameters",
+                                                                        "collectionType": "Map",
+                                                                        "valueType": {
+                                                                            "name": "Object",
+                                                                            "type": 10,
+                                                                            "collectionType": 2,
+                                                                            "referenceType": 0,
+                                                                            "referenceTypeName": null
+                                                                        }
+                                                                    }
+                                                                ],
+                                                                "_outputs": [
+                                                                    {
+                                                                        "name": "output$Material",
+                                                                        "friendlyName": "Material",
+                                                                        "collectionType": "None",
+                                                                        "valueType": {
+                                                                            "name": "Object",
+                                                                            "type": 10,
+                                                                            "collectionType": 0,
+                                                                            "referenceType": 1,
+                                                                            "referenceTypeName": "Material"
+                                                                        }
+                                                                    },
+                                                                    {
+                                                                        "name": "output$Message",
+                                                                        "friendlyName": "Message",
+                                                                        "collectionType": "None",
+                                                                        "valueType": {
+                                                                            "name": "String",
+                                                                            "type": 4,
+                                                                            "collectionType": 0,
+                                                                            "referenceType": 0,
+                                                                            "referenceTypeName": null
+                                                                        }
+                                                                    },
+                                                                    {
+                                                                        "name": "output$FeedbackMessages",
+                                                                        "friendlyName": "FeedbackMessages",
+                                                                        "collectionType": "None",
+                                                                        "valueType": {
+                                                                            "name": "Object",
+                                                                            "type": 10,
+                                                                            "collectionType": 0,
+                                                                            "referenceType": 0,
+                                                                            "referenceTypeName": null
+                                                                        }
+                                                                    },
+                                                                    {
+                                                                        "name": "output$TotalRows",
+                                                                        "friendlyName": "TotalRows",
+                                                                        "collectionType": "None",
+                                                                        "valueType": {
+                                                                            "name": "Integer",
+                                                                            "type": 5,
+                                                                            "collectionType": 0,
+                                                                            "referenceType": 0,
+                                                                            "referenceTypeName": null
+                                                                        }
+                                                                    }
+                                                                ]
+                                                            },
+                                                            "inputs": [
+                                                                {
+                                                                    "name": "Material",
+                                                                    "value": "{{ stringToEntityInstance($global.material, \"Material\", \"Name\") }}",
+                                                                    "dataType": "Object"
+                                                                },
+                                                                {
+                                                                    "name": "AssembleQuantity",
+                                                                    "value": "1",
+                                                                    "dataType": "Decimal"
+                                                                },
+                                                                {
+                                                                    "name": "SourceMaterials",
+                                                                    "value": "[   {     \"$type\": \"Cmf.Navigo.BusinessObjects.AssembleMaterial, Cmf.Navigo.BusinessObjects\",     \"BOMProduct\": { \t\t\"$type\": \"Cmf.Navigo.BusinessObjects.BOMProduct, Cmf.Navigo.BusinessObjects\", \t\t\"Name\": {{ $global.BOMProduct }}, \t\t\"SourceEntity\": { \t\t\t\"$type\": \"Cmf.Navigo.BusinessObjects.BOM, Cmf.Navigo.BusinessObjects\", \t\t\t\"Name\": {{ $global.BOMName }} \t\t}, \t\t\"TargetEntity\": { \t\t\t\"$type\": \"Cmf.Navigo.BusinessObjects.Product, Cmf.Navigo.BusinessObjects\", \t\t\t\"Name\": {{ $global.feederMaterialProduct }} \t\t} \t  },     \"Material\": {       \"$type\": \"Cmf.Navigo.BusinessObjects.Material, Cmf.Navigo.BusinessObjects\",       \"Name\": {{ $global.feederMaterial }}     },     \"Quantity\": {{ round($jobStatus.filamentSpent, 2) }}, \t\"SourceProduct\":{ \t\t\"$type\": \"Cmf.Navigo.BusinessObjects.Product, Cmf.Navigo.BusinessObjects\", \t\t\"Name\": {{ $global.feederMaterialProduct }} \t}   } ]",
+                                                                    "dataType": "Object"
+                                                                },
+                                                                {
+                                                                    "name": "IgnoreLastServiceId",
+                                                                    "value": "",
+                                                                    "dataType": "Boolean"
+                                                                },
+                                                                {
+                                                                    "name": "OperationTarget",
+                                                                    "value": "",
+                                                                    "dataType": "Object"
+                                                                },
+                                                                {
+                                                                    "name": "NumberOfRetries",
+                                                                    "value": "",
+                                                                    "dataType": "Integer"
+                                                                },
+                                                                {
+                                                                    "name": "OperationAttributes",
+                                                                    "value": "",
+                                                                    "dataType": "Object"
+                                                                },
+                                                                {
+                                                                    "name": "PageNumber",
+                                                                    "value": "",
+                                                                    "dataType": "Integer"
+                                                                },
+                                                                {
+                                                                    "name": "PageSize",
+                                                                    "value": "",
+                                                                    "dataType": "Integer"
+                                                                },
+                                                                {
+                                                                    "name": "ServiceComments",
+                                                                    "value": "",
+                                                                    "dataType": "String"
+                                                                },
+                                                                {
+                                                                    "name": "ExtraParameters",
+                                                                    "value": "",
+                                                                    "dataType": "Object"
+                                                                }
+                                                            ],
+                                                            "outputs": [
+                                                                {
+                                                                    "name": "output$Material",
+                                                                    "value": "{{ $this.output$Material }}",
+                                                                    "dataType": "Object"
+                                                                },
+                                                                {
+                                                                    "name": "output$Message",
+                                                                    "value": "{{ $this.output$Message }}",
+                                                                    "dataType": "String"
+                                                                },
+                                                                {
+                                                                    "name": "output$FeedbackMessages",
+                                                                    "value": "{{ $this.output$FeedbackMessages }}",
+                                                                    "dataType": "Object"
+                                                                },
+                                                                {
+                                                                    "name": "output$TotalRows",
+                                                                    "value": "{{ $this.output$TotalRows }}",
+                                                                    "dataType": "Integer"
+                                                                }
+                                                            ],
+                                                            "caption": "Execute System/MES operation Assemble Material",
+                                                            "color": "#187737",
+                                                            "branches": []
+                                                        },
+                                                        {
+                                                            "id": "174352332500511151",
+                                                            "name": "executeServiceCall_c6e3",
+                                                            "type": {
+                                                                "name": "executeServiceCall",
+                                                                "package": "@criticalmanufacturing/connect-iot-controller-engine-core-tasks",
+                                                                "version": "11.1.4-dev"
+                                                            },
+                                                            "isCollapsed": false,
+                                                            "isDisabled": false,
+                                                            "settings": {
+                                                                "retries": 30,
+                                                                "sleepBetweenRetries": 1000,
+                                                                "_serviceContractName": "Material",
+                                                                "_serviceCallName": "TrackOutMaterial",
+                                                                "_serviceCall": {
+                                                                    "Description": "TrackOutMaterial",
+                                                                    "Input": {
+                                                                        "Name": "TrackOutMaterialInput",
+                                                                        "FullNamespace": "Cmf.Navigo.BusinessOrchestration.MaterialManagement.InputObjects.TrackOutMaterialInput",
+                                                                        "Properties": [
+                                                                            {
+                                                                                "Name": "Material",
+                                                                                "ReferenceType": "EntityType",
+                                                                                "ReferenceTypeName": "Material",
+                                                                                "ScalarType": null,
+                                                                                "CollectionType": "None",
+                                                                                "FullNamespace": "Cmf.Navigo.BusinessObjects.Material"
+                                                                            },
+                                                                            {
+                                                                                "Name": "StateModel",
+                                                                                "ReferenceType": "None",
+                                                                                "ReferenceTypeName": null,
+                                                                                "ScalarType": null,
+                                                                                "CollectionType": "None",
+                                                                                "FullNamespace": "Cmf.Foundation.BusinessObjects.StateModel"
+                                                                            },
+                                                                            {
+                                                                                "Name": "StateModelTransition",
+                                                                                "ReferenceType": "None",
+                                                                                "ReferenceTypeName": null,
+                                                                                "ScalarType": null,
+                                                                                "CollectionType": "None",
+                                                                                "FullNamespace": "Cmf.Foundation.BusinessObjects.StateModelTransition"
+                                                                            },
+                                                                            {
+                                                                                "Name": "ProductionOrderStep",
+                                                                                "ReferenceType": "EntityType",
+                                                                                "ReferenceTypeName": "ProductionOrderStep",
+                                                                                "ScalarType": null,
+                                                                                "CollectionType": "None",
+                                                                                "FullNamespace": "Cmf.Navigo.BusinessObjects.ProductionOrderStep"
+                                                                            },
+                                                                            {
+                                                                                "Name": "StateModelTransitionReason",
+                                                                                "ReferenceType": "None",
+                                                                                "ReferenceTypeName": null,
+                                                                                "ScalarType": "NVarChar",
+                                                                                "CollectionType": "None",
+                                                                                "FullNamespace": null
+                                                                            },
+                                                                            {
+                                                                                "Name": "IgnoreLastServiceId",
+                                                                                "ReferenceType": "None",
+                                                                                "ReferenceTypeName": null,
+                                                                                "ScalarType": "Bit",
+                                                                                "CollectionType": "None",
+                                                                                "FullNamespace": null
+                                                                            },
+                                                                            {
+                                                                                "Name": "OperationTarget",
+                                                                                "ReferenceType": "Enum",
+                                                                                "ReferenceTypeName": "Cmf.Foundation.BusinessObjects.EntityTypeSource",
+                                                                                "ScalarType": null,
+                                                                                "CollectionType": "None",
+                                                                                "FullNamespace": "Cmf.Foundation.BusinessObjects.EntityTypeSource"
+                                                                            },
+                                                                            {
+                                                                                "Name": "NumberOfRetries",
+                                                                                "ReferenceType": "None",
+                                                                                "ReferenceTypeName": null,
+                                                                                "ScalarType": "Int",
+                                                                                "CollectionType": "None",
+                                                                                "FullNamespace": null
+                                                                            },
+                                                                            {
+                                                                                "Name": "OperationAttributes",
+                                                                                "ReferenceType": "None",
+                                                                                "ReferenceTypeName": null,
+                                                                                "ScalarType": null,
+                                                                                "CollectionType": "None",
+                                                                                "FullNamespace": "Cmf.Foundation.BusinessObjects.OperationAttributeCollection"
+                                                                            },
+                                                                            {
+                                                                                "Name": "PageNumber",
+                                                                                "ReferenceType": "None",
+                                                                                "ReferenceTypeName": null,
+                                                                                "ScalarType": "Int",
+                                                                                "CollectionType": "None",
+                                                                                "FullNamespace": null
+                                                                            },
+                                                                            {
+                                                                                "Name": "PageSize",
+                                                                                "ReferenceType": "None",
+                                                                                "ReferenceTypeName": null,
+                                                                                "ScalarType": "Int",
+                                                                                "CollectionType": "None",
+                                                                                "FullNamespace": null
+                                                                            },
+                                                                            {
+                                                                                "Name": "ServiceComments",
+                                                                                "ReferenceType": "None",
+                                                                                "ReferenceTypeName": null,
+                                                                                "ScalarType": "NVarChar",
+                                                                                "CollectionType": "None",
+                                                                                "FullNamespace": null
+                                                                            },
+                                                                            {
+                                                                                "Name": "ExtraParameters",
+                                                                                "ReferenceType": "None",
+                                                                                "ReferenceTypeName": null,
+                                                                                "ScalarType": null,
+                                                                                "CollectionType": "Map",
+                                                                                "FullNamespace": "string,System.Object"
+                                                                            }
+                                                                        ]
+                                                                    },
+                                                                    "Output": {
+                                                                        "Name": "TrackOutMaterialOutput",
+                                                                        "FullNamespace": "Cmf.Navigo.BusinessOrchestration.MaterialManagement.OutputObjects.TrackOutMaterialOutput",
+                                                                        "Properties": [
+                                                                            {
+                                                                                "Name": "Material",
+                                                                                "ReferenceType": "EntityType",
+                                                                                "ReferenceTypeName": "Material",
+                                                                                "ScalarType": null,
+                                                                                "CollectionType": "None",
+                                                                                "FullNamespace": "Cmf.Navigo.BusinessObjects.Material"
+                                                                            },
+                                                                            {
+                                                                                "Name": "AppliedFutureActions",
+                                                                                "ReferenceType": "None",
+                                                                                "ReferenceTypeName": null,
+                                                                                "ScalarType": null,
+                                                                                "CollectionType": "None",
+                                                                                "FullNamespace": "Cmf.Navigo.BusinessObjects.FutureActionCollection"
+                                                                            },
+                                                                            {
+                                                                                "Name": "Message",
+                                                                                "ReferenceType": "None",
+                                                                                "ReferenceTypeName": null,
+                                                                                "ScalarType": "NVarChar",
+                                                                                "CollectionType": "None",
+                                                                                "FullNamespace": null
+                                                                            },
+                                                                            {
+                                                                                "Name": "FeedbackMessages",
+                                                                                "ReferenceType": "None",
+                                                                                "ReferenceTypeName": null,
+                                                                                "ScalarType": null,
+                                                                                "CollectionType": "None",
+                                                                                "FullNamespace": "Cmf.Foundation.BusinessOrchestration.FeedbackMessage"
+                                                                            },
+                                                                            {
+                                                                                "Name": "TotalRows",
+                                                                                "ReferenceType": "None",
+                                                                                "ReferenceTypeName": null,
+                                                                                "ScalarType": "Int",
+                                                                                "CollectionType": "None",
+                                                                                "FullNamespace": null
+                                                                            }
+                                                                        ]
+                                                                    },
+                                                                    "Area": "Material"
+                                                                },
+                                                                "_serviceCallAdditionalInfo": {
+                                                                    "_CMFInternal_URLSuffix": "api/Material/TrackOutMaterial",
+                                                                    "_CMFInternal_FullNamespace": "Cmf.Navigo.BusinessOrchestration.MaterialManagement.InputObjects.TrackOutMaterialInput",
+                                                                    "_CMFInternal_HTTPMethod": "POST",
+                                                                    "_type": "Cmf.Navigo.BusinessOrchestration.MaterialManagement.InputObjects.TrackOutMaterialInput, Cmf.Navigo.BusinessOrchestration"
+                                                                },
+                                                                "_inputs": [
+                                                                    {
+                                                                        "name": "Material",
+                                                                        "friendlyName": "Material",
+                                                                        "collectionType": "None",
+                                                                        "valueType": "Object",
+                                                                        "settingKey": "name",
+                                                                        "defaultValue": "{{ stringToEntityInstance($global.material, \"Material\", \"Name\") }}"
+                                                                    },
+                                                                    {
+                                                                        "name": "StateModel",
+                                                                        "friendlyName": "StateModel",
+                                                                        "collectionType": "None",
+                                                                        "valueType": {
+                                                                            "name": "Object",
+                                                                            "type": 10,
+                                                                            "collectionType": 0,
+                                                                            "referenceType": 0,
+                                                                            "referenceTypeName": null
+                                                                        },
+                                                                        "settingKey": "name"
+                                                                    },
+                                                                    {
+                                                                        "name": "StateModelTransition",
+                                                                        "friendlyName": "StateModelTransition",
+                                                                        "collectionType": "None",
+                                                                        "valueType": {
+                                                                            "name": "Object",
+                                                                            "type": 10,
+                                                                            "collectionType": 0,
+                                                                            "referenceType": 0,
+                                                                            "referenceTypeName": null
+                                                                        },
+                                                                        "settingKey": "name"
+                                                                    },
+                                                                    {
+                                                                        "name": "ProductionOrderStep",
+                                                                        "friendlyName": "ProductionOrderStep",
+                                                                        "collectionType": "None",
+                                                                        "valueType": {
+                                                                            "name": "Object",
+                                                                            "type": 10,
+                                                                            "collectionType": 0,
+                                                                            "referenceType": 1,
+                                                                            "referenceTypeName": "ProductionOrderStep"
+                                                                        },
+                                                                        "settingKey": "name"
+                                                                    },
+                                                                    {
+                                                                        "name": "StateModelTransitionReason",
+                                                                        "friendlyName": "StateModelTransitionReason",
+                                                                        "collectionType": "None",
+                                                                        "valueType": {
+                                                                            "name": "String",
+                                                                            "type": 4,
+                                                                            "collectionType": 0,
+                                                                            "referenceType": 0,
+                                                                            "referenceTypeName": null
+                                                                        },
+                                                                        "settingKey": "name"
+                                                                    },
+                                                                    {
+                                                                        "name": "IgnoreLastServiceId",
+                                                                        "friendlyName": "IgnoreLastServiceId",
+                                                                        "collectionType": "None",
+                                                                        "valueType": {
+                                                                            "name": "Boolean",
+                                                                            "type": 3,
+                                                                            "collectionType": 0,
+                                                                            "referenceType": 0,
+                                                                            "referenceTypeName": null
+                                                                        },
+                                                                        "settingKey": "name"
+                                                                    },
+                                                                    {
+                                                                        "name": "OperationTarget",
+                                                                        "friendlyName": "OperationTarget",
+                                                                        "collectionType": "None",
+                                                                        "valueType": {
+                                                                            "name": "Object",
+                                                                            "type": 10,
+                                                                            "collectionType": 0,
+                                                                            "referenceType": 6,
+                                                                            "referenceTypeName": "Cmf.Foundation.BusinessObjects.EntityTypeSource"
+                                                                        },
+                                                                        "settingKey": "name"
+                                                                    },
+                                                                    {
+                                                                        "name": "NumberOfRetries",
+                                                                        "friendlyName": "NumberOfRetries",
+                                                                        "collectionType": "None",
+                                                                        "valueType": {
+                                                                            "name": "Integer",
+                                                                            "type": 5,
+                                                                            "collectionType": 0,
+                                                                            "referenceType": 0,
+                                                                            "referenceTypeName": null
+                                                                        },
+                                                                        "settingKey": "name"
+                                                                    },
+                                                                    {
+                                                                        "name": "OperationAttributes",
+                                                                        "friendlyName": "OperationAttributes",
+                                                                        "collectionType": "None",
+                                                                        "valueType": {
+                                                                            "name": "Object",
+                                                                            "type": 10,
+                                                                            "collectionType": 0,
+                                                                            "referenceType": 0,
+                                                                            "referenceTypeName": null
+                                                                        },
+                                                                        "settingKey": "name"
+                                                                    },
+                                                                    {
+                                                                        "name": "PageNumber",
+                                                                        "friendlyName": "PageNumber",
+                                                                        "collectionType": "None",
+                                                                        "valueType": {
+                                                                            "name": "Integer",
+                                                                            "type": 5,
+                                                                            "collectionType": 0,
+                                                                            "referenceType": 0,
+                                                                            "referenceTypeName": null
+                                                                        },
+                                                                        "settingKey": "name"
+                                                                    },
+                                                                    {
+                                                                        "name": "PageSize",
+                                                                        "friendlyName": "PageSize",
+                                                                        "collectionType": "None",
+                                                                        "valueType": {
+                                                                            "name": "Integer",
+                                                                            "type": 5,
+                                                                            "collectionType": 0,
+                                                                            "referenceType": 0,
+                                                                            "referenceTypeName": null
+                                                                        },
+                                                                        "settingKey": "name"
+                                                                    },
+                                                                    {
+                                                                        "name": "ServiceComments",
+                                                                        "friendlyName": "ServiceComments",
+                                                                        "collectionType": "None",
+                                                                        "valueType": {
+                                                                            "name": "String",
+                                                                            "type": 4,
+                                                                            "collectionType": 0,
+                                                                            "referenceType": 0,
+                                                                            "referenceTypeName": null
+                                                                        },
+                                                                        "settingKey": "name"
+                                                                    },
+                                                                    {
+                                                                        "name": "ExtraParameters",
+                                                                        "friendlyName": "ExtraParameters",
+                                                                        "collectionType": "Map",
+                                                                        "valueType": {
+                                                                            "name": "Object",
+                                                                            "type": 10,
+                                                                            "collectionType": 2,
+                                                                            "referenceType": 0,
+                                                                            "referenceTypeName": null
+                                                                        },
+                                                                        "settingKey": "name"
+                                                                    }
+                                                                ],
+                                                                "_outputs": [
+                                                                    {
+                                                                        "name": "output$Material",
+                                                                        "friendlyName": "Material",
+                                                                        "collectionType": "None",
+                                                                        "valueType": {
+                                                                            "name": "Object",
+                                                                            "type": 10,
+                                                                            "collectionType": 0,
+                                                                            "referenceType": 1,
+                                                                            "referenceTypeName": "Material"
+                                                                        },
+                                                                        "defaultValue": "output$Material",
+                                                                        "settingKey": "name"
+                                                                    },
+                                                                    {
+                                                                        "name": "output$AppliedFutureActions",
+                                                                        "friendlyName": "AppliedFutureActions",
+                                                                        "collectionType": "None",
+                                                                        "valueType": {
+                                                                            "name": "Object",
+                                                                            "type": 10,
+                                                                            "collectionType": 0,
+                                                                            "referenceType": 0,
+                                                                            "referenceTypeName": null
+                                                                        },
+                                                                        "defaultValue": "output$AppliedFutureActions",
+                                                                        "settingKey": "name"
+                                                                    },
+                                                                    {
+                                                                        "name": "output$Message",
+                                                                        "friendlyName": "Message",
+                                                                        "collectionType": "None",
+                                                                        "valueType": {
+                                                                            "name": "String",
+                                                                            "type": 4,
+                                                                            "collectionType": 0,
+                                                                            "referenceType": 0,
+                                                                            "referenceTypeName": null
+                                                                        },
+                                                                        "defaultValue": "output$Message",
+                                                                        "settingKey": "name"
+                                                                    },
+                                                                    {
+                                                                        "name": "output$FeedbackMessages",
+                                                                        "friendlyName": "FeedbackMessages",
+                                                                        "collectionType": "None",
+                                                                        "valueType": {
+                                                                            "name": "Object",
+                                                                            "type": 10,
+                                                                            "collectionType": 0,
+                                                                            "referenceType": 0,
+                                                                            "referenceTypeName": null
+                                                                        },
+                                                                        "defaultValue": "output$FeedbackMessages",
+                                                                        "settingKey": "name"
+                                                                    },
+                                                                    {
+                                                                        "name": "output$TotalRows",
+                                                                        "friendlyName": "TotalRows",
+                                                                        "collectionType": "None",
+                                                                        "valueType": {
+                                                                            "name": "Integer",
+                                                                            "type": 5,
+                                                                            "collectionType": 0,
+                                                                            "referenceType": 0,
+                                                                            "referenceTypeName": null
+                                                                        },
+                                                                        "defaultValue": "output$TotalRows",
+                                                                        "settingKey": "name"
+                                                                    }
+                                                                ]
+                                                            },
+                                                            "inputs": [
+                                                                {
+                                                                    "name": "Material",
+                                                                    "value": "{{ stringToEntityInstance($global.material, \"Material\", \"Name\") }}",
+                                                                    "dataType": "Object"
+                                                                },
+                                                                {
+                                                                    "name": "StateModel",
+                                                                    "value": "",
+                                                                    "dataType": "Object"
+                                                                },
+                                                                {
+                                                                    "name": "StateModelTransition",
+                                                                    "value": "",
+                                                                    "dataType": "Object"
+                                                                },
+                                                                {
+                                                                    "name": "ProductionOrderStep",
+                                                                    "value": "",
+                                                                    "dataType": "Object"
+                                                                },
+                                                                {
+                                                                    "name": "StateModelTransitionReason",
+                                                                    "value": "",
+                                                                    "dataType": "String"
+                                                                },
+                                                                {
+                                                                    "name": "IgnoreLastServiceId",
+                                                                    "value": "",
+                                                                    "dataType": "Boolean"
+                                                                },
+                                                                {
+                                                                    "name": "OperationTarget",
+                                                                    "value": "",
+                                                                    "dataType": "Object"
+                                                                },
+                                                                {
+                                                                    "name": "NumberOfRetries",
+                                                                    "value": "",
+                                                                    "dataType": "Integer"
+                                                                },
+                                                                {
+                                                                    "name": "OperationAttributes",
+                                                                    "value": "",
+                                                                    "dataType": "Object"
+                                                                },
+                                                                {
+                                                                    "name": "PageNumber",
+                                                                    "value": "",
+                                                                    "dataType": "Integer"
+                                                                },
+                                                                {
+                                                                    "name": "PageSize",
+                                                                    "value": "",
+                                                                    "dataType": "Integer"
+                                                                },
+                                                                {
+                                                                    "name": "ServiceComments",
+                                                                    "value": "",
+                                                                    "dataType": "String"
+                                                                },
+                                                                {
+                                                                    "name": "ExtraParameters",
+                                                                    "value": "",
+                                                                    "dataType": "Object"
+                                                                }
+                                                            ],
+                                                            "outputs": [
+                                                                {
+                                                                    "name": "output$Material",
+                                                                    "value": "{{ $this.output$Material }}",
+                                                                    "dataType": "Object"
+                                                                },
+                                                                {
+                                                                    "name": "output$AppliedFutureActions",
+                                                                    "value": "{{ $this.output$AppliedFutureActions }}",
+                                                                    "dataType": "Object"
+                                                                },
+                                                                {
+                                                                    "name": "output$Message",
+                                                                    "value": "{{ $this.output$Message }}",
+                                                                    "dataType": "String"
+                                                                },
+                                                                {
+                                                                    "name": "output$FeedbackMessages",
+                                                                    "value": "{{ $this.output$FeedbackMessages }}",
+                                                                    "dataType": "Object"
+                                                                },
+                                                                {
+                                                                    "name": "output$TotalRows",
+                                                                    "value": "{{ $this.output$TotalRows }}",
+                                                                    "dataType": "Integer"
+                                                                },
+                                                                {
+                                                                    "name": "$global.JobStarted",
+                                                                    "dataType": "Boolean",
+                                                                    "value": "false"
+                                                                }
+                                                            ],
+                                                            "caption": "Execute System/MES operation TrackOutMaterial",
+                                                            "color": "#238f14",
+                                                            "branches": []
+                                                        }
+                                                    ],
+                                                    "settings": {
+                                                        "type": "If",
+                                                        "condition": "{{ $jobStatus.jobFinished }}"
+                                                    }
+                                                },
+                                                {
+                                                    "name": "else",
+                                                    "tasks": [
+                                                        {
+                                                            "id": "174352316639810992",
+                                                            "name": "logMessage_3d3a",
+                                                            "type": {
+                                                                "name": "logMessage",
+                                                                "package": "@criticalmanufacturing/connect-iot-controller-engine-core-tasks",
+                                                                "version": "11.1.4-dev"
+                                                            },
+                                                            "isCollapsed": false,
+                                                            "isDisabled": false,
+                                                            "settings": {
+                                                                "mode": "RawText",
+                                                                "verbosity": "Information",
+                                                                "clearInputs": true,
+                                                                "message": "Completion rate: {{ $jobStatus.completion}}%"
+                                                            },
+                                                            "inputs": [],
+                                                            "outputs": [],
+                                                            "caption": "Log {{message}} as {{verbosity}}",
+                                                            "branches": []
+                                                        }
+                                                    ],
+                                                    "settings": {
+                                                        "type": "Else"
+                                                    }
+                                                }
+                                            ]
+                                        }
+                                    ],
+                                    "settings": {
+                                        "type": "If",
+                                        "condition": "{{ $jobStatus.state == \"Operational\" or $jobStatus.state == \"Printing\"  }}"
+                                    }
+                                },
+                                {
+                                    "name": "else",
+                                    "tasks": [
+                                        {
+                                            "id": "174352409730911684",
+                                            "name": "throw_4fe9",
+                                            "type": {
+                                                "name": "throw",
+                                                "package": "@criticalmanufacturing/connect-iot-controller-engine-core-tasks",
+                                                "version": "11.1.4-dev"
+                                            },
+                                            "isCollapsed": false,
+                                            "isDisabled": false,
+                                            "settings": {
+                                                "errorText": "{{ Something went wrong with printing '$global.recipe' for material '$global.material' }}"
+                                            },
+                                            "inputs": [
+                                                {
+                                                    "name": "errorObject",
+                                                    "value": "{}",
+                                                    "dataType": "Object"
+                                                }
+                                            ],
+                                            "outputs": [],
+                                            "caption": "Throw error {{errorText}}",
+                                            "color": "#f02424",
+                                            "branches": []
+                                        }
+                                    ],
+                                    "settings": {
+                                        "type": "Else"
+                                    }
+                                }
+                            ]
+                        }
+                    ],
+                    "settings": {}
+                }
+            ]
+        }
+    ],
+    "$id": "1",
+    "layout": {
+        "general": {
+            "color": "#38e335"
+        },
+        "drawer": {
+            "tasks": {},
+            "x": 0,
+            "y": -2.842170943040401e-14,
+            "zoom": 1.0000000000000007,
+            "fill": true
+        }
+    }
+}
