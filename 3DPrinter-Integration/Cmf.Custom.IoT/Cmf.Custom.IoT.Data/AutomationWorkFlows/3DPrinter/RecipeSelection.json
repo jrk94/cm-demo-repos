@@ -1,0 +1,315 @@
+{
+    "tasks": [
+        {
+            "id": "task_5884",
+            "reference": {
+                "name": "recipeBodyRequested",
+                "package": {
+                    "name": "@criticalmanufacturing/connect-iot-controller-engine-mes-tasks",
+                    "version": "11.1.4-dev"
+                }
+            },
+            "settings": {
+                "autoActivate": true,
+                "replyTimeout": 60000,
+                "recipeBodyRequestedSubject": "RecipeManagement.GetRecipeBody"
+            }
+        },
+        {
+            "id": "task_5890",
+            "reference": {
+                "name": "recipeListRequested",
+                "package": {
+                    "name": "@criticalmanufacturing/connect-iot-controller-engine-mes-tasks",
+                    "version": "11.1.4-dev"
+                }
+            },
+            "settings": {
+                "autoActivate": true,
+                "replyTimeout": 60000,
+                "recipeListRequestedSubject": "RecipeManagement.GetAllRecipes"
+            }
+        },
+        {
+            "id": "task_5958",
+            "reference": {
+                "name": "equipmentCommand",
+                "package": {
+                    "name": "@criticalmanufacturing/connect-iot-controller-engine-core-tasks",
+                    "version": "11.1.4-dev"
+                }
+            },
+            "settings": {
+                "_inputs": [],
+                "_customCommands": false,
+                "_clearInputs": false,
+                "_command": {
+                    "$type": "Cmf.Foundation.BusinessObjects.AutomationCommand, Cmf.Foundation.BusinessObjects",
+                    "Name": "ListRecipes",
+                    "Parameters": [],
+                    "DeviceCommandId": "/api/files?recursive=true",
+                    "ExtendedData": "{\"$id\":\"1\",\"requestMethod\":\"GET\",\"timeout\":\"30000\",\"successfulStatusCodes\":\"200\"}"
+                },
+                "_messageFullName": "ListRecipes",
+                "_timeout": 10000,
+                "___cmf___name": "Execute Equipment Command",
+                "___cmf___description": "ListRecipes",
+                "___cmf___color": "#71c2f4"
+            },
+            "driver": "octopi"
+        },
+        {
+            "id": "task_6415",
+            "reference": {
+                "name": "jsonata",
+                "package": {
+                    "name": "@criticalmanufacturing/connect-iot-controller-engine-core-tasks",
+                    "version": "11.1.4-dev"
+                }
+            },
+            "settings": {
+                "expression": "files.name",
+                "___cmf___name": "JSONata",
+                "___cmf___description": "Extract Recipe Names"
+            }
+        },
+        {
+            "id": "task_6720",
+            "reference": {
+                "name": "equipmentCommand",
+                "package": {
+                    "name": "@criticalmanufacturing/connect-iot-controller-engine-core-tasks",
+                    "version": "11.1.4-dev"
+                }
+            },
+            "settings": {
+                "_inputs": [
+                    {
+                        "name": "id",
+                        "friendlyName": "id",
+                        "propertyId": "Id",
+                        "deviceType": {
+                            "$type": "Cmf.Foundation.BusinessObjects.AutomationProtocolDataType, Cmf.Foundation.BusinessObjects",
+                            "Name": "String"
+                        },
+                        "valueType": {
+                            "collectionType": null,
+                            "friendlyName": "id",
+                            "type": "String",
+                            "name": "String"
+                        },
+                        "settingKey": "name"
+                    }
+                ],
+                "_customCommands": false,
+                "_clearInputs": false,
+                "_command": {
+                    "$type": "Cmf.Foundation.BusinessObjects.AutomationCommand, Cmf.Foundation.BusinessObjects",
+                    "Name": "DownloadRecipe",
+                    "Parameters": [
+                        {
+                            "$type": "Cmf.Foundation.BusinessObjects.AutomationCommandParameter, Cmf.Foundation.BusinessObjects",
+                            "Name": "id",
+                            "IsMandatory": true,
+                            "DataType": 0,
+                            "AutomationProtocolDataType": {
+                                "$type": "Cmf.Foundation.BusinessObjects.AutomationProtocolDataType, Cmf.Foundation.BusinessObjects",
+                                "Name": "String"
+                            },
+                            "ExtendedData": "{\"$id\":\"1\",\"operationParameters\":\"PathParameter\"}"
+                        }
+                    ],
+                    "DeviceCommandId": "/api/downloads/files/local/:id",
+                    "ExtendedData": "{\"$id\":\"1\",\"requestMethod\":\"GET\",\"timeout\":\"30000\",\"successfulStatusCodes\":\"200\"}"
+                },
+                "_messageFullName": "DownloadRecipe",
+                "_timeout": 10000,
+                "___cmf___name": "Execute Equipment Command",
+                "___cmf___description": "DownloadRecipe",
+                "___cmf___color": "#71c2f4"
+            },
+            "driver": "octopi"
+        }
+    ],
+    "converters": [
+        {
+            "id": "@criticalmanufacturing/connect-iot-controller-engine-core-tasks#stringToBase64",
+            "reference": {
+                "name": "stringToBase64",
+                "package": {
+                    "name": "@criticalmanufacturing/connect-iot-controller-engine-core-tasks",
+                    "version": "11.1.4-dev"
+                }
+            }
+        }
+    ],
+    "links": [
+        {
+            "id": "4b0060d0-105a-429c-8886-5da959a6cd68",
+            "sourceId": "task_5890",
+            "targetId": "task_5958",
+            "inputName": "activate",
+            "outputName": "onRecipeRequest"
+        },
+        {
+            "id": "caec83d7-fb10-4725-9ebc-7b40a0d555a0",
+            "sourceId": "task_5958",
+            "targetId": "task_6415",
+            "inputName": "value",
+            "outputName": "reply"
+        },
+        {
+            "id": "d88a25fd-2f57-4b71-aed4-47023bdd0520",
+            "sourceId": "task_5958",
+            "targetId": "task_6415",
+            "inputName": "activate",
+            "outputName": "success"
+        },
+        {
+            "id": "32e2de6c-8e19-4b6b-998d-2f30cdec5cfc",
+            "sourceId": "task_6415",
+            "targetId": "task_5890",
+            "inputName": "recipeList",
+            "outputName": "result"
+        },
+        {
+            "id": "427d204e-d699-48de-9b40-6a21d219ec42",
+            "sourceId": "task_6415",
+            "targetId": "task_5890",
+            "inputName": "activate",
+            "outputName": "success"
+        },
+        {
+            "id": "401ad7ba-a502-4e0a-9598-d9d27ad60e60",
+            "sourceId": "task_5884",
+            "targetId": "task_6720",
+            "inputName": "id",
+            "outputName": "recipeName"
+        },
+        {
+            "id": "84168820-33d4-479c-a757-27a97b64fe44",
+            "sourceId": "task_5884",
+            "targetId": "task_6720",
+            "inputName": "activate",
+            "outputName": "onRecipeBodyRequest"
+        },
+        {
+            "id": "3386a088-e84a-4bff-b84c-a2847a95398f",
+            "sourceId": "task_5884",
+            "targetId": "task_5884",
+            "inputName": "recipeBodyFileName",
+            "outputName": "recipeName"
+        },
+        {
+            "id": "7ada80c7-db5f-4164-8bec-00549f01ddf8",
+            "sourceId": "task_6720",
+            "targetId": "task_5884",
+            "inputName": "recipeBody",
+            "outputName": "reply",
+            "converters": [
+                {
+                    "id": "@criticalmanufacturing/connect-iot-controller-engine-core-tasks#stringToBase64",
+                    "params": {}
+                }
+            ]
+        },
+        {
+            "id": "9d3f89a2-0658-478f-97f6-bb55bf5a2ef2",
+            "sourceId": "task_6720",
+            "targetId": "task_5884",
+            "inputName": "activate",
+            "outputName": "success"
+        }
+    ],
+    "$id": "1",
+    "layout": {
+        "general": {
+            "color": "#80a9f9",
+            "notes": []
+        },
+        "drawers": {
+            "DIAGRAM": {
+                "tasks": {
+                    "task_5890": {
+                        "collapsed": false,
+                        "position": {
+                            "x": 569.3333129882812,
+                            "y": 269.3333435058594
+                        },
+                        "outdated": false
+                    },
+                    "task_6720": {
+                        "collapsed": false,
+                        "position": {
+                            "x": 1068,
+                            "y": 598
+                        },
+                        "outdated": false
+                    },
+                    "task_6415": {
+                        "collapsed": false,
+                        "position": {
+                            "x": 1568,
+                            "y": 230
+                        },
+                        "outdated": false
+                    },
+                    "task_5958": {
+                        "collapsed": false,
+                        "position": {
+                            "x": 1008,
+                            "y": 261
+                        },
+                        "outdated": false
+                    },
+                    "task_5884": {
+                        "collapsed": false,
+                        "position": {
+                            "x": 569,
+                            "y": 587
+                        },
+                        "outdated": false
+                    }
+                },
+                "links": {
+                    "4b0060d0-105a-429c-8886-5da959a6cd68": {
+                        "vertices": []
+                    },
+                    "caec83d7-fb10-4725-9ebc-7b40a0d555a0": {
+                        "vertices": []
+                    },
+                    "d88a25fd-2f57-4b71-aed4-47023bdd0520": {
+                        "vertices": []
+                    },
+                    "32e2de6c-8e19-4b6b-998d-2f30cdec5cfc": {
+                        "vertices": []
+                    },
+                    "427d204e-d699-48de-9b40-6a21d219ec42": {
+                        "vertices": []
+                    },
+                    "401ad7ba-a502-4e0a-9598-d9d27ad60e60": {
+                        "vertices": []
+                    },
+                    "84168820-33d4-479c-a757-27a97b64fe44": {
+                        "vertices": []
+                    },
+                    "3386a088-e84a-4bff-b84c-a2847a95398f": {
+                        "vertices": []
+                    },
+                    "9d3f89a2-0658-478f-97f6-bb55bf5a2ef2": {
+                        "vertices": []
+                    },
+                    "7ada80c7-db5f-4164-8bec-00549f01ddf8": {
+                        "vertices": []
+                    }
+                },
+                "notes": {},
+                "pan": {
+                    "x": 1,
+                    "y": 0
+                },
+                "zoom": 0.71
+            }
+        }
+    }
+}

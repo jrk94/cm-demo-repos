@@ -1,0 +1,565 @@
+{
+  "<DM>AutomationProtocol": {
+    "1": {
+      "Name": "REST Client Protocol [A.1]",
+      "IsTemplate": "No",
+      "Type": "General",
+      "Package": "@criticalmanufacturing/connect-iot-driver-restclient",
+      "PackageVersion": "11.1.4-dev",
+      "HasCommands": "Yes",
+      "HasEvents": "No",
+      "HasProperties": "No"
+    }
+  },
+  "AutomationProtocolParameter": {
+    "1": {
+      "AutomationProtocol": "REST Client Protocol [A.1]",
+      "Name": "baseUrl",
+      "Description": "Hostname or IP-Address of the REST server.\nThe host can be a fully qualified domain or IP address.\nNote: Base URL must not include query string parameters.\nE.g. api.example.com/v1",
+      "DataType": "String",
+      "DefaultValue": "127.0.0.1",
+      "IsMandatory": "No",
+      "IsTemplate": "No",
+      "Label": "Base URL",
+      "ReferenceType": "None"
+    },
+    "2": {
+      "AutomationProtocol": "REST Client Protocol [A.1]",
+      "Name": "port",
+      "Description": "Port number of the REST server.",
+      "DataType": "Integer",
+      "DefaultValue": "80",
+      "IsMandatory": "No",
+      "IsTemplate": "No",
+      "Label": "Port",
+      "ReferenceType": "None"
+    },
+    "3": {
+      "AutomationProtocol": "REST Client Protocol [A.1]",
+      "Name": "protocol",
+      "Description": "The protocol used for fetching resources.",
+      "DataType": "String",
+      "DefaultValue": "HTTP",
+      "EnumValues": [
+        "HTTP",
+        "HTTPS"
+      ],
+      "IsMandatory": "No",
+      "IsTemplate": "No",
+      "Label": "Protocol",
+      "ReferenceType": "Enum"
+    },
+    "4": {
+      "AutomationProtocol": "REST Client Protocol [A.1]",
+      "Name": "authenticationMode",
+      "Description": "The authentication mode can be:\nBasic Authentication (username and password)\nBearerToken (authentication token e.g. PAT)\nAPI Key (api authentication token)",
+      "DataType": "String",
+      "DefaultValue": "None",
+      "EnumValues": [
+        "None",
+        "BasicAuthentication",
+        "BearerToken",
+        "APIKey"
+      ],
+      "IsMandatory": "No",
+      "IsTemplate": "No",
+      "Label": "Authentication Mode",
+      "ReferenceType": "Enum"
+    },
+    "5": {
+      "AutomationProtocol": "REST Client Protocol [A.1]",
+      "Name": "username",
+      "Description": "Username to use for REST server authentication.",
+      "DataType": "String",
+      "IsMandatory": "No",
+      "IsTemplate": "No",
+      "Label": "Username",
+      "ReferenceType": "None"
+    },
+    "6": {
+      "AutomationProtocol": "REST Client Protocol [A.1]",
+      "Name": "password",
+      "Description": "Password to use for REST server authentication.",
+      "DataType": "Password",
+      "IsMandatory": "No",
+      "IsTemplate": "No",
+      "Label": "Password",
+      "ReferenceType": "None"
+    },
+    "7": {
+      "AutomationProtocol": "REST Client Protocol [A.1]",
+      "Name": "authenticationToken",
+      "Description": "API-Key or Bearer Token. The bearer token used for REST server authentication. Bearer tokens are sent in the 'Authorization' header of HTTP requests and are prefixed with the word 'Bearer,' e.g., Authorization: Bearer <token>. PATs are supported and are commonly used to authenticate API requests made by scripts, command-line tools, or applications on behalf of a user. An API Key, also known as an Application Programming Interface Key, is a type of security credential used to authenticate and authorize access to web-based services, APIs, or resources.",
+      "DataType": "Text",
+      "IsMandatory": "No",
+      "IsTemplate": "No",
+      "Label": "Authentication Token",
+      "ReferenceType": "None"
+    },
+    "8": {
+      "AutomationProtocol": "REST Client Protocol [A.1]",
+      "Name": "apiKeyTransmitter",
+      "Description": "Responsible for handling and transmitting the API key in various modes (header, cookie, or parameter).",
+      "DataType": "String",
+      "DefaultValue": "Header",
+      "EnumValues": [
+        "Header",
+        "Cookie",
+        "QueryParameter"
+      ],
+      "IsMandatory": "No",
+      "IsTemplate": "No",
+      "Label": "API Key Transmitter",
+      "ReferenceType": "Enum"
+    },
+    "9": {
+      "AutomationProtocol": "REST Client Protocol [A.1]",
+      "Name": "apiKeyName",
+      "Description": "Defines an API key name to be sent either as request header, cookie or query parameter. e.g. 'X-API-KEY'",
+      "DataType": "String",
+      "IsMandatory": "No",
+      "IsTemplate": "No",
+      "Label": "API Key Name",
+      "ReferenceType": "None"
+    },
+    "10": {
+      "AutomationProtocol": "REST Client Protocol [A.1]",
+      "Name": "clientCertificate",
+      "Description": "Own client certificate - can be either a path to a file or the contents of the file in plain text. Format should be 'pem'.",
+      "DataType": "Text",
+      "IsMandatory": "No",
+      "IsTemplate": "No",
+      "Label": "Client Certificate",
+      "ReferenceType": "None"
+    },
+    "11": {
+      "AutomationProtocol": "REST Client Protocol [A.1]",
+      "Name": "clientPrivateKey",
+      "Description": "Own client private key - can be either a path to a file or the contents of the file in plain text. Format should be 'pem'.",
+      "DataType": "Text",
+      "IsMandatory": "No",
+      "IsTemplate": "No",
+      "Label": "Client Private Key",
+      "ReferenceType": "None"
+    },
+    "12": {
+      "AutomationProtocol": "REST Client Protocol [A.1]",
+      "Name": "certificateAuthority",
+      "Description": "Certificate Authority - can be either a path to a file or the contents of the file in plain text. Format should be 'pem'. The certificateAuthority property is used to define a set of trusted Certificate Authority (CA) certificates that an application or system uses to verify the authenticity of SSL/TLS certificates presented by servers during secure communication. It serves as a trust anchor, allowing the application to establish the legitimacy of certificates in the trust chain presented by the server.",
+      "DataType": "Text",
+      "IsMandatory": "No",
+      "IsTemplate": "No",
+      "Label": "Certificate Authority",
+      "ReferenceType": "None"
+    },
+    "13": {
+      "AutomationProtocol": "REST Client Protocol [A.1]",
+      "Name": "defaultContentType",
+      "Description": "Default content type the media types consumed by the operation (such as application/json).\nRequest bodies are optional by default.\nJSON is 'application/json'\nXML is 'application/xml'\nText is 'text/plain'\nFormData is 'application/x-www-form-urlencoded'\nBinary is 'multipart/form-data'.",
+      "DataType": "String",
+      "DefaultValue": "application/json",
+      "IsMandatory": "No",
+      "IsTemplate": "No",
+      "Label": "Default Content Type",
+      "ReferenceType": "None"
+    }
+  },
+  "<DM>AutomationDriverDefinition": {
+    "1": {
+      "Name": "OctoPI API [B.1]",
+      "IsTemplate": "No",
+      "Type": "General",
+      "AutomationProtocol": "REST Client Protocol [A]",
+      "ObjectType": "Resource"
+    }
+  },
+  "AutomationCommand": {
+    "1": {
+      "AutomationDriverDefinition": "OctoPI API [B.1]",
+      "Name": "ConnectionStatus",
+      "Description": "Status of the Connection",
+      "DeviceCommandId": "/api/connection",
+      "ExtendedData": {
+        "requestMethod": "GET",
+        "timeout": "30000",
+        "successfulStatusCodes": "200"
+      },
+      "IsTemplate": "No"
+    },
+    "2": {
+      "AutomationDriverDefinition": "OctoPI API [B.1]",
+      "Name": "ConnectToPrinter",
+      "DeviceCommandId": "/api/connection",
+      "ExtendedData": {
+        "requestMethod": "POST",
+        "timeout": "30000",
+        "successfulStatusCodes": "200,204"
+      },
+      "IsTemplate": "No"
+    },
+    "3": {
+      "AutomationDriverDefinition": "OctoPI API [B.1]",
+      "Name": "DisconnectFromPrinter",
+      "DeviceCommandId": "/api/connection",
+      "ExtendedData": {
+        "requestMethod": "POST",
+        "timeout": "30000",
+        "successfulStatusCodes": "200",
+        "$id": "1"
+      },
+      "IsTemplate": "No"
+    },
+    "4": {
+      "AutomationDriverDefinition": "OctoPI API [B.1]",
+      "Name": "PrinterStatus",
+      "DeviceCommandId": "api/printer",
+      "ExtendedData": {
+        "requestMethod": "GET",
+        "timeout": "30000",
+        "successfulStatusCodes": "200",
+        "$id": "1"
+      },
+      "IsTemplate": "No"
+    },
+    "5": {
+      "AutomationDriverDefinition": "OctoPI API [B.1]",
+      "Name": "LoadRecipe",
+      "DeviceCommandId": "/api/files/local",
+      "ExtendedData": {
+        "requestMethod": "POST",
+        "timeout": "30000",
+        "successfulStatusCodes": "200"
+      },
+      "IsTemplate": "No"
+    },
+    "6": {
+      "AutomationDriverDefinition": "OctoPI API [B.1]",
+      "Name": "StartJob",
+      "DeviceCommandId": "/api/job",
+      "ExtendedData": {
+        "requestMethod": "POST",
+        "timeout": "30000",
+        "successfulStatusCodes": "200,204",
+        "$id": "1"
+      },
+      "IsTemplate": "No"
+    },
+    "7": {
+      "AutomationDriverDefinition": "OctoPI API [B.1]",
+      "Name": "StopJob",
+      "DeviceCommandId": "/api/job",
+      "ExtendedData": {
+        "requestMethod": "POST",
+        "timeout": "30000",
+        "successfulStatusCodes": "200",
+        "$id": "1"
+      },
+      "IsTemplate": "No"
+    },
+    "8": {
+      "AutomationDriverDefinition": "OctoPI API [B.1]",
+      "Name": "ListRecipes",
+      "DeviceCommandId": "/api/files?recursive=true",
+      "ExtendedData": {
+        "requestMethod": "GET",
+        "timeout": "30000",
+        "successfulStatusCodes": "200",
+        "$id": "1"
+      },
+      "IsTemplate": "No"
+    },
+    "9": {
+      "AutomationDriverDefinition": "OctoPI API [B.1]",
+      "Name": "GetRecipeFromMachine",
+      "DeviceCommandId": "/api/files/local/:id",
+      "ExtendedData": {
+        "requestMethod": "GET",
+        "timeout": "30000",
+        "successfulStatusCodes": "200"
+      },
+      "IsTemplate": "No"
+    },
+    "10": {
+      "AutomationDriverDefinition": "OctoPI API [B.1]",
+      "Name": "DownloadRecipe",
+      "DeviceCommandId": "/downloads/files/local/:id",
+      "ExtendedData": {
+        "requestMethod": "GET",
+        "timeout": "30000",
+        "successfulStatusCodes": "200"
+      },
+      "IsTemplate": "No"
+    },
+    "11": {
+      "AutomationDriverDefinition": "OctoPI API [B.1]",
+      "Name": "SelectRecipe",
+      "DeviceCommandId": "/api/files/local/:id",
+      "ExtendedData": {
+        "requestMethod": "POST",
+        "timeout": "30000",
+        "successfulStatusCodes": "200,204"
+      },
+      "IsTemplate": "No"
+    },
+    "12": {
+      "AutomationDriverDefinition": "OctoPI API [B.1]",
+      "Name": "JobStatus",
+      "DeviceCommandId": "/api/job",
+      "ExtendedData": {
+        "requestMethod": "GET",
+        "timeout": "30000",
+        "successfulStatusCodes": "200"
+      },
+      "IsTemplate": "No"
+    }
+  },
+  "AutomationCommandParameter": {
+    "1": {
+      "AutomationDriverDefinition": "OctoPI API [B.1]",
+      "AutomationCommand": "ConnectToPrinter",
+      "Name": "Body",
+      "DataType": "Object",
+      "AutomationProtocolDataType": "Object",
+      "DefaultValue": {
+        "command": "connect",
+        "port": "AUTO",
+        "baudrate": 0,
+        "printerProfile": "_default",
+        "save": false,
+        "autoconnect": true
+      },
+      "IsMandatory": "Yes",
+      "Order": "1",
+      "ExtendedData": {
+        "operationParameters": "RequestBody"
+      },
+      "IsTemplate": "No"
+    },
+    "2": {
+      "AutomationDriverDefinition": "OctoPI API [B.1]",
+      "AutomationCommand": "DisconnectFromPrinter",
+      "Name": "Body",
+      "DataType": "Object",
+      "AutomationProtocolDataType": "Object",
+      "DefaultValue": {
+        "command": "disconnect"
+      },
+      "IsMandatory": "Yes",
+      "Order": "1",
+      "ExtendedData": {
+        "operationParameters": "RequestBody"
+      },
+      "IsTemplate": "No"
+    },
+    "3": {
+      "AutomationDriverDefinition": "OctoPI API [B.1]",
+      "AutomationCommand": "LoadRecipe",
+      "Name": "Body",
+      "DataType": "Object",
+      "AutomationProtocolDataType": "Object",
+      "IsMandatory": "Yes",
+      "Order": "1",
+      "ExtendedData": {
+        "operationParameters": "RequestBody"
+      },
+      "IsTemplate": "No"
+    },
+    "4": {
+      "AutomationDriverDefinition": "OctoPI API [B.1]",
+      "AutomationCommand": "StartJob",
+      "Name": "Body",
+      "DataType": "Object",
+      "AutomationProtocolDataType": "Object",
+      "DefaultValue": {
+        "command": "start"
+      },
+      "IsMandatory": "Yes",
+      "Order": "1",
+      "ExtendedData": {
+        "operationParameters": "RequestBody",
+        "$id": "1"
+      },
+      "IsTemplate": "No"
+    },
+    "5": {
+      "AutomationDriverDefinition": "OctoPI API [B.1]",
+      "AutomationCommand": "StopJob",
+      "Name": "Body",
+      "DataType": "Object",
+      "AutomationProtocolDataType": "Object",
+      "DefaultValue": {
+        "command": "cancel"
+      },
+      "IsMandatory": "Yes",
+      "Order": "1",
+      "ExtendedData": {
+        "operationParameters": "RequestBody"
+      },
+      "IsTemplate": "No"
+    },
+    "6": {
+      "AutomationDriverDefinition": "OctoPI API [B.1]",
+      "AutomationCommand": "GetRecipeFromMachine",
+      "Name": "id",
+      "DataType": "String",
+      "AutomationProtocolDataType": "String",
+      "IsMandatory": "Yes",
+      "Order": "1",
+      "ExtendedData": {
+        "operationParameters": "PathParameter"
+      },
+      "IsTemplate": "No"
+    },
+    "7": {
+      "AutomationDriverDefinition": "OctoPI API [B.1]",
+      "AutomationCommand": "DownloadRecipe",
+      "Name": "id",
+      "DataType": "String",
+      "AutomationProtocolDataType": "String",
+      "IsMandatory": "Yes",
+      "Order": "1",
+      "ExtendedData": {
+        "operationParameters": "PathParameter"
+      },
+      "IsTemplate": "No"
+    },
+    "8": {
+      "AutomationDriverDefinition": "OctoPI API [B.1]",
+      "AutomationCommand": "SelectRecipe",
+      "Name": "id",
+      "DataType": "String",
+      "AutomationProtocolDataType": "String",
+      "IsMandatory": "Yes",
+      "Order": "1",
+      "ExtendedData": {
+        "operationParameters": "PathParameter"
+      },
+      "IsTemplate": "No"
+    },
+    "9": {
+      "AutomationDriverDefinition": "OctoPI API [B.1]",
+      "AutomationCommand": "SelectRecipe",
+      "Name": "Body",
+      "DataType": "Object",
+      "AutomationProtocolDataType": "Object",
+      "DefaultValue": {
+        "command": "select",
+        "print": false
+      },
+      "IsMandatory": "Yes",
+      "Order": "2",
+      "ExtendedData": {
+        "operationParameters": "RequestBody"
+      },
+      "IsTemplate": "No"
+    }
+  },
+  "<DM>AutomationController": {
+    "1": {
+      "Name": "3d Printer Integration [D.1]",
+      "IsTemplate": "No",
+      "Type": "General",
+      "ControllerPackageVersion": "11.1.4-dev",
+      "ObjectType": "Resource",
+      "TasksPackages": [
+        "@criticalmanufacturing/connect-iot-controller-engine-core-tasks",
+        "@criticalmanufacturing/connect-iot-controller-engine-mes-tasks"
+      ],
+      "Scope": "ConnectIoT",
+      "DefaultWorkflowType": "ControlFlow",
+      "TasksLibraryPackages": [
+        "@criticalmanufacturing/connect-iot-controller-engine-core-tasks@11.1.4-dev",
+        "@criticalmanufacturing/connect-iot-controller-engine-mes-tasks@11.1.4-dev"
+      ],
+      "LinkConnector": "Jumpover",
+      "LinkRouter": "Manhattan"
+    }
+  },
+  "AutomationControllerDriverDef": {
+    "1": {
+      "AutomationController": "3d Printer Integration [D.1]",
+      "Name": "octopi",
+      "DisplayName": "octopi",
+      "AutomationDriverDefinition": "OctoPI API [B]",
+      "Order": "1",
+      "IsTemplate": "No"
+    }
+  },
+  "AutomationControllerWorkflow": {
+    "1": {
+      "AutomationController": "3d Printer Integration [D.1]",
+      "Name": "AutomationWorkflow_94fb4928-43b4-4eb4-b0fd-2dbb978d625d",
+      "DisplayName": "Setup",
+      "IsFile": "true",
+      "Workflow": "3DPrinter/Setup.json",
+      "Order": "1",
+      "Indentation": "0",
+      "IsShared": "No",
+      "IsTemplate": "No",
+      "WorkflowType": "ControlFlow"
+    },
+    "2": {
+      "AutomationController": "3d Printer Integration [D.1]",
+      "Name": "AutomationWorkflow_2b44cde4-5cdf-4593-bc7a-ef4ed0f477fe",
+      "DisplayName": "Recipe Selection",
+      "IsFile": "true",
+      "Workflow": "3DPrinter/RecipeSelection.json",
+      "Order": "3",
+      "Indentation": "1",
+      "IsShared": "No",
+      "IsTemplate": "No",
+      "WorkflowType": "DataFlow"
+    },
+    "3": {
+      "AutomationController": "3d Printer Integration [D.1]",
+      "Name": "AutomationWorkflow_0fd180c4-638b-43f6-b598-fbdf4bd00b72",
+      "DisplayName": "Material Handling",
+      "IsFile": "true",
+      "Workflow": "3DPrinter/MaterialHandling.json",
+      "Order": "5",
+      "Indentation": "0",
+      "IsShared": "No",
+      "IsTemplate": "No",
+      "WorkflowType": "ControlFlow"
+    },
+    "4": {
+      "AutomationController": "3d Printer Integration [D.1]",
+      "Name": "AutomationWorkflow_05bf3ffd-65ed-46a6-9cd6-672fbf2bc151",
+      "DisplayName": "Recipe Management",
+      "IsFile": "false",
+      "Workflow": {
+        "tasks": [],
+        "$id": "1",
+        "layout": {
+          "general": {
+            "color": "#80dbf9"
+          },
+          "drawer": {
+            "tasks": {},
+            "x": 0,
+            "y": 0,
+            "zoom": 1,
+            "fill": true
+          }
+        }
+      },
+      "Order": "2",
+      "Indentation": "0",
+      "IsShared": "No",
+      "IsTemplate": "No",
+      "WorkflowType": "ControlFlow"
+    },
+    "5": {
+      "AutomationController": "3d Printer Integration [D.1]",
+      "Name": "AutomationWorkflow_d3a87445-dc35-4699-acf6-4e60f93ead9c",
+      "DisplayName": "Recipe Validation",
+      "IsFile": "true",
+      "Workflow": "3DPrinter/RecipeValidation.json",
+      "Order": "4",
+      "Indentation": "1",
+      "IsShared": "No",
+      "IsTemplate": "No",
+      "WorkflowType": "DataFlow"
+    }
+  }
+}
