@@ -1,0 +1,375 @@
+{
+  "tasks": [
+    {
+      "id": "1747133474900679",
+      "name": "UnitsProcessed",
+      "type": {
+        "name": "equipmentEvent",
+        "package": "@criticalmanufacturing/connect-iot-controller-engine-core-tasks",
+        "version": "11.2.0-dev"
+      },
+      "x": 270,
+      "y": 150,
+      "isCollapsed": false,
+      "isDisabled": false,
+      "settings": {
+        "_autoActivate": true,
+        "_customEvents": true,
+        "_messageFullName": "CFX.Production.Processing.UnitsProcessed",
+        "_automationEventProperties": [
+          {
+            "Name": "transactionId"
+          },
+          {
+            "Name": "overallResult"
+          },
+          {
+            "Name": "commonProcessData"
+          },
+          {
+            "Name": "unitProcessData"
+          }
+        ],
+        "_outputs": [
+          {
+            "name": "transactionId",
+            "propertyId": "transactionId",
+            "propertyType": "TransactionId",
+            "deviceType": {
+              "$type": "Cmf.Foundation.BusinessObjects.AutomationProtocolDataType, Cmf.Foundation.BusinessObjects",
+              "Name": "String"
+            },
+            "valueType": {
+              "collectionType": null,
+              "type": 4,
+              "name": "String"
+            },
+            "defaultValue": null,
+            "outputType": "Value"
+          },
+          {
+            "name": "overallResult",
+            "propertyId": "overallResult",
+            "propertyType": "OverallResult",
+            "deviceType": {
+              "$type": "Cmf.Foundation.BusinessObjects.AutomationProtocolDataType, Cmf.Foundation.BusinessObjects",
+              "Name": "String"
+            },
+            "valueType": {
+              "collectionType": null,
+              "type": 4,
+              "name": "String"
+            },
+            "defaultValue": null,
+            "outputType": "Value"
+          },
+          {
+            "name": "commonProcessData",
+            "propertyId": "commonProcessData",
+            "propertyType": "CommonProcessData",
+            "deviceType": {
+              "$type": "Cmf.Foundation.BusinessObjects.AutomationProtocolDataType, Cmf.Foundation.BusinessObjects",
+              "Name": "Object"
+            },
+            "valueType": {
+              "collectionType": null,
+              "type": 10,
+              "name": "Object"
+            },
+            "defaultValue": null,
+            "outputType": "Value"
+          },
+          {
+            "name": "unitProcessData",
+            "propertyId": "unitProcessData",
+            "propertyType": "UnitProcessData",
+            "deviceType": {
+              "$type": "Cmf.Foundation.BusinessObjects.AutomationProtocolDataType, Cmf.Foundation.BusinessObjects",
+              "Name": "Object"
+            },
+            "valueType": {
+              "collectionType": null,
+              "type": 10,
+              "name": "Object"
+            },
+            "defaultValue": null,
+            "outputType": "Value"
+          }
+        ],
+        "_events": [
+          {
+            "Name": "UnitsProcessed"
+          }
+        ],
+        "_message": {
+          "Name": "UnitsProcessed"
+        }
+      },
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "event",
+          "value": "{{ $this.event }}",
+          "dataType": "Any"
+        },
+        {
+          "name": "timestamp",
+          "value": "{{ $this.timestamp }}",
+          "dataType": "Any"
+        },
+        {
+          "name": "eventRawData",
+          "value": "{{ $this.eventRawData }}",
+          "dataType": "Any"
+        },
+        {
+          "name": "transactionId",
+          "value": "{{ $this.transactionId }}",
+          "dataType": "String"
+        },
+        {
+          "name": "overallResult",
+          "value": "{{ $this.overallResult }}",
+          "dataType": "String"
+        },
+        {
+          "name": "commonProcessData",
+          "value": "{{ $this.commonProcessData }}",
+          "dataType": "Object"
+        },
+        {
+          "name": "unitProcessData",
+          "value": "{{ $this.unitProcessData }}",
+          "dataType": "Object"
+        }
+      ],
+      "driver": "CFX",
+      "caption": "When equipment triggers the event {{_messageFullName}}",
+      "color": "#c2ceff",
+      "branches": [
+        {
+          "name": "handler",
+          "tasks": [
+            {
+              "id": "17472163822163715",
+              "name": "retrieve",
+              "type": {
+                "name": "codeExecution",
+                "package": "@criticalmanufacturing/connect-iot-controller-engine-core-tasks",
+                "version": "11.2.0-dev"
+              },
+              "isCollapsed": false,
+              "isDisabled": false,
+              "settings": {
+                "contextExpirationInMilliseconds": 10000,
+                "executionExpirationInMilliseconds": 0,
+                "tsCode": [
+                  "import { Framework } from 'framework';",
+                  "",
+                  "export default class {",
+                  "",
+                  "    /** Allows accessing external functions */",
+                  "    private framework: Framework;",
+                  "",
+                  "    constructor(framework: Framework) {",
+                  "        this.framework = framework;",
+                  "    }",
+                  "",
+                  "    /*",
+                  "     * Entry point of the class (IMPORTANT: don't change the signature of this method)",
+                  "     * Should return an object containing the values for each output to emit",
+                  "     * If necessary, use the parameter \"outputs\" to emit data while running the code.",
+                  "     */",
+                  "    public async main(inputs: any, outputs: any): Promise<any> {",
+                  "        const material = this.framework.dataStore.retrieve(inputs.transactionId, undefined);",
+                  "",
+                  "        outputs.material.emit(material);",
+                  "    }",
+                  "}",
+                  ""
+                ],
+                "inputs": [
+                  {
+                    "name": "transactionIdIn",
+                    "valueType": {
+                      "name": "String",
+                      "type": 4,
+                      "collectionType": 0,
+                      "referenceType": null,
+                      "referenceTypeName": null,
+                      "referenceTypeId": null,
+                      "friendlyName": ""
+                    },
+                    "defaultValue": "{{ $UnitsProcessed.transactionId }}"
+                  },
+                  {
+                    "name": "transactionId",
+                    "valueType": {
+                      "name": "String",
+                      "type": 4,
+                      "collectionType": 0,
+                      "referenceType": null,
+                      "referenceTypeName": null,
+                      "referenceTypeId": null,
+                      "friendlyName": ""
+                    },
+                    "defaultValue": "{{ $UnitsProcessed.transactionId }}"
+                  }
+                ],
+                "outputs": [
+                  {
+                    "name": "materialOut",
+                    "valueType": {
+                      "name": "String",
+                      "type": 4,
+                      "collectionType": 0,
+                      "referenceType": null,
+                      "referenceTypeName": null,
+                      "referenceTypeId": null,
+                      "friendlyName": ""
+                    },
+                    "defaultValue": null
+                  },
+                  {
+                    "name": "material",
+                    "valueType": {
+                      "name": "String",
+                      "type": 4,
+                      "collectionType": 0,
+                      "referenceType": null,
+                      "referenceTypeName": null,
+                      "referenceTypeId": null,
+                      "friendlyName": ""
+                    },
+                    "defaultValue": null
+                  }
+                ],
+                "jsCodeBase64": "InVzZSBzdHJpY3QiOwpPYmplY3QuZGVmaW5lUHJvcGVydHkoZXhwb3J0cywgIl9fZXNNb2R1bGUiLCB7IHZhbHVlOiB0cnVlIH0pOwpjbGFzcyBkZWZhdWx0XzEgewogICAgY29uc3RydWN0b3IoZnJhbWV3b3JrKSB7CiAgICAgICAgdGhpcy5mcmFtZXdvcmsgPSBmcmFtZXdvcms7CiAgICB9CiAgICAvKgogICAgICogRW50cnkgcG9pbnQgb2YgdGhlIGNsYXNzIChJTVBPUlRBTlQ6IGRvbid0IGNoYW5nZSB0aGUgc2lnbmF0dXJlIG9mIHRoaXMgbWV0aG9kKQogICAgICogU2hvdWxkIHJldHVybiBhbiBvYmplY3QgY29udGFpbmluZyB0aGUgdmFsdWVzIGZvciBlYWNoIG91dHB1dCB0byBlbWl0CiAgICAgKiBJZiBuZWNlc3NhcnksIHVzZSB0aGUgcGFyYW1ldGVyICJvdXRwdXRzIiB0byBlbWl0IGRhdGEgd2hpbGUgcnVubmluZyB0aGUgY29kZS4KICAgICAqLwogICAgYXN5bmMgbWFpbihpbnB1dHMsIG91dHB1dHMpIHsKICAgICAgICBjb25zdCBtYXRlcmlhbCA9IHRoaXMuZnJhbWV3b3JrLmRhdGFTdG9yZS5yZXRyaWV2ZShpbnB1dHMudHJhbnNhY3Rpb25JZCwgdW5kZWZpbmVkKTsKICAgICAgICBvdXRwdXRzLm1hdGVyaWFsLmVtaXQobWF0ZXJpYWwpOwogICAgfQp9CmV4cG9ydHMuZGVmYXVsdCA9IGRlZmF1bHRfMTsK"
+              },
+              "inputs": [
+                {
+                  "name": "transactionIdIn",
+                  "value": "{{ $UnitsProcessed.transactionId }}",
+                  "dataType": "String"
+                },
+                {
+                  "name": "transactionId",
+                  "value": "{{ $UnitsProcessed.transactionId }}",
+                  "dataType": "String"
+                }
+              ],
+              "outputs": [
+                {
+                  "name": "material",
+                  "value": "{{ $this.materialOut }}",
+                  "dataType": "String"
+                },
+                {
+                  "name": "materialOut",
+                  "value": "{{ $this.materialOutOut }}",
+                  "dataType": "String"
+                }
+              ],
+              "caption": "Retrieve Material by Transaction Id",
+              "branches": []
+            },
+            {
+              "id": "1747293771910579",
+              "name": "entity",
+              "type": {
+                "name": "entityInstance",
+                "package": "@criticalmanufacturing/connect-iot-controller-engine-core-tasks",
+                "version": "11.2.0-dev"
+              },
+              "isCollapsed": false,
+              "isDisabled": false,
+              "settings": {
+                "_autoActivate": false,
+                "loadAllAttributes": false,
+                "reloadEveryChange": false,
+                "levelsToLoad": 0,
+                "retries": 30,
+                "sleepBetweenRetries": 1000,
+                "entityTypeName": "Resource"
+              },
+              "inputs": [],
+              "outputs": [
+                {
+                  "name": "instance",
+                  "value": "{{ $this.instance }}",
+                  "dataType": "Object"
+                }
+              ],
+              "driver": "CFX",
+              "caption": "Retrieve assigned instance entity data",
+              "color": "#c2ceff",
+              "branches": []
+            },
+            {
+              "id": "1747293762813558",
+              "name": "postOvenTelemetry_896b",
+              "type": {
+                "name": "postOvenTelemetry",
+                "package": "@criticalmanufacturing/connect-iot-controller-engine-custom-dataplatform-tasks",
+                "version": "0.0.0"
+              },
+              "isCollapsed": false,
+              "isDisabled": false,
+              "settings": {
+                "applicationName": "MES",
+                "retries": 30,
+                "numberOfRetries": 30,
+                "ignoreLastServiceId": false,
+                "sleepBetweenRetries": 1000
+              },
+              "inputs": [
+                {
+                  "name": "instance",
+                  "value": "{{ $entity.instance }}",
+                  "dataType": "Object"
+                },
+                {
+                  "name": "material",
+                  "value": "{{ $retrieve.material }}",
+                  "dataType": "String"
+                },
+                {
+                  "name": "tags",
+                  "value": "",
+                  "dataType": "Object"
+                },
+                {
+                  "name": "values",
+                  "value": "{{ $UnitsProcessed.commonProcessData.ZoneData }}",
+                  "dataType": "Object"
+                },
+                {
+                  "name": "valuesTimestamp",
+                  "value": "{{ $UnitsProcessed.timestamp }}",
+                  "dataType": "Object"
+                }
+              ],
+              "outputs": [],
+              "caption": "Send Post Oven data to Data Platform",
+              "branches": []
+            }
+          ],
+          "settings": {}
+        }
+      ]
+    }
+  ],
+  "$id": "1",
+  "layout": {
+    "general": {
+      "color": null
+    },
+    "drawer": {
+      "tasks": {},
+      "x": -8.526512829121202E-14,
+      "y": 0,
+      "zoom": 1,
+      "fill": true
+    }
+  }
+}
