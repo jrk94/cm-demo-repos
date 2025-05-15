@@ -1,0 +1,109 @@
+{
+  "name": "@criticalmanufacturing/connect-iot-controller-engine-custom-dataplatform-tasks",
+  "version": "0.0.0",
+  "packages": {
+    "src/custom-dataplatform-tasks": {
+      "name": "@criticalmanufacturing/connect-iot-controller-engine-custom-dataplatform-tasks",
+      "version": "0.0.0",
+      "dependencies": {
+        "@criticalmanufacturing/connect-iot-controller-engine": "release-1111",
+        "cmf-lbos": "release-1111",
+        "inversify": "6.0.1",
+        "moment": "2.29.4",
+        "reflect-metadata": "0.1.13",
+        "zone.js": "0.14.7"
+      },
+      "devDependencies": {
+        "@types/chai": "4.3.10",
+        "@types/chai-spies": "1.0.6",
+        "@types/mocha": "10.0.4",
+        "@types/node": "18.14.2",
+        "chai": "4.3.10",
+        "chai-spies": "1.1.0",
+        "mocha": "10.2.0",
+        "mocha-junit-reporter": "2.2.1",
+        "mocha-lcov-reporter": "1.3.0",
+        "mocha-multi-reporters": "1.5.1",
+        "nyc": "15.1.0",
+        "tslint": "6.1.3",
+        "typescript": "5.2.2"
+      }
+    },
+    "src/custom-dataplatform-tasks/node_modules/@criticalmanufacturing/connect-iot-controller-engine": {
+      "version": "11.1.1",
+      "resolved": "https://dev.criticalmanufacturing.io/repository/npm-public/@criticalmanufacturing/connect-iot-controller-engine/-/connect-iot-controller-engine-11.1.1.tgz",
+      "integrity": "sha512-soBtrOdQm8Ps3d8Lwcs/m4VFBS0hCdqBLmXmgEjd4/fOFmMcsxfkf18tMpVd2h9GaKn1qiSWax5ui44zwbxXYA==",
+      "dependencies": {
+        "mathjs": "13.0.0"
+      },
+      "peerDependencies": {
+        "eventemitter2": "6.4.9",
+        "inversify": "6.0.2",
+        "moment": "2.29.4"
+      }
+    },
+    "src/custom-dataplatform-tasks/node_modules/inversify": {
+      "version": "6.0.1",
+      "resolved": "https://dev.criticalmanufacturing.io/repository/npm-public/inversify/-/inversify-6.0.1.tgz",
+      "integrity": "sha512-B3ex30927698TJENHR++8FfEaJGqoWOgI6ZY5Ht/nLUsFCwHn6akbwtnUAPCgUepAnTpe2qHxhDNjoKLyz6rgQ=="
+    },
+    "src/custom-dataplatform-tasks/node_modules/reflect-metadata": {
+      "version": "0.1.13",
+      "resolved": "https://dev.criticalmanufacturing.io/repository/npm-public/reflect-metadata/-/reflect-metadata-0.1.13.tgz",
+      "integrity": "sha512-Ts1Y/anZELhSsjMcU605fU9RE4Oi3p5ORujwbIKXfWa+0Zxs510Qrmrce5/Jowq3cHSZSJqBjypxmHarc+vEWg=="
+    },
+    "src/custom-dataplatform-tasks/node_modules/typescript": {
+      "version": "5.2.2",
+      "resolved": "https://dev.criticalmanufacturing.io/repository/npm-public/typescript/-/typescript-5.2.2.tgz",
+      "integrity": "sha512-mI4WrpHsbCIcwT9cF4FZvr80QUeKvsUsUvKDoR+X/7XHQH98xYD8YHZg7ANtz2GtZt/CBq2QJ0thkGJMHfqc1w==",
+      "dev": true,
+      "bin": {
+        "tsc": "bin/tsc",
+        "tsserver": "bin/tsserver"
+      },
+      "engines": {
+        "node": ">=14.17"
+      }
+    },
+    "node_modules/reflect-metadata": {
+      "version": "0.2.2",
+      "resolved": "https://dev.criticalmanufacturing.io/repository/npm-public/reflect-metadata/-/reflect-metadata-0.2.2.tgz",
+      "integrity": "sha512-urBwgfrvVP/eAyXx4hluJivBKzuEbSQs9rKWCrCkbSxNv8mxPcUZKeuoF3Uy4mJl3Lwprp6yy5/39VWigZ4K6Q==",
+      "dev": true
+    },
+    "node_modules/inversify": {
+      "version": "6.2.1",
+      "resolved": "https://dev.criticalmanufacturing.io/repository/npm-public/inversify/-/inversify-6.2.1.tgz",
+      "integrity": "sha512-W6Xi0icXIiC48RWdT681+GlZVgAKmCrNTiP7hj4IVPFbcxHz+Jj8Gxz5qr/Az2cgcZMYdB8tKIr2e68LUi1LYQ==",
+      "dev": true,
+      "dependencies": {
+        "@inversifyjs/common": "1.4.0",
+        "@inversifyjs/core": "1.3.5"
+      },
+      "peerDependencies": {
+        "reflect-metadata": "~0.2.2"
+      }
+    },
+    "node_modules/moment": {
+      "version": "2.29.4",
+      "resolved": "https://dev.criticalmanufacturing.io/repository/npm-public/moment/-/moment-2.29.4.tgz",
+      "integrity": "sha512-5LC9SOxjSc2HF6vO2CyuTDNivEdoz2IvyJJGj6X8DJ0eFyfszE0QiEd+iXmBvUP3WHxSjFH/vIsA0EN00cgr8w==",
+      "engines": {
+        "node": "*"
+      }
+    },
+    "node_modules/cmf-lbos": {
+      "version": "11.1.1",
+      "resolved": "https://dev.criticalmanufacturing.io/repository/npm-public/cmf-lbos/-/cmf-lbos-11.1.1.tgz",
+      "integrity": "sha512-YbUW3QLcmdSxAfwbhQ595VfUQ2zmalwYluh7vinttuDsawxM9Q24aP+Ov1eTGs5A+fUPB8G2mHWlqO5vnXFFEg==",
+      "peerDependencies": {
+        "moment": "^2.29.4"
+      }
+    },
+    "node_modules/zone.js": {
+      "version": "0.14.7",
+      "resolved": "https://dev.criticalmanufacturing.io/repository/npm-public/zone.js/-/zone.js-0.14.7.tgz",
+      "integrity": "sha512-0w6DGkX2BPuiK/NLf+4A8FLE43QwBfuqz2dVgi/40Rj1WmqUskCqj329O/pwrqFJLG5X8wkeG2RhIAro441xtg=="
+    }
+  }
+}

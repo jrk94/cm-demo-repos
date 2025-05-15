@@ -1,0 +1,93 @@
+{
+  "<DM>AutomationDriverDefinition": {
+    "1": {
+      "Name": "IPC-CFX Driver Definition [A.1]",
+      "IsTemplate": "No",
+      "Type": "General",
+      "AutomationProtocol": "IPC-CFX Protocol [A]",
+      "ObjectType": "Resource"
+    }
+  },
+  "<DM>AutomationController": {
+    "1": {
+      "Name": "Reflow Oven Controller [A.1]",
+      "IsTemplate": "No",
+      "Type": "General",
+      "ControllerPackageVersion": "11.1.4",
+      "ObjectType": "Resource",
+      "TasksPackages": [
+        "@criticalmanufacturing/connect-iot-controller-engine-core-tasks",
+        "@criticalmanufacturing/connect-iot-controller-engine-custom-dataplatform-tasks"
+      ],
+      "Scope": "ConnectIoT",
+      "LinkConnector": "Smooth",
+      "LinkRouter": "Manhattan",
+      "TasksLibraryPackages": [
+        "@criticalmanufacturing/connect-iot-controller-engine-core-tasks@11.1.4",
+        "@criticalmanufacturing/connect-iot-controller-engine-custom-dataplatform-tasks@0.0.0"
+      ],
+      "DefaultWorkflowType": "ControlFlow"
+    }
+  },
+  "AutomationControllerDriverDef": {
+    "1": {
+      "AutomationController": "Reflow Oven Controller [A.1]",
+      "Name": "CFX",
+      "DisplayName": "CFX",
+      "AutomationDriverDefinition": "IPC-CFX Driver Definition [A]",
+      "Color": "#c2ceff",
+      "IsTemplate": "No",
+      "Order": "1"
+    }
+  },
+  "AutomationControllerWorkflow": {
+    "1": {
+      "AutomationController": "Reflow Oven Controller [A.1]",
+      "Name": "AutomationWorkflow_77535eb3-54ec-4f19-89cb-9fb52e556bc9",
+      "DisplayName": "Setup",
+      "IsFile": "true",
+      "Workflow": "ReflowOven/Setup.json",
+      "Order": "1",
+      "IsTemplate": "No",
+      "IsShared": "No",
+      "Indentation": "0",
+      "WorkflowType": "ControlFlow"
+    },
+    "2": {
+      "AutomationController": "Reflow Oven Controller [A.1]",
+      "Name": "AutomationWorkflow_279c36c7-bd28-4559-8cab-b92dc1bc1165",
+      "DisplayName": "Work Started",
+      "IsFile": "true",
+      "Workflow": "ReflowOven/Work Started.json",
+      "Order": "2",
+      "IsTemplate": "No",
+      "IsShared": "No",
+      "Indentation": "0",
+      "WorkflowType": "ControlFlow"
+    },
+    "3": {
+      "AutomationController": "Reflow Oven Controller [A.1]",
+      "Name": "AutomationWorkflow_bb0f62e5-b527-46a7-ab2d-dd1f2d2140c5",
+      "DisplayName": "UnitsProcessed",
+      "IsFile": "true",
+      "Workflow": "ReflowOven/UnitsProcessed.json",
+      "Order": "3",
+      "IsTemplate": "No",
+      "IsShared": "No",
+      "Indentation": "0",
+      "WorkflowType": "ControlFlow"
+    },
+    "4": {
+      "AutomationController": "Reflow Oven Controller [A.1]",
+      "Name": "AutomationWorkflow_f32d263d-92fc-4d27-ab91-bc6a27ca48ce",
+      "DisplayName": "WorkCompleted",
+      "IsFile": "true",
+      "Workflow": "ReflowOven/WorkCompleted.json",
+      "Order": "4",
+      "IsTemplate": "No",
+      "IsShared": "No",
+      "Indentation": "0",
+      "WorkflowType": "ControlFlow"
+    }
+  }
+}

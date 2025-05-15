@@ -1,0 +1,29 @@
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.5.2.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Cmf.Custom.Data", "Cmf.Custom.Data", "{21BC6BDB-1F0F-3EDC-D068-C02067C19C73}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Cmf.Custom.Demo.Actions", "Cmf.Custom.Data\DEEs\Cmf.Custom.Demo.Actions.csproj", "{F2FD0E3B-06FC-9DB9-A6A0-71872593A285}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{F2FD0E3B-06FC-9DB9-A6A0-71872593A285}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F2FD0E3B-06FC-9DB9-A6A0-71872593A285}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F2FD0E3B-06FC-9DB9-A6A0-71872593A285}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F2FD0E3B-06FC-9DB9-A6A0-71872593A285}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{F2FD0E3B-06FC-9DB9-A6A0-71872593A285} = {21BC6BDB-1F0F-3EDC-D068-C02067C19C73}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {9D38EFF1-2209-4EEF-B9DD-FD7B3324E0CF}
+	EndGlobalSection
+EndGlobal
