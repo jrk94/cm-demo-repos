@@ -1,0 +1,297 @@
+{
+  "<DM>AutomationProtocol": {
+    "1": {
+      "Name": "IPC-CFX Protocol [A.1]",
+      "IsTemplate": "No",
+      "Type": "General",
+      "Package": "@criticalmanufacturing/connect-iot-driver-ipccfx",
+      "PackageVersion": "11.1.3",
+      "HasCommands": "Yes",
+      "HasEvents": "Yes",
+      "HasProperties": "Yes"
+    }
+  },
+  "AutomationProtocolParameter": {
+    "1": {
+      "AutomationProtocol": "IPC-CFX Protocol [A.1]",
+      "Name": "netCoreSdkVersion",
+      "Description": "Set the .net core SDK version to use, when multiple are installed in the system where the driver is running. Leave empty to ignore this setting.",
+      "DataType": "String",
+      "IsMandatory": "No",
+      "IsTemplate": "No",
+      "Label": ".Net Core SDK Version",
+      "ReferenceType": "None"
+    },
+    "2": {
+      "AutomationProtocol": "IPC-CFX Protocol [A.1]",
+      "Name": "transportProtocol",
+      "Description": "Protocol used to communicate with the endpoints",
+      "DataType": "String",
+      "DefaultValue": "AMQP",
+      "IsMandatory": "No",
+      "IsTemplate": "No",
+      "EnumValues": [
+        "AMQP"
+      ],
+      "Label": "Transport Protocol",
+      "ReferenceType": "Enum"
+    },
+    "3": {
+      "AutomationProtocol": "IPC-CFX Protocol [A.1]",
+      "Name": "driverHandle",
+      "Description": "Driver CFX Handle (e.g. <maker>.<model>.<serial>)",
+      "DataType": "String",
+      "IsMandatory": "No",
+      "IsTemplate": "No",
+      "Label": "Driver CFX Handle",
+      "ReferenceType": "None"
+    },
+    "4": {
+      "AutomationProtocol": "IPC-CFX Protocol [A.1]",
+      "Name": "driverEndPoint",
+      "Description": "Driver CFX EndPoint (e.g. amqp://127.0.0.1:5673/)",
+      "DataType": "String",
+      "IsMandatory": "No",
+      "IsTemplate": "No",
+      "Label": "Driver CFX EndPoint",
+      "ReferenceType": "None"
+    },
+    "5": {
+      "AutomationProtocol": "IPC-CFX Protocol [A.1]",
+      "Name": "driverAddress",
+      "Description": "Driver CFX Message Source. Internal queue for sending messages.",
+      "DataType": "String",
+      "IsMandatory": "No",
+      "IsTemplate": "No",
+      "Label": "Driver Address",
+      "ReferenceType": "None"
+    },
+    "6": {
+      "AutomationProtocol": "IPC-CFX Protocol [A.1]",
+      "Name": "driverUsername",
+      "Description": "Username to use for authentication. Use with amqps.",
+      "DataType": "String",
+      "IsMandatory": "No",
+      "IsTemplate": "No",
+      "Label": "Driver Username",
+      "ReferenceType": "None"
+    },
+    "7": {
+      "AutomationProtocol": "IPC-CFX Protocol [A.1]",
+      "Name": "driverPassword",
+      "Description": "Password to use for authentication. Use with amqps.",
+      "DataType": "Password",
+      "IsMandatory": "No",
+      "IsTemplate": "No",
+      "Label": "Driver Password",
+      "ReferenceType": "None"
+    },
+    "8": {
+      "AutomationProtocol": "IPC-CFX Protocol [A.1]",
+      "Name": "brokerEndPoint",
+      "Description": "Broker EndPoint that we are going to use to connect to.",
+      "DataType": "String",
+      "IsMandatory": "No",
+      "IsTemplate": "No",
+      "Label": "Broker EndPoint",
+      "ReferenceType": "None"
+    },
+    "9": {
+      "AutomationProtocol": "IPC-CFX Protocol [A.1]",
+      "Name": "brokerExchange",
+      "Description": "The Broker exchange we are going to be publish to.",
+      "DataType": "String",
+      "IsMandatory": "No",
+      "IsTemplate": "No",
+      "Label": "Broker Exchange",
+      "ReferenceType": "None"
+    },
+    "10": {
+      "AutomationProtocol": "IPC-CFX Protocol [A.1]",
+      "Name": "brokerQueue",
+      "Description": "The Broker queue to be used to subscribe messages.",
+      "DataType": "String",
+      "IsMandatory": "No",
+      "IsTemplate": "No",
+      "Label": "Broker Queue",
+      "ReferenceType": "None"
+    },
+    "11": {
+      "AutomationProtocol": "IPC-CFX Protocol [A.1]",
+      "Name": "brokerUsername",
+      "Description": "Username to use for authentication. Use with amqps.",
+      "DataType": "String",
+      "IsMandatory": "No",
+      "IsTemplate": "No",
+      "Label": "Broker Username",
+      "ReferenceType": "None"
+    },
+    "12": {
+      "AutomationProtocol": "IPC-CFX Protocol [A.1]",
+      "Name": "brokerPassword",
+      "Description": "Password to use for authentication. Use with amqps.",
+      "DataType": "Password",
+      "IsMandatory": "No",
+      "IsTemplate": "No",
+      "Label": "Broker Password",
+      "ReferenceType": "None"
+    },
+    "13": {
+      "AutomationProtocol": "IPC-CFX Protocol [A.1]",
+      "Name": "targetHandle",
+      "Description": "Target CFX Handle (e.g. <maker>.<model>.<serial>), machine CFX Handle that we are going to communicate with.",
+      "DataType": "String",
+      "IsMandatory": "No",
+      "IsTemplate": "No",
+      "Label": "Target Handle",
+      "ReferenceType": "None"
+    },
+    "14": {
+      "AutomationProtocol": "IPC-CFX Protocol [A.1]",
+      "Name": "targetEndPoint",
+      "Description": "Target CFX EndPoint (e.g. amqp://127.0.0.1:5672/), machine CFX EndPoint that we are going to communicate with.",
+      "DataType": "String",
+      "IsMandatory": "No",
+      "IsTemplate": "No",
+      "Label": "Target EndPoint",
+      "ReferenceType": "None"
+    },
+    "15": {
+      "AutomationProtocol": "IPC-CFX Protocol [A.1]",
+      "Name": "targetAddress",
+      "Description": "Target Address (i.e. /queue/machine), machine CFX Address that we are going to communicate with.",
+      "DataType": "String",
+      "IsMandatory": "No",
+      "IsTemplate": "No",
+      "Label": "Target Address",
+      "ReferenceType": "None"
+    },
+    "16": {
+      "AutomationProtocol": "IPC-CFX Protocol [A.1]",
+      "Name": "targetUsername",
+      "Description": "Username to use for authentication. Use with amqps.",
+      "DataType": "String",
+      "IsMandatory": "No",
+      "IsTemplate": "No",
+      "Label": "Username",
+      "ReferenceType": "None"
+    },
+    "17": {
+      "AutomationProtocol": "IPC-CFX Protocol [A.1]",
+      "Name": "targetPassword",
+      "Description": "Password to use for authentication. Use with amqps.",
+      "DataType": "Password",
+      "IsMandatory": "No",
+      "IsTemplate": "No",
+      "Label": "Password",
+      "ReferenceType": "None"
+    },
+    "18": {
+      "AutomationProtocol": "IPC-CFX Protocol [A.1]",
+      "Name": "certificatesRootFolder",
+      "Description": "Absolute path of the root folder for the Public Key Infrastructure. Allows the use of tokens ${temp} or ${tmp} for the OS temporary folder and token ${id} for replacing with the respective driver instance id",
+      "DataType": "String",
+      "DefaultValue": "${temp}/ConnectIoT/IPC-CFX/Certificates/${id}",
+      "IsMandatory": "No",
+      "IsTemplate": "No",
+      "Label": "Certificates Root Folder",
+      "ReferenceType": "None"
+    },
+    "19": {
+      "AutomationProtocol": "IPC-CFX Protocol [A.1]",
+      "Name": "certificate",
+      "Description": "Own certificate - can be either a path to a file or the contents of the file in plain text. Format should be 'pem'",
+      "DataType": "Text",
+      "IsMandatory": "No",
+      "IsTemplate": "No",
+      "Label": "Certificate",
+      "ReferenceType": "None"
+    },
+    "20": {
+      "AutomationProtocol": "IPC-CFX Protocol [A.1]",
+      "Name": "privateKey",
+      "Description": "Own private key - can be either a path to a file or the contents of the file in plain text. Format should be 'pem'",
+      "DataType": "Text",
+      "IsMandatory": "No",
+      "IsTemplate": "No",
+      "Label": "Private Key",
+      "ReferenceType": "None"
+    },
+    "21": {
+      "AutomationProtocol": "IPC-CFX Protocol [A.1]",
+      "Name": "connectionReconnectInterval",
+      "Description": "The time interval between attempts to reconnect publish or subscriber channels after a network interruption, in seconds.",
+      "DataType": "Integer",
+      "DefaultValue": "30",
+      "IsMandatory": "No",
+      "IsTemplate": "No",
+      "Label": "Connection Reconnect Interval",
+      "ReferenceType": "None"
+    },
+    "22": {
+      "AutomationProtocol": "IPC-CFX Protocol [A.1]",
+      "Name": "connectionRequestTimeout",
+      "Description": "When executing a point to point request/response call to another CFX endpoint, this time span specifies the maximum amount of time that this endpoint will wait for the other endpoint to respond before timing out, in seconds.",
+      "DataType": "Integer",
+      "DefaultValue": "30",
+      "IsMandatory": "No",
+      "IsTemplate": "No",
+      "Label": "Connection Request Timeout",
+      "ReferenceType": "None"
+    },
+    "23": {
+      "AutomationProtocol": "IPC-CFX Protocol [A.1]",
+      "Name": "useLowLevelLogging",
+      "Description": "Whether or not to use low level logging",
+      "DataType": "Boolean",
+      "DefaultValue": "false",
+      "IsMandatory": "No",
+      "IsTemplate": "No",
+      "Label": "Use Low Level Logging",
+      "ReferenceType": "None"
+    },
+    "24": {
+      "AutomationProtocol": "IPC-CFX Protocol [A.1]",
+      "Name": "eventsExpiration",
+      "Description": "Time in seconds before an event is considered expired.",
+      "DataType": "Integer",
+      "DefaultValue": "30",
+      "IsMandatory": "No",
+      "IsTemplate": "No",
+      "Label": "Events Expiration",
+      "ReferenceType": "None"
+    },
+    "25": {
+      "AutomationProtocol": "IPC-CFX Protocol [A.1]",
+      "Name": "onRequestReceivedTimeoutReply",
+      "Description": "Internal time to wait for a reply to an external request, by the controller",
+      "DataType": "Integer",
+      "DefaultValue": "30",
+      "IsMandatory": "No",
+      "IsTemplate": "No",
+      "Label": "On Request Received Timeout Reply",
+      "ReferenceType": "None"
+    },
+    "26": {
+      "AutomationProtocol": "IPC-CFX Protocol [A.1]",
+      "Name": "messagesToIgnore",
+      "Description": "List of messages that are to be ignored and discarded.",
+      "DataType": "Text",
+      "IsMandatory": "No",
+      "IsTemplate": "No",
+      "Label": "Messages to Ignore",
+      "ReferenceType": "None"
+    },
+    "27": {
+      "AutomationProtocol": "IPC-CFX Protocol [A.1]",
+      "Name": "logMessagesFromOtherSources",
+      "Description": "Whether or not to log messages from other sources",
+      "DataType": "Boolean",
+      "DefaultValue": "false",
+      "IsMandatory": "No",
+      "IsTemplate": "No",
+      "Label": "Log Messages From Other Sources",
+      "ReferenceType": "None"
+    }
+  }
+}
