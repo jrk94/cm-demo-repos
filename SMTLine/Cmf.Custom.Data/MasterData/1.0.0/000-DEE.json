@@ -1,0 +1,28 @@
+{
+    "<SM>DEEAction": {
+        "1": {
+            "Action": "LoadMaterials",
+            "Description": "DEE to Load Materials for Automation",
+            "CodeFileRelativePath": "Demo//LoadMaterials.cs",
+            "IsEnabled": "Yes",
+            "Classification": ""
+        }
+    },
+    "DEEActionOrder": {
+        "1": {
+            "ActionGroup": "MaterialManagement.MaterialManagement.ComplexTrackInMaterials.Pre",
+            "Action": "LoadMaterials",
+            "Order": "100"
+        },
+        "2": {
+            "ActionGroup": "MaterialManagement.MaterialManagement.ComplexTrackInMaterial.Pre",
+            "Action": "LoadMaterials",
+            "Order": "101"
+        },
+        "3": {
+            "ActionGroup": "MaterialManagement.MaterialManagement.ComplexTrackOutMaterial.Pre",
+            "Action": "LoadMaterials",
+            "Order": "102"
+        }
+    }
+}
