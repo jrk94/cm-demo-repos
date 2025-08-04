@@ -1,0 +1,1337 @@
+{
+  "tasks": [
+    {
+      "id": "1747056521692522",
+      "name": "driverEvent_30ce",
+      "type": {
+        "name": "driverEvent",
+        "package": "@criticalmanufacturing/connect-iot-controller-engine-core-tasks",
+        "version": "11.2.0-dev"
+      },
+      "x": 100,
+      "y": 100,
+      "isCollapsed": false,
+      "isDisabled": false,
+      "settings": {
+        "autoEnable": true,
+        "event": "OnInitialize",
+        "autoSetup": true
+      },
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "communicationState",
+          "value": "{{ $this.communicationState }}",
+          "dataType": "String"
+        }
+      ],
+      "driver": "CFX",
+      "caption": "When connection to driver notifies a {{event}} event",
+      "color": "#c2ceff",
+      "branches": [
+        {
+          "name": "handler",
+          "tasks": [
+            {
+              "id": "1747056521693523",
+              "name": "equipmentConfig_b678",
+              "type": {
+                "name": "equipmentConfig",
+                "package": "@criticalmanufacturing/connect-iot-controller-engine-core-tasks",
+                "version": "11.2.0-dev"
+              },
+              "isCollapsed": false,
+              "isDisabled": false,
+              "settings": {
+                "connectingTimeout": 5000,
+                "setupTimeout": 10000,
+                "intervalBeforeReconnect": 5000,
+                "heartbeatInterval": 60000,
+                "_inputs": [
+                  {
+                    "name": "netCoreSdkVersion",
+                    "label": ".Net Core SDK Version",
+                    "defaultValue": "",
+                    "parameter": {
+                      "$type": "Cmf.Foundation.BusinessObjects.AutomationProtocolParameter, Cmf.Foundation.BusinessObjects",
+                      "Name": "netCoreSdkVersion"
+                    },
+                    "dataType": "String",
+                    "automationDataType": 0,
+                    "referenceType": 0,
+                    "description": "Set the .net core SDK version to use, when multiple are installed in the system where the driver is running. Leave empty to ignore this setting.",
+                    "settingKey": "name"
+                  },
+                  {
+                    "name": "transportProtocol",
+                    "label": "Transport Protocol",
+                    "defaultValue": "AMQP",
+                    "parameter": {
+                      "$type": "Cmf.Foundation.BusinessObjects.AutomationProtocolParameter, Cmf.Foundation.BusinessObjects",
+                      "Name": "transportProtocol"
+                    },
+                    "dataType": "Enum",
+                    "automationDataType": 0,
+                    "referenceType": 1,
+                    "description": "Protocol used to communicate with the endpoints",
+                    "valueReferenceType": 6,
+                    "settings": {
+                      "enumValues": [
+                        "AMQP"
+                      ]
+                    },
+                    "settingKey": "name"
+                  },
+                  {
+                    "name": "driverHandle",
+                    "label": "Driver CFX Handle",
+                    "defaultValue": "CMF.Driver.IPCCFX",
+                    "parameter": {
+                      "$type": "Cmf.Foundation.BusinessObjects.AutomationProtocolParameter, Cmf.Foundation.BusinessObjects",
+                      "Name": "driverHandle"
+                    },
+                    "dataType": "String",
+                    "automationDataType": 0,
+                    "referenceType": 0,
+                    "description": "Driver CFX Handle (e.g. <maker>.<model>.<serial>)",
+                    "settingKey": "name"
+                  },
+                  {
+                    "name": "driverEndPoint",
+                    "label": "Driver CFX EndPoint",
+                    "defaultValue": "amqp://localhost:5001",
+                    "parameter": {
+                      "$type": "Cmf.Foundation.BusinessObjects.AutomationProtocolParameter, Cmf.Foundation.BusinessObjects",
+                      "Name": "driverEndPoint"
+                    },
+                    "dataType": "String",
+                    "automationDataType": 0,
+                    "referenceType": 0,
+                    "description": "Driver CFX EndPoint (e.g. amqp://127.0.0.1:5673/)",
+                    "settingKey": "name"
+                  },
+                  {
+                    "name": "driverAddress",
+                    "label": "Driver Address",
+                    "defaultValue": "/queue/CMF.Driver.IPCCFX",
+                    "parameter": {
+                      "$type": "Cmf.Foundation.BusinessObjects.AutomationProtocolParameter, Cmf.Foundation.BusinessObjects",
+                      "Name": "driverAddress"
+                    },
+                    "dataType": "String",
+                    "automationDataType": 0,
+                    "referenceType": 0,
+                    "description": "Driver CFX Message Source. Internal queue for sending messages.",
+                    "settingKey": "name"
+                  },
+                  {
+                    "name": "driverUsername",
+                    "label": "Driver Username",
+                    "defaultValue": "",
+                    "parameter": {
+                      "$type": "Cmf.Foundation.BusinessObjects.AutomationProtocolParameter, Cmf.Foundation.BusinessObjects",
+                      "Name": "driverUsername"
+                    },
+                    "dataType": "String",
+                    "automationDataType": 0,
+                    "referenceType": 0,
+                    "description": "Username to use for authentication. Use with amqps.",
+                    "settingKey": "name"
+                  },
+                  {
+                    "name": "driverPassword",
+                    "label": "Driver Password",
+                    "defaultValue": "",
+                    "parameter": {
+                      "$type": "Cmf.Foundation.BusinessObjects.AutomationProtocolParameter, Cmf.Foundation.BusinessObjects",
+                      "Name": "driverPassword"
+                    },
+                    "dataType": "Password",
+                    "automationDataType": 10,
+                    "referenceType": 0,
+                    "description": "Password to use for authentication. Use with amqps.",
+                    "settingKey": "name"
+                  },
+                  {
+                    "name": "brokerEndPoint",
+                    "label": "Broker EndPoint",
+                    "defaultValue": "amqp://localhost:5600",
+                    "parameter": {
+                      "$type": "Cmf.Foundation.BusinessObjects.AutomationProtocolParameter, Cmf.Foundation.BusinessObjects",
+                      "Name": "brokerEndPoint"
+                    },
+                    "dataType": "String",
+                    "automationDataType": 0,
+                    "referenceType": 0,
+                    "description": "Broker EndPoint that we are going to use to connect to.",
+                    "settingKey": "name"
+                  },
+                  {
+                    "name": "brokerExchange",
+                    "label": "Broker Exchange",
+                    "defaultValue": "/exchange/CFX-Exchange",
+                    "parameter": {
+                      "$type": "Cmf.Foundation.BusinessObjects.AutomationProtocolParameter, Cmf.Foundation.BusinessObjects",
+                      "Name": "brokerExchange"
+                    },
+                    "dataType": "String",
+                    "automationDataType": 0,
+                    "referenceType": 0,
+                    "description": "The Broker exchange we are going to be publish to.",
+                    "settingKey": "name"
+                  },
+                  {
+                    "name": "brokerQueue",
+                    "label": "Broker Queue",
+                    "defaultValue": "",
+                    "parameter": {
+                      "$type": "Cmf.Foundation.BusinessObjects.AutomationProtocolParameter, Cmf.Foundation.BusinessObjects",
+                      "Name": "brokerQueue"
+                    },
+                    "dataType": "String",
+                    "automationDataType": 0,
+                    "referenceType": 0,
+                    "description": "The Broker queue to be used to subscribe messages.",
+                    "settingKey": "name"
+                  },
+                  {
+                    "name": "brokerUsername",
+                    "label": "Broker Username",
+                    "defaultValue": "",
+                    "parameter": {
+                      "$type": "Cmf.Foundation.BusinessObjects.AutomationProtocolParameter, Cmf.Foundation.BusinessObjects",
+                      "Name": "brokerUsername"
+                    },
+                    "dataType": "String",
+                    "automationDataType": 0,
+                    "referenceType": 0,
+                    "description": "Username to use for authentication. Use with amqps.",
+                    "settingKey": "name"
+                  },
+                  {
+                    "name": "brokerPassword",
+                    "label": "Broker Password",
+                    "defaultValue": "",
+                    "parameter": {
+                      "$type": "Cmf.Foundation.BusinessObjects.AutomationProtocolParameter, Cmf.Foundation.BusinessObjects",
+                      "Name": "brokerPassword"
+                    },
+                    "dataType": "Password",
+                    "automationDataType": 10,
+                    "referenceType": 0,
+                    "description": "Password to use for authentication. Use with amqps.",
+                    "settingKey": "name"
+                  },
+                  {
+                    "name": "targetHandle",
+                    "label": "Target Handle",
+                    "defaultValue": "oven.test.machine",
+                    "parameter": {
+                      "$type": "Cmf.Foundation.BusinessObjects.AutomationProtocolParameter, Cmf.Foundation.BusinessObjects",
+                      "Name": "targetHandle"
+                    },
+                    "dataType": "String",
+                    "automationDataType": 0,
+                    "referenceType": 0,
+                    "description": "Target CFX Handle (e.g. <maker>.<model>.<serial>), machine CFX Handle that we are going to communicate with.",
+                    "settingKey": "name"
+                  },
+                  {
+                    "name": "targetEndPoint",
+                    "label": "Target EndPoint",
+                    "defaultValue": "amqp://localhost:5672",
+                    "parameter": {
+                      "$type": "Cmf.Foundation.BusinessObjects.AutomationProtocolParameter, Cmf.Foundation.BusinessObjects",
+                      "Name": "targetEndPoint"
+                    },
+                    "dataType": "String",
+                    "automationDataType": 0,
+                    "referenceType": 0,
+                    "description": "Target CFX EndPoint (e.g. amqp://127.0.0.1:5672/), machine CFX EndPoint that we are going to communicate with.",
+                    "settingKey": "name"
+                  },
+                  {
+                    "name": "targetAddress",
+                    "label": "Target Address",
+                    "defaultValue": "",
+                    "parameter": {
+                      "$type": "Cmf.Foundation.BusinessObjects.AutomationProtocolParameter, Cmf.Foundation.BusinessObjects",
+                      "Name": "targetAddress"
+                    },
+                    "dataType": "String",
+                    "automationDataType": 0,
+                    "referenceType": 0,
+                    "description": "Target Address (i.e. /queue/machine), machine CFX Address that we are going to communicate with.",
+                    "settingKey": "name"
+                  },
+                  {
+                    "name": "targetUsername",
+                    "label": "Username",
+                    "defaultValue": "",
+                    "parameter": {
+                      "$type": "Cmf.Foundation.BusinessObjects.AutomationProtocolParameter, Cmf.Foundation.BusinessObjects",
+                      "Name": "targetUsername"
+                    },
+                    "dataType": "String",
+                    "automationDataType": 0,
+                    "referenceType": 0,
+                    "description": "Username to use for authentication. Use with amqps.",
+                    "settingKey": "name"
+                  },
+                  {
+                    "name": "targetPassword",
+                    "label": "Password",
+                    "defaultValue": "",
+                    "parameter": {
+                      "$type": "Cmf.Foundation.BusinessObjects.AutomationProtocolParameter, Cmf.Foundation.BusinessObjects",
+                      "Name": "targetPassword"
+                    },
+                    "dataType": "Password",
+                    "automationDataType": 10,
+                    "referenceType": 0,
+                    "description": "Password to use for authentication. Use with amqps.",
+                    "settingKey": "name"
+                  },
+                  {
+                    "name": "certificatesRootFolder",
+                    "label": "Certificates Root Folder",
+                    "defaultValue": "${temp}/ConnectIoT/IPC-CFX/Certificates/${id}",
+                    "parameter": {
+                      "$type": "Cmf.Foundation.BusinessObjects.AutomationProtocolParameter, Cmf.Foundation.BusinessObjects",
+                      "Name": "certificatesRootFolder"
+                    },
+                    "dataType": "String",
+                    "automationDataType": 0,
+                    "referenceType": 0,
+                    "description": "Absolute path of the root folder for the Public Key Infrastructure. Allows the use of tokens ${temp} or ${tmp} for the OS temporary folder and token ${id} for replacing with the respective driver instance id",
+                    "settingKey": "name"
+                  },
+                  {
+                    "name": "certificate",
+                    "label": "Certificate",
+                    "defaultValue": "",
+                    "parameter": {
+                      "$type": "Cmf.Foundation.BusinessObjects.AutomationProtocolParameter, Cmf.Foundation.BusinessObjects",
+                      "Name": "certificate"
+                    },
+                    "dataType": "String",
+                    "automationDataType": 11,
+                    "referenceType": 0,
+                    "description": "Own certificate - can be either a path to a file or the contents of the file in plain text. Format should be 'pem'",
+                    "settingKey": "name"
+                  },
+                  {
+                    "name": "privateKey",
+                    "label": "Private Key",
+                    "defaultValue": "",
+                    "parameter": {
+                      "$type": "Cmf.Foundation.BusinessObjects.AutomationProtocolParameter, Cmf.Foundation.BusinessObjects",
+                      "Name": "privateKey"
+                    },
+                    "dataType": "String",
+                    "automationDataType": 11,
+                    "referenceType": 0,
+                    "description": "Own private key - can be either a path to a file or the contents of the file in plain text. Format should be 'pem'",
+                    "settingKey": "name"
+                  },
+                  {
+                    "name": "connectionReconnectInterval",
+                    "label": "Connection Reconnect Interval",
+                    "defaultValue": "30",
+                    "parameter": {
+                      "$type": "Cmf.Foundation.BusinessObjects.AutomationProtocolParameter, Cmf.Foundation.BusinessObjects",
+                      "Name": "connectionReconnectInterval"
+                    },
+                    "dataType": "Integer",
+                    "automationDataType": 5,
+                    "referenceType": 0,
+                    "description": "The time interval between attempts to reconnect publish or subscriber channels after a network interruption, in seconds.",
+                    "settingKey": "name"
+                  },
+                  {
+                    "name": "connectionRequestTimeout",
+                    "label": "Connection Request Timeout",
+                    "defaultValue": "30",
+                    "parameter": {
+                      "$type": "Cmf.Foundation.BusinessObjects.AutomationProtocolParameter, Cmf.Foundation.BusinessObjects",
+                      "Name": "connectionRequestTimeout"
+                    },
+                    "dataType": "Integer",
+                    "automationDataType": 5,
+                    "referenceType": 0,
+                    "description": "When executing a point to point request/response call to another CFX endpoint, this time span specifies the maximum amount of time that this endpoint will wait for the other endpoint to respond before timing out, in seconds.",
+                    "settingKey": "name"
+                  },
+                  {
+                    "name": "useLowLevelLogging",
+                    "label": "Use Low Level Logging",
+                    "defaultValue": "false",
+                    "parameter": {
+                      "$type": "Cmf.Foundation.BusinessObjects.AutomationProtocolParameter, Cmf.Foundation.BusinessObjects",
+                      "Name": "useLowLevelLogging"
+                    },
+                    "dataType": "Boolean",
+                    "automationDataType": 8,
+                    "referenceType": 0,
+                    "description": "Whether or not to use low level logging",
+                    "settingKey": "name"
+                  },
+                  {
+                    "name": "eventsExpiration",
+                    "label": "Events Expiration",
+                    "defaultValue": "30",
+                    "parameter": {
+                      "$type": "Cmf.Foundation.BusinessObjects.AutomationProtocolParameter, Cmf.Foundation.BusinessObjects",
+                      "Name": "eventsExpiration"
+                    },
+                    "dataType": "Integer",
+                    "automationDataType": 5,
+                    "referenceType": 0,
+                    "description": "Time in seconds before an event is considered expired.",
+                    "settingKey": "name"
+                  },
+                  {
+                    "name": "onRequestReceivedTimeoutReply",
+                    "label": "On Request Received Timeout Reply",
+                    "defaultValue": "30",
+                    "parameter": {
+                      "$type": "Cmf.Foundation.BusinessObjects.AutomationProtocolParameter, Cmf.Foundation.BusinessObjects",
+                      "Name": "onRequestReceivedTimeoutReply"
+                    },
+                    "dataType": "Integer",
+                    "automationDataType": 5,
+                    "referenceType": 0,
+                    "description": "Internal time to wait for a reply to an external request, by the controller",
+                    "settingKey": "name"
+                  },
+                  {
+                    "name": "messagesToIgnore",
+                    "label": "Messages to Ignore",
+                    "defaultValue": "",
+                    "parameter": {
+                      "$type": "Cmf.Foundation.BusinessObjects.AutomationProtocolParameter, Cmf.Foundation.BusinessObjects",
+                      "Name": "messagesToIgnore"
+                    },
+                    "dataType": "String",
+                    "automationDataType": 11,
+                    "referenceType": 0,
+                    "description": "List of messages that are to be ignored and discarded.",
+                    "settingKey": "name"
+                  },
+                  {
+                    "name": "logMessagesFromOtherSources",
+                    "label": "Log Messages From Other Sources",
+                    "defaultValue": true,
+                    "parameter": {
+                      "$type": "Cmf.Foundation.BusinessObjects.AutomationProtocolParameter, Cmf.Foundation.BusinessObjects",
+                      "Name": "logMessagesFromOtherSources"
+                    },
+                    "dataType": "Boolean",
+                    "automationDataType": 8,
+                    "referenceType": 0,
+                    "description": "Whether or not to log messages from other sources",
+                    "settingKey": "name"
+                  }
+                ],
+                "_automationProtocolParameters": [
+                  {
+                    "$id": "12",
+                    "$type": "Cmf.Foundation.BusinessObjects.AutomationProtocolParameter, Cmf.Foundation.BusinessObjects",
+                    "DataType": 0,
+                    "Attributes": {},
+                    "CreatedBy": "admin",
+                    "DefaultValue": "",
+                    "Description": "Set the .net core SDK version to use, when multiple are installed in the system where the driver is running. Leave empty to ignore this setting.",
+                    "CreatedOn": "2025-05-12T13:26:31Z",
+                    "IsMandatory": false,
+                    "IsTemplate": false,
+                    "Label": ".Net Core SDK Version",
+                    "Name": "netCoreSdkVersion",
+                    "LastOperationHistorySeq": "161",
+                    "ReferenceType": 0,
+                    "LastServiceHistoryId": "2504241248540011198",
+                    "LockType": 0,
+                    "ModifiedBy": "admin",
+                    "ModifiedOn": "2025-05-12T13:26:31Z",
+                    "ObjectLocked": false,
+                    "UniversalState": 2
+                  },
+                  {
+                    "$id": "13",
+                    "$type": "Cmf.Foundation.BusinessObjects.AutomationProtocolParameter, Cmf.Foundation.BusinessObjects",
+                    "DataType": 0,
+                    "Attributes": {},
+                    "CreatedBy": "admin",
+                    "DefaultValue": "AMQP",
+                    "Description": "Protocol used to communicate with the endpoints",
+                    "CreatedOn": "2025-05-12T13:26:31Z",
+                    "IsMandatory": false,
+                    "IsTemplate": false,
+                    "EnumValues": "[\"AMQP\"]",
+                    "Label": "Transport Protocol",
+                    "Name": "transportProtocol",
+                    "LastOperationHistorySeq": "161",
+                    "ReferenceType": 1,
+                    "LastServiceHistoryId": "2504241248540011198",
+                    "LockType": 0,
+                    "ModifiedBy": "admin",
+                    "ModifiedOn": "2025-05-12T13:26:31Z",
+                    "ObjectLocked": false,
+                    "UniversalState": 2
+                  },
+                  {
+                    "$id": "14",
+                    "$type": "Cmf.Foundation.BusinessObjects.AutomationProtocolParameter, Cmf.Foundation.BusinessObjects",
+                    "DataType": 0,
+                    "Attributes": {},
+                    "CreatedBy": "admin",
+                    "DefaultValue": "",
+                    "Description": "Driver CFX Handle (e.g. <maker>.<model>.<serial>)",
+                    "CreatedOn": "2025-05-12T13:26:31Z",
+                    "IsMandatory": false,
+                    "IsTemplate": false,
+                    "Label": "Driver CFX Handle",
+                    "Name": "driverHandle",
+                    "LastOperationHistorySeq": "161",
+                    "ReferenceType": 0,
+                    "LastServiceHistoryId": "2504241248540011198",
+                    "LockType": 0,
+                    "ModifiedBy": "admin",
+                    "ModifiedOn": "2025-05-12T13:26:31Z",
+                    "ObjectLocked": false,
+                    "UniversalState": 2
+                  },
+                  {
+                    "$id": "15",
+                    "$type": "Cmf.Foundation.BusinessObjects.AutomationProtocolParameter, Cmf.Foundation.BusinessObjects",
+                    "DataType": 0,
+                    "Attributes": {},
+                    "CreatedBy": "admin",
+                    "DefaultValue": "",
+                    "Description": "Driver CFX EndPoint (e.g. amqp://127.0.0.1:5673/)",
+                    "CreatedOn": "2025-05-12T13:26:31Z",
+                    "IsMandatory": false,
+                    "IsTemplate": false,
+                    "Label": "Driver CFX EndPoint",
+                    "Name": "driverEndPoint",
+                    "LastOperationHistorySeq": "161",
+                    "ReferenceType": 0,
+                    "LastServiceHistoryId": "2504241248540011198",
+                    "LockType": 0,
+                    "ModifiedBy": "admin",
+                    "ModifiedOn": "2025-05-12T13:26:31Z",
+                    "ObjectLocked": false,
+                    "UniversalState": 2
+                  },
+                  {
+                    "$id": "16",
+                    "$type": "Cmf.Foundation.BusinessObjects.AutomationProtocolParameter, Cmf.Foundation.BusinessObjects",
+                    "DataType": 0,
+                    "Attributes": {},
+                    "CreatedBy": "admin",
+                    "DefaultValue": "",
+                    "Description": "Driver CFX Message Source. Internal queue for sending messages.",
+                    "CreatedOn": "2025-05-12T13:26:31Z",
+                    "IsMandatory": false,
+                    "IsTemplate": false,
+                    "Label": "Driver Address",
+                    "Name": "driverAddress",
+                    "LastOperationHistorySeq": "161",
+                    "ReferenceType": 0,
+                    "LastServiceHistoryId": "2504241248540011198",
+                    "LockType": 0,
+                    "ModifiedBy": "admin",
+                    "ModifiedOn": "2025-05-12T13:26:31Z",
+                    "ObjectLocked": false,
+                    "UniversalState": 2
+                  },
+                  {
+                    "$id": "17",
+                    "$type": "Cmf.Foundation.BusinessObjects.AutomationProtocolParameter, Cmf.Foundation.BusinessObjects",
+                    "DataType": 0,
+                    "Attributes": {},
+                    "CreatedBy": "admin",
+                    "DefaultValue": "",
+                    "Description": "Username to use for authentication. Use with amqps.",
+                    "CreatedOn": "2025-05-12T13:26:31Z",
+                    "IsMandatory": false,
+                    "IsTemplate": false,
+                    "Label": "Driver Username",
+                    "Name": "driverUsername",
+                    "LastOperationHistorySeq": "161",
+                    "ReferenceType": 0,
+                    "LastServiceHistoryId": "2504241248540011198",
+                    "LockType": 0,
+                    "ModifiedBy": "admin",
+                    "ModifiedOn": "2025-05-12T13:26:31Z",
+                    "ObjectLocked": false,
+                    "UniversalState": 2
+                  },
+                  {
+                    "$id": "18",
+                    "$type": "Cmf.Foundation.BusinessObjects.AutomationProtocolParameter, Cmf.Foundation.BusinessObjects",
+                    "DataType": 10,
+                    "Attributes": {},
+                    "CreatedBy": "admin",
+                    "DefaultValue": "",
+                    "Description": "Password to use for authentication. Use with amqps.",
+                    "CreatedOn": "2025-05-12T13:26:31Z",
+                    "IsMandatory": false,
+                    "IsTemplate": false,
+                    "Label": "Driver Password",
+                    "Name": "driverPassword",
+                    "LastOperationHistorySeq": "161",
+                    "ReferenceType": 0,
+                    "LastServiceHistoryId": "2504241248540011198",
+                    "LockType": 0,
+                    "ModifiedBy": "admin",
+                    "ModifiedOn": "2025-05-12T13:26:31Z",
+                    "ObjectLocked": false,
+                    "UniversalState": 2
+                  },
+                  {
+                    "$id": "19",
+                    "$type": "Cmf.Foundation.BusinessObjects.AutomationProtocolParameter, Cmf.Foundation.BusinessObjects",
+                    "DataType": 0,
+                    "Attributes": {},
+                    "CreatedBy": "admin",
+                    "DefaultValue": "",
+                    "Description": "Broker EndPoint that we are going to use to connect to.",
+                    "CreatedOn": "2025-05-12T13:26:31Z",
+                    "IsMandatory": false,
+                    "IsTemplate": false,
+                    "Label": "Broker EndPoint",
+                    "Name": "brokerEndPoint",
+                    "LastOperationHistorySeq": "161",
+                    "ReferenceType": 0,
+                    "LastServiceHistoryId": "2504241248540011198",
+                    "LockType": 0,
+                    "ModifiedBy": "admin",
+                    "ModifiedOn": "2025-05-12T13:26:31Z",
+                    "ObjectLocked": false,
+                    "UniversalState": 2
+                  },
+                  {
+                    "$id": "20",
+                    "$type": "Cmf.Foundation.BusinessObjects.AutomationProtocolParameter, Cmf.Foundation.BusinessObjects",
+                    "DataType": 0,
+                    "Attributes": {},
+                    "CreatedBy": "admin",
+                    "DefaultValue": "",
+                    "Description": "The Broker exchange we are going to be publish to.",
+                    "CreatedOn": "2025-05-12T13:26:31Z",
+                    "IsMandatory": false,
+                    "IsTemplate": false,
+                    "Label": "Broker Exchange",
+                    "Name": "brokerExchange",
+                    "LastOperationHistorySeq": "161",
+                    "ReferenceType": 0,
+                    "LastServiceHistoryId": "2504241248540011198",
+                    "LockType": 0,
+                    "ModifiedBy": "admin",
+                    "ModifiedOn": "2025-05-12T13:26:31Z",
+                    "ObjectLocked": false,
+                    "UniversalState": 2
+                  },
+                  {
+                    "$id": "21",
+                    "$type": "Cmf.Foundation.BusinessObjects.AutomationProtocolParameter, Cmf.Foundation.BusinessObjects",
+                    "DataType": 0,
+                    "Attributes": {},
+                    "CreatedBy": "admin",
+                    "DefaultValue": "",
+                    "Description": "The Broker queue to be used to subscribe messages.",
+                    "CreatedOn": "2025-05-12T13:26:31Z",
+                    "IsMandatory": false,
+                    "IsTemplate": false,
+                    "Label": "Broker Queue",
+                    "Name": "brokerQueue",
+                    "LastOperationHistorySeq": "161",
+                    "ReferenceType": 0,
+                    "LastServiceHistoryId": "2504241248540011198",
+                    "LockType": 0,
+                    "ModifiedBy": "admin",
+                    "ModifiedOn": "2025-05-12T13:26:31Z",
+                    "ObjectLocked": false,
+                    "UniversalState": 2
+                  },
+                  {
+                    "$id": "22",
+                    "$type": "Cmf.Foundation.BusinessObjects.AutomationProtocolParameter, Cmf.Foundation.BusinessObjects",
+                    "DataType": 0,
+                    "Attributes": {},
+                    "CreatedBy": "admin",
+                    "DefaultValue": "",
+                    "Description": "Username to use for authentication. Use with amqps.",
+                    "CreatedOn": "2025-05-12T13:26:31Z",
+                    "IsMandatory": false,
+                    "IsTemplate": false,
+                    "Label": "Broker Username",
+                    "Name": "brokerUsername",
+                    "LastOperationHistorySeq": "161",
+                    "ReferenceType": 0,
+                    "LastServiceHistoryId": "2504241248540011198",
+                    "LockType": 0,
+                    "ModifiedBy": "admin",
+                    "ModifiedOn": "2025-05-12T13:26:31Z",
+                    "ObjectLocked": false,
+                    "UniversalState": 2
+                  },
+                  {
+                    "$id": "23",
+                    "$type": "Cmf.Foundation.BusinessObjects.AutomationProtocolParameter, Cmf.Foundation.BusinessObjects",
+                    "DataType": 10,
+                    "Attributes": {},
+                    "CreatedBy": "admin",
+                    "DefaultValue": "",
+                    "Description": "Password to use for authentication. Use with amqps.",
+                    "CreatedOn": "2025-05-12T13:26:31Z",
+                    "IsMandatory": false,
+                    "IsTemplate": false,
+                    "Label": "Broker Password",
+                    "Name": "brokerPassword",
+                    "LastOperationHistorySeq": "161",
+                    "ReferenceType": 0,
+                    "LastServiceHistoryId": "2504241248540011198",
+                    "LockType": 0,
+                    "ModifiedBy": "admin",
+                    "ModifiedOn": "2025-05-12T13:26:31Z",
+                    "ObjectLocked": false,
+                    "UniversalState": 2
+                  },
+                  {
+                    "$id": "24",
+                    "$type": "Cmf.Foundation.BusinessObjects.AutomationProtocolParameter, Cmf.Foundation.BusinessObjects",
+                    "DataType": 0,
+                    "Attributes": {},
+                    "CreatedBy": "admin",
+                    "DefaultValue": "",
+                    "Description": "Target CFX Handle (e.g. <maker>.<model>.<serial>), machine CFX Handle that we are going to communicate with.",
+                    "CreatedOn": "2025-05-12T13:26:31Z",
+                    "IsMandatory": false,
+                    "IsTemplate": false,
+                    "Label": "Target Handle",
+                    "Name": "targetHandle",
+                    "LastOperationHistorySeq": "161",
+                    "ReferenceType": 0,
+                    "LastServiceHistoryId": "2504241248540011198",
+                    "LockType": 0,
+                    "ModifiedBy": "admin",
+                    "ModifiedOn": "2025-05-12T13:26:31Z",
+                    "ObjectLocked": false,
+                    "UniversalState": 2
+                  },
+                  {
+                    "$id": "25",
+                    "$type": "Cmf.Foundation.BusinessObjects.AutomationProtocolParameter, Cmf.Foundation.BusinessObjects",
+                    "DataType": 0,
+                    "Attributes": {},
+                    "CreatedBy": "admin",
+                    "DefaultValue": "",
+                    "Description": "Target CFX EndPoint (e.g. amqp://127.0.0.1:5672/), machine CFX EndPoint that we are going to communicate with.",
+                    "CreatedOn": "2025-05-12T13:26:31Z",
+                    "IsMandatory": false,
+                    "IsTemplate": false,
+                    "Label": "Target EndPoint",
+                    "Name": "targetEndPoint",
+                    "LastOperationHistorySeq": "161",
+                    "ReferenceType": 0,
+                    "LastServiceHistoryId": "2504241248540011198",
+                    "LockType": 0,
+                    "ModifiedBy": "admin",
+                    "ModifiedOn": "2025-05-12T13:26:31Z",
+                    "ObjectLocked": false,
+                    "UniversalState": 2
+                  },
+                  {
+                    "$id": "26",
+                    "$type": "Cmf.Foundation.BusinessObjects.AutomationProtocolParameter, Cmf.Foundation.BusinessObjects",
+                    "DataType": 0,
+                    "Attributes": {},
+                    "CreatedBy": "admin",
+                    "DefaultValue": "",
+                    "Description": "Target Address (i.e. /queue/machine), machine CFX Address that we are going to communicate with.",
+                    "CreatedOn": "2025-05-12T13:26:31Z",
+                    "IsMandatory": false,
+                    "IsTemplate": false,
+                    "Label": "Target Address",
+                    "Name": "targetAddress",
+                    "LastOperationHistorySeq": "161",
+                    "ReferenceType": 0,
+                    "LastServiceHistoryId": "2504241248540011198",
+                    "LockType": 0,
+                    "ModifiedBy": "admin",
+                    "ModifiedOn": "2025-05-12T13:26:31Z",
+                    "ObjectLocked": false,
+                    "UniversalState": 2
+                  },
+                  {
+                    "$id": "27",
+                    "$type": "Cmf.Foundation.BusinessObjects.AutomationProtocolParameter, Cmf.Foundation.BusinessObjects",
+                    "DataType": 0,
+                    "Attributes": {},
+                    "CreatedBy": "admin",
+                    "DefaultValue": "",
+                    "Description": "Username to use for authentication. Use with amqps.",
+                    "CreatedOn": "2025-05-12T13:26:31Z",
+                    "IsMandatory": false,
+                    "IsTemplate": false,
+                    "Label": "Username",
+                    "Name": "targetUsername",
+                    "LastOperationHistorySeq": "161",
+                    "ReferenceType": 0,
+                    "LastServiceHistoryId": "2504241248540011198",
+                    "LockType": 0,
+                    "ModifiedBy": "admin",
+                    "ModifiedOn": "2025-05-12T13:26:31Z",
+                    "ObjectLocked": false,
+                    "UniversalState": 2
+                  },
+                  {
+                    "$id": "28",
+                    "$type": "Cmf.Foundation.BusinessObjects.AutomationProtocolParameter, Cmf.Foundation.BusinessObjects",
+                    "DataType": 10,
+                    "Attributes": {},
+                    "CreatedBy": "admin",
+                    "DefaultValue": "",
+                    "Description": "Password to use for authentication. Use with amqps.",
+                    "CreatedOn": "2025-05-12T13:26:31Z",
+                    "IsMandatory": false,
+                    "IsTemplate": false,
+                    "Label": "Password",
+                    "Name": "targetPassword",
+                    "LastOperationHistorySeq": "161",
+                    "ReferenceType": 0,
+                    "LastServiceHistoryId": "2504241248540011198",
+                    "LockType": 0,
+                    "ModifiedBy": "admin",
+                    "ModifiedOn": "2025-05-12T13:26:31Z",
+                    "ObjectLocked": false,
+                    "UniversalState": 2
+                  },
+                  {
+                    "$id": "29",
+                    "$type": "Cmf.Foundation.BusinessObjects.AutomationProtocolParameter, Cmf.Foundation.BusinessObjects",
+                    "DataType": 0,
+                    "Attributes": {},
+                    "CreatedBy": "admin",
+                    "DefaultValue": "${temp}/ConnectIoT/IPC-CFX/Certificates/${id}",
+                    "Description": "Absolute path of the root folder for the Public Key Infrastructure. Allows the use of tokens ${temp} or ${tmp} for the OS temporary folder and token ${id} for replacing with the respective driver instance id",
+                    "CreatedOn": "2025-05-12T13:26:31Z",
+                    "IsMandatory": false,
+                    "IsTemplate": false,
+                    "Label": "Certificates Root Folder",
+                    "Name": "certificatesRootFolder",
+                    "LastOperationHistorySeq": "161",
+                    "ReferenceType": 0,
+                    "LastServiceHistoryId": "2504241248540011198",
+                    "LockType": 0,
+                    "ModifiedBy": "admin",
+                    "ModifiedOn": "2025-05-12T13:26:31Z",
+                    "ObjectLocked": false,
+                    "UniversalState": 2
+                  },
+                  {
+                    "$id": "30",
+                    "$type": "Cmf.Foundation.BusinessObjects.AutomationProtocolParameter, Cmf.Foundation.BusinessObjects",
+                    "DataType": 11,
+                    "Attributes": {},
+                    "CreatedBy": "admin",
+                    "DefaultValue": "",
+                    "Description": "Own certificate - can be either a path to a file or the contents of the file in plain text. Format should be 'pem'",
+                    "CreatedOn": "2025-05-12T13:26:31Z",
+                    "IsMandatory": false,
+                    "IsTemplate": false,
+                    "Label": "Certificate",
+                    "Name": "certificate",
+                    "LastOperationHistorySeq": "161",
+                    "ReferenceType": 0,
+                    "LastServiceHistoryId": "2504241248540011198",
+                    "LockType": 0,
+                    "ModifiedBy": "admin",
+                    "ModifiedOn": "2025-05-12T13:26:31Z",
+                    "ObjectLocked": false,
+                    "UniversalState": 2
+                  },
+                  {
+                    "$id": "31",
+                    "$type": "Cmf.Foundation.BusinessObjects.AutomationProtocolParameter, Cmf.Foundation.BusinessObjects",
+                    "DataType": 11,
+                    "Attributes": {},
+                    "CreatedBy": "admin",
+                    "DefaultValue": "",
+                    "Description": "Own private key - can be either a path to a file or the contents of the file in plain text. Format should be 'pem'",
+                    "CreatedOn": "2025-05-12T13:26:31Z",
+                    "IsMandatory": false,
+                    "IsTemplate": false,
+                    "Label": "Private Key",
+                    "Name": "privateKey",
+                    "LastOperationHistorySeq": "161",
+                    "ReferenceType": 0,
+                    "LastServiceHistoryId": "2504241248540011198",
+                    "LockType": 0,
+                    "ModifiedBy": "admin",
+                    "ModifiedOn": "2025-05-12T13:26:31Z",
+                    "ObjectLocked": false,
+                    "UniversalState": 2
+                  },
+                  {
+                    "$id": "32",
+                    "$type": "Cmf.Foundation.BusinessObjects.AutomationProtocolParameter, Cmf.Foundation.BusinessObjects",
+                    "DataType": 5,
+                    "Attributes": {},
+                    "CreatedBy": "admin",
+                    "DefaultValue": "30",
+                    "Description": "The time interval between attempts to reconnect publish or subscriber channels after a network interruption, in seconds.",
+                    "CreatedOn": "2025-05-12T13:26:31Z",
+                    "IsMandatory": false,
+                    "IsTemplate": false,
+                    "Label": "Connection Reconnect Interval",
+                    "Name": "connectionReconnectInterval",
+                    "LastOperationHistorySeq": "161",
+                    "ReferenceType": 0,
+                    "LastServiceHistoryId": "2504241248540011198",
+                    "LockType": 0,
+                    "ModifiedBy": "admin",
+                    "ModifiedOn": "2025-05-12T13:26:31Z",
+                    "ObjectLocked": false,
+                    "UniversalState": 2
+                  },
+                  {
+                    "$id": "33",
+                    "$type": "Cmf.Foundation.BusinessObjects.AutomationProtocolParameter, Cmf.Foundation.BusinessObjects",
+                    "DataType": 5,
+                    "Attributes": {},
+                    "CreatedBy": "admin",
+                    "DefaultValue": "30",
+                    "Description": "When executing a point to point request/response call to another CFX endpoint, this time span specifies the maximum amount of time that this endpoint will wait for the other endpoint to respond before timing out, in seconds.",
+                    "CreatedOn": "2025-05-12T13:26:31Z",
+                    "IsMandatory": false,
+                    "IsTemplate": false,
+                    "Label": "Connection Request Timeout",
+                    "Name": "connectionRequestTimeout",
+                    "LastOperationHistorySeq": "161",
+                    "ReferenceType": 0,
+                    "LastServiceHistoryId": "2504241248540011198",
+                    "LockType": 0,
+                    "ModifiedBy": "admin",
+                    "ModifiedOn": "2025-05-12T13:26:31Z",
+                    "ObjectLocked": false,
+                    "UniversalState": 2
+                  },
+                  {
+                    "$id": "34",
+                    "$type": "Cmf.Foundation.BusinessObjects.AutomationProtocolParameter, Cmf.Foundation.BusinessObjects",
+                    "DataType": 8,
+                    "Attributes": {},
+                    "CreatedBy": "admin",
+                    "DefaultValue": "false",
+                    "Description": "Whether or not to use low level logging",
+                    "CreatedOn": "2025-05-12T13:26:31Z",
+                    "IsMandatory": false,
+                    "IsTemplate": false,
+                    "Label": "Use Low Level Logging",
+                    "Name": "useLowLevelLogging",
+                    "LastOperationHistorySeq": "161",
+                    "ReferenceType": 0,
+                    "LastServiceHistoryId": "2504241248540011198",
+                    "LockType": 0,
+                    "ModifiedBy": "admin",
+                    "ModifiedOn": "2025-05-12T13:26:31Z",
+                    "ObjectLocked": false,
+                    "UniversalState": 2
+                  },
+                  {
+                    "$id": "35",
+                    "$type": "Cmf.Foundation.BusinessObjects.AutomationProtocolParameter, Cmf.Foundation.BusinessObjects",
+                    "DataType": 5,
+                    "Attributes": {},
+                    "CreatedBy": "admin",
+                    "DefaultValue": "30",
+                    "Description": "Time in seconds before an event is considered expired.",
+                    "CreatedOn": "2025-05-12T13:26:31Z",
+                    "IsMandatory": false,
+                    "IsTemplate": false,
+                    "Label": "Events Expiration",
+                    "Name": "eventsExpiration",
+                    "LastOperationHistorySeq": "161",
+                    "ReferenceType": 0,
+                    "LastServiceHistoryId": "2504241248540011198",
+                    "LockType": 0,
+                    "ModifiedBy": "admin",
+                    "ModifiedOn": "2025-05-12T13:26:31Z",
+                    "ObjectLocked": false,
+                    "UniversalState": 2
+                  },
+                  {
+                    "$id": "36",
+                    "$type": "Cmf.Foundation.BusinessObjects.AutomationProtocolParameter, Cmf.Foundation.BusinessObjects",
+                    "DataType": 5,
+                    "Attributes": {},
+                    "CreatedBy": "admin",
+                    "DefaultValue": "30",
+                    "Description": "Internal time to wait for a reply to an external request, by the controller",
+                    "CreatedOn": "2025-05-12T13:26:31Z",
+                    "IsMandatory": false,
+                    "IsTemplate": false,
+                    "Label": "On Request Received Timeout Reply",
+                    "Name": "onRequestReceivedTimeoutReply",
+                    "LastOperationHistorySeq": "161",
+                    "ReferenceType": 0,
+                    "LastServiceHistoryId": "2504241248540011198",
+                    "LockType": 0,
+                    "ModifiedBy": "admin",
+                    "ModifiedOn": "2025-05-12T13:26:31Z",
+                    "ObjectLocked": false,
+                    "UniversalState": 2
+                  },
+                  {
+                    "$id": "37",
+                    "$type": "Cmf.Foundation.BusinessObjects.AutomationProtocolParameter, Cmf.Foundation.BusinessObjects",
+                    "DataType": 11,
+                    "Attributes": {},
+                    "CreatedBy": "admin",
+                    "DefaultValue": "",
+                    "Description": "List of messages that are to be ignored and discarded.",
+                    "CreatedOn": "2025-05-12T13:26:31Z",
+                    "IsMandatory": false,
+                    "IsTemplate": false,
+                    "Label": "Messages to Ignore",
+                    "Name": "messagesToIgnore",
+                    "LastOperationHistorySeq": "161",
+                    "ReferenceType": 0,
+                    "LastServiceHistoryId": "2504241248540011198",
+                    "LockType": 0,
+                    "ModifiedBy": "admin",
+                    "ModifiedOn": "2025-05-12T13:26:31Z",
+                    "ObjectLocked": false,
+                    "UniversalState": 2
+                  },
+                  {
+                    "$id": "38",
+                    "$type": "Cmf.Foundation.BusinessObjects.AutomationProtocolParameter, Cmf.Foundation.BusinessObjects",
+                    "DataType": 8,
+                    "Attributes": {},
+                    "CreatedBy": "admin",
+                    "DefaultValue": "false",
+                    "Description": "Whether or not to log messages from other sources",
+                    "CreatedOn": "2025-05-12T13:26:31Z",
+                    "IsMandatory": false,
+                    "IsTemplate": false,
+                    "Label": "Log Messages From Other Sources",
+                    "Name": "logMessagesFromOtherSources",
+                    "LastOperationHistorySeq": "161",
+                    "ReferenceType": 0,
+                    "LastServiceHistoryId": "2504241248540011198",
+                    "LockType": 0,
+                    "ModifiedBy": "admin",
+                    "ModifiedOn": "2025-05-12T13:26:31Z",
+                    "ObjectLocked": false,
+                    "UniversalState": 2
+                  }
+                ]
+              },
+              "inputs": [
+                {
+                  "name": "netCoreSdkVersion",
+                  "value": "",
+                  "dataType": "String"
+                },
+                {
+                  "name": "transportProtocol",
+                  "value": "AMQP",
+                  "dataType": "Enum"
+                },
+                {
+                  "name": "driverHandle",
+                  "value": "CMF.Driver.IPCCFX",
+                  "dataType": "String"
+                },
+                {
+                  "name": "driverEndPoint",
+                  "value": "amqp://localhost:5001",
+                  "dataType": "String"
+                },
+                {
+                  "name": "driverAddress",
+                  "value": "/queue/CMF.Driver.IPCCFX",
+                  "dataType": "String"
+                },
+                {
+                  "name": "driverUsername",
+                  "value": "",
+                  "dataType": "String"
+                },
+                {
+                  "name": "driverPassword",
+                  "value": "",
+                  "dataType": "Password"
+                },
+                {
+                  "name": "brokerEndPoint",
+                  "value": "amqp://localhost:5600",
+                  "dataType": "String"
+                },
+                {
+                  "name": "brokerExchange",
+                  "value": "/exchange/CFX-Exchange",
+                  "dataType": "String"
+                },
+                {
+                  "name": "brokerQueue",
+                  "value": "",
+                  "dataType": "String"
+                },
+                {
+                  "name": "brokerUsername",
+                  "value": "",
+                  "dataType": "String"
+                },
+                {
+                  "name": "brokerPassword",
+                  "value": "",
+                  "dataType": "Password"
+                },
+                {
+                  "name": "targetHandle",
+                  "value": "oven.test.machine",
+                  "dataType": "String"
+                },
+                {
+                  "name": "targetEndPoint",
+                  "value": "amqp://localhost:5672",
+                  "dataType": "String"
+                },
+                {
+                  "name": "targetAddress",
+                  "value": "",
+                  "dataType": "String"
+                },
+                {
+                  "name": "targetUsername",
+                  "value": "",
+                  "dataType": "String"
+                },
+                {
+                  "name": "targetPassword",
+                  "value": "",
+                  "dataType": "Password"
+                },
+                {
+                  "name": "certificatesRootFolder",
+                  "value": "${temp}/ConnectIoT/IPC-CFX/Certificates/${id}",
+                  "dataType": "String"
+                },
+                {
+                  "name": "certificate",
+                  "value": "",
+                  "dataType": "String"
+                },
+                {
+                  "name": "privateKey",
+                  "value": "",
+                  "dataType": "String"
+                },
+                {
+                  "name": "connectionReconnectInterval",
+                  "value": "30",
+                  "dataType": "Integer"
+                },
+                {
+                  "name": "connectionRequestTimeout",
+                  "value": "30",
+                  "dataType": "Integer"
+                },
+                {
+                  "name": "useLowLevelLogging",
+                  "value": "false",
+                  "dataType": "Boolean"
+                },
+                {
+                  "name": "eventsExpiration",
+                  "value": "30",
+                  "dataType": "Integer"
+                },
+                {
+                  "name": "onRequestReceivedTimeoutReply",
+                  "value": "30",
+                  "dataType": "Integer"
+                },
+                {
+                  "name": "messagesToIgnore",
+                  "value": "",
+                  "dataType": "String"
+                },
+                {
+                  "name": "logMessagesFromOtherSources",
+                  "value": "true",
+                  "dataType": "Boolean"
+                }
+              ],
+              "outputs": [],
+              "driver": "CFX",
+              "caption": "Configure connection with equipment",
+              "color": "#c2ceff",
+              "branches": []
+            },
+            {
+              "id": "1747056521697524",
+              "name": "driverCommand_d9c8",
+              "type": {
+                "name": "driverCommand",
+                "package": "@criticalmanufacturing/connect-iot-controller-engine-core-tasks",
+                "version": "11.2.0-dev"
+              },
+              "isCollapsed": false,
+              "isDisabled": false,
+              "settings": {
+                "command": "Connect"
+              },
+              "inputs": [],
+              "outputs": [],
+              "driver": "CFX",
+              "caption": "Send {{command}} message to driver connection",
+              "color": "#c2ceff",
+              "branches": []
+            },
+            {
+              "id": "1747135458917788",
+              "name": "customTemplates_cb46",
+              "type": {
+                "name": "customTemplates",
+                "package": "@criticalmanufacturing/connect-iot-controller-engine-core-tasks",
+                "version": "11.2.0-dev"
+              },
+              "isCollapsed": false,
+              "isDisabled": false,
+              "settings": {
+                "values": [
+                  {
+                    "name": "CFX",
+                    "json": {
+                      "property": [
+                        {
+                          "Name": "transactionId",
+                          "Description": "Transaction Id",
+                          "DevicePropertyId": "TransactionId",
+                          "DataType": "String",
+                          "IsWritable": true,
+                          "IsReadable": true,
+                          "AutomationProtocolDataType": "String",
+                          "ExtendedData": {
+                            "propertyType": "TransactionId",
+                            "identifierType": "None"
+                          }
+                        },
+                        {
+                          "Name": "overallResult",
+                          "Description": "Overall Result",
+                          "DevicePropertyId": "OverallResult",
+                          "DataType": "String",
+                          "IsWritable": true,
+                          "IsReadable": true,
+                          "AutomationProtocolDataType": "String",
+                          "ExtendedData": {
+                            "propertyType": "OverallResult",
+                            "identifierType": "None"
+                          }
+                        },
+                        {
+                          "Name": "commonProcessData",
+                          "Description": "Common Process Data",
+                          "DevicePropertyId": "CommonProcessData",
+                          "DataType": "Object",
+                          "IsWritable": true,
+                          "IsReadable": true,
+                          "AutomationProtocolDataType": "Object",
+                          "ExtendedData": {
+                            "propertyType": "CommonProcessData",
+                            "identifierType": "None"
+                          }
+                        },
+                        {
+                          "Name": "unitProcessData",
+                          "Description": "Unit Process Data",
+                          "DevicePropertyId": "UnitProcessData",
+                          "DataType": "Object",
+                          "IsWritable": true,
+                          "IsReadable": true,
+                          "AutomationProtocolDataType": "Object",
+                          "ExtendedData": {
+                            "propertyType": "UnitProcessData",
+                            "identifierType": "None"
+                          }
+                        }
+                      ],
+                      "event": [
+                        {
+                          "Name": "UnitsProcessed",
+                          "Description": "Units Processed",
+                          "DeviceEventId": "CFX.Production.Processing.UnitsProcessed",
+                          "IsEnabled": true,
+                          "ExtendedData": {
+                            "eventTrigger": "CFX.Production.Processing.UnitsProcessed"
+                          },
+                          "EventProperties": [
+                            {
+                              "Property": "transactionId",
+                              "Order": 1,
+                              "ExtendedData": {}
+                            },
+                            {
+                              "Property": "overallResult",
+                              "Order": 2,
+                              "ExtendedData": {}
+                            },
+                            {
+                              "Property": "commonProcessData",
+                              "Order": 3,
+                              "ExtendedData": {}
+                            },
+                            {
+                              "Property": "unitProcessData",
+                              "Order": 4,
+                              "ExtendedData": {}
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    "dataType": "valueType",
+                    "settingKey": "name"
+                  }
+                ]
+              },
+              "inputs": [],
+              "outputs": [
+                {
+                  "name": "CFX",
+                  "value": "{{ $this.CFX }}",
+                  "dataType": "Any"
+                }
+              ],
+              "driver": "CFX",
+              "caption": "Define custom Driver Definition templates",
+              "color": "#c2ceff",
+              "branches": []
+            }
+          ],
+          "settings": {}
+        }
+      ]
+    }
+  ],
+  "$id": "1",
+  "layout": {
+    "general": {
+      "color": null
+    },
+    "drawer": {
+      "tasks": {},
+      "x": -2.2737367544323206E-13,
+      "y": 0,
+      "zoom": 1,
+      "fill": true
+    }
+  }
+}

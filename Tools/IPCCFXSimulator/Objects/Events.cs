@@ -4,6 +4,19 @@ using System.Text.Json;
 
 namespace IPCCFXSimulator.Objects
 {
+    public enum ScenarioReflowData
+    {
+        Random,
+        SolderBalling,
+        //Tombstoning,
+        //ColdJoint,
+        //SolderBridging,
+        //Dewetting,
+        //HeadInPillow,
+        //Voiding,
+        //ComponentMisalignment
+    }
+
     public class Events
     {
         public Dictionary<string, ReflowProcessData> Products { get; set; }
@@ -3265,7 +3278,7 @@ namespace IPCCFXSimulator.Objects
             ]
             """;
 
-        public Events()
+        public Events(ScenarioReflowData scenario)
         {
             Products = new Dictionary<string, ReflowProcessData>
             {
@@ -3275,7 +3288,7 @@ namespace IPCCFXSimulator.Objects
                     {
                         ConveyorSpeed = 100,
                         ConveyorSpeedSetpoint = 100,
-                        ZoneData = AdjustReadingsRandomly(ZoneData_SMT_Product_A)
+                        ZoneData = Scenario(scenario, ZoneData_SMT_Product_A)
                     }
                 },
                 {
@@ -3284,7 +3297,7 @@ namespace IPCCFXSimulator.Objects
                     {
                         ConveyorSpeed = 100,
                         ConveyorSpeedSetpoint = 100,
-                        ZoneData = AdjustReadingsRandomly(ZoneData_SMT_Product_B)
+                        ZoneData = Scenario(scenario, ZoneData_SMT_Product_B)
                     }
                 },
                 {
@@ -3293,7 +3306,7 @@ namespace IPCCFXSimulator.Objects
                     {
                         ConveyorSpeed = 100,
                         ConveyorSpeedSetpoint = 100,
-                        ZoneData = AdjustReadingsRandomly(ZoneData_SMT_Product_C)
+                        ZoneData = Scenario(scenario, ZoneData_SMT_Product_C)
                     }
                 },
                 {
@@ -3302,13 +3315,13 @@ namespace IPCCFXSimulator.Objects
                     {
                         ConveyorSpeed = 100,
                         ConveyorSpeedSetpoint = 100,
-                        ZoneData = AdjustReadingsRandomly(ZoneData_SMT_Product_D)
+                        ZoneData = Scenario(scenario, ZoneData_SMT_Product_D)
                     }
                 }
             };
         }
 
-        private static List<CFX.Structures.SolderReflow.ReflowZoneData> AdjustReadingsRandomly(string json)
+        private static List<CFX.Structures.SolderReflow.ReflowZoneData> Scenario(ScenarioReflowData scenario, string json)
         {
             var options = new JsonSerializerOptions
             {
@@ -3316,6 +3329,20 @@ namespace IPCCFXSimulator.Objects
             };
 
             var zones = JsonConvert.DeserializeObject<List<CFX.Structures.SolderReflow.ReflowZoneData>>(json);
+
+            switch (scenario)
+            {
+                case ScenarioReflowData.Random:
+                    return AdjustReadingsRandomly(zones);
+                case ScenarioReflowData.SolderBalling:
+                    return AdjustReadingsSolderBalling(zones);
+                default:
+                    throw new NotImplementedException();
+            }
+        }
+
+        private static List<CFX.Structures.SolderReflow.ReflowZoneData> AdjustReadingsRandomly(List<CFX.Structures.SolderReflow.ReflowZoneData> zones)
+        {
             var rand = new Random();
             foreach (var zone in zones)
             {
@@ -3353,6 +3380,79 @@ namespace IPCCFXSimulator.Objects
 
                                 case ReflowZoneType.Reflow:
                                     reading.ReadingValue = Math.Max(200, Math.Min(400, (double)(reading.ReadingValue + rand.Next(-25, 26))));
+                                    break;
+
+                                case ReflowZoneType.Cool:
+                                    reading.ReadingValue = 0;
+                                    break;
+                            }
+                            break;
+
+                        case ReflowReadingType.O2:
+                            reading.ReadingValue = reading.ReadingValue + Math.Round((rand.NextDouble() * 2.0 - 1.0), 1);
+                            break;
+
+                        case ReflowReadingType.ConvectionRate:
+                            reading.ReadingValue = reading.ReadingValue + Math.Round((rand.NextDouble() * 2.0 - 1.0), 1);
+                            break;
+                    }
+                }
+            }
+
+            return zones;
+        }
+
+        private static List<CFX.Structures.SolderReflow.ReflowZoneData> AdjustReadingsSolderBalling(List<CFX.Structures.SolderReflow.ReflowZoneData> zones)
+        {
+            var rand = new Random();
+            foreach (var zone in zones)
+            {
+                foreach (var reading in zone.Readings)
+                {
+                    switch (reading.ReadingType)
+                    {
+                        case ReflowReadingType.Temperature:
+                            switch (zone.Zone.ReflowZoneType)
+                            {
+                                case ReflowZoneType.PreHeat:
+                                    reading.ReadingValue = rand.Next(180, 200);
+                                    break;
+
+                                case ReflowZoneType.Reflow:
+                                    reading.ReadingValue = rand.Next(250, 400);
+                                    break;
+
+                                case ReflowZoneType.Cool:
+                                    reading.ReadingValue = Math.Max(30, Math.Min(60, (double)(reading.ReadingValue + rand.Next(-10, 11))));
+                                    break;
+                            }
+                            break;
+                        case ReflowReadingType.PowerLevel:
+                            switch (zone.Zone.ReflowZoneType)
+                            {
+                                case ReflowZoneType.PreHeat:
+                                    reading.ReadingValue = Math.Max(40, Math.Min(80, (double)(reading.ReadingValue + rand.Next(-10, 11))));
+                                    break;
+
+                                case ReflowZoneType.Reflow:
+                                    reading.ReadingValue = Math.Max(60, Math.Min(100, (double)(reading.ReadingValue + rand.Next(-10, 11))));
+                                    break;
+
+                                case ReflowZoneType.Cool:
+                                    reading.ReadingValue = Math.Max(30, Math.Min(60, (double)(reading.ReadingValue + rand.Next(-10, 11))));
+                                    break;
+                            }
+                            break;
+
+                        case ReflowReadingType.Power:
+                            switch (zone.Zone.ReflowZoneType)
+                            {
+                                case ReflowZoneType.PreHeat:
+                                    reading.ReadingValue = Math.Max(200, Math.Min(300, (double)(reading.ReadingValue + rand.Next(-25, 26))));
+                                    break;
+
+                                case ReflowZoneType.Reflow:
+                                    reading.ReadingValue = Math.Max(300, Math.Min(600, (double)(reading.ReadingValue + rand.Next(-25, 26))));
                                     break;
 
                                 case ReflowZoneType.Cool:

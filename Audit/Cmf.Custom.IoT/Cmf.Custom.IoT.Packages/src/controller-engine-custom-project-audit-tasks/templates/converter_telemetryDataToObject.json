@@ -1,0 +1,12 @@
+{
+  "converters": [
+    {
+      "name": "telemetryDataToObject",
+      "displayName": "Telemetry Data To Object",
+      "inputDataType": "String",
+      "outputDataType": "Object",
+      "parameters": {}
+    }
+  ],
+  "tasks": []
+}

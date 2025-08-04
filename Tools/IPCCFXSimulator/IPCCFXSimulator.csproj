@@ -10,13 +10,18 @@
   <ItemGroup>
     <PackageReference Include="Cmf.ConnectIoT.TestOrchestrator.Core.Common" Version="11.1.1-alpha03" />
     <PackageReference Include="Cmf.ConnectIoT.TestOrchestrator.Core.ScenarioBuilder" Version="11.1.1-alpha03" />
-    <PackageReference Include="Cmf.ConnectIoT.TestOrchestrator.Plugin.Simulator.IPC-CFX" Version="11.1.1-alpha03" />
     <PackageReference Include="Cmf.ConnectIoT.TestOrchestrator.Plugin.StartMode.Local" Version="11.1.1-alpha03" />
   </ItemGroup>
 
   <ItemGroup>
+    <Reference Include="Amqp.Net">
+      <HintPath>\\wsl.localhost\localenv\src\Product\Platform\ConnectIoT\dependencies\IoTTestOrchestrator\bin\Debug\net8\Amqp.Net.dll</HintPath>
+    </Reference>
     <Reference Include="CFX">
       <HintPath>\\wsl.localhost\localenv\src\Product\Platform\ConnectIoT\dependencies\IoTTestOrchestrator\bin\Debug\net8\CFX.dll</HintPath>
+    </Reference>
+    <Reference Include="Cmf.ConnectIoT.TestOrchestrator.Plugin.Simulator.IPC-CFX">
+      <HintPath>\\wsl.localhost\localenv\src\Product\Platform\ConnectIoT\dependencies\IoTTestOrchestrator\bin\Debug\net8\Cmf.ConnectIoT.TestOrchestrator.Plugin.Simulator.IPC-CFX.dll</HintPath>
     </Reference>
     <Reference Include="Cmf.LightBusinessObjects">
       <HintPath>Libs\Cmf.LightBusinessObjects.dll</HintPath>
@@ -26,6 +31,9 @@
     </Reference>
     <Reference Include="Cmf.MessageBus.Client">
       <HintPath>Libs\Cmf.MessageBus.Client.dll</HintPath>
+    </Reference>
+    <Reference Include="Cmf.Test.IPC-CFX">
+      <HintPath>\\wsl.localhost\localenv\src\Product\Platform\ConnectIoT\src\driver-ipccfx\test\tools\Cmf.Test.IPC-CFX\bin\Debug\net8.0\Cmf.Test.IPC-CFX.dll</HintPath>
     </Reference>
     <Reference Include="Newtonsoft.Json">
       <HintPath>Libs\Newtonsoft.Json.dll</HintPath>

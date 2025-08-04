@@ -1,0 +1,73 @@
+{
+  "converters": [],
+  "tasks": [
+    {
+      "name": "pathTranslator",
+      "displayName": "Path Translator",
+      "iconClass": "icon-core-tasks-connect-iot-lg-logmessage",
+      "isProtocol": false,
+      "isController": true,
+      "lifecycle": "Productive",
+      "lifecycleMessage": "",
+      "dependsOnProtocol": [],
+      "dependsOnScope": [],
+      "inputs": {
+        "activate": {
+          "type": "Activate",
+          "dataType": "String",
+          "displayName": "Activate",
+          "defaultValue": ""
+        },
+        "fullPath": {
+          "type": "Static",
+          "dataType": "String",
+          "displayName": "fullPath"
+        }
+      },
+      "outputs": {
+        "projectName": {
+          "type": "Static",
+          "dataType": "String",
+          "displayName": "projectName"
+        },
+        "packageObj": {
+          "type": "Static",
+          "dataType": "Object",
+          "displayName": "packageObj"
+        },
+        "context": {
+          "type": "Static",
+          "dataType": "Object",
+          "displayName": "context"
+        },
+        "eventTime": {
+          "type": "Static",
+          "dataType": "String",
+          "displayName": "eventTime"
+        },
+        "success": {
+          "type": "Success",
+          "displayName": "Success"
+        },
+        "error": {
+          "type": "Error",
+          "displayName": "Error"
+        }
+      },
+      "settings": {
+        "General": {
+          "Example Section": [
+            {
+              "name": "Example",
+              "displayName": "Example Setting",
+              "settingKey": "example",
+              "dataType": "string",
+              "infoMessage": "Information about the example setting",
+              "defaultValue": "Hello World"
+            }
+          ]
+        }
+      }
+    }
+  ]
+}

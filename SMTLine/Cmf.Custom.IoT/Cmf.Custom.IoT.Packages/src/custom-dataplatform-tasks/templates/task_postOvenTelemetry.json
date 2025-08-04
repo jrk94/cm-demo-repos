@@ -39,6 +39,11 @@
         }
       },
       "outputs": {
+        "rawOutput": {
+          "type": "Static",
+          "displayName": "rawOutput",
+          "dataType": "Object"
+        },
         "success": {
           "type": "Success",
           "displayName": "Success"
