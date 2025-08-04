@@ -1,4 +1,4 @@
-import { Task, System, TaskBase } from "@criticalmanufacturing/connect-iot-controller-engine";
+import { Task, System, TaskBase, Utilities } from "@criticalmanufacturing/connect-iot-controller-engine";
 import moment from "moment";
 import { ISA95, OvenData, PostTelemetry, Reading, Setpoint } from "../../utilities/interfaces";
 import { SystemCalls } from "../../utilities/systemCalls";
@@ -63,6 +63,9 @@ export class PostOvenTelemetryTask extends TaskBase implements PostOvenTelemetry
     @Task.InputProperty(Task.TaskValueType.DateTime)
     public valuesTimestamp: Date;
 
+    @Task.OutputProperty(Task.TaskValueType.Object)
+    public rawOutput: Task.Output<object> = new Task.Output<object>();
+
     /** **Outputs** */
 
     /** Properties Settings */
@@ -89,17 +92,22 @@ export class PostOvenTelemetryTask extends TaskBase implements PostOvenTelemetry
             let serviceCallResults = [];
             try {
 
-                let allPostPromises = [];;
-                for (const ovenData of this.values) {
+                const values = Utilities.deepClone(this.values);
+                const material = this.material;
+
+                // Retrieve from cached memory
+                const isa95 = await this.loadIsa95(this.instance);
+
+                let allPostPromises = [];
+                for (const ovenData of values) {
 
                     for (const dataToPost of await this.createData(
-                        this.instance,
-                        this.material,
+                        material,
                         ovenData,
-                        this.valuesTimestamp)) {
+                        this.valuesTimestamp,
+                        isa95)) {
 
                         // One Post per subzone
-
                         allPostPromises.push(SystemCalls.postTelemetry(
                             dataToPost,
                             this.applicationName,
@@ -115,6 +123,8 @@ export class PostOvenTelemetryTask extends TaskBase implements PostOvenTelemetry
                 serviceCallResults = await Promise.all(allPostPromises);
 
                 if (serviceCallResults.find(call => call.HasErrors) == undefined) {
+
+                    this.rawOutput.emit(this.createOutput(this.values, material, isa95));
                     this.success.emit(true);
                     this._logger.info("Events posted successfully");
                 } else {
@@ -150,6 +160,10 @@ export class PostOvenTelemetryTask extends TaskBase implements PostOvenTelemetry
      */
     private transformDataIntoParameters(reading: Reading, setpoint: Setpoint, timestamp: string): any[] {
         const parameters: any[] = [];
+
+        if (reading.ReadingValue == undefined || setpoint.Setpoint == undefined) {
+            debugger;
+        }
 
         parameters.push({
             Class: "Sensor",
@@ -270,25 +284,7 @@ export class PostOvenTelemetryTask extends TaskBase implements PostOvenTelemetry
         return obj;
     }
 
-    /**
-     * Creates telemetry post payloads from oven zone data.
-     *
-     * @param instance - The system instance (entity) to post against.
-     * @param material - The material name associated with the data.
-     * @param zoneData - The oven zone data including readings and setpoints.
-     * @param valuesTimestamp - The timestamp to assign to all values.
-     * @returns A promise that resolves to an array of telemetry post objects.
-     *
-     * @remarks
-     * If ISA95 data is not cached, it will be retrieved and cached for future use.
-     * Readings and setpoints are matched and grouped into telemetry posts.
-     */
-    private async createData(
-        instance: System.LBOS.Cmf.Foundation.BusinessObjects.Entity,
-        material: string,
-        zoneData: OvenData,
-        valuesTimestamp: Date
-    ): Promise<PostTelemetry[]> {
+    private async loadIsa95(instance: System.LBOS.Cmf.Foundation.BusinessObjects.Entity) {
 
         // Retrieve from cached memory
         let isa95: ISA95 | undefined = await this._dataStore.retrieve(`${instance.Name}_ISA95`, undefined);
@@ -299,71 +295,91 @@ export class PostOvenTelemetryTask extends TaskBase implements PostOvenTelemetry
             this._dataStore.store(`${instance.Name}_ISA95`, isa95, System.DataStoreLocation.Temporary);
         }
 
+        return isa95;
+    }
+
+    private createOutput(ovenData: OvenData[], material: string, isa95: ISA95 | undefined) {
+
+        const output = {
+            Material_Name: material,
+            Resource_Name: isa95.Resource,
+            Area_Name: isa95.Area,
+            Facility_Name: isa95.Facility,
+            Site_Name: isa95.Site,
+            Enterprise_Name: isa95.Enterprise
+        };
+
+        for (const zoneData of ovenData) {
+            for (const reading of zoneData.Readings) {
+                if (reading.ReadingValue != null) {
+                    output[`${zoneData.Zone.ReflowZoneType}_${zoneData.Zone.StageName}_${reading.SubZone}_${reading.ReadingType}`] = reading.ReadingValue;
+                }
+            }
+        }
+        return output;
+    }
+
+    /**
+     * Creates telemetry post payloads from oven zone data.
+     *
+     * @param material - The material name associated with the data.
+     * @param zoneData - The oven zone data including readings and setpoints.
+     * @param valuesTimestamp - The timestamp to assign to all values.
+     * @returns A promise that resolves to an array of telemetry post objects.
+     *
+     * @remarks
+     * If ISA95 data is not cached, it will be retrieved and cached for future use.
+     * Readings and setpoints are matched and grouped into telemetry posts.
+     */
+    private async createData(
+        material: string,
+        zoneData: OvenData,
+        valuesTimestamp: Date,
+        isa95: ISA95 | undefined
+    ): Promise<PostTelemetry[]> {
+
         const posts: PostTelemetry[] = [];
+
+        // Iterate Readings
         for (let index = 0; index < zoneData.Readings.length; index++) {
             const reading = zoneData.Readings[index];
             // Each Reading Type and Setpoint type that is the same will be posted together
 
+            const item: any = {
+                Material: { Name: material },
+                Resource: { Name: isa95.Resource },
+                Area: { Name: isa95.Area },
+                Facility: { Name: isa95.Facility },
+                Site: { Name: isa95.Site },
+                Enterprise: { Name: isa95.Enterprise },
+            };
+
             let matchingSetpointFound = false;
             for (let spIndex = 0; spIndex < zoneData.Setpoints.length; spIndex++) {
+
                 const setpoint = zoneData.Setpoints[spIndex];
+
+                // Find Matching Setpoint
                 if (reading.ReadingType == setpoint.SetpointType &&
                     reading.SubZone == setpoint.SubZone
                 ) {
-                    const parameters = this.transformDataIntoParameters(reading, setpoint, new Date(valuesTimestamp).valueOf().toString());
+                    item.Parameters = this.transformDataIntoParameters(reading, setpoint, new Date(valuesTimestamp).valueOf().toString());
+                    item.Tags = this.transformDataIntoTags(zoneData, reading, setpoint);
 
-                    posts.push({
-                        Parameters: parameters,
-                        Tags: this.transformDataIntoTags(zoneData, reading, setpoint),
-                        Material: { Name: material },
-                        Resource: { Name: isa95.Resource },
-                        Area: { Name: isa95.Area },
-                        Facility: { Name: isa95.Facility },
-                        Site: { Name: isa95.Site },
-                        Enterprise: { Name: isa95.Enterprise },
-                    });
-                    matchingSetpointFound = true;
                     zoneData.Setpoints.splice(spIndex, 1);
-                    zoneData.Readings.splice(index, 1);
-
+                    matchingSetpointFound = true;
                     break;
                 }
             }
 
+            // Fallback when no matching Setpoint found
             if (!matchingSetpointFound) {
 
-                const parameters = this.transformDataIntoParametersForReading(reading, new Date(valuesTimestamp).valueOf().toString());
-                posts.push({
-                    Parameters: parameters,
-                    Tags: this.transformDataIntoTags(zoneData, reading, null),
-                    Material: { Name: material },
-                    Resource: { Name: isa95.Resource },
-                    Area: { Name: isa95.Area },
-                    Facility: { Name: isa95.Facility },
-                    Site: { Name: isa95.Site },
-                    Enterprise: { Name: isa95.Enterprise },
-                });
+                item.Parameters = this.transformDataIntoParametersForReading(reading, new Date(valuesTimestamp).valueOf().toString());
+                item.Tags = this.transformDataIntoTags(zoneData, reading, null);
             }
+            posts.push(item);
         }
-
-        if (zoneData.Setpoints.length > 0) {
-
-            for (let spIndex = 0; spIndex < zoneData.Setpoints.length; spIndex++) {
-                const setpoint = zoneData.Setpoints[spIndex];
-                const parameters = this.transformDataIntoParametersForSetpoint(setpoint, new Date(valuesTimestamp).valueOf().toString());
-                posts.push({
-                    Parameters: parameters,
-                    Tags: this.transformDataIntoTags(zoneData, null, setpoint),
-                    Material: { Name: material },
-                    Resource: { Name: isa95.Resource },
-                    Area: { Name: isa95.Area },
-                    Facility: { Name: isa95.Facility },
-                    Site: { Name: isa95.Site },
-                    Enterprise: { Name: isa95.Enterprise },
-                });
-            }
-        }
-
         return posts;
     }
 

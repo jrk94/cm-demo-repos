@@ -1,0 +1,43 @@
+{
+  "version": "0.2.0",
+  "inputs": [
+    {
+      "id": "managerLocation",
+      "type": "promptString",
+      "description": "Enter the location of the Automation Manager Downloaded"
+    }
+  ],
+  "configurations": [
+    {
+      "type": "node",
+      "request": "launch",
+      "name": "Start Manager",
+      "program": "${input:managerLocation}/src/index.js",
+      "args": [
+        "--dev",
+        "--config=${input:managerLocation}/config.json",
+        "--monitorApplication=${input:managerLocation}/src/monitor.js"
+      ],
+      "cwd": "${workspaceRoot}",
+      "outFiles": [],
+      "outputCapture": "std",
+      "autoAttachChildProcesses": true
+    },
+    {
+      "name": "Run tests",
+      "type": "node",
+      "request": "launch",
+      "program": "${workspaceRoot}/../../node_modules/mocha/bin/_mocha",
+      "stopOnEntry": false,
+      "args": [
+        "./test/unit/**/*.test.js",
+        "./test/unit/*.test.js",
+        "--no-timeouts"
+      ],
+      "cwd": "${workspaceRoot}",
+      "runtimeExecutable": null,
+      "sourceMaps": true,
+      "outputCapture": "std"
+    }
+  ]
+}

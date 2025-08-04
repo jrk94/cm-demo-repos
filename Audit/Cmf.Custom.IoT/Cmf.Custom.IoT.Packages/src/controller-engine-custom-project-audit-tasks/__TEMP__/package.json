@@ -1,0 +1,211 @@
+{
+  "name": "@criticalmanufacturing/connect-iot-controller-engine-custom-project-audit-tasks",
+  "version": "0.0.0",
+  "description": "Generated Task Library package",
+  "main": "src/index.js",
+  "typings": "src/index",
+  "scripts": {},
+  "keywords": [
+    "CMF",
+    "IoT",
+    "Agent"
+  ],
+  "devDependencies": {},
+  "dependencies": {},
+  "author": "Critical Manufacturing",
+  "criticalManufacturing": {
+    "tasksLibrary": {
+      "displayName": "Audit Task Library",
+      "dependsOnScope": [],
+      "mandatoryForScope": [],
+      "dependsOnProtocol": [],
+      "mandatoryForProtocol": [],
+      "metadata": {
+        "converters": [
+          {
+            "name": "telemetryDataToObject",
+            "inputDataType": "String",
+            "outputDataType": "Object",
+            "displayName": "Telemetry Data To Object",
+            "parameters": {}
+          }
+        ],
+        "tasks": [
+          {
+            "name": "pathTranslator",
+            "displayName": "Path Translator",
+            "isProtocol": false,
+            "isController": true,
+            "lifecycle": "Productive",
+            "lifecycleMessage": "",
+            "dependsOnProtocol": [],
+            "dependsOnScope": [],
+            "iconClass": "icon-core-tasks-connect-iot-lg-logmessage",
+            "inputs": {
+              "activate": {
+                "type": "Activate",
+                "dataType": "String",
+                "displayName": "Activate",
+                "defaultValue": ""
+              },
+              "fullPath": {
+                "type": "Static",
+                "dataType": "String",
+                "displayName": "fullPath"
+              }
+            },
+            "outputs": {
+              "projectName": {
+                "type": "Static",
+                "dataType": "String",
+                "displayName": "projectName"
+              },
+              "packageObj": {
+                "type": "Static",
+                "dataType": "Object",
+                "displayName": "packageObj"
+              },
+              "context": {
+                "type": "Static",
+                "dataType": "Object",
+                "displayName": "context"
+              },
+              "eventTime": {
+                "type": "Static",
+                "dataType": "String",
+                "displayName": "eventTime"
+              },
+              "success": {
+                "type": "Success",
+                "displayName": "Success"
+              },
+              "error": {
+                "type": "Error",
+                "displayName": "Error"
+              }
+            },
+            "settings": {
+              "General": {
+                "Example Section": [
+                  {
+                    "name": "Example",
+                    "displayName": "Example Setting",
+                    "settingKey": "example",
+                    "dataType": "string",
+                    "infoMessage": "Information about the example setting",
+                    "defaultValue": "Hello World"
+                  }
+                ]
+              }
+            }
+          },
+          {
+            "name": "postProjectTelemetry",
+            "displayName": "Post Project Telemetry",
+            "isProtocol": false,
+            "isController": true,
+            "lifecycle": "Productive",
+            "lifecycleMessage": "",
+            "dependsOnProtocol": [],
+            "dependsOnScope": [],
+            "iconClass": "icon-coreatl-tasks-connect-iot-lg-automationevent",
+            "inputs": {
+              "activate": {
+                "type": "Activate",
+                "dataType": "String",
+                "displayName": "Activate",
+                "defaultValue": ""
+              },
+              "project": {
+                "type": "Static",
+                "dataType": "Object",
+                "displayName": "project"
+              },
+              "package": {
+                "type": "Static",
+                "dataType": "Object",
+                "displayName": "package"
+              },
+              "context": {
+                "type": "Static",
+                "dataType": "Object",
+                "displayName": "context"
+              },
+              "payload": {
+                "type": "Static",
+                "dataType": "Object",
+                "displayName": "payload"
+              },
+              "eventTime": {
+                "type": "Static",
+                "dataType": "String",
+                "displayName": "eventTime"
+              }
+            },
+            "outputs": {
+              "success": {
+                "type": "Success",
+                "displayName": "Success"
+              },
+              "error": {
+                "type": "Error",
+                "displayName": "Error"
+              }
+            },
+            "settings": {
+              "General": {
+                "Example Section": [
+                  {
+                    "displayName": "Application Name",
+                    "name": "applicationName",
+                    "settingKey": "applicationName",
+                    "dataType": "String",
+                    "defaultValue": "MES",
+                    "isMandatory": true
+                  },
+                  {
+                    "displayName": "Number of Retries of the Call",
+                    "name": "retries",
+                    "settingKey": "retries",
+                    "dataType": "Integer",
+                    "defaultValue": 30,
+                    "infoMessage": "Number of Retries of the Call"
+                  },
+                  {
+                    "displayName": "Number of Retries of the service",
+                    "name": "numberOfRetries",
+                    "settingKey": "numberOfRetries",
+                    "dataType": "Integer",
+                    "defaultValue": 30,
+                    "infoMessage": "Number of Retries of the service"
+                  },
+                  {
+                    "displayName": "Ignore Last Service Id",
+                    "name": "ignoreLastServiceId",
+                    "settingKey": "ignoreLastServiceId",
+                    "dataType": "Boolean",
+                    "defaultValue": false,
+                    "infoMessage": "Flag to Ignore the last service Id"
+                  },
+                  {
+                    "displayName": "Sleep time between retries",
+                    "name": "sleepBetweenRetries",
+                    "settingKey": "sleepBetweenRetries",
+                    "dataType": "Integer",
+                    "defaultValue": 1000,
+                    "settings": {
+                      "symbol": "ms",
+                      "min": 0
+                    },
+                    "infoMessage": "Number of milliseconds to wait between retries. It only applies when the previous call fails"
+                  }
+                ]
+              }
+            }
+          }
+        ]
+      }
+    },
+    "isPacked": true
+  }
+}

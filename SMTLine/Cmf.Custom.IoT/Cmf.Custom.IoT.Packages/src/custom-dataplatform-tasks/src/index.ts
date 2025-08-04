@@ -5,3 +5,5 @@
 
 export { PostOvenTelemetryTask } from "./tasks/postTelemetry/postOvenTelemetry.task";
 
+export { MlPredictionTask } from "./tasks/mlPrediction/mlPrediction.task";
+

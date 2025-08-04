@@ -1,0 +1,1358 @@
+{
+  "tasks": [
+    {
+      "id": "1747056545356569",
+      "name": "WorkStarted",
+      "type": {
+        "name": "equipmentEvent",
+        "package": "@criticalmanufacturing/connect-iot-controller-engine-core-tasks",
+        "version": "11.2.0-dev"
+      },
+      "x": 70,
+      "y": 170,
+      "isCollapsed": false,
+      "isDisabled": false,
+      "settings": {
+        "_autoActivate": true,
+        "_customEvents": true,
+        "_events": [
+          {
+            "Name": "WorkStarted"
+          }
+        ],
+        "_message": {
+          "Name": "WorkStarted"
+        },
+        "_messageFullName": "CFX.Production.WorkStarted",
+        "_automationEventProperties": [
+          {
+            "Name": "transactionId"
+          },
+          {
+            "Name": "hermesIdentifier"
+          },
+          {
+            "Name": "primaryIdentifier"
+          },
+          {
+            "Name": "unitCount"
+          },
+          {
+            "Name": "units"
+          },
+          {
+            "Name": "lane"
+          }
+        ],
+        "_outputs": [
+          {
+            "name": "transactionId",
+            "propertyId": "transactionId",
+            "propertyType": "TransactionId",
+            "deviceType": {
+              "$type": "Cmf.Foundation.BusinessObjects.AutomationProtocolDataType, Cmf.Foundation.BusinessObjects",
+              "Name": "String"
+            },
+            "valueType": {
+              "collectionType": null,
+              "type": 4,
+              "name": "String"
+            },
+            "defaultValue": null,
+            "outputType": "Value"
+          },
+          {
+            "name": "hermesIdentifier",
+            "propertyId": "hermesIdentifier",
+            "propertyType": "HermesIdentifier",
+            "deviceType": {
+              "$type": "Cmf.Foundation.BusinessObjects.AutomationProtocolDataType, Cmf.Foundation.BusinessObjects",
+              "Name": "String"
+            },
+            "valueType": {
+              "collectionType": null,
+              "type": 4,
+              "name": "String"
+            },
+            "defaultValue": null,
+            "outputType": "Value"
+          },
+          {
+            "name": "primaryIdentifier",
+            "propertyId": "primaryIdentifier",
+            "propertyType": "PrimaryIdentifier",
+            "deviceType": {
+              "$type": "Cmf.Foundation.BusinessObjects.AutomationProtocolDataType, Cmf.Foundation.BusinessObjects",
+              "Name": "String"
+            },
+            "valueType": {
+              "collectionType": null,
+              "type": 4,
+              "name": "String"
+            },
+            "defaultValue": null,
+            "outputType": "Value"
+          },
+          {
+            "name": "unitCount",
+            "propertyId": "unitCount",
+            "propertyType": "UnitCount",
+            "deviceType": {
+              "$type": "Cmf.Foundation.BusinessObjects.AutomationProtocolDataType, Cmf.Foundation.BusinessObjects",
+              "Name": "Integer"
+            },
+            "valueType": {
+              "collectionType": null,
+              "type": 5,
+              "name": "Integer"
+            },
+            "defaultValue": null,
+            "outputType": "Value"
+          },
+          {
+            "name": "units",
+            "propertyId": "units",
+            "propertyType": "Units",
+            "deviceType": {
+              "$type": "Cmf.Foundation.BusinessObjects.AutomationProtocolDataType, Cmf.Foundation.BusinessObjects",
+              "Name": "Object"
+            },
+            "valueType": {
+              "collectionType": null,
+              "type": 10,
+              "name": "Object"
+            },
+            "defaultValue": null,
+            "outputType": "Value"
+          },
+          {
+            "name": "lane",
+            "propertyId": "lane",
+            "propertyType": "Lane",
+            "deviceType": {
+              "$type": "Cmf.Foundation.BusinessObjects.AutomationProtocolDataType, Cmf.Foundation.BusinessObjects",
+              "Name": "Integer"
+            },
+            "valueType": {
+              "collectionType": null,
+              "type": 5,
+              "name": "Integer"
+            },
+            "defaultValue": null,
+            "outputType": "Value"
+          }
+        ]
+      },
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "event",
+          "value": "{{ $this.event }}",
+          "dataType": "Any"
+        },
+        {
+          "name": "timestamp",
+          "value": "{{ $this.timestamp }}",
+          "dataType": "Any"
+        },
+        {
+          "name": "eventRawData",
+          "value": "{{ $this.eventRawData }}",
+          "dataType": "Any"
+        },
+        {
+          "name": "transactionId",
+          "value": "{{ $this.transactionId }}",
+          "dataType": "String"
+        },
+        {
+          "name": "hermesIdentifier",
+          "value": "{{ $this.hermesIdentifier }}",
+          "dataType": "String"
+        },
+        {
+          "name": "primaryIdentifier",
+          "value": "{{ $this.primaryIdentifier }}",
+          "dataType": "String"
+        },
+        {
+          "name": "unitCount",
+          "value": "{{ $this.unitCount }}",
+          "dataType": "Integer"
+        },
+        {
+          "name": "units",
+          "value": "{{ $this.units }}",
+          "dataType": "Object"
+        },
+        {
+          "name": "lane",
+          "value": "{{ $this.lane }}",
+          "dataType": "Integer"
+        }
+      ],
+      "driver": "CFX",
+      "caption": "When equipment triggers the event {{_messageFullName}}",
+      "color": "#c2ceff",
+      "branches": [
+        {
+          "name": "handler",
+          "tasks": [
+            {
+              "id": "17472162865753593",
+              "name": "codeExecution_d17e",
+              "type": {
+                "name": "codeExecution",
+                "package": "@criticalmanufacturing/connect-iot-controller-engine-core-tasks",
+                "version": "11.2.0-dev"
+              },
+              "isCollapsed": false,
+              "isDisabled": false,
+              "settings": {
+                "contextExpirationInMilliseconds": 10000,
+                "executionExpirationInMilliseconds": 0,
+                "tsCode": [
+                  "import { Framework } from 'framework';",
+                  "",
+                  "export default class {",
+                  "",
+                  "    /** Allows accessing external functions */",
+                  "    private framework: Framework;",
+                  "",
+                  "    constructor(framework: Framework) {",
+                  "        this.framework = framework;",
+                  "    }",
+                  "",
+                  "    /*",
+                  "     * Entry point of the class (IMPORTANT: don't change the signature of this method)",
+                  "     * Should return an object containing the values for each output to emit",
+                  "     * If necessary, use the parameter \"outputs\" to emit data while running the code.",
+                  "     */",
+                  "    public async main(inputs: any, outputs: any): Promise<any> {",
+                  "        this.framework.logger.debug(inputs.transactionId);",
+                  "        this.framework.logger.debug(inputs.material);",
+                  "        this.framework.dataStore.store(inputs.transactionId, inputs.material, \"Temporary\");",
+                  "    }",
+                  "}",
+                  ""
+                ],
+                "inputs": [
+                  {
+                    "name": "transactionIdIn",
+                    "valueType": {
+                      "name": "String",
+                      "type": 4,
+                      "collectionType": 0,
+                      "referenceType": null,
+                      "referenceTypeName": null,
+                      "referenceTypeId": null,
+                      "friendlyName": ""
+                    },
+                    "defaultValue": "{{ $WorkStarted.transactionId }}"
+                  },
+                  {
+                    "name": "materialIn",
+                    "valueType": {
+                      "name": "String",
+                      "type": 4,
+                      "collectionType": 0,
+                      "referenceType": null,
+                      "referenceTypeName": null,
+                      "referenceTypeId": null,
+                      "friendlyName": ""
+                    },
+                    "defaultValue": "{{ $WorkStarted.primaryIdentifier }}"
+                  },
+                  {
+                    "name": "transactionId",
+                    "valueType": {
+                      "name": "String",
+                      "type": 4,
+                      "collectionType": 0,
+                      "referenceType": null,
+                      "referenceTypeName": null,
+                      "referenceTypeId": null,
+                      "friendlyName": ""
+                    },
+                    "defaultValue": "{{ $WorkStarted.transactionId }}"
+                  },
+                  {
+                    "name": "material",
+                    "valueType": {
+                      "name": "String",
+                      "type": 4,
+                      "collectionType": 0,
+                      "referenceType": null,
+                      "referenceTypeName": null,
+                      "referenceTypeId": null,
+                      "friendlyName": ""
+                    },
+                    "defaultValue": "{{ $WorkStarted.primaryIdentifier }}"
+                  }
+                ],
+                "outputs": [],
+                "jsCodeBase64": "InVzZSBzdHJpY3QiOwpPYmplY3QuZGVmaW5lUHJvcGVydHkoZXhwb3J0cywgIl9fZXNNb2R1bGUiLCB7IHZhbHVlOiB0cnVlIH0pOwpjbGFzcyBkZWZhdWx0XzEgewogICAgY29uc3RydWN0b3IoZnJhbWV3b3JrKSB7CiAgICAgICAgdGhpcy5mcmFtZXdvcmsgPSBmcmFtZXdvcms7CiAgICB9CiAgICAvKgogICAgICogRW50cnkgcG9pbnQgb2YgdGhlIGNsYXNzIChJTVBPUlRBTlQ6IGRvbid0IGNoYW5nZSB0aGUgc2lnbmF0dXJlIG9mIHRoaXMgbWV0aG9kKQogICAgICogU2hvdWxkIHJldHVybiBhbiBvYmplY3QgY29udGFpbmluZyB0aGUgdmFsdWVzIGZvciBlYWNoIG91dHB1dCB0byBlbWl0CiAgICAgKiBJZiBuZWNlc3NhcnksIHVzZSB0aGUgcGFyYW1ldGVyICJvdXRwdXRzIiB0byBlbWl0IGRhdGEgd2hpbGUgcnVubmluZyB0aGUgY29kZS4KICAgICAqLwogICAgYXN5bmMgbWFpbihpbnB1dHMsIG91dHB1dHMpIHsKICAgICAgICB0aGlzLmZyYW1ld29yay5sb2dnZXIuZGVidWcoaW5wdXRzLnRyYW5zYWN0aW9uSWQpOwogICAgICAgIHRoaXMuZnJhbWV3b3JrLmxvZ2dlci5kZWJ1ZyhpbnB1dHMubWF0ZXJpYWwpOwogICAgICAgIHRoaXMuZnJhbWV3b3JrLmRhdGFTdG9yZS5zdG9yZShpbnB1dHMudHJhbnNhY3Rpb25JZCwgaW5wdXRzLm1hdGVyaWFsLCAiVGVtcG9yYXJ5Iik7CiAgICB9Cn0KZXhwb3J0cy5kZWZhdWx0ID0gZGVmYXVsdF8xOwo="
+              },
+              "inputs": [
+                {
+                  "name": "transactionIdIn",
+                  "value": "{{ $WorkStarted.transactionId }}",
+                  "dataType": "String"
+                },
+                {
+                  "name": "transactionId",
+                  "value": "{{ $WorkStarted.transactionId }}",
+                  "dataType": "String"
+                },
+                {
+                  "name": "materialIn",
+                  "value": "{{ $WorkStarted.primaryIdentifier }}",
+                  "dataType": "String"
+                },
+                {
+                  "name": "material",
+                  "value": "{{ $WorkStarted.primaryIdentifier }}",
+                  "dataType": "String"
+                }
+              ],
+              "outputs": [],
+              "caption": "Store Material By Transaction Id",
+              "branches": []
+            },
+            {
+              "id": "1747213441567362",
+              "name": "entity",
+              "type": {
+                "name": "entityInstance",
+                "package": "@criticalmanufacturing/connect-iot-controller-engine-core-tasks",
+                "version": "11.2.0-dev"
+              },
+              "isCollapsed": false,
+              "isDisabled": false,
+              "settings": {
+                "_autoActivate": false,
+                "loadAllAttributes": false,
+                "reloadEveryChange": false,
+                "levelsToLoad": 0,
+                "retries": 30,
+                "sleepBetweenRetries": 1000,
+                "entityTypeName": "Resource"
+              },
+              "inputs": [],
+              "outputs": [
+                {
+                  "name": "instance",
+                  "value": "{{ $this.instance }}",
+                  "dataType": "Object"
+                }
+              ],
+              "driver": "CFX",
+              "caption": "Retrieve assigned instance entity data",
+              "color": "#c2ceff",
+              "branches": []
+            },
+            {
+              "id": "1747213099146117",
+              "name": "executeServiceCall_bc41",
+              "type": {
+                "name": "executeServiceCall",
+                "package": "@criticalmanufacturing/connect-iot-controller-engine-core-tasks",
+                "version": "11.2.0-dev"
+              },
+              "isCollapsed": false,
+              "isDisabled": false,
+              "settings": {
+                "retries": 30,
+                "sleepBetweenRetries": 1000,
+                "_serviceContractName": "Material",
+                "_serviceCallName": "ComplexTrackInMaterial",
+                "_serviceCall": {
+                  "Description": "ComplexTrackInMaterial",
+                  "Input": {
+                    "Name": "ComplexTrackInMaterialInput",
+                    "FullNamespace": "Cmf.Navigo.BusinessOrchestration.MaterialManagement.InputObjects.ComplexTrackInMaterialInput",
+                    "Properties": [
+                      {
+                        "Name": "Material",
+                        "ReferenceType": "EntityType",
+                        "ReferenceTypeName": "Material",
+                        "ScalarType": null,
+                        "CollectionType": "None",
+                        "FullNamespace": "Cmf.Navigo.BusinessObjects.Material"
+                      },
+                      {
+                        "Name": "Resource",
+                        "ReferenceType": "EntityType",
+                        "ReferenceTypeName": "Resource",
+                        "ScalarType": null,
+                        "CollectionType": "None",
+                        "FullNamespace": "Cmf.Navigo.BusinessObjects.Resource"
+                      },
+                      {
+                        "Name": "StateModel",
+                        "ReferenceType": "None",
+                        "ReferenceTypeName": null,
+                        "ScalarType": null,
+                        "CollectionType": "None",
+                        "FullNamespace": "Cmf.Foundation.BusinessObjects.StateModel"
+                      },
+                      {
+                        "Name": "StateModelTransition",
+                        "ReferenceType": "None",
+                        "ReferenceTypeName": null,
+                        "ScalarType": null,
+                        "CollectionType": "None",
+                        "FullNamespace": "Cmf.Foundation.BusinessObjects.StateModelTransition"
+                      },
+                      {
+                        "Name": "StateModelTransitionReason",
+                        "ReferenceType": "None",
+                        "ReferenceTypeName": null,
+                        "ScalarType": "NVarChar",
+                        "CollectionType": "None",
+                        "FullNamespace": null
+                      },
+                      {
+                        "Name": "CurrentDataCollectionPoints",
+                        "ReferenceType": "None",
+                        "ReferenceTypeName": null,
+                        "ScalarType": null,
+                        "CollectionType": "None",
+                        "FullNamespace": "Cmf.Navigo.BusinessObjects.DataCollectionPointCollection"
+                      },
+                      {
+                        "Name": "DataCollectionPointsXml",
+                        "ReferenceType": "None",
+                        "ReferenceTypeName": null,
+                        "ScalarType": "NVarChar",
+                        "CollectionType": "None",
+                        "FullNamespace": null
+                      },
+                      {
+                        "Name": "SkipDCValidation",
+                        "ReferenceType": "None",
+                        "ReferenceTypeName": null,
+                        "ScalarType": "Bit",
+                        "CollectionType": "None",
+                        "FullNamespace": null
+                      },
+                      {
+                        "Name": "Recipe",
+                        "ReferenceType": "EntityType",
+                        "ReferenceTypeName": "Recipe",
+                        "ScalarType": null,
+                        "CollectionType": "None",
+                        "FullNamespace": "Cmf.Navigo.BusinessObjects.Recipe"
+                      },
+                      {
+                        "Name": "RecipeParameterValues",
+                        "ReferenceType": "None",
+                        "ReferenceTypeName": null,
+                        "ScalarType": null,
+                        "CollectionType": "Map",
+                        "FullNamespace": "Cmf.Navigo.BusinessObjects.Parameter,System.Object"
+                      },
+                      {
+                        "Name": "ChecklistParameters",
+                        "ReferenceType": "None",
+                        "ReferenceTypeName": null,
+                        "ScalarType": null,
+                        "CollectionType": "None",
+                        "FullNamespace": "Cmf.Foundation.BusinessObjects.PerformImmediateInputParametersCollection"
+                      },
+                      {
+                        "Name": "ScheduleOverride",
+                        "ReferenceType": "None",
+                        "ReferenceTypeName": null,
+                        "ScalarType": "Bit",
+                        "CollectionType": "None",
+                        "FullNamespace": null
+                      },
+                      {
+                        "Name": "InstrumentsToAdd",
+                        "ReferenceType": "None",
+                        "ReferenceTypeName": null,
+                        "ScalarType": null,
+                        "CollectionType": "None",
+                        "FullNamespace": "Cmf.Navigo.BusinessObjects.ResourceInstrumentCollection"
+                      },
+                      {
+                        "Name": "InstrumentsToUpdate",
+                        "ReferenceType": "None",
+                        "ReferenceTypeName": null,
+                        "ScalarType": null,
+                        "CollectionType": "None",
+                        "FullNamespace": "Cmf.Navigo.BusinessObjects.ResourceInstrumentCollection"
+                      },
+                      {
+                        "Name": "InstrumentsToRemove",
+                        "ReferenceType": "None",
+                        "ReferenceTypeName": null,
+                        "ScalarType": null,
+                        "CollectionType": "None",
+                        "FullNamespace": "Cmf.Navigo.BusinessObjects.ResourceInstrumentCollection"
+                      },
+                      {
+                        "Name": "IsTrackInForMaintenance",
+                        "ReferenceType": "None",
+                        "ReferenceTypeName": null,
+                        "ScalarType": "Bit",
+                        "CollectionType": "None",
+                        "FullNamespace": null
+                      },
+                      {
+                        "Name": "ProductionOrderStep",
+                        "ReferenceType": "EntityType",
+                        "ReferenceTypeName": "ProductionOrderStep",
+                        "ScalarType": null,
+                        "CollectionType": "None",
+                        "FullNamespace": "Cmf.Navigo.BusinessObjects.ProductionOrderStep"
+                      },
+                      {
+                        "Name": "RunningMode",
+                        "ReferenceType": "EntityType",
+                        "ReferenceTypeName": "ResourceRunningMode",
+                        "ScalarType": null,
+                        "CollectionType": "None",
+                        "FullNamespace": "Cmf.Navigo.BusinessObjects.ResourceRunningMode"
+                      },
+                      {
+                        "Name": "IgnoreLastServiceId",
+                        "ReferenceType": "None",
+                        "ReferenceTypeName": null,
+                        "ScalarType": "Bit",
+                        "CollectionType": "None",
+                        "FullNamespace": null
+                      },
+                      {
+                        "Name": "OperationTarget",
+                        "ReferenceType": "Enum",
+                        "ReferenceTypeName": "Cmf.Foundation.BusinessObjects.EntityTypeSource",
+                        "ScalarType": null,
+                        "CollectionType": "None",
+                        "FullNamespace": "Cmf.Foundation.BusinessObjects.EntityTypeSource"
+                      },
+                      {
+                        "Name": "NumberOfRetries",
+                        "ReferenceType": "None",
+                        "ReferenceTypeName": null,
+                        "ScalarType": "Int",
+                        "CollectionType": "None",
+                        "FullNamespace": null
+                      },
+                      {
+                        "Name": "OperationAttributes",
+                        "ReferenceType": "None",
+                        "ReferenceTypeName": null,
+                        "ScalarType": null,
+                        "CollectionType": "None",
+                        "FullNamespace": "Cmf.Foundation.BusinessObjects.OperationAttributeCollection"
+                      },
+                      {
+                        "Name": "PageNumber",
+                        "ReferenceType": "None",
+                        "ReferenceTypeName": null,
+                        "ScalarType": "Int",
+                        "CollectionType": "None",
+                        "FullNamespace": null
+                      },
+                      {
+                        "Name": "PageSize",
+                        "ReferenceType": "None",
+                        "ReferenceTypeName": null,
+                        "ScalarType": "Int",
+                        "CollectionType": "None",
+                        "FullNamespace": null
+                      },
+                      {
+                        "Name": "ServiceComments",
+                        "ReferenceType": "None",
+                        "ReferenceTypeName": null,
+                        "ScalarType": "NVarChar",
+                        "CollectionType": "None",
+                        "FullNamespace": null
+                      },
+                      {
+                        "Name": "ExtraParameters",
+                        "ReferenceType": "None",
+                        "ReferenceTypeName": null,
+                        "ScalarType": null,
+                        "CollectionType": "Map",
+                        "FullNamespace": "string,System.Object"
+                      }
+                    ]
+                  },
+                  "Output": {
+                    "Name": "ComplexTrackInMaterialOutput",
+                    "FullNamespace": "Cmf.Navigo.BusinessOrchestration.MaterialManagement.OutputObjects.ComplexTrackInMaterialOutput",
+                    "Properties": [
+                      {
+                        "Name": "Material",
+                        "ReferenceType": "EntityType",
+                        "ReferenceTypeName": "Material",
+                        "ScalarType": null,
+                        "CollectionType": "None",
+                        "FullNamespace": "Cmf.Navigo.BusinessObjects.Material"
+                      },
+                      {
+                        "Name": "Resource",
+                        "ReferenceType": "EntityType",
+                        "ReferenceTypeName": "Resource",
+                        "ScalarType": null,
+                        "CollectionType": "None",
+                        "FullNamespace": "Cmf.Navigo.BusinessObjects.Resource"
+                      },
+                      {
+                        "Name": "AppliedFutureActions",
+                        "ReferenceType": "None",
+                        "ReferenceTypeName": null,
+                        "ScalarType": null,
+                        "CollectionType": "None",
+                        "FullNamespace": "Cmf.Navigo.BusinessObjects.FutureActionCollection"
+                      },
+                      {
+                        "Name": "OpenedProtocolInstances",
+                        "ReferenceType": "None",
+                        "ReferenceTypeName": null,
+                        "ScalarType": null,
+                        "CollectionType": "None",
+                        "FullNamespace": "Cmf.Navigo.BusinessObjects.ProtocolInstanceCollection"
+                      },
+                      {
+                        "Name": "PostChartDataPointResults",
+                        "ReferenceType": "None",
+                        "ReferenceTypeName": null,
+                        "ScalarType": null,
+                        "CollectionType": "None",
+                        "FullNamespace": "Cmf.Navigo.BusinessObjects.PostChartDataPointResultCollection"
+                      },
+                      {
+                        "Name": "OpenedRecipeInstance",
+                        "ReferenceType": "EntityType",
+                        "ReferenceTypeName": "RecipeInstance",
+                        "ScalarType": null,
+                        "CollectionType": "None",
+                        "FullNamespace": "Cmf.Navigo.BusinessObjects.RecipeInstance"
+                      },
+                      {
+                        "Name": "OpenedChecklistInstance",
+                        "ReferenceType": "EntityType",
+                        "ReferenceTypeName": "ChecklistInstance",
+                        "ScalarType": null,
+                        "CollectionType": "None",
+                        "FullNamespace": "Cmf.Foundation.BusinessObjects.ChecklistInstance"
+                      },
+                      {
+                        "Name": "Message",
+                        "ReferenceType": "None",
+                        "ReferenceTypeName": null,
+                        "ScalarType": "NVarChar",
+                        "CollectionType": "None",
+                        "FullNamespace": null
+                      },
+                      {
+                        "Name": "FeedbackMessages",
+                        "ReferenceType": "None",
+                        "ReferenceTypeName": null,
+                        "ScalarType": null,
+                        "CollectionType": "None",
+                        "FullNamespace": "Cmf.Foundation.BusinessOrchestration.FeedbackMessage"
+                      },
+                      {
+                        "Name": "TotalRows",
+                        "ReferenceType": "None",
+                        "ReferenceTypeName": null,
+                        "ScalarType": "Int",
+                        "CollectionType": "None",
+                        "FullNamespace": null
+                      }
+                    ]
+                  },
+                  "Area": "Material"
+                },
+                "_serviceCallAdditionalInfo": {
+                  "_CMFInternal_URLSuffix": "api/Material/ComplexTrackInMaterial",
+                  "_CMFInternal_FullNamespace": "Cmf.Navigo.BusinessOrchestration.MaterialManagement.InputObjects.ComplexTrackInMaterialInput",
+                  "_CMFInternal_HTTPMethod": "POST",
+                  "_type": "Cmf.Navigo.BusinessOrchestration.MaterialManagement.InputObjects.ComplexTrackInMaterialInput, Cmf.Navigo.BusinessOrchestration"
+                },
+                "_inputs": [
+                  {
+                    "name": "Material",
+                    "friendlyName": "Material",
+                    "collectionType": "None",
+                    "valueType": "Object",
+                    "defaultValue": "{{ stringToEntityInstance($WorkStarted.primaryIdentifier, \"Material\", \"Name\") }}",
+                    "settingKey": "name"
+                  },
+                  {
+                    "name": "Resource",
+                    "friendlyName": "Resource",
+                    "collectionType": "None",
+                    "valueType": "Object",
+                    "defaultValue": "{{ stringToEntityInstance($entity.instance.Name, \"Resource\", \"Name\") }}",
+                    "settingKey": "name"
+                  },
+                  {
+                    "name": "StateModel",
+                    "friendlyName": "StateModel",
+                    "collectionType": "None",
+                    "valueType": {
+                      "name": "Object",
+                      "type": 10,
+                      "collectionType": 0,
+                      "referenceType": 0,
+                      "referenceTypeName": null
+                    },
+                    "settingKey": "name"
+                  },
+                  {
+                    "name": "StateModelTransition",
+                    "friendlyName": "StateModelTransition",
+                    "collectionType": "None",
+                    "valueType": {
+                      "name": "Object",
+                      "type": 10,
+                      "collectionType": 0,
+                      "referenceType": 0,
+                      "referenceTypeName": null
+                    },
+                    "settingKey": "name"
+                  },
+                  {
+                    "name": "StateModelTransitionReason",
+                    "friendlyName": "StateModelTransitionReason",
+                    "collectionType": "None",
+                    "valueType": {
+                      "name": "String",
+                      "type": 4,
+                      "collectionType": 0,
+                      "referenceType": 0,
+                      "referenceTypeName": null
+                    },
+                    "settingKey": "name"
+                  },
+                  {
+                    "name": "CurrentDataCollectionPoints",
+                    "friendlyName": "CurrentDataCollectionPoints",
+                    "collectionType": "None",
+                    "valueType": {
+                      "name": "Object",
+                      "type": 10,
+                      "collectionType": 0,
+                      "referenceType": 0,
+                      "referenceTypeName": null
+                    },
+                    "settingKey": "name"
+                  },
+                  {
+                    "name": "DataCollectionPointsXml",
+                    "friendlyName": "DataCollectionPointsXml",
+                    "collectionType": "None",
+                    "valueType": {
+                      "name": "String",
+                      "type": 4,
+                      "collectionType": 0,
+                      "referenceType": 0,
+                      "referenceTypeName": null
+                    },
+                    "settingKey": "name"
+                  },
+                  {
+                    "name": "SkipDCValidation",
+                    "friendlyName": "SkipDCValidation",
+                    "collectionType": "None",
+                    "valueType": {
+                      "name": "Boolean",
+                      "type": 3,
+                      "collectionType": 0,
+                      "referenceType": 0,
+                      "referenceTypeName": null
+                    },
+                    "settingKey": "name"
+                  },
+                  {
+                    "name": "Recipe",
+                    "friendlyName": "Recipe",
+                    "collectionType": "None",
+                    "valueType": {
+                      "name": "Object",
+                      "type": 10,
+                      "collectionType": 0,
+                      "referenceType": 1,
+                      "referenceTypeName": "Recipe"
+                    },
+                    "settingKey": "name"
+                  },
+                  {
+                    "name": "RecipeParameterValues",
+                    "friendlyName": "RecipeParameterValues",
+                    "collectionType": "Map",
+                    "valueType": {
+                      "name": "Object",
+                      "type": 10,
+                      "collectionType": 2,
+                      "referenceType": 0,
+                      "referenceTypeName": null
+                    },
+                    "settingKey": "name"
+                  },
+                  {
+                    "name": "ChecklistParameters",
+                    "friendlyName": "ChecklistParameters",
+                    "collectionType": "None",
+                    "valueType": {
+                      "name": "Object",
+                      "type": 10,
+                      "collectionType": 0,
+                      "referenceType": 0,
+                      "referenceTypeName": null
+                    },
+                    "settingKey": "name"
+                  },
+                  {
+                    "name": "ScheduleOverride",
+                    "friendlyName": "ScheduleOverride",
+                    "collectionType": "None",
+                    "valueType": {
+                      "name": "Boolean",
+                      "type": 3,
+                      "collectionType": 0,
+                      "referenceType": 0,
+                      "referenceTypeName": null
+                    },
+                    "settingKey": "name"
+                  },
+                  {
+                    "name": "InstrumentsToAdd",
+                    "friendlyName": "InstrumentsToAdd",
+                    "collectionType": "None",
+                    "valueType": {
+                      "name": "Object",
+                      "type": 10,
+                      "collectionType": 0,
+                      "referenceType": 0,
+                      "referenceTypeName": null
+                    },
+                    "settingKey": "name"
+                  },
+                  {
+                    "name": "InstrumentsToUpdate",
+                    "friendlyName": "InstrumentsToUpdate",
+                    "collectionType": "None",
+                    "valueType": {
+                      "name": "Object",
+                      "type": 10,
+                      "collectionType": 0,
+                      "referenceType": 0,
+                      "referenceTypeName": null
+                    },
+                    "settingKey": "name"
+                  },
+                  {
+                    "name": "InstrumentsToRemove",
+                    "friendlyName": "InstrumentsToRemove",
+                    "collectionType": "None",
+                    "valueType": {
+                      "name": "Object",
+                      "type": 10,
+                      "collectionType": 0,
+                      "referenceType": 0,
+                      "referenceTypeName": null
+                    },
+                    "settingKey": "name"
+                  },
+                  {
+                    "name": "IsTrackInForMaintenance",
+                    "friendlyName": "IsTrackInForMaintenance",
+                    "collectionType": "None",
+                    "valueType": {
+                      "name": "Boolean",
+                      "type": 3,
+                      "collectionType": 0,
+                      "referenceType": 0,
+                      "referenceTypeName": null
+                    },
+                    "settingKey": "name"
+                  },
+                  {
+                    "name": "ProductionOrderStep",
+                    "friendlyName": "ProductionOrderStep",
+                    "collectionType": "None",
+                    "valueType": {
+                      "name": "Object",
+                      "type": 10,
+                      "collectionType": 0,
+                      "referenceType": 1,
+                      "referenceTypeName": "ProductionOrderStep"
+                    },
+                    "settingKey": "name"
+                  },
+                  {
+                    "name": "RunningMode",
+                    "friendlyName": "RunningMode",
+                    "collectionType": "None",
+                    "valueType": {
+                      "name": "Object",
+                      "type": 10,
+                      "collectionType": 0,
+                      "referenceType": 1,
+                      "referenceTypeName": "ResourceRunningMode"
+                    },
+                    "settingKey": "name"
+                  },
+                  {
+                    "name": "IgnoreLastServiceId",
+                    "friendlyName": "IgnoreLastServiceId",
+                    "collectionType": "None",
+                    "valueType": {
+                      "name": "Boolean",
+                      "type": 3,
+                      "collectionType": 0,
+                      "referenceType": 0,
+                      "referenceTypeName": null
+                    },
+                    "settingKey": "name"
+                  },
+                  {
+                    "name": "OperationTarget",
+                    "friendlyName": "OperationTarget",
+                    "collectionType": "None",
+                    "valueType": {
+                      "name": "Object",
+                      "type": 10,
+                      "collectionType": 0,
+                      "referenceType": 6,
+                      "referenceTypeName": "Cmf.Foundation.BusinessObjects.EntityTypeSource"
+                    },
+                    "settingKey": "name"
+                  },
+                  {
+                    "name": "NumberOfRetries",
+                    "friendlyName": "NumberOfRetries",
+                    "collectionType": "None",
+                    "valueType": {
+                      "name": "Integer",
+                      "type": 5,
+                      "collectionType": 0,
+                      "referenceType": 0,
+                      "referenceTypeName": null
+                    },
+                    "settingKey": "name"
+                  },
+                  {
+                    "name": "OperationAttributes",
+                    "friendlyName": "OperationAttributes",
+                    "collectionType": "None",
+                    "valueType": {
+                      "name": "Object",
+                      "type": 10,
+                      "collectionType": 0,
+                      "referenceType": 0,
+                      "referenceTypeName": null
+                    },
+                    "settingKey": "name"
+                  },
+                  {
+                    "name": "PageNumber",
+                    "friendlyName": "PageNumber",
+                    "collectionType": "None",
+                    "valueType": {
+                      "name": "Integer",
+                      "type": 5,
+                      "collectionType": 0,
+                      "referenceType": 0,
+                      "referenceTypeName": null
+                    },
+                    "settingKey": "name"
+                  },
+                  {
+                    "name": "PageSize",
+                    "friendlyName": "PageSize",
+                    "collectionType": "None",
+                    "valueType": {
+                      "name": "Integer",
+                      "type": 5,
+                      "collectionType": 0,
+                      "referenceType": 0,
+                      "referenceTypeName": null
+                    },
+                    "settingKey": "name"
+                  },
+                  {
+                    "name": "ServiceComments",
+                    "friendlyName": "ServiceComments",
+                    "collectionType": "None",
+                    "valueType": {
+                      "name": "String",
+                      "type": 4,
+                      "collectionType": 0,
+                      "referenceType": 0,
+                      "referenceTypeName": null
+                    },
+                    "settingKey": "name"
+                  },
+                  {
+                    "name": "ExtraParameters",
+                    "friendlyName": "ExtraParameters",
+                    "collectionType": "Map",
+                    "valueType": {
+                      "name": "Object",
+                      "type": 10,
+                      "collectionType": 2,
+                      "referenceType": 0,
+                      "referenceTypeName": null
+                    },
+                    "settingKey": "name"
+                  }
+                ],
+                "_outputs": [
+                  {
+                    "name": "output$Material",
+                    "friendlyName": "Material",
+                    "collectionType": "None",
+                    "valueType": {
+                      "name": "Object",
+                      "type": 10,
+                      "collectionType": 0,
+                      "referenceType": 1,
+                      "referenceTypeName": "Material"
+                    },
+                    "defaultValue": "output$Material",
+                    "settingKey": "name"
+                  },
+                  {
+                    "name": "output$Resource",
+                    "friendlyName": "Resource",
+                    "collectionType": "None",
+                    "valueType": {
+                      "name": "Object",
+                      "type": 10,
+                      "collectionType": 0,
+                      "referenceType": 1,
+                      "referenceTypeName": "Resource"
+                    },
+                    "defaultValue": "output$Resource",
+                    "settingKey": "name"
+                  },
+                  {
+                    "name": "output$AppliedFutureActions",
+                    "friendlyName": "AppliedFutureActions",
+                    "collectionType": "None",
+                    "valueType": {
+                      "name": "Object",
+                      "type": 10,
+                      "collectionType": 0,
+                      "referenceType": 0,
+                      "referenceTypeName": null
+                    },
+                    "defaultValue": "output$AppliedFutureActions",
+                    "settingKey": "name"
+                  },
+                  {
+                    "name": "output$OpenedProtocolInstances",
+                    "friendlyName": "OpenedProtocolInstances",
+                    "collectionType": "None",
+                    "valueType": {
+                      "name": "Object",
+                      "type": 10,
+                      "collectionType": 0,
+                      "referenceType": 0,
+                      "referenceTypeName": null
+                    },
+                    "defaultValue": "output$OpenedProtocolInstances",
+                    "settingKey": "name"
+                  },
+                  {
+                    "name": "output$PostChartDataPointResults",
+                    "friendlyName": "PostChartDataPointResults",
+                    "collectionType": "None",
+                    "valueType": {
+                      "name": "Object",
+                      "type": 10,
+                      "collectionType": 0,
+                      "referenceType": 0,
+                      "referenceTypeName": null
+                    },
+                    "defaultValue": "output$PostChartDataPointResults",
+                    "settingKey": "name"
+                  },
+                  {
+                    "name": "output$OpenedRecipeInstance",
+                    "friendlyName": "OpenedRecipeInstance",
+                    "collectionType": "None",
+                    "valueType": {
+                      "name": "Object",
+                      "type": 10,
+                      "collectionType": 0,
+                      "referenceType": 1,
+                      "referenceTypeName": "RecipeInstance"
+                    },
+                    "defaultValue": "output$OpenedRecipeInstance",
+                    "settingKey": "name"
+                  },
+                  {
+                    "name": "output$OpenedChecklistInstance",
+                    "friendlyName": "OpenedChecklistInstance",
+                    "collectionType": "None",
+                    "valueType": {
+                      "name": "Object",
+                      "type": 10,
+                      "collectionType": 0,
+                      "referenceType": 1,
+                      "referenceTypeName": "ChecklistInstance"
+                    },
+                    "defaultValue": "output$OpenedChecklistInstance",
+                    "settingKey": "name"
+                  },
+                  {
+                    "name": "output$Message",
+                    "friendlyName": "Message",
+                    "collectionType": "None",
+                    "valueType": {
+                      "name": "String",
+                      "type": 4,
+                      "collectionType": 0,
+                      "referenceType": 0,
+                      "referenceTypeName": null
+                    },
+                    "defaultValue": "output$Message",
+                    "settingKey": "name"
+                  },
+                  {
+                    "name": "output$FeedbackMessages",
+                    "friendlyName": "FeedbackMessages",
+                    "collectionType": "None",
+                    "valueType": {
+                      "name": "Object",
+                      "type": 10,
+                      "collectionType": 0,
+                      "referenceType": 0,
+                      "referenceTypeName": null
+                    },
+                    "defaultValue": "output$FeedbackMessages",
+                    "settingKey": "name"
+                  },
+                  {
+                    "name": "output$TotalRows",
+                    "friendlyName": "TotalRows",
+                    "collectionType": "None",
+                    "valueType": {
+                      "name": "Integer",
+                      "type": 5,
+                      "collectionType": 0,
+                      "referenceType": 0,
+                      "referenceTypeName": null
+                    },
+                    "defaultValue": "output$TotalRows",
+                    "settingKey": "name"
+                  }
+                ]
+              },
+              "inputs": [
+                {
+                  "name": "Material",
+                  "value": "{{ stringToEntityInstance($WorkStarted.primaryIdentifier, \"Material\", \"Name\") }}",
+                  "dataType": "Object"
+                },
+                {
+                  "name": "Resource",
+                  "value": "{{ stringToEntityInstance($entity.instance.Name, \"Resource\", \"Name\") }}",
+                  "dataType": "Object"
+                },
+                {
+                  "name": "StateModel",
+                  "value": "",
+                  "dataType": "Object"
+                },
+                {
+                  "name": "StateModelTransition",
+                  "value": "",
+                  "dataType": "Object"
+                },
+                {
+                  "name": "StateModelTransitionReason",
+                  "value": "",
+                  "dataType": "String"
+                },
+                {
+                  "name": "CurrentDataCollectionPoints",
+                  "value": "",
+                  "dataType": "Object"
+                },
+                {
+                  "name": "DataCollectionPointsXml",
+                  "value": "",
+                  "dataType": "String"
+                },
+                {
+                  "name": "SkipDCValidation",
+                  "value": "",
+                  "dataType": "Boolean"
+                },
+                {
+                  "name": "Recipe",
+                  "value": "",
+                  "dataType": "Object"
+                },
+                {
+                  "name": "RecipeParameterValues",
+                  "value": "",
+                  "dataType": "Object"
+                },
+                {
+                  "name": "ChecklistParameters",
+                  "value": "",
+                  "dataType": "Object"
+                },
+                {
+                  "name": "ScheduleOverride",
+                  "value": "",
+                  "dataType": "Boolean"
+                },
+                {
+                  "name": "InstrumentsToAdd",
+                  "value": "",
+                  "dataType": "Object"
+                },
+                {
+                  "name": "InstrumentsToUpdate",
+                  "value": "",
+                  "dataType": "Object"
+                },
+                {
+                  "name": "InstrumentsToRemove",
+                  "value": "",
+                  "dataType": "Object"
+                },
+                {
+                  "name": "IsTrackInForMaintenance",
+                  "value": "",
+                  "dataType": "Boolean"
+                },
+                {
+                  "name": "ProductionOrderStep",
+                  "value": "",
+                  "dataType": "Object"
+                },
+                {
+                  "name": "RunningMode",
+                  "value": "",
+                  "dataType": "Object"
+                },
+                {
+                  "name": "IgnoreLastServiceId",
+                  "value": "",
+                  "dataType": "Boolean"
+                },
+                {
+                  "name": "OperationTarget",
+                  "value": "",
+                  "dataType": "Object"
+                },
+                {
+                  "name": "NumberOfRetries",
+                  "value": "",
+                  "dataType": "Integer"
+                },
+                {
+                  "name": "OperationAttributes",
+                  "value": "",
+                  "dataType": "Object"
+                },
+                {
+                  "name": "PageNumber",
+                  "value": "",
+                  "dataType": "Integer"
+                },
+                {
+                  "name": "PageSize",
+                  "value": "",
+                  "dataType": "Integer"
+                },
+                {
+                  "name": "ServiceComments",
+                  "value": "",
+                  "dataType": "String"
+                },
+                {
+                  "name": "ExtraParameters",
+                  "value": "",
+                  "dataType": "Object"
+                }
+              ],
+              "outputs": [
+                {
+                  "name": "output$Material",
+                  "value": "{{ $this.output$Material }}",
+                  "dataType": "Object"
+                },
+                {
+                  "name": "output$Resource",
+                  "value": "{{ $this.output$Resource }}",
+                  "dataType": "Object"
+                },
+                {
+                  "name": "output$AppliedFutureActions",
+                  "value": "{{ $this.output$AppliedFutureActions }}",
+                  "dataType": "Object"
+                },
+                {
+                  "name": "output$OpenedProtocolInstances",
+                  "value": "{{ $this.output$OpenedProtocolInstances }}",
+                  "dataType": "Object"
+                },
+                {
+                  "name": "output$PostChartDataPointResults",
+                  "value": "{{ $this.output$PostChartDataPointResults }}",
+                  "dataType": "Object"
+                },
+                {
+                  "name": "output$OpenedRecipeInstance",
+                  "value": "{{ $this.output$OpenedRecipeInstance }}",
+                  "dataType": "Object"
+                },
+                {
+                  "name": "output$OpenedChecklistInstance",
+                  "value": "{{ $this.output$OpenedChecklistInstance }}",
+                  "dataType": "Object"
+                },
+                {
+                  "name": "output$Message",
+                  "value": "{{ $this.output$Message }}",
+                  "dataType": "String"
+                },
+                {
+                  "name": "output$FeedbackMessages",
+                  "value": "{{ $this.output$FeedbackMessages }}",
+                  "dataType": "Object"
+                },
+                {
+                  "name": "output$TotalRows",
+                  "value": "{{ $this.output$TotalRows }}",
+                  "dataType": "Integer"
+                }
+              ],
+              "caption": "Execute System/MES operation ComplexTrackInMaterial",
+              "branches": []
+            }
+          ],
+          "settings": {}
+        }
+      ]
+    }
+  ],
+  "$id": "1",
+  "layout": {
+    "general": {
+      "color": null
+    },
+    "drawer": {
+      "tasks": {},
+      "x": 9.094947017729282E-13,
+      "y": 5.684341886080802E-14,
+      "zoom": 1,
+      "fill": true
+    }
+  }
+}

@@ -1,0 +1,269 @@
+{
+  "<SM>LookupTableValues": {
+    "1": {
+      "LookUp Table": "ReasonCategory",
+      "Lookup Table Value": "Oven",
+      "Lookup Table IsEnabled": "Yes"
+    }
+  },
+  "<DM>Reason": {
+    "1": {
+      "Name": "Terminate",
+      "Description": "Terminate",
+      "ReasonType": "Loss",
+      "IsTemplate": "No",
+      "ExcludeFromStepYield": "No",
+      "ExcludeFromResourceYield": "No",
+      "EnableConcurrentInstances": "No"
+    },
+    "2": {
+      "Name": "Lack of solder paste",
+      "Description": "Lack of solder paste",
+      "ReasonType": "Defect",
+      "IsTemplate": "No",
+      "ExcludeFromStepYield": "No",
+      "ExcludeFromResourceYield": "No",
+      "EnableConcurrentInstances": "No"
+    },
+    "3": {
+      "Name": "Excess solder paste",
+      "Description": "Excess solder paste",
+      "ReasonType": "Defect",
+      "IsTemplate": "No",
+      "ExcludeFromStepYield": "No",
+      "ExcludeFromResourceYield": "No",
+      "EnableConcurrentInstances": "No"
+    },
+    "4": {
+      "Name": "Solder paste off the pads",
+      "Description": "Solder paste off the pads",
+      "ReasonType": "Defect",
+      "IsTemplate": "No",
+      "ExcludeFromStepYield": "No",
+      "ExcludeFromResourceYield": "No",
+      "EnableConcurrentInstances": "No"
+    },
+    "5": {
+      "Name": "Solder paste bridge between Pads",
+      "Description": "Solder paste bridge between Pads",
+      "ReasonType": "Defect",
+      "IsTemplate": "No",
+      "ExcludeFromStepYield": "No",
+      "ExcludeFromResourceYield": "No",
+      "EnableConcurrentInstances": "No"
+    },
+    "6": {
+      "Name": "Wrong Part",
+      "Description": "Wrong Part",
+      "ReasonType": "Defect",
+      "IsTemplate": "No",
+      "ExcludeFromStepYield": "No",
+      "ExcludeFromResourceYield": "No",
+      "EnableConcurrentInstances": "No"
+    },
+    "7": {
+      "Name": "Others",
+      "Description": "Others",
+      "ReasonType": "Defect",
+      "IsTemplate": "No",
+      "ExcludeFromStepYield": "No",
+      "ExcludeFromResourceYield": "No",
+      "EnableConcurrentInstances": "No"
+    },
+    "8": {
+      "Name": "Decentralized component",
+      "Description": "Decentralized component",
+      "ReasonType": "Defect",
+      "IsTemplate": "No",
+      "ExcludeFromStepYield": "No",
+      "ExcludeFromResourceYield": "No",
+      "EnableConcurrentInstances": "No"
+    },
+    "9": {
+      "Name": "Broken component",
+      "Description": "Broken component",
+      "ReasonType": "Defect",
+      "IsTemplate": "No",
+      "ExcludeFromStepYield": "No",
+      "ExcludeFromResourceYield": "No",
+      "EnableConcurrentInstances": "No"
+    },
+    "10": {
+      "Name": "Lack of solder",
+      "Description": "Lack of solder",
+      "ReasonType": "Defect",
+      "IsTemplate": "No",
+      "ExcludeFromStepYield": "No",
+      "ExcludeFromResourceYield": "No",
+      "EnableConcurrentInstances": "No"
+    },
+    "11": {
+      "Name": "Excess solder",
+      "Description": "Excess solder",
+      "ReasonType": "Defect",
+      "IsTemplate": "No",
+      "ExcludeFromStepYield": "No",
+      "ExcludeFromResourceYield": "No",
+      "EnableConcurrentInstances": "No"
+    },
+    "12": {
+      "Name": "Solder fillet",
+      "Description": "Solder fillet",
+      "ReasonType": "Defect",
+      "IsTemplate": "No",
+      "ExcludeFromStepYield": "No",
+      "ExcludeFromResourceYield": "No",
+      "EnableConcurrentInstances": "No"
+    },
+    "13": {
+      "Name": "Scrap",
+      "Description": "Scrap",
+      "ReasonType": "Loss",
+      "IsTemplate": "No",
+      "ExcludeFromStepYield": "No",
+      "ExcludeFromResourceYield": "No",
+      "EnableConcurrentInstances": "No"
+    },
+    "14": {
+      "Name": "RejectIndent",
+      "Description": "RejectIndent",
+      "ReasonType": "Loss",
+      "IsTemplate": "No",
+      "ExcludeFromStepYield": "No",
+      "ExcludeFromResourceYield": "No",
+      "EnableConcurrentInstances": "No"
+    },
+    "15": {
+      "Name": "RejectVacuum",
+      "Description": "RejectVacuum",
+      "ReasonType": "Loss",
+      "IsTemplate": "No",
+      "ExcludeFromStepYield": "No",
+      "ExcludeFromResourceYield": "No",
+      "EnableConcurrentInstances": "No"
+    },
+    "16": {
+      "Name": "TrackEmpty",
+      "Description": "TrackEmpty",
+      "ReasonType": "Loss",
+      "IsTemplate": "No",
+      "ExcludeFromStepYield": "No",
+      "ExcludeFromResourceYield": "No",
+      "EnableConcurrentInstances": "No"
+    },
+    "17": {
+      "Name": "Reprint",
+      "Description": "Reprint",
+      "ReasonType": "OffFlow",
+      "IsTemplate": "No",
+      "ExcludeFromStepYield": "No",
+      "ExcludeFromResourceYield": "No",
+      "EnableConcurrentInstances": "No"
+    },
+    "18": {
+      "Name": "Unreadable QR code",
+      "Description": "Unreadable QR code",
+      "ReasonType": "OffFlow",
+      "IsTemplate": "No",
+      "ExcludeFromStepYield": "No",
+      "ExcludeFromResourceYield": "No",
+      "EnableConcurrentInstances": "No"
+    },
+    "19": {
+      "Name": "Repair",
+      "ReasonType": "OffFlow",
+      "IsTemplate": "No",
+      "ExcludeFromStepYield": "No",
+      "ExcludeFromResourceYield": "No",
+      "EnableConcurrentInstances": "No"
+    },
+    "20": {
+      "Name": "Solder Balling",
+      "ReasonType": "Defect",
+      "IsTemplate": "No",
+      "ExcludeFromStepYield": "No",
+      "ExcludeFromResourceYield": "No",
+      "Category": "Oven",
+      "EnableConcurrentInstances": "No"
+    },
+    "21": {
+      "Name": "Tombstoning",
+      "ReasonType": "Defect",
+      "IsTemplate": "No",
+      "ExcludeFromStepYield": "No",
+      "ExcludeFromResourceYield": "No",
+      "Category": "Oven",
+      "EnableConcurrentInstances": "No"
+    },
+    "22": {
+      "Name": "Component Lift / Floating",
+      "ReasonType": "Defect",
+      "IsTemplate": "No",
+      "ExcludeFromStepYield": "No",
+      "ExcludeFromResourceYield": "No",
+      "Category": "Oven",
+      "EnableConcurrentInstances": "No"
+    },
+    "23": {
+      "Name": "Cold Solder Joint",
+      "ReasonType": "Loss",
+      "IsTemplate": "No",
+      "ExcludeFromStepYield": "No",
+      "ExcludeFromResourceYield": "No",
+      "Category": "Oven",
+      "EnableConcurrentInstances": "No"
+    },
+    "24": {
+      "Name": "Solder Bridging",
+      "ReasonType": "Defect",
+      "IsTemplate": "No",
+      "ExcludeFromStepYield": "No",
+      "ExcludeFromResourceYield": "No",
+      "Category": "Oven",
+      "EnableConcurrentInstances": "No"
+    },
+    "25": {
+      "Name": "Dewetting",
+      "ReasonType": "Defect",
+      "IsTemplate": "No",
+      "ExcludeFromStepYield": "No",
+      "ExcludeFromResourceYield": "No",
+      "Category": "Oven",
+      "EnableConcurrentInstances": "No"
+    },
+    "26": {
+      "Name": "Head-in-Pillow",
+      "ReasonType": "Defect",
+      "IsTemplate": "No",
+      "ExcludeFromStepYield": "No",
+      "ExcludeFromResourceYield": "No",
+      "Category": "Oven",
+      "EnableConcurrentInstances": "No"
+    },
+    "27": {
+      "Name": "Voiding",
+      "ReasonType": "Defect",
+      "IsTemplate": "No",
+      "ExcludeFromStepYield": "No",
+      "ExcludeFromResourceYield": "No",
+      "Category": "Oven",
+      "EnableConcurrentInstances": "No"
+    },
+    "28": {
+      "Name": "Misalignment",
+      "ReasonType": "Defect",
+      "IsTemplate": "No",
+      "ExcludeFromStepYield": "No",
+      "ExcludeFromResourceYield": "No",
+      "Category": "Oven",
+      "EnableConcurrentInstances": "No"
+    }
+  },
+  "<DM>ReasonRepairAction": {
+    "1": {
+      "Reason": "Component Lift / Floating",
+      "Action": "Change Part",
+      "PartReplacementMode": "Allowed"
+    }
+  }
+}
