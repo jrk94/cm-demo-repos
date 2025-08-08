@@ -1,0 +1,348 @@
+{
+  "name": "@criticalmanufacturing/connect-iot-driver-mtconnect",
+  "version": "0.0.0",
+  "description": "",
+  "main": "src/index.js",
+  "scripts": {},
+  "keywords": [
+    "CMF",
+    "IoT",
+    "Agent"
+  ],
+  "devDependencies": {},
+  "dependencies": {},
+  "author": "Critical Manufacturing",
+  "criticalManufacturing": {
+    "automationProtocol": {
+      "dataTypes": [
+        {
+          "name": "String",
+          "description": "String"
+        },
+        {
+          "name": "Integer",
+          "description": "Integer"
+        },
+        {
+          "name": "Object",
+          "description": "Object"
+        }
+      ],
+      "parameters": [
+        {
+          "name": "netCoreSdkVersion",
+          "label": ".Net Core SDK Version",
+          "description": "Set the .net core SDK version to use, when multiple are installed in the system where the driver is running. Leave empty to ignore this setting.",
+          "type": "string",
+          "defaultValue": ""
+        },
+        {
+          "name": "address",
+          "label": "MTConnect Agent Address",
+          "description": "Ip or Hostname of the MTConnect Agent",
+          "type": "string",
+          "defaultValue": ""
+        },
+        {
+          "name": "port",
+          "label": "MTConnect Agent port",
+          "description": "Port of the MTConnect Agent (leave as -1 for it to not be added)",
+          "type": "integer",
+          "defaultValue": -1
+        },
+        {
+          "name": "device",
+          "label": "MTConnect Device",
+          "description": "When specifying a device, all MTConnect interactions will filter by device.",
+          "type": "string",
+          "defaultValue": ""
+        }
+      ],
+      "extendedData": {
+        "property": [],
+        "event": [
+          {
+            "name": "mtConnectEventType",
+            "label": "Event Type",
+            "description": "Types of MTConnect events that we are able to use.",
+            "type": "enum",
+            "values": [
+              "Probe",
+              "Current",
+              "Sample",
+              "Assets"
+            ],
+            "defaultValue": "Probe"
+          }
+        ],
+        "eventProperty": [],
+        "command": [
+          {
+            "name": "mtConnectCommandType",
+            "label": "Command Type",
+            "description": "Types of MTConnect commands that we are able to use.",
+            "type": "enum",
+            "values": [
+              "Probe",
+              "Current",
+              "Sample",
+              "Assets",
+              "Asset"
+            ],
+            "defaultValue": "Probe"
+          }
+        ],
+        "commandParameter": []
+      },
+      "deviceIds": {
+        "property": {
+          "label": "Unique Property",
+          "description": "Describe what the user should enter here",
+          "mandatory": true,
+          "unique": true
+        },
+        "event": {
+          "label": "Unique Event",
+          "description": "Describe what the user should enter here",
+          "mandatory": true,
+          "unique": true
+        },
+        "command": {
+          "label": "Unique Command",
+          "description": "Describe what the user should enter here",
+          "mandatory": true,
+          "unique": true
+        }
+      },
+      "characteristics": {
+        "hasProperties": true,
+        "hasEvents": true,
+        "hasCommands": true
+      },
+      "templates": {
+        "property": [
+          {
+            "Name": "header",
+            "Description": "Header Data",
+            "DevicePropertyId": "header",
+            "DataType": "Object",
+            "IsWritable": true,
+            "IsReadable": true,
+            "AutomationProtocolDataType": "Object",
+            "ExtendedData": {}
+          },
+          {
+            "Name": "devices",
+            "Description": "Devices Data",
+            "DevicePropertyId": "devices",
+            "DataType": "Object",
+            "IsWritable": true,
+            "IsReadable": true,
+            "AutomationProtocolDataType": "Object",
+            "ExtendedData": {}
+          },
+          {
+            "Name": "assets",
+            "Description": "Assets Data",
+            "DevicePropertyId": "devices",
+            "DataType": "Object",
+            "IsWritable": true,
+            "IsReadable": true,
+            "AutomationProtocolDataType": "Object",
+            "ExtendedData": {}
+          },
+          {
+            "Name": "observations",
+            "Description": "Observations Data",
+            "DevicePropertyId": "observations",
+            "DataType": "Object",
+            "IsWritable": true,
+            "IsReadable": true,
+            "AutomationProtocolDataType": "Object",
+            "ExtendedData": {}
+          }
+        ],
+        "event": [
+          {
+            "Name": "AssetsReceived",
+            "Description": "AssetsReceived will surface initial assets",
+            "DeviceEventId": "Assets",
+            "IsEnabled": true,
+            "ExtendedData": {},
+            "EventProperties": [
+              {
+                "Property": "header",
+                "Order": 1,
+                "ExtendedData": {}
+              },
+              {
+                "Property": "assets",
+                "Order": 2,
+                "ExtendedData": {}
+              }
+            ]
+          },
+          {
+            "Name": "CurrentReceived",
+            "Description": "CurrentReceived should receive one after start",
+            "DeviceEventId": "Current",
+            "IsEnabled": true,
+            "ExtendedData": {},
+            "EventProperties": [
+              {
+                "Property": "header",
+                "Order": 1,
+                "ExtendedData": {}
+              },
+              {
+                "Property": "devices",
+                "Order": 2,
+                "ExtendedData": {}
+              },
+              {
+                "Property": "observations",
+                "Order": 3,
+                "ExtendedData": {}
+              }
+            ]
+          },
+          {
+            "Name": "ProbeReceived",
+            "Description": "ProbeReceived should receive one after start",
+            "DeviceEventId": "Probe",
+            "IsEnabled": true,
+            "ExtendedData": {},
+            "EventProperties": [
+              {
+                "Property": "header",
+                "Order": 1,
+                "ExtendedData": {}
+              },
+              {
+                "Property": "devices",
+                "Order": 2,
+                "ExtendedData": {}
+              }
+            ]
+          },
+          {
+            "Name": "SampleReceived",
+            "Description": "SampleReceived will start producing sample results",
+            "DeviceEventId": "Sample",
+            "IsEnabled": true,
+            "ExtendedData": {},
+            "EventProperties": [
+              {
+                "Property": "header",
+                "Order": 1,
+                "ExtendedData": {}
+              },
+              {
+                "Property": "devices",
+                "Order": 2,
+                "ExtendedData": {}
+              },
+              {
+                "Property": "observations",
+                "Order": 3,
+                "ExtendedData": {}
+              }
+            ]
+          }
+        ],
+        "command": [
+          {
+            "Name": "Asset Command",
+            "Description": "Asset Command",
+            "DeviceCommandId": "AssetsCommand",
+            "ExtendedData": {
+              "commandType": "Assets"
+            },
+            "CommandParameters": [
+              {
+                "Name": "asset",
+                "Description": "",
+                "Order": 1,
+                "DataType": "String",
+                "AutomationProtocolDataType": "String",
+                "DefaultValue": "",
+                "IsMandatory": true,
+                "ExtendedData": {}
+              }
+            ]
+          },
+          {
+            "Name": "Assets Command",
+            "Description": "Assets Command",
+            "DeviceCommandId": "AssetsCommand",
+            "ExtendedData": {
+              "commandType": "Assets"
+            },
+            "CommandParameters": []
+          },
+          {
+            "Name": "Current Command",
+            "Description": "Current Command",
+            "DeviceCommandId": "CurrentCommand",
+            "ExtendedData": {
+              "commandType": "Current"
+            },
+            "CommandParameters": [
+              {
+                "Name": "device",
+                "Description": "",
+                "Order": 1,
+                "DataType": "String",
+                "AutomationProtocolDataType": "String",
+                "DefaultValue": "",
+                "IsMandatory": true,
+                "ExtendedData": {}
+              },
+              {
+                "Name": "path",
+                "Description": "",
+                "Order": 2,
+                "DataType": "String",
+                "AutomationProtocolDataType": "String",
+                "DefaultValue": "",
+                "IsMandatory": true,
+                "ExtendedData": {}
+              },
+              {
+                "Name": "at",
+                "Description": "",
+                "Order": 3,
+                "DataType": "Integer",
+                "AutomationProtocolDataType": "Integer",
+                "DefaultValue": "",
+                "IsMandatory": true,
+                "ExtendedData": {}
+              }
+            ]
+          },
+          {
+            "Name": "Probe Command",
+            "Description": "Probe Command",
+            "DeviceCommandId": "ProbeCommand",
+            "ExtendedData": {
+              "commandType": "Probe"
+            },
+            "CommandParameters": [
+              {
+                "Name": "device",
+                "Description": "",
+                "Order": 1,
+                "DataType": "String",
+                "AutomationProtocolDataType": "String",
+                "DefaultValue": "",
+                "IsMandatory": true,
+                "ExtendedData": {}
+              }
+            ]
+          }
+        ]
+      }
+    },
+    "isPacked": true
+  }
+}
