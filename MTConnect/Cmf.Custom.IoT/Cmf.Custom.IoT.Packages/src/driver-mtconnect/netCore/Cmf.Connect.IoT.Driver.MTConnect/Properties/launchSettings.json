@@ -1,0 +1,15 @@
+{
+  "profiles": {
+    "Cmf.Connect.IoT.Driver.MTConnect": {
+      "commandName": "Project",
+      "commandLineArgs": "C:\\cmf\\cm-demo-repos\\MTConnect\\Cmf.Custom.IoT\\Cmf.Custom.IoT.Packages\\src\\driver-mtconnect\\dist\\src\\index.js --id=AutomationDriverInstance/2508070000010000001  --monitorPort=88  --config=C:\\Users\\jroque\\Downloads\\MTConnect\\config.downloaded.json",
+      "workingDirectory": "C:\\ProgramData\\nvm\\v20.16.0\\node.exe"
+    },
+    "Profile 1": {
+      "commandName": "Executable",
+      "executablePath": "C:\\Program Files\\nodejs\\node.exe",
+      "commandLineArgs": "./src/index.js --dev --id=AutomationDriverInstance/2508120000020000026 --monitorPort=88  --config=C:\\Users\\jroque\\Downloads\\MTConnect\\config.downloaded.json",
+      "workingDirectory": "C:/cmf/cm-demo-repos/MTConnect/Cmf.Custom.IoT/Cmf.Custom.IoT.Packages/src/driver-mtconnect"
+    }
+  }
+}
