@@ -1,0 +1,295 @@
+{
+  "name": "@criticalmanufacturing/connect-iot-driver-mtconnect",
+  "version": "0.0.0",
+  "packages": {
+    "src/driver-mtconnect": {
+      "name": "@criticalmanufacturing/connect-iot-driver-mtconnect",
+      "version": "0.0.0",
+      "dependencies": {
+        "@criticalmanufacturing/connect-iot-common": "release-1116",
+        "@criticalmanufacturing/connect-iot-driver": "release-1116",
+        "edge-js": "22.1.2",
+        "fs-extra": "11.1.0",
+        "inversify": "6.0.2",
+        "moment": "2.29.4",
+        "reflect-metadata": "0.1.13",
+        "uuid": "9.0.0",
+        "yargs": "17.7.1"
+      },
+      "devDependencies": {
+        "@types/chai": "4.3.4",
+        "@types/chai-spies": "1.0.3",
+        "@types/fs-extra": "11.0.1",
+        "@types/mocha": "10.0.1",
+        "@types/node": "18.14.4",
+        "@types/semver": "7.3.13",
+        "@types/uuid": "9.0.1",
+        "@types/yargs": "17.0.22",
+        "chai": "4.3.7",
+        "chai-spies": "1.0.0",
+        "gulp": "3.9.1",
+        "mocha": "10.2.0",
+        "mocha-junit-reporter": "2.2.0",
+        "mocha-lcov-reporter": "1.3.0",
+        "nyc": "15.1.0",
+        "tslint": "6.1.3",
+        "typescript": "4.9.5"
+      }
+    },
+    "src/driver-mtconnect/node_modules/yargs": {
+      "version": "17.7.1",
+      "resolved": "https://dev.criticalmanufacturing.io/repository/npm-public/yargs/-/yargs-17.7.1.tgz",
+      "integrity": "sha512-cwiTb08Xuv5fqF4AovYacTFNxk62th7LKJ6BL9IGUpTJrWoU7/7WdQGTP2SjKf1dUNBGzDd28p/Yfs/GI6JrLw==",
+      "license": "MIT",
+      "dependencies": {
+        "cliui": "^8.0.1",
+        "escalade": "^3.1.1",
+        "get-caller-file": "^2.0.5",
+        "require-directory": "^2.1.1",
+        "string-width": "^4.2.3",
+        "y18n": "^5.0.5",
+        "yargs-parser": "^21.1.1"
+      },
+      "engines": {
+        "node": ">=12"
+      }
+    },
+    "src/driver-mtconnect/node_modules/yargs-parser": {
+      "version": "21.1.1",
+      "resolved": "https://dev.criticalmanufacturing.io/repository/npm-public/yargs-parser/-/yargs-parser-21.1.1.tgz",
+      "integrity": "sha512-tVpsJW7DdjecAiFpbIB1e3qxIQsE6NoPc5/eTdrbbIC4h0LVsWhnoa3g+m2HclBIujHzsxZ4VJVA+GUuc2/LBw==",
+      "license": "ISC",
+      "engines": {
+        "node": ">=12"
+      }
+    },
+    "node_modules/@criticalmanufacturing/connect-iot-common": {
+      "version": "11.1.6",
+      "resolved": "https://dev.criticalmanufacturing.io/repository/npm-public/@criticalmanufacturing/connect-iot-common/-/connect-iot-common-11.1.6.tgz",
+      "integrity": "sha512-im81KTgn5BITIS458IxCMkb2DANNcTbH+1DTzDUS4bDfeyN++kyrvrxxdL9i1gwkzh8XUbtEInH98Buei7LByg==",
+      "dependencies": {
+        "@criticalmanufacturing/lbos-node": "11.1.6",
+        "@criticalmanufacturing/messagebus-client": "11.1.6",
+        "@opentelemetry/exporter-logs-otlp-http": "0.50.0",
+        "@opentelemetry/instrumentation-express": "0.39.0",
+        "@opentelemetry/instrumentation-http": "0.50.0",
+        "@opentelemetry/instrumentation-undici": "0.2.0",
+        "@opentelemetry/instrumentation-winston": "0.37.0",
+        "@opentelemetry/sdk-node": "0.50.0",
+        "@opentelemetry/winston-transport": "0.3.0",
+        "bottleneck": "2.19.5",
+        "btoa": "1.2.1",
+        "fecha": "4.2.3",
+        "fs-extra": "11.2.0",
+        "inversify": "6.0.2",
+        "moment": "2.29.4",
+        "reflect-metadata": "0.2.2",
+        "superagent": "9.0.2",
+        "uuid": "10.0.0",
+        "winston": "3.13.0",
+        "winston-daily-rotate-file": "5.0.0",
+        "ws": "8.17.1",
+        "yargs": "17.7.2"
+      }
+    },
+    "node_modules/@criticalmanufacturing/connect-iot-common/node_modules/fs-extra": {
+      "version": "11.2.0",
+      "resolved": "https://dev.criticalmanufacturing.io/repository/npm-public/fs-extra/-/fs-extra-11.2.0.tgz",
+      "integrity": "sha512-PmDi3uwK5nFuXh7XDTlVnS17xJS7vW36is2+w3xcv8SVxiB4NyATf4ctkVY5bkSjX0Y4nbvZCq1/EjtEyr9ktw==",
+      "license": "MIT",
+      "dependencies": {
+        "graceful-fs": "^4.2.0",
+        "jsonfile": "^6.0.1",
+        "universalify": "^2.0.0"
+      },
+      "engines": {
+        "node": ">=14.14"
+      }
+    },
+    "node_modules/@criticalmanufacturing/connect-iot-common/node_modules/reflect-metadata": {
+      "version": "0.2.2",
+      "resolved": "https://dev.criticalmanufacturing.io/repository/npm-public/reflect-metadata/-/reflect-metadata-0.2.2.tgz",
+      "integrity": "sha512-urBwgfrvVP/eAyXx4hluJivBKzuEbSQs9rKWCrCkbSxNv8mxPcUZKeuoF3Uy4mJl3Lwprp6yy5/39VWigZ4K6Q==",
+      "license": "Apache-2.0"
+    },
+    "node_modules/@criticalmanufacturing/connect-iot-common/node_modules/uuid": {
+      "version": "10.0.0",
+      "resolved": "https://dev.criticalmanufacturing.io/repository/npm-public/uuid/-/uuid-10.0.0.tgz",
+      "integrity": "sha512-8XkAphELsDnEGrDxUOHB3RGvXz6TeuYSGEZBOjtTtPm2lwhGBjLgOzLHB63IUWfBpNucQjND6d3AOudO+H3RWQ==",
+      "funding": [
+        "https://github.com/sponsors/broofa",
+        "https://github.com/sponsors/ctavan"
+      ],
+      "license": "MIT",
+      "bin": {
+        "uuid": "dist/bin/uuid"
+      }
+    },
+    "node_modules/@criticalmanufacturing/connect-iot-common/node_modules/yargs": {
+      "version": "17.7.2",
+      "resolved": "https://dev.criticalmanufacturing.io/repository/npm-public/yargs/-/yargs-17.7.2.tgz",
+      "integrity": "sha512-7dSzzRQ++CKnNI/krKnYRV7JKKPUXMEh61soaHKg9mrWEhzFWhFnxPxGl+69cD1Ou63C13NUPCnmIcrvqCuM6w==",
+      "license": "MIT",
+      "dependencies": {
+        "cliui": "^8.0.1",
+        "escalade": "^3.1.1",
+        "get-caller-file": "^2.0.5",
+        "require-directory": "^2.1.1",
+        "string-width": "^4.2.3",
+        "y18n": "^5.0.5",
+        "yargs-parser": "^21.1.1"
+      },
+      "engines": {
+        "node": ">=12"
+      }
+    },
+    "node_modules/@criticalmanufacturing/connect-iot-common/node_modules/yargs-parser": {
+      "version": "21.1.1",
+      "resolved": "https://dev.criticalmanufacturing.io/repository/npm-public/yargs-parser/-/yargs-parser-21.1.1.tgz",
+      "integrity": "sha512-tVpsJW7DdjecAiFpbIB1e3qxIQsE6NoPc5/eTdrbbIC4h0LVsWhnoa3g+m2HclBIujHzsxZ4VJVA+GUuc2/LBw==",
+      "license": "ISC",
+      "engines": {
+        "node": ">=12"
+      }
+    },
+    "node_modules/@criticalmanufacturing/connect-iot-driver": {
+      "version": "11.1.6",
+      "resolved": "https://dev.criticalmanufacturing.io/repository/npm-public/@criticalmanufacturing/connect-iot-driver/-/connect-iot-driver-11.1.6.tgz",
+      "integrity": "sha512-HKap8vEM/7pIyxtCk+LNjL2LTgS22vzFawzgrFZJCZCqPaUAZisMWDU+poWAVsXF3k5l0DqW7wFP7rL343nWHA==",
+      "dependencies": {
+        "@criticalmanufacturing/connect-iot-common": "11.1.6",
+        "anymatch": "3.1.3",
+        "chokidar": "3.6.0",
+        "fs-extra": "11.2.0",
+        "iconv-lite": "0.6.3",
+        "inversify": "6.0.2",
+        "moment": "2.29.4",
+        "nsfw": "2.2.5",
+        "readdirp": "3.6.0",
+        "reflect-metadata": "0.2.2",
+        "uuid": "10.0.0"
+      }
+    },
+    "node_modules/@criticalmanufacturing/connect-iot-driver/node_modules/fs-extra": {
+      "version": "11.2.0",
+      "resolved": "https://dev.criticalmanufacturing.io/repository/npm-public/fs-extra/-/fs-extra-11.2.0.tgz",
+      "integrity": "sha512-PmDi3uwK5nFuXh7XDTlVnS17xJS7vW36is2+w3xcv8SVxiB4NyATf4ctkVY5bkSjX0Y4nbvZCq1/EjtEyr9ktw==",
+      "license": "MIT",
+      "dependencies": {
+        "graceful-fs": "^4.2.0",
+        "jsonfile": "^6.0.1",
+        "universalify": "^2.0.0"
+      },
+      "engines": {
+        "node": ">=14.14"
+      }
+    },
+    "node_modules/@criticalmanufacturing/connect-iot-driver/node_modules/reflect-metadata": {
+      "version": "0.2.2",
+      "resolved": "https://dev.criticalmanufacturing.io/repository/npm-public/reflect-metadata/-/reflect-metadata-0.2.2.tgz",
+      "integrity": "sha512-urBwgfrvVP/eAyXx4hluJivBKzuEbSQs9rKWCrCkbSxNv8mxPcUZKeuoF3Uy4mJl3Lwprp6yy5/39VWigZ4K6Q==",
+      "license": "Apache-2.0"
+    },
+    "node_modules/@criticalmanufacturing/connect-iot-driver/node_modules/uuid": {
+      "version": "10.0.0",
+      "resolved": "https://dev.criticalmanufacturing.io/repository/npm-public/uuid/-/uuid-10.0.0.tgz",
+      "integrity": "sha512-8XkAphELsDnEGrDxUOHB3RGvXz6TeuYSGEZBOjtTtPm2lwhGBjLgOzLHB63IUWfBpNucQjND6d3AOudO+H3RWQ==",
+      "funding": [
+        "https://github.com/sponsors/broofa",
+        "https://github.com/sponsors/ctavan"
+      ],
+      "license": "MIT",
+      "bin": {
+        "uuid": "dist/bin/uuid"
+      }
+    },
+    "node_modules/edge-js": {
+      "version": "22.1.2",
+      "resolved": "https://dev.criticalmanufacturing.io/repository/npm-public/edge-js/-/edge-js-22.1.2.tgz",
+      "integrity": "sha512-T2xwxTtzh28SDe0CQx9rJECmAxu6SH00bz1muXcsKyXOwk3pv9fdD11x+x05/O4zOb/ClhWhyJaAd+H3Uv1p9w==",
+      "hasInstallScript": true,
+      "license": "MIT",
+      "dependencies": {
+        "edge-cs": "npm:@agracio/edge-cs@^1.3.7",
+        "nan": "^2.19.0"
+      },
+      "engines": {
+        "node": ">=16.0.0",
+        "npm": ">=8.0.0"
+      }
+    },
+    "node_modules/inversify": {
+      "version": "6.0.2",
+      "resolved": "https://dev.criticalmanufacturing.io/repository/npm-public/inversify/-/inversify-6.0.2.tgz",
+      "integrity": "sha512-i9m8j/7YIv4mDuYXUAcrpKPSaju/CIly9AHK5jvCBeoiM/2KEsuCQTTP+rzSWWpLYWRukdXFSl6ZTk2/uumbiA==",
+      "license": "MIT"
+    },
+    "node_modules/moment": {
+      "version": "2.29.4",
+      "resolved": "https://dev.criticalmanufacturing.io/repository/npm-public/moment/-/moment-2.29.4.tgz",
+      "integrity": "sha512-5LC9SOxjSc2HF6vO2CyuTDNivEdoz2IvyJJGj6X8DJ0eFyfszE0QiEd+iXmBvUP3WHxSjFH/vIsA0EN00cgr8w==",
+      "license": "MIT",
+      "engines": {
+        "node": "*"
+      }
+    },
+    "node_modules/reflect-metadata": {
+      "version": "0.1.13",
+      "resolved": "https://dev.criticalmanufacturing.io/repository/npm-public/reflect-metadata/-/reflect-metadata-0.1.13.tgz",
+      "integrity": "sha512-Ts1Y/anZELhSsjMcU605fU9RE4Oi3p5ORujwbIKXfWa+0Zxs510Qrmrce5/Jowq3cHSZSJqBjypxmHarc+vEWg==",
+      "license": "Apache-2.0"
+    },
+    "node_modules/yargs": {
+      "version": "17.6.2",
+      "resolved": "https://dev.criticalmanufacturing.io/repository/npm-public/yargs/-/yargs-17.6.2.tgz",
+      "integrity": "sha512-1/9UrdHjDZc0eOU0HxOHoS78C69UD3JRMvzlJ7S79S2nTaWRA/whGCTV8o9e/N/1Va9YIV7Q4sOxD8VV4pCWOw==",
+      "dev": true,
+      "license": "MIT",
+      "dependencies": {
+        "cliui": "^8.0.1",
+        "escalade": "^3.1.1",
+        "get-caller-file": "^2.0.5",
+        "require-directory": "^2.1.1",
+        "string-width": "^4.2.3",
+        "y18n": "^5.0.5",
+        "yargs-parser": "^21.1.1"
+      },
+      "engines": {
+        "node": ">=12"
+      }
+    },
+    "node_modules/yargs/node_modules/yargs-parser": {
+      "version": "21.1.1",
+      "resolved": "https://dev.criticalmanufacturing.io/repository/npm-public/yargs-parser/-/yargs-parser-21.1.1.tgz",
+      "integrity": "sha512-tVpsJW7DdjecAiFpbIB1e3qxIQsE6NoPc5/eTdrbbIC4h0LVsWhnoa3g+m2HclBIujHzsxZ4VJVA+GUuc2/LBw==",
+      "dev": true,
+      "license": "ISC",
+      "engines": {
+        "node": ">=12"
+      }
+    },
+    "node_modules/uuid": {
+      "version": "9.0.0",
+      "resolved": "https://dev.criticalmanufacturing.io/repository/npm-public/uuid/-/uuid-9.0.0.tgz",
+      "integrity": "sha512-MXcSTerfPa4uqyzStbRoTgt5XIe3x5+42+q1sDuy3R5MDk66URdLMOZe5aPX/SQd+kuYAh0FdP/pO28IkQyTeg==",
+      "license": "MIT",
+      "bin": {
+        "uuid": "dist/bin/uuid"
+      }
+    },
+    "node_modules/fs-extra": {
+      "version": "11.1.0",
+      "resolved": "https://dev.criticalmanufacturing.io/repository/npm-public/fs-extra/-/fs-extra-11.1.0.tgz",
+      "integrity": "sha512-0rcTq621PD5jM/e0a3EJoGC/1TC5ZBCERW82LQuwfGnCa1V8w7dpYH1yNu+SLb6E5dkeCBzKEyLGlFrnr+dUyw==",
+      "license": "MIT",
+      "dependencies": {
+        "graceful-fs": "^4.2.0",
+        "jsonfile": "^6.0.1",
+        "universalify": "^2.0.0"
+      },
+      "engines": {
+        "node": ">=14.14"
+      }
+    }
+  }
+}
