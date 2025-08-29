@@ -10,11 +10,6 @@
       "source": "MasterData/$(version)/*",
       "target": "MasterData/$(version)",
       "contentType": "MasterData"
-    },
-    {
-      "source": "AutomationWorkFlows/*",
-      "target": "AutomationWorkFlows",
-      "contentType": "AutomationWorkFlows"
     }
   ]
 }

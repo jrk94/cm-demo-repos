@@ -16,5 +16,14 @@
       "version": "1.0.0"
     }
   ],
-  "testPackages": []
+  "testPackages": [
+    {
+      "id": "Cmf.Custom.Tests",
+      "version": "1.0.0"
+    },
+    {
+      "id": "Cmf.Custom.Tests.MasterData",
+      "version": "1.0.0"
+    }
+  ]
 }
