@@ -1,0 +1,73 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <IsTestProject>true</IsTestProject>
+    <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
+    <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
+  </PropertyGroup>
+  <PropertyGroup>
+    <NoWarn>NU1605</NoWarn>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
+		<OutputPath>..\Release</OutputPath>
+	</PropertyGroup>
+  <ItemGroup>
+	  <None Include="..\app.config">
+      <Link>app.config</Link>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="Microsoft.Bcl.AsyncInterfaces">
+      <HintPath>\\wsl.localhost\localenv\src\Product_112\Platform\ConnectIoT\dependencies\IoTTestOrchestrator\bin\Debug\netcoreapp3.1\Microsoft.Bcl.AsyncInterfaces.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Extensions.DependencyInjection">
+      <HintPath>\\wsl.localhost\localenv\src\Product_112\Platform\ConnectIoT\dependencies\IoTTestOrchestrator\bin\Debug\netcoreapp3.1\Microsoft.Extensions.DependencyInjection.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Extensions.DependencyInjection.Abstractions">
+      <HintPath>\\wsl.localhost\localenv\src\Product_112\Platform\ConnectIoT\dependencies\IoTTestOrchestrator\bin\Debug\netcoreapp3.1\Microsoft.Extensions.DependencyInjection.Abstractions.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\Libs\LBOs\NetStandard\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json.Bson">
+      <HintPath>\\wsl.localhost\localenv\src\Product_112\Platform\ConnectIoT\dependencies\IoTTestOrchestrator\bin\Debug\netcoreapp3.1\Newtonsoft.Json.Bson.dll</HintPath>
+    </Reference>
+    <Reference Include="SharpCompress">
+      <HintPath>\\wsl.localhost\localenv\src\Product_112\Platform\ConnectIoT\dependencies\IoTTestOrchestrator\bin\Debug\netcoreapp3.1\SharpCompress.dll</HintPath>
+    </Reference>
+    <Reference Include="SuperSocket.ClientEngine">
+      <HintPath>\\wsl.localhost\localenv\src\Product_112\Platform\ConnectIoT\dependencies\IoTTestOrchestrator\bin\Debug\netcoreapp3.1\SuperSocket.ClientEngine.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Configuration.ConfigurationManager">
+      <HintPath>\\wsl.localhost\localenv\src\Product_112\Platform\ConnectIoT\dependencies\IoTTestOrchestrator\bin\Debug\netcoreapp3.1\System.Configuration.ConfigurationManager.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Net.Http.Formatting">
+      <HintPath>\\wsl.localhost\localenv\src\Product_112\Platform\ConnectIoT\dependencies\IoTTestOrchestrator\bin\Debug\netcoreapp3.1\System.Net.Http.Formatting.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Security.Cryptography.ProtectedData">
+      <HintPath>\\wsl.localhost\localenv\src\Product_112\Platform\ConnectIoT\dependencies\IoTTestOrchestrator\bin\Debug\netcoreapp3.1\System.Security.Cryptography.ProtectedData.dll</HintPath>
+    </Reference>
+    <Reference Include="WebSocket4Net">
+      <HintPath>\\wsl.localhost\localenv\src\Product_112\Platform\ConnectIoT\dependencies\IoTTestOrchestrator\bin\Debug\netcoreapp3.1\WebSocket4Net.dll</HintPath>
+    </Reference>
+    <Reference Include="ZstdSharp">
+      <HintPath>\\wsl.localhost\localenv\src\Product_112\Platform\ConnectIoT\dependencies\IoTTestOrchestrator\bin\Debug\netcoreapp3.1\ZstdSharp.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Cmf.ConnectIoT.TestOrchestrator.Core.LBOs" Version="11.2.0-alpha08" />
+    <PackageReference Include="Cmf.ConnectIoT.TestOrchestrator.Core.ScenarioBuilder" Version="11.2.0-alpha07" />
+    <PackageReference Include="Cmf.ConnectIoT.TestOrchestrator.Plugin.Simulator.RestServer" Version="11.2.0-alpha05" />
+    <PackageReference Include="Cmf.ConnectIoT.TestOrchestrator.Plugin.StartMode.Local" Version="11.2.0-alpha08" />
+    <PackageReference Include="Cmf.ConnectIoT.TestOrchestrator.Plugin.System.MockSystem" Version="11.2.0-alpha22" />
+    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="16.9.4" />
+    <PackageReference Include="MSTest.TestAdapter" Version="2.2.3" />
+    <PackageReference Include="MSTest.TestFramework" Version="2.2.3" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="../../Cmf.Custom.IoT/Cmf.Custom.IoT.Data/Masterdata/**" CopyToOutputDirectory="Always" />
+  </ItemGroup>
+</Project>

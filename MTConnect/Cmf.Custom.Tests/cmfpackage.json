@@ -1,0 +1,14 @@
+{
+  "packageId": "Cmf.Custom.Tests",
+  "version": "1.0.0",
+  "description": "This package tests Critical Manufacturing MES Demo Customization",
+  "packageType": "Tests",
+  "isInstallable": false,
+  "isUniqueInstall": false,
+  "contentToPack": [
+    {
+      "source": "Release/**",
+      "target": ""
+    }
+  ]
+}
