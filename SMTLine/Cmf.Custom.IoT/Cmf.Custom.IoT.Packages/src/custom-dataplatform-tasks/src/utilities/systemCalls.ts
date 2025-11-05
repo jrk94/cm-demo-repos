@@ -135,7 +135,7 @@ export class SystemCalls {
         input.NumberOfRetries = Utilities.convertValueToType(numberOfRetries, Task.TaskValueType.Integer, false);
         // Payload
         input.Data = data;
-        logger.debug(` AppProperties: ${JSON.stringify(input.AppProperties)}, Payload: ${JSON.stringify(input.Data)}`);
+        logger.debug(` AppProperties: ${JSON.stringify(input.AppProperties)}\n Payload: ${JSON.stringify(input.Data)}`);
 
         return input;
     }

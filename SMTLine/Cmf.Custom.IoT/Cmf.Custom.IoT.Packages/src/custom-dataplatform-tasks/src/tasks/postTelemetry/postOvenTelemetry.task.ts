@@ -99,7 +99,6 @@ export class PostOvenTelemetryTask extends TaskBase implements PostOvenTelemetry
                         this.valuesTimestamp)) {
 
                         // One Post per subzone
-
                         allPostPromises.push(SystemCalls.postTelemetry(
                             dataToPost,
                             this.applicationName,
@@ -300,7 +299,7 @@ export class PostOvenTelemetryTask extends TaskBase implements PostOvenTelemetry
         }
 
         const posts: PostTelemetry[] = [];
-        for (let index = 0; index < zoneData.Readings.length; index++) {
+        for (let index = zoneData.Readings.length - 1; index >= 0; index--) {
             const reading = zoneData.Readings[index];
             // Each Reading Type and Setpoint type that is the same will be posted together
 

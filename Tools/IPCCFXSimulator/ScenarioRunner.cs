@@ -1,22 +1,41 @@
-﻿using Cmf.Foundation.BusinessOrchestration;
+﻿using CFX.Structures.SolderReflow;
+using Cmf.Foundation.BusinessOrchestration;
 using Cmf.Foundation.BusinessOrchestration.GenericServiceManagement.InputObjects;
 using Cmf.Navigo.BusinessObjects;
+using Cmf.Navigo.BusinessOrchestration.MaterialManagement.InputObjects;
 using IoTTestOrchestrator;
 using IPCCFXSimulator.Objects;
 using ScenarioBuilder.Implementations.Configuration;
+using System.Collections.Concurrent;
 
 namespace IPCCFXSimulator
 {
     public class ScenarioRunner
     {
         private decimal _speed;
+        private decimal _defectProbability;
         private TestScenario _scenario;
         private Dictionary<string, IPCCFX.PluginMain> _cfxSimulators = [];
         private CancellationTokenSource cts;
 
-        public ScenarioRunner(decimal speed = 1)
+        private readonly string[] availableProducts = ["SMT PowerUnit_DP_A", "SMT PowerUnit_DP_B", "SMT PowerUnit_DP_C", "SMT PowerUnit_DP_D"];
+        private readonly string flowPathSerialization = "PCBA_SingleSide:A:1/PCB Serialization:1";
+        private readonly string flowPathTrackoutLine = "PCBA_SingleSide:A:1/SMT:2";
+        private readonly string flowPathDepanel = "LASER > SMD > Depanel > THT > ICT > FCT:A:1/Depanel:4";
+        private readonly string lotForm = "SMTLot";
+        private readonly string resourceSMTLine = "SMT03";
+        private readonly string resourceLaserMark = "PCB-LM01";
+        private readonly string[] ppResources = ["PnP01", "PnP02", "PnP03"];
+        private readonly string spiResource = "SPI01";
+        private readonly string printerResource = "PRT01";
+        private readonly string aoiResource = "AOI01";
+        private readonly string depanelResource = "DPL01";
+        private readonly ConcurrentDictionary<string, string> defectPanels = [];
+
+        public ScenarioRunner(decimal speed = 10, decimal defectProbability = 0.8m)
         {
             this._speed = speed;
+            this._defectProbability = defectProbability;
         }
 
         public async System.Threading.Tasks.Task RunAsync()
@@ -44,17 +63,17 @@ namespace IPCCFXSimulator
             var driverAddress = "/queue/CMF.Driver.IPCCFX";
             var targetHandle = "oven.test.machine";
             var target = $"amqp://localhost:5672";
-            var managerName = "IPC-CFXManager";
+            var managerName = "IPCCFX_Manager";
 
             var scenario = new ScenarioConfiguration()
                .WriteLogsTo("c:/temp/CFX-Simulator.log")// Activate this line to send the logs to a particular place
-               .ManagerId("IPC-CFXManager")
+               .ManagerId(managerName)
                //.ConfigPath("C:\\cmf\\cm-demo-repos\\Tools\\IPCCFXSimulator\\Artifacts\\DataPlatform.config.full.json")
-               .ConfigPath("C:\\cmf\\cm-demo-repos\\Tools\\IPCCFXSimulator\\Artifacts\\MESSummit.config.full.json")
+               .ConfigPath("C:\\Users\\jroque\\Downloads\\IPCCFX_Manager\\config.full.json")
                //.ConfigPath("C:\\Users\\jroque\\Downloads\\IPC-CFXManager_MESSummit\\config.full.json")
-               //.StartMode<LocalStartMode.PluginMain>(new LocalStartMode.Plugin.SettingsBuilder()
-               // .ManagerLocation("C:\\Users\\jroque\\Downloads\\IPC-CFXManager")
-               // .Build())
+               .StartMode<LocalStartMode.PluginMain>(new LocalStartMode.Plugin.SettingsBuilder()
+                .ManagerLocation("C:\\Users\\jroque\\Downloads\\IPCCFX_Manager")
+                .Build())
                .AddSimulatorPlugin<IPCCFX.PluginMain>(new IPCCFX.Plugin.SettingsBuilder()
                 .AddBroker()
                 .AddTestCFXEndpoint(targetHandle, "", target)
@@ -88,6 +107,7 @@ namespace IPCCFXSimulator
             }
             catch (Exception ex)
             {
+                _scenario.Log.Error(ex.Message);
             }
             finally
             {
@@ -148,7 +168,7 @@ namespace IPCCFXSimulator
                     {
                         Name = lot.Name,
                         Type = typeof(Cmf.Navigo.BusinessObjects.Material)
-                    }.GetObjectByNameSync().Instance as Cmf.Navigo.BusinessObjects.Material;
+                    }.GetObjectByNameSync().Instance as Material;
 
                     if (lot.UniversalState != Cmf.Foundation.Common.Base.UniversalState.Terminated)
                     {
@@ -158,11 +178,21 @@ namespace IPCCFXSimulator
                             LossReason = lossreason
                         }.TerminateMaterialSync();
                     }
+
+                    var productionOrder = new GetObjectByIdInput()
+                    {
+                        Id = panels.First().ProductionOrder.Id,
+                        Type = typeof(Cmf.Navigo.BusinessObjects.ProductionOrder)
+                    }.GetObjectByIdSync().Instance as ProductionOrder;
+
+                    new TerminateObjectInput()
+                    {
+                        Object = productionOrder
+                    }.TerminateObjectSync();
                 }
                 catch (Exception ex)
                 {
                 }
-
             }
         }
 
@@ -176,7 +206,7 @@ namespace IPCCFXSimulator
             _scenario.Log.Debug($"Tracking in Lot {lot?.Name} in the SMT Line");
             var resourceSMTLine = new GetObjectByNameInput()
             {
-                Name = "SMT Line 1",
+                Name = this.resourceSMTLine,
                 Type = typeof(Cmf.Navigo.BusinessObjects.Resource)
             }.GetObjectByNameSync().Instance as Cmf.Navigo.BusinessObjects.Resource;
 
@@ -228,7 +258,7 @@ namespace IPCCFXSimulator
             {
                 Materials = new Dictionary<Material, ComplexTrackOutAndMoveNextParameters>()
                     {
-                        { lot, new ComplexTrackOutAndMoveNextParameters(){ FlowPath = "LASER > SMD > Depanel > THT > ICT > FCT:A:1/Depanel:4"} }
+                        { lot, new ComplexTrackOutAndMoveNextParameters(){ FlowPath = flowPathDepanel} }
                     }
             }.ComplexTrackOutAndMoveMaterialsToNextStepSync().Materials.First().Key;
 
@@ -244,7 +274,6 @@ namespace IPCCFXSimulator
             #region SMT Order Preparation
 
             // Random Product
-            string[] availableProducts = ["SMT_Product_A", "SMT_Product_B", "SMT_Product_C", "SMT_Product_D"];
             Random random = new Random();
             int randomPos = random.Next(0, availableProducts.Length);
 
@@ -287,26 +316,23 @@ namespace IPCCFXSimulator
                     Name = lotName,
                     ProductionOrder = productionOrder,
                     Product = product,
-                    Form = "SMTLot",
-                    FlowPath = "LASER > SMD > Depanel > THT > ICT > FCT:A:1/SMT Order Preparation:1",
-                    PrimaryQuantity = random.Next(1, 10),
+                    Form = lotForm,
+                    FlowPath = flowPathSerialization,
+                    PrimaryQuantity = random.Next(1, 6) * 2,
                     PrimaryUnits = "Units",
                     Type = "Production"
                 }
             }.CreateObjectSync().Object as Cmf.Navigo.BusinessObjects.Material;
-            _scenario.Log.Info($"Created Lot for Production Order for product '{productionOrder?.Name}'");
 
-            // Move Next
-            _scenario.Log.Debug($"Moving Lot for Next Step");
-            lot = new Cmf.Navigo.BusinessOrchestration.MaterialManagement.InputObjects.ComplexMoveMaterialsToNextStepInput()
+            lot = new Cmf.Navigo.BusinessOrchestration.MaterialManagement.InputObjects.SetOrUnSetMaterialDispatchableInput
             {
-                Materials = new Dictionary<Material, string>()
-                        {
-                            {lot,  "LASER > SMD > Depanel > THT > ICT > FCT:A:1/PCB Serialization:2"}
-                        }
-            }.ComplexMoveMaterialsToNextStepSync().Materials.First();
+                Material = lot,
+                ExecuteRule = true,
+                IgnoreLastServiceId = true,
+                IsToOverrideCurrentSetService = false
+            }.SetOrUnSetMaterialDispatchableSync().Material;
 
-            _scenario.Log.Info($"Moved Lot for Next Step");
+            _scenario.Log.Info($"Created Lot for Production Order for product '{productionOrder?.Name}'");
 
             #endregion SMT Order Preparation
         }
@@ -329,7 +355,7 @@ namespace IPCCFXSimulator
 
             var depanelResource = new GetObjectByNameInput()
             {
-                Name = "DPL01",
+                Name = this.depanelResource,
                 Type = typeof(Cmf.Navigo.BusinessObjects.Resource),
                 IgnoreLastServiceId = true
             }.GetObjectByNameSync().Instance as Cmf.Navigo.BusinessObjects.Resource;
@@ -379,10 +405,39 @@ namespace IPCCFXSimulator
 
             #region AOI
             _scenario.Log.Debug($"Tracking In AOI for Panel {panel?.Name}");
-            panel = TrackInPanel(panel, "AOI01");
+            panel = TrackInPanel(panel, this.aoiResource);
             _scenario.Log.Info($"Tracked In AOI for Panel {panel?.Name}");
 
             await System.Threading.Tasks.Task.Delay(executionTime);
+
+            if (this.defectPanels.TryRemove(panel.Name, out string defectName))
+            {
+                _scenario.Log.Debug($"Creating Defect {defectName} for Panel {panel?.Name}");
+                var defectReason = new GetObjectByNameInput()
+                {
+                    Name = defectName,
+                    Type = typeof(Cmf.Navigo.BusinessObjects.Reason)
+                }.GetObjectByNameSync().Instance as Cmf.Navigo.BusinessObjects.Reason;
+
+                try
+                {
+                    panel = new RecordMaterialDefectsInput()
+                    {
+                        Material = panel,
+                        MaterialDefects = [new MaterialDefect()
+                    {
+                        Reason = defectReason,
+                        DefectSource = MaterialDefectSource.None
+
+                    }]
+                    }.RecordMaterialDefectsSync().Material;
+                    _scenario.Log.Debug($"Created Defect {defectReason.Name} for Panel {panel?.Name}");
+                }
+                catch (Exception ex)
+                {
+                    _scenario.Log.Debug($"Error {ex.Message} for Panel {panel?.Name}");
+                }
+            }
 
             _scenario.Log.Debug($"Tracking Out AOI for Panel {panel?.Name}");
             panel = TrackOutPanel(panel);
@@ -395,11 +450,72 @@ namespace IPCCFXSimulator
 
         private async Task<Material> ReflowOvenExecution(Material? panel, decimal speed = 1)
         {
-            int executionTime = Decimal.ToInt32(new Random().Next(180, 300) * 1000 / speed);
+            var rand = new Random();
+            int executionTime = Decimal.ToInt32(rand.Next(180, 300) * 1000 / speed);
+
+            var events = new Events(new Dictionary<string, ReflowProcessData>
+                {
+                    {
+                       availableProducts[0],
+                        new ReflowProcessData()
+                        {
+                            ConveyorSpeed = 100,
+                            ConveyorSpeedSetpoint = 100,
+                            ZoneData = Events.AdjustReadingsRandomly(Events.ZoneData_A)
+                        }
+                    },
+                    {
+                        availableProducts[1],
+                        new ReflowProcessData()
+                        {
+                            ConveyorSpeed = 100,
+                            ConveyorSpeedSetpoint = 100,
+                            ZoneData = Events.AdjustReadingsRandomly(Events.ZoneData_B)
+                        }
+                    },
+                    {
+                        availableProducts[2],
+                        new ReflowProcessData()
+                        {
+                            ConveyorSpeed = 100,
+                            ConveyorSpeedSetpoint = 100,
+                            ZoneData = Events.AdjustReadingsRandomly(Events.ZoneData_C)
+                        }
+                    },
+                    {
+                        availableProducts[3],
+                        new ReflowProcessData()
+                        {
+                            ConveyorSpeed = 100,
+                            ConveyorSpeedSetpoint = 100,
+                            ZoneData = Events.AdjustReadingsRandomly(Events.ZoneData_D)
+                        }
+                    }
+                });
+
+            var product = new GetObjectByIdInput()
+            {
+                Id = panel.Product.Id,
+                Type = typeof(Cmf.Navigo.BusinessObjects.Product),
+                IgnoreLastServiceId = true
+            }.GetObjectByIdSync().Instance as Cmf.Navigo.BusinessObjects.Product;
+
+            var processData = events.Products.FirstOrDefault(prod => prod.Key == product.Name).Value;
+            if (rand.NextDouble() < (double)this._defectProbability)
+            {
+                var defect = Events.Defects.ElementAt(rand.Next(Events.Defects.Count));
+                processData =
+                    new ReflowProcessData()
+                    {
+                        ConveyorSpeed = 100,
+                        ConveyorSpeedSetpoint = 100,
+                        ZoneData = Events.AdjustReadingsRandomly(defect.Value, 0.3)
+                    };
+                this.defectPanels.TryAdd(panel.Name, defect.Key);
+            }
 
             #region Reflow Oven
 
-            var events = new Events();
             var transactionId = Guid.NewGuid();
             var workStarted = new CFX.Production.WorkStarted
             {
@@ -419,18 +535,11 @@ namespace IPCCFXSimulator
                 return getPanelByName(panel)?.SystemState == MaterialSystemState.InProcess;
             });
 
-            var product = new GetObjectByIdInput()
-            {
-                Id = panel.Product.Id,
-                Type = typeof(Cmf.Navigo.BusinessObjects.Product),
-                IgnoreLastServiceId = true
-            }.GetObjectByIdSync().Instance as Cmf.Navigo.BusinessObjects.Product;
-
             var unitsProcessed = new CFX.Production.Processing.UnitsProcessed
             {
                 TransactionId = transactionId,
                 OverallResult = CFX.Structures.ProcessingResult.Succeeded,
-                CommonProcessData = events.Products.FirstOrDefault(prod => prod.Key == product.Name).Value
+                CommonProcessData = processData
             };
 
             _scenario.Log.Debug($"Units Processed '{panel.Name}'");
@@ -469,7 +578,7 @@ namespace IPCCFXSimulator
 
             #region P&P3
             _scenario.Log.Debug($"Tracking In PP3 for Panel {panel?.Name}");
-            panel = TrackInPanel(panel, "PickPlace03");
+            panel = TrackInPanel(panel, this.ppResources[2]);
             _scenario.Log.Info($"Tracked In PP3 for Panel {panel?.Name}");
 
             await System.Threading.Tasks.Task.Delay(executionTime);
@@ -489,7 +598,7 @@ namespace IPCCFXSimulator
 
             #region P&P2
             _scenario.Log.Debug($"Tracking In PP2 for Panel {panel?.Name}");
-            panel = TrackInPanel(panel, "PickPlace02");
+            panel = TrackInPanel(panel, this.ppResources[1]);
             _scenario.Log.Info($"Tracked In PP2 for Panel {panel?.Name}");
 
             await System.Threading.Tasks.Task.Delay(executionTime);
@@ -509,7 +618,7 @@ namespace IPCCFXSimulator
 
             #region P&P1
             _scenario.Log.Debug($"Tracking In PP1 for Panel {panel?.Name}");
-            panel = TrackInPanel(panel, "PickPlace01");
+            panel = TrackInPanel(panel, this.ppResources[0]);
             _scenario.Log.Info($"Tracked In PP1 for Panel {panel?.Name}");
 
             await System.Threading.Tasks.Task.Delay(executionTime);
@@ -529,7 +638,7 @@ namespace IPCCFXSimulator
 
             #region SPI
             _scenario.Log.Debug($"Tracking In SPI for Panel {panel?.Name}");
-            panel = TrackInPanel(panel, "SPI01");
+            panel = TrackInPanel(panel, this.spiResource);
             _scenario.Log.Info($"Tracked In SPI for Panel {panel?.Name}");
 
             await System.Threading.Tasks.Task.Delay(executionTime);
@@ -549,7 +658,7 @@ namespace IPCCFXSimulator
 
             #region Printer
             _scenario.Log.Debug($"Tracking In Printer for Panel {panel?.Name}");
-            panel = TrackInPanel(panel, "PRT01");
+            panel = TrackInPanel(panel, this.printerResource);
             _scenario.Log.Info($"Tracked In Printer for Panel {panel?.Name}");
 
             await System.Threading.Tasks.Task.Delay(executionTime);
@@ -571,8 +680,7 @@ namespace IPCCFXSimulator
                         {
                             getPanelByName(panel)
                         },
-                Resource = getResourceByName(resourceName),
-                IgnoreLastServiceId = true
+                Resource = getResourceByName(resourceName)
             }.ComplexTrackInMaterialsSync() as BaseOutput)
                             as Cmf.Navigo.BusinessOrchestration.MaterialManagement.OutputObjects.ComplexTrackInMaterialsOutput).Materials.First();
         }
@@ -584,8 +692,7 @@ namespace IPCCFXSimulator
                 Material = new Dictionary<Material, ComplexTrackOutParameters>()
                         {
                             { getPanelByName(panel), new ComplexTrackOutParameters() }
-                        },
-                IgnoreLastServiceId = true
+                        }
             }.ComplexTrackOutMaterialsSync() as BaseOutput)
                 as Cmf.Navigo.BusinessOrchestration.MaterialManagement.OutputObjects.ComplexTrackOutMaterialsOutput).Materials.First().Key;
             return panel;
@@ -616,7 +723,7 @@ namespace IPCCFXSimulator
             }
         }
 
-        private static Resource? getResourceByName(string resourceName)
+        private static Cmf.Navigo.BusinessObjects.Resource? getResourceByName(string resourceName)
         {
             return new GetObjectByNameInput()
             {
@@ -644,10 +751,10 @@ namespace IPCCFXSimulator
             _scenario.Log.Debug($"Starting Serialization");
 
             // Dispatch and TrackIn
-            _scenario.Log.Debug($"Tracking In Lot at Resource LMK01 '{lot?.Name}'");
+            _scenario.Log.Debug($"Tracking In Lot at Resource {this.resourceLaserMark} '{lot?.Name}'");
             var resourceLaserMark = new GetObjectByNameInput()
             {
-                Name = "LMK01",
+                Name = this.resourceLaserMark,
                 Type = typeof(Cmf.Navigo.BusinessObjects.Resource)
             }.GetObjectByNameSync().Instance as Cmf.Navigo.BusinessObjects.Resource;
 
@@ -664,38 +771,38 @@ namespace IPCCFXSimulator
                     },
                 IgnoreLastServiceId = true
             }.ComplexDispatchAndTrackInMaterialsSync().Materials.First();
-            _scenario.Log.Debug($"Tracked In Lot at Resource LMK01 '{lot?.Name}'");
+            _scenario.Log.Debug($"Tracked In Lot at Resource {this.resourceLaserMark} '{lot?.Name}'");
 
-            // Create Panels
-            var panels = new MaterialCollection();
-            for (int i = 0; i < lot.PrimaryQuantity; i++)
-            {
-                var panelName = "Panel-" + Guid.NewGuid().ToString().Substring(0, 8);
-                _scenario.Log.Info($"Creating Panel Id '{panelName}'");
-                panels.Add(new Cmf.Navigo.BusinessObjects.Material()
-                {
-                    Facility = facility,
-                    Name = panelName,
-                    ProductionOrder = productionOrder,
-                    Product = product,
-                    Form = "Panel",
-                    FlowPath = "LASER > SMD > Depanel > THT > ICT > FCT:A:1/PCB Serialization:2",
-                    PrimaryQuantity = 1,
-                    PrimaryUnits = "Units",
-                    Type = "Production"
-                });
-            }
+            //// Create Panels
+            //var panels = new MaterialCollection();
+            //for (int i = 0; i < lot.PrimaryQuantity; i++)
+            //{
+            //    var panelName = "Panel-" + Guid.NewGuid().ToString().Substring(0, 8);
+            //    _scenario.Log.Info($"Creating Panel Id '{panelName}'");
+            //    panels.Add(new Cmf.Navigo.BusinessObjects.Material()
+            //    {
+            //        Facility = facility,
+            //        Name = panelName,
+            //        ProductionOrder = productionOrder,
+            //        Product = product,
+            //        Form = "Panel",
+            //        FlowPath = this.flowPathSerialization,
+            //        PrimaryQuantity = 1,
+            //        PrimaryUnits = "Units",
+            //        Type = "Production"
+            //    });
+            //}
 
-            _scenario.Log.Debug($"Creating Panels for '{lot?.Name}'");
-            var expandMaterialOutput = new Cmf.Navigo.BusinessOrchestration.MaterialManagement.InputObjects.ExpandMaterialInput()
-            {
-                Form = "Panel",
-                Material = lot,
-                SubMaterials = panels
-            }.ExpandMaterialSync();
+            //_scenario.Log.Debug($"Creating Panels for '{lot?.Name}'");
+            //var expandMaterialOutput = new Cmf.Navigo.BusinessOrchestration.MaterialManagement.InputObjects.ExpandMaterialInput()
+            //{
+            //    Form = "Panel",
+            //    Material = lot,
+            //    SubMaterials = panels
+            //}.ExpandMaterialSync();
 
-            lot = expandMaterialOutput.Material;
-            panels = expandMaterialOutput.ExpandedSubMaterials;
+            //lot = expandMaterialOutput.Material;
+            //panels = expandMaterialOutput.ExpandedSubMaterials;
             _scenario.Log.Info($"Created Panels for '{lot?.Name}'");
 
             // TrackOut and Move Next
@@ -704,16 +811,21 @@ namespace IPCCFXSimulator
             {
                 Materials = new Dictionary<Material, ComplexTrackOutAndMoveNextParameters>()
                     {
-                        { lot,  new ComplexTrackOutAndMoveNextParameters() { FlowPath = "LASER > SMD > Depanel > THT > ICT > FCT:A:1/SMD_TOP:3" }}
+                        { lot,  new ComplexTrackOutAndMoveNextParameters() { FlowPath = this.flowPathTrackoutLine }}
                     }
             }.ComplexTrackOutAndMoveMaterialsToNextStepSync().Materials.First().Key;
             _scenario.Log.Info($"Tracked out Lot '{lot?.Name}'");
+
+            lot = new Cmf.Navigo.BusinessOrchestration.MaterialManagement.InputObjects.LoadMaterialChildrenInput()
+            {
+                Material = lot
+            }.LoadMaterialChildrenSync().Material;
 
             _scenario.Log.Debug($"Finished Serialization");
 
             #endregion Serialization
 
-            return panels;
+            return lot.SubMaterials;
         }
     }
 }

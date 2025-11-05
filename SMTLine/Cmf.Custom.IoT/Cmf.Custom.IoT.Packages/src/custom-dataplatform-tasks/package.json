@@ -5,7 +5,7 @@
   "main": "src/index.js",
   "typings": "src/index",
   "scripts": {
-    "build": "tsc && tsc -p test/unit/",
+    "build": "tsc",
     "build:test:cover": "npm run build && npm run test:cover",
     "lint": "eslint ./**/*.ts",
     "lint:fix": "eslint ./**/*.ts --fix",
