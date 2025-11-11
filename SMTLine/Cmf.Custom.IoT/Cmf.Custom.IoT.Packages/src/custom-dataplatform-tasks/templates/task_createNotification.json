@@ -1,0 +1,219 @@
+{
+    "tasks": [
+        {
+            "name": "createNotification",
+            "displayName": "Create notification",
+            "isProtocol": false,
+            "isController": false,
+            "lifecycle": "Experimental",
+            "lifecycleMessage": "",
+            "dependsOnProtocol": [],
+            "dependsOnScope": [],
+            "category": "System/MES",
+            "section": "Actions",
+            "dependsOnDesignerScope": [
+                "DataFlow",
+                "ControlFlow"
+            ],
+            "iconClass": "icon-core-et-lg-notification",
+            "inputs": {
+                "notificationTitle": {
+                    "type": "Static",
+                    "displayName": "Title",
+                    "dataType": "String"
+                },
+                "notificationDetails": {
+                    "type": "Static",
+                    "displayName": "Details",
+                    "dataType": "String"
+                },
+                "notificationSeverity": {
+                    "type": "Static",
+                    "displayName": "Severity",
+                    "dataType": "String"
+                },
+                "notification": {
+                    "type": "Static",
+                    "dataType": "EntityType",
+                    "displayName": "Notification",
+                    "settings": {
+                        "referenceTypeName": "Notification"
+                    }
+                },
+                "activate": {
+                    "type": "Activate",
+                    "dataType": "Boolean",
+                    "displayName": "Enable/Disable"
+                }
+            },
+            "outputs": {
+                "success": {
+                    "type": "Success",
+                    "displayName": "Success"
+                },
+                "error": {
+                    "type": "Error",
+                    "displayName": "Error"
+                }
+            },
+            "settings": {
+                "General": {
+                    "Notification": [
+                        {
+                            "name": "name",
+                            "settingKey": "name",
+                            "dataType": "String",
+                            "displayName": "Name"
+                        },
+                        {
+                            "name": "description",
+                            "settingKey": "description",
+                            "dataType": "String",
+                            "displayName": "Description"
+                        },
+                        {
+                            "name": "type",
+                            "displayName": "Type",
+                            "settingKey": "type",
+                            "dataType": "Lookup",
+                            "isMandatory": true,
+                            "settings": {
+                                "referenceTypeName": "NotificationType"
+                            }
+                        },
+                        {
+                            "name": "notificationTitle",
+                            "displayName": "Title",
+                            "settingKey": "notificationTitle",
+                            "dataType": "String",
+                            "isMandatory": true
+                        },
+                        {
+                            "name": "notificationDetails",
+                            "displayName": "Details",
+                            "settingKey": "notificationDetails",
+                            "dataType": "HTML",
+                            "isMandatory": false
+                        },
+                        {
+                            "name": "notificationSeverity",
+                            "displayName": "Severity",
+                            "settingKey": "notificationSeverity",
+                            "dataType": "Lookup",
+                            "isMandatory": true,
+                            "settings": {
+                                "referenceTypeName": "NotificationSeverity"
+                            }
+                        }
+                    ],
+                    "Assignment": [
+                        {
+                            "name": "assignmentTo",
+                            "settingKey": "assignmentTo",
+                            "displayName": "Assignment",
+                            "dataType": "Enum",
+                            "defaultValue": "Everyone",
+                            "isMandatory": true,
+                            "settings": {
+                                "enumValues": [
+                                    "Everyone",
+                                    "User",
+                                    "Role"
+                                ]
+                            }
+                        },
+                        {
+                            "name": "assignmentToUser",
+                            "settingKey": "assignmentToUser",
+                            "displayName": "User",
+                            "dataType": "EntityType",
+                            "isMandatory": true,
+                            "condition": "assignmentTo == 'User'",
+                            "propertiesToSave": [
+                                "$type",
+                                "IsEnabled",
+                                "IsIntegrationUser",
+                                "UserAccount",
+                                "UserName"
+                            ],
+                            "settings": {
+                                "valueReferenceType": "User",
+                                "nestedEditorType": ""
+                            }
+                        },
+                        {
+                            "name": "assignmentToRole",
+                            "settingKey": "assignmentToRole",
+                            "displayName": "Role",
+                            "dataType": "EntityType",
+                            "isMandatory": true,
+                            "condition": "assignmentTo == 'Role'",
+                            "propertiesToSave": [
+                                "Name"
+                            ],
+                            "settings": {
+                                "valueReferenceType": "Role",
+                                "nestedEditorType": ""
+                            }
+                        }
+                    ],
+                    "Email notification": [
+                        {
+                            "name": "isToSendEmailNotification",
+                            "settingKey": "isToSendEmailNotification",
+                            "dataType": "Boolean",
+                            "displayName": "Send email to Assigned Party"
+                        },
+                        {
+                            "name": "distributionList",
+                            "displayName": "Send email to Distribution List",
+                            "settingKey": "distributionList",
+                            "dataType": "String",
+                            "condition": "isToSendEmailNotification",
+                            "isMandatory": true,
+                            "infoMessage": "Enter a distribution list (emails separated by a semi-colon (;)). If a distribution list is defined in this case, an email is sent to this distribution list."
+                        }
+                    ],
+                    "Clearance": [
+                        {
+                            "name": "clearanceMode",
+                            "displayName": "Mode",
+                            "settingKey": "clearanceMode",
+                            "dataType": "Enum",
+                            "defaultValue": "ManualSingleUser",
+                            "isMandatory": true,
+                            "settings": {
+                                "enumValues": [
+                                    "ManualSingleUser",
+                                    "ManualEveryUser",
+                                    "Automatic"
+                                ]
+                            }
+                        },
+                        {
+                            "name": "clearanceValidToMandatory",
+                            "displayName": "Valid To",
+                            "settingKey": "clearanceValidTo",
+                            "dataType": "DateTime",
+                            "isMandatory": true,
+                            "condition": "clearanceMode != null and clearanceMode != 'ManualSingleUser'"
+                        },
+                        {
+                            "name": "clearanceValidToNonMandatory",
+                            "displayName": "Valid To",
+                            "settingKey": "clearanceValidTo",
+                            "dataType": "DateTime",
+                            "condition": "clearanceMode == null or clearanceMode == 'ManualSingleUser'"
+                        }
+                    ]
+                }
+            },
+            "designer": {
+                "controlFlow": {
+                    "type": "Function",
+                    "displayName": "Create {{notificationSeverity}} notification for {{assignmentTo}}"
+                }
+            }
+        }
+    ]
+}

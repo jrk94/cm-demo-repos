@@ -50,7 +50,9 @@
     "inversify": "6.0.1",
     "moment": "2.29.4",
     "reflect-metadata": "0.1.13",
-    "zone.js": "0.14.7"
+    "zone.js": "0.14.7",
+    "jsonata": "2.0.4",
+    "superagent": "8.1.2"
   },
   "author": "Critical Manufacturing",
   "criticalManufacturing": {

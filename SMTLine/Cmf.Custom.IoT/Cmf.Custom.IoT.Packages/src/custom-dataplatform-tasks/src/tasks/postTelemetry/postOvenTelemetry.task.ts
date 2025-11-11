@@ -63,6 +63,9 @@ export class PostOvenTelemetryTask extends TaskBase implements PostOvenTelemetry
     @Task.InputProperty(Task.TaskValueType.DateTime)
     public valuesTimestamp: Date;
 
+    @Task.OutputProperty()
+    public results: Task.Output<any> = new Task.Output<any>();
+
     /** **Outputs** */
 
     /** Properties Settings */
@@ -89,7 +92,8 @@ export class PostOvenTelemetryTask extends TaskBase implements PostOvenTelemetry
             let serviceCallResults = [];
             try {
 
-                let allPostPromises = [];;
+                let allPostPromises = [];
+                const result = {};
                 for (const ovenData of this.values) {
 
                     for (const dataToPost of await this.createData(
@@ -97,6 +101,16 @@ export class PostOvenTelemetryTask extends TaskBase implements PostOvenTelemetry
                         this.material,
                         ovenData,
                         this.valuesTimestamp)) {
+
+                        for (const parameter of dataToPost.Parameters) {
+                            if (parameter.Name === "ReadingValue") {
+                                result[
+                                    dataToPost.Tags.find(key => key.Key === "ReflowZoneType").Value + "_" +
+                                    dataToPost.Tags.find(key => key.Key === "StageName").Value + "_" +
+                                    dataToPost.Tags.find(key => key.Key === "Reading.SubZone").Value + "_" +
+                                    dataToPost.Tags.find(key => key.Key === "Reading.ReadingType").Value] = parameter.NumericValues[0];
+                            }
+                        }
 
                         // One Post per subzone
                         allPostPromises.push(SystemCalls.postTelemetry(
@@ -114,6 +128,7 @@ export class PostOvenTelemetryTask extends TaskBase implements PostOvenTelemetry
                 serviceCallResults = await Promise.all(allPostPromises);
 
                 if (serviceCallResults.find(call => call.HasErrors) == undefined) {
+                    this.results.emit(result);
                     this.success.emit(true);
                     this._logger.info("Events posted successfully");
                 } else {
