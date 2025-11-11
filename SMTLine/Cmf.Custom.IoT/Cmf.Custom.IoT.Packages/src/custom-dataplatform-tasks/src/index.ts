@@ -5,3 +5,5 @@
 
 export { PostOvenTelemetryTask } from "./tasks/postTelemetry/postOvenTelemetry.task";
 
+export { MlPredictionTask } from "./tasks/ml-prediction/ml-prediction.task";
+export { CreateNotificationTask } from "./tasks/createNotification/createNotification.task";

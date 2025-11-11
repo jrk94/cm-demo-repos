@@ -39,6 +39,11 @@
         }
       },
       "outputs": {
+        "results": {
+          "dataType": "Any",
+          "displayName": "results",
+          "type": "Static"
+        },
         "success": {
           "type": "Success",
           "displayName": "Success"

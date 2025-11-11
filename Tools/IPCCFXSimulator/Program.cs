@@ -24,7 +24,7 @@ namespace IPCCFXSimulator
             var configuration = builder.Configuration;
 
             // Parse CLI args
-            decimal speed = 1m;
+            decimal speed = 100m;
             decimal defectProbability = 0.1m;
             for (int i = 0; i < args.Length; i++)
             {
