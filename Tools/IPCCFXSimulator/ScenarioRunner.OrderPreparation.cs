@@ -76,32 +76,14 @@ namespace IPCCFXSimulator
 
             _scenario.Log.Debug($"Tracking In Lot at Resource {this.resourceLaserMark} '{lot?.Name}'");
 
-            lot = new ComplexDispatchAndTrackInMaterialsInput()
-            {
-                MaterialCollection = new Dictionary<Material, DispatchMaterialParameters>()
-                {
-                    {
-                        lot, new DispatchMaterialParameters()
-                        {
-                            Resource = GetResourceByName(this.resourceLaserMark)
-                        }
-                    }
-                },
-                IgnoreLastServiceId = true
-            }.ComplexDispatchAndTrackInMaterialsSync().Materials.First();
+            lot = DispatchAndTrackInMaterial(lot, this.resourceLaserMark, this._stateModel);
 
             _scenario.Log.Debug($"Tracked In Lot at Resource {this.resourceLaserMark} '{lot?.Name}'");
 
             _scenario.Log.Debug($"Tracking out Lot '{lot?.Name}'");
 
-            lot = new ComplexTrackOutAndMoveMaterialsToNextStepInput()
-            {
-                Materials = new Dictionary<Material, ComplexTrackOutAndMoveNextParameters>()
-                {
-                    { lot,  new ComplexTrackOutAndMoveNextParameters() { FlowPath = this.flowPathTrackoutLine }}
-                },
-                IgnoreLastServiceId = true
-            }.ComplexTrackOutAndMoveMaterialsToNextStepSync().Materials.First().Key;
+            lot = TrackOutAndMoveNextMaterial(lot, this.flowPathTrackoutLine, _stateModel);
+
             _scenario.Log.Info($"Tracked out Lot '{lot?.Name}'");
 
             lot = new LoadMaterialChildrenInput()

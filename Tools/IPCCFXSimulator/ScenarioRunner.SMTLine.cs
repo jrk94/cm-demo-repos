@@ -12,19 +12,7 @@ namespace IPCCFXSimulator
         {
             _scenario.Log.Debug($"Starting SMT Line");
 
-            lot = new ComplexDispatchAndTrackInMaterialsInput()
-            {
-                MaterialCollection = new Dictionary<Material, DispatchMaterialParameters>()
-                {
-                    {
-                        GetMaterialByName(lot), new DispatchMaterialParameters()
-                        {
-                            Resource = GetResourceByName(this.resourceSMTLine)
-                        }
-                    }
-                },
-                IgnoreLastServiceId = true
-            }.ComplexDispatchAndTrackInMaterialsSync().Materials.First();
+            lot = DispatchAndTrackInMaterial(lot, this.resourceSMTLine, this._stateModel);
 
             _scenario.Log.Info($"Tracked In Lot {lot?.Name} in the SMT Line");
 
@@ -67,13 +55,13 @@ namespace IPCCFXSimulator
             await System.Threading.Tasks.Task.Delay(executionTime / 4);
 
             _scenario.Log.Debug($"Tracking In Printer for Panel {panel?.Name}");
-            panel = TrackInMaterial(panel, this.printerResource);
+            panel = TrackInMaterial(panel, this.printerResource, this._stateModel);
             _scenario.Log.Info($"Tracked In Printer for Panel {panel?.Name}");
 
             await System.Threading.Tasks.Task.Delay(executionTime);
 
             _scenario.Log.Debug($"Tracking Out Printer for Panel {panel?.Name}");
-            panel = TrackOutMaterial(panel);
+            panel = TrackOutMaterial(panel, this._stateModel);
             _scenario.Log.Info($"Tracked Out Printer for Panel {panel?.Name}");
 
             return panel;
@@ -86,13 +74,13 @@ namespace IPCCFXSimulator
             await System.Threading.Tasks.Task.Delay(executionTime / 4);
 
             _scenario.Log.Debug($"Tracking In SPI for Panel {panel?.Name}");
-            panel = TrackInMaterial(panel, this.spiResource);
+            panel = TrackInMaterial(panel, this.spiResource, this._stateModel);
             _scenario.Log.Info($"Tracked In SPI for Panel {panel?.Name}");
 
             await System.Threading.Tasks.Task.Delay(executionTime);
 
             _scenario.Log.Debug($"Tracking Out SPI for Panel {panel?.Name}");
-            panel = TrackOutMaterial(panel);
+            panel = TrackOutMaterial(panel, this._stateModel);
             _scenario.Log.Info($"Tracked Out SPI for Panel {panel?.Name}");
 
             return panel;
@@ -105,13 +93,13 @@ namespace IPCCFXSimulator
             await System.Threading.Tasks.Task.Delay(executionTime / 4);
 
             _scenario.Log.Debug($"Tracking In PP1 for Panel {panel?.Name}");
-            panel = TrackInMaterial(panel, this.ppResources[0]);
+            panel = TrackInMaterial(panel, this.ppResources[0], this._stateModel);
             _scenario.Log.Info($"Tracked In PP1 for Panel {panel?.Name}");
 
             await System.Threading.Tasks.Task.Delay(executionTime);
 
             _scenario.Log.Debug($"Tracking Out PP1 for Panel {panel?.Name}");
-            panel = TrackOutMaterial(panel);
+            panel = TrackOutMaterial(panel, this._stateModel);
             _scenario.Log.Info($"Tracked Out PP1 for Panel {panel?.Name}");
 
             return panel;
@@ -124,13 +112,13 @@ namespace IPCCFXSimulator
             await System.Threading.Tasks.Task.Delay(executionTime / 4);
 
             _scenario.Log.Debug($"Tracking In PP2 for Panel {panel?.Name}");
-            panel = TrackInMaterial(panel, this.ppResources[1]);
+            panel = TrackInMaterial(panel, this.ppResources[1], this._stateModel);
             _scenario.Log.Info($"Tracked In PP2 for Panel {panel?.Name}");
 
             await System.Threading.Tasks.Task.Delay(executionTime);
 
             _scenario.Log.Debug($"Tracking Out PP2 for Panel {panel?.Name}");
-            panel = TrackOutMaterial(panel);
+            panel = TrackOutMaterial(panel, this._stateModel);
             _scenario.Log.Info($"Tracked Out PP2 for Panel {panel?.Name}");
 
             return panel;
@@ -239,14 +227,7 @@ namespace IPCCFXSimulator
                         UnterminateJustification = "Lot Material Rework Return"
                     }.UnterminateMaterialSync().Material;
 
-                    lot = Retrier(() => new ComplexDispatchAndTrackInMaterialsInput()
-                    {
-                        MaterialCollection = new Dictionary<Material, DispatchMaterialParameters>()
-                        {
-                            { lot, new DispatchMaterialParameters() { Resource =  GetResourceByName(this.resourceSMTLine) } }
-                        },
-                        IgnoreLastServiceId = true
-                    }.ComplexDispatchAndTrackInMaterialsSync()).Materials.First();
+                    lot = DispatchAndTrackInMaterial(lot, this.resourceSMTLine, this._stateModel);
 
                     new InsertMaterialIntoLineInput()
                     {
@@ -263,7 +244,7 @@ namespace IPCCFXSimulator
             }
 
             _scenario.Log.Debug($"Tracking In AOI for Panel {panel?.Name}");
-            panel = TrackInMaterial(panel, this.aoiResource);
+            panel = TrackInMaterial(panel, this.aoiResource, this._stateModel);
             _scenario.Log.Info($"Tracked In AOI for Panel {panel?.Name}");
 
             await System.Threading.Tasks.Task.Delay(executionTime);
@@ -337,31 +318,30 @@ namespace IPCCFXSimulator
 
             _scenario.Log.Debug($"Tracking Out AOI for Panel {panel?.Name}");
 
-            panel = TrackOutMaterial(panel);
+            panel = TrackOutMaterial(panel, this._stateModel);
 
             _scenario.Log.Info($"Tracked Out AOI for Panel {panel?.Name}");
 
             if (isToSendToRework)
             {
-                panel = HandleRework(panel);
+                panel = await HandleRework(panel);
                 await AOIExecution(lot, panel, speed);
             }
 
             return panel;
         }
 
-        private Material HandleRework(Material panel)
+        private async Task<Material> HandleRework(Material panel, decimal speed = 1)
         {
+            int executionTime = Decimal.ToInt32(new Random().Next(15, 45) * 1000 / speed);
+
             _scenario.Log.Debug($"Dispatch and Tracking In to Rework for Panel {panel?.Name}");
 
-            panel = Retrier(() => new ComplexDispatchAndTrackInMaterialsInput()
-            {
-                MaterialCollection = new Dictionary<Material, DispatchMaterialParameters>()
-                {
-                    { GetMaterialByName(panel), new DispatchMaterialParameters() { Resource =  GetResourceByName(this.reworkResource) } }
-                },
-                IgnoreLastServiceId = true
-            }.ComplexDispatchAndTrackInMaterialsSync()).Materials.First();
+            panel = DispatchAndTrackInMaterial(panel, this.reworkResource, this._stateModel);
+
+            await System.Threading.Tasks.Task.Delay(executionTime);
+
+            _scenario.Log.Debug($"Registering Defect for Panel {panel?.Name}");
 
             var defects = GetMaterialDefectsByMaterial(panel);
             defects.ForEach(def => def.SystemState = MaterialDefectSystemState.Accepted);
@@ -389,13 +369,12 @@ namespace IPCCFXSimulator
                 }.ManageMaterialDefectsSync().Material.ParentMaterial;
             }
 
-            panel = Retrier(() => new ComplexTrackOutAndMoveMaterialsToNextStepInput()
-            {
-                Materials = new Dictionary<Material, ComplexTrackOutAndMoveNextParameters>()
-                {
-                    { GetMaterialByName(panel),  new ComplexTrackOutAndMoveNextParameters() { FlowPath = this.flowPathTrackoutLine }}
-                }
-            }.ComplexTrackOutAndMoveMaterialsToNextStepSync()).Materials.First().Key;
+            await System.Threading.Tasks.Task.Delay(executionTime);
+
+            _scenario.Log.Debug($"Tracking Out from Rework for Panel {panel?.Name}");
+
+            panel = TrackOutAndMoveNextMaterial(panel, this.flowPathTrackoutLine, this._stateModel);
+
             return panel;
         }
     }

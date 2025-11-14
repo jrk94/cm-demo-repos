@@ -26,7 +26,7 @@ namespace IPCCFXSimulator
 
                     await System.Threading.Tasks.Task.Delay(executionTime / 4);
 
-                    mat = DispatchAndTrackInMaterial(mat, startResource);
+                    mat = DispatchAndTrackInMaterial(mat, startResource, this._stateModel);
 
                     _scenario.Log.Debug($"TrackedIn {stepName} {mat?.Name}");
 
@@ -45,7 +45,7 @@ namespace IPCCFXSimulator
                     stepName = getDataForMultipleTrackOutAndMoveNextWizard.NextStepsResults.First()?.Step?.Name;
                     startResource = getDataForMultipleTrackOutAndMoveNextWizard.Resource?.Name;
 
-                    mat = TrackOutAndMoveNextMaterial(mat, nextFlowPath);
+                    mat = TrackOutAndMoveNextMaterial(mat, nextFlowPath, this._stateModel);
 
                     _scenario.Log.Debug($"Tracked Out on {stepName} {mat?.Name}");
                 }
