@@ -1,4 +1,4 @@
-using Cmf.Foundation.BusinessObjects.QueryObject;
+﻿using Cmf.Foundation.BusinessObjects.QueryObject;
 using Cmf.Foundation.BusinessOrchestration;
 using Cmf.Foundation.BusinessOrchestration.GenericServiceManagement.InputObjects;
 using Cmf.Foundation.BusinessOrchestration.QueryManagement.InputObjects;

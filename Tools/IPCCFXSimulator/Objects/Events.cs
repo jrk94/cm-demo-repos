@@ -1,6 +1,8 @@
 ﻿using CFX.Structures.SolderReflow;
+using Cmf.LightBusinessObjects.Infrastructure;
+using Microsoft.Extensions.Options;
 using Newtonsoft.Json;
-using System.Collections.Immutable;
+using System.Net.Http.Headers;
 
 namespace IPCCFXSimulator.Objects
 {
@@ -8,14 +10,7 @@ namespace IPCCFXSimulator.Objects
     {
         public Dictionary<string, ReflowProcessData> Products { get; set; }
 
-        public static readonly ImmutableDictionary<string, string> Defects =
-            new Dictionary<string, string>
-            {
-                { "Voiding", ZoneData_Voiding },
-                { "ColdSolderJoint", ZoneData_ColdSolderJoint },
-                { "Tombstone", ZoneData_Tombstoning },
-                { "SolderBalling", ZoneData_SolderBalling }
-            }.ToImmutableDictionary();
+        public Dictionary<string, DefectCharacteristics> Defects;
 
         public const string ZoneData_Voiding = """
 [
@@ -4101,9 +4096,15 @@ namespace IPCCFXSimulator.Objects
             ]
             """;
 
-        public Events(Dictionary<string, ReflowProcessData> products)
+        public Events(Dictionary<string, ReflowProcessData> products, IPCCFXSimulator.Services.ITokenService tokenService, IOptions<ClientConfiguration> clientConfiguration)
         {
             Products = products;
+            Defects = new Dictionary<string, DefectCharacteristics>() {
+                { "ColdSolderJoint", new DefectCharacteristics(tokenService, clientConfiguration.Value, ZoneData_ColdSolderJoint, 1439.5m, 401m, "ColdSolderJoint.jpeg", "{\"id\":\"Shape_357\",\"position\":{\"x\":0.7698412698412699,\"y\":0.07779522065236351,\"absoluteX\":1261,\"absoluteY\":64,\"$id\":\"2\"},\"position2\":{\"x\":0.9877899877899878,\"y\":0.8970761381475667,\"absoluteX\":1618,\"absoluteY\":738,\"$id\":\"3\"},\"fontSize\":0,\"isInBold\":false,\"rect\":{\"height\":0,\"width\":0,\"absoluteWidth\":357,\"absoluteHeight\":674,\"$id\":\"4\"},\"isInItalic\":false,\"isInUnderline\":false,\"text\":null,\"backgroundColor\":null,\"textColor\":null,\"borderColor\":\"#ea4232\",\"borderWidth\":0.003,\"pointer\":{\"position\":{\"x\":0.5,\"y\":0.5,\"absoluteX\":819,\"absoluteY\":411.33632286995515,\"$id\":\"6\"},\"pointerColor\":null,\"pointerWidth\":null,\"pointerWidthAbsolute\":0,\"$id\":\"5\"},\"sentences\":[\"\"],\"customData\":{\"shapeType\":0,\"mode\":2,\"$id\":\"7\"},\"fontSizeAbsolute\":0,\"borderWidthAbsolute\":4.914,\"points\":[{\"x\":null,\"absoluteX\":1261,\"y\":null,\"absoluteY\":64,\"$id\":\"8\"},{\"x\":null,\"absoluteX\":1261,\"y\":null,\"absoluteY\":738,\"$id\":\"9\"},{\"x\":null,\"absoluteX\":1618,\"y\":null,\"absoluteY\":738,\"$id\":\"10\"},{\"x\":null,\"absoluteX\":1618,\"y\":null,\"absoluteY\":64,\"$id\":\"11\"},{\"x\":null,\"absoluteX\":1261,\"y\":null,\"absoluteY\":64,\"isFinal\":true,\"$id\":\"12\"}],\"longestSentence\":null,\"$id\":\"1\"}") },
+                { "Tombstone", new DefectCharacteristics(tokenService, clientConfiguration.Value, ZoneData_Tombstoning, 634.5m, 308m, "Tombstone.jpeg",
+"{\"id\":\"Shape_415\",\"position\":{\"x\":0.43804796236100035,\"y\":0.34108527131782945,\"absoluteX\":507.4321047628473,\"absoluteY\":308,\"$id\":\"2\"},\"position2\":{\"x\":0.6574342884041655,\"y\":0.34108527131782945,\"absoluteX\":761.5678952371527,\"absoluteY\":308,\"$id\":\"3\"},\"fontSize\":0,\"isInBold\":false,\"rect\":{\"height\":0,\"width\":0,\"absoluteWidth\":254.1357904743054,\"absoluteHeight\":0,\"$id\":\"4\"},\"isInItalic\":false,\"isInUnderline\":false,\"text\":null,\"backgroundColor\":null,\"textColor\":null,\"borderColor\":\"#ea4232\",\"borderWidth\":0.003,\"pointer\":{\"position\":{\"x\":0.5,\"y\":0.5,\"absoluteX\":579.1969696969697,\"absoluteY\":451.5,\"$id\":\"6\"},\"pointerColor\":null,\"pointerWidth\":null,\"pointerWidthAbsolute\":0,\"$id\":\"5\"},\"sentences\":[\"\"],\"customData\":{\"shapeType\":1,\"mode\":2,\"$id\":\"7\"},\"fontSizeAbsolute\":0,\"borderWidthAbsolute\":3.4751818181818184,\"points\":[{\"x\":null,\"absoluteX\":507.4321047628473,\"y\":null,\"absoluteY\":308,\"$id\":\"8\"},{\"x\":null,\"absoluteX\":634.5,\"y\":null,\"absoluteY\":435.0678952371527,\"$id\":\"9\"},{\"x\":null,\"absoluteX\":761.5678952371527,\"y\":null,\"absoluteY\":308,\"$id\":\"10\"},{\"x\":null,\"absoluteX\":634.5,\"y\":null,\"absoluteY\":180.9321047628473,\"$id\":\"11\"},{\"x\":null,\"absoluteX\":507.4321047628473,\"y\":null,\"absoluteY\":308,\"isFinal\":true,\"$id\":\"12\"},{\"x\":null,\"absoluteX\":634.5,\"y\":null,\"absoluteY\":308,\"isCenter\":true,\"$id\":\"13\"}],\"$id\":\"1\"}") },
+                { "SolderBalling", new DefectCharacteristics(tokenService, clientConfiguration.Value, ZoneData_SolderBalling, 1031m, 260m, "SolderBalling.jpeg", "{\"id\":\"Shape_472\",\"position\":{\"x\":0.6073262285886871,\"y\":0.059800664451827246,\"absoluteX\":782,\"absoluteY\":54,\"$id\":\"2\"},\"position2\":{\"x\":0.9940889675108945,\"y\":0.5160575858250277,\"absoluteX\":1280,\"absoluteY\":466,\"$id\":\"3\"},\"fontSize\":0,\"isInBold\":false,\"rect\":{\"height\":0,\"width\":0,\"absoluteWidth\":498,\"absoluteHeight\":412,\"$id\":\"4\"},\"isInItalic\":false,\"isInUnderline\":false,\"text\":null,\"backgroundColor\":null,\"textColor\":null,\"borderColor\":\"#ea4232\",\"borderWidth\":0.003,\"pointer\":{\"position\":{\"x\":0.5,\"y\":0.5,\"absoluteX\":643.8055555555555,\"absoluteY\":451.5,\"$id\":\"6\"},\"pointerColor\":null,\"pointerWidth\":null,\"pointerWidthAbsolute\":0,\"$id\":\"5\"},\"sentences\":[\"\"],\"customData\":{\"shapeType\":0,\"mode\":2,\"$id\":\"7\"},\"fontSizeAbsolute\":0,\"borderWidthAbsolute\":3.862833333333333,\"points\":[{\"x\":null,\"absoluteX\":782,\"y\":null,\"absoluteY\":54,\"$id\":\"8\"},{\"x\":null,\"absoluteX\":782,\"y\":null,\"absoluteY\":466,\"$id\":\"9\"},{\"x\":null,\"absoluteX\":1280,\"y\":null,\"absoluteY\":466,\"$id\":\"10\"},{\"x\":null,\"absoluteX\":1280,\"y\":null,\"absoluteY\":54,\"$id\":\"11\"},{\"x\":null,\"absoluteX\":782,\"y\":null,\"absoluteY\":54,\"isFinal\":true,\"$id\":\"12\"}],\"longestSentence\":null,\"$id\":\"1\"}") },
+            };
         }
 
         public static List<CFX.Structures.SolderReflow.ReflowZoneData> AdjustReadingsRandomly(
@@ -4187,6 +4188,65 @@ namespace IPCCFXSimulator.Objects
                     reading.ReadingValue = 0;
                     break;
             }
+        }
+    }
+
+    public class DefectCharacteristics
+    {
+        public string EventContent { get; set; }
+        public decimal CoordinateX { get; set; }
+        public decimal CoordinateY { get; set; }
+        public string FileName { get; set; }
+        public string Shape { get; set; }
+        public string Checksum { get; set; }
+        private readonly IPCCFXSimulator.Services.ITokenService _tokenService;
+        private readonly Cmf.LightBusinessObjects.Infrastructure.ClientConfiguration _clientConfiguration;
+
+        public DefectCharacteristics(IPCCFXSimulator.Services.ITokenService tokenService, Cmf.LightBusinessObjects.Infrastructure.ClientConfiguration clientConfiguration,
+            string eventContent, decimal coordinateX, decimal coordinateY, string fileName, string shape)
+        {
+            EventContent = eventContent;
+            CoordinateX = coordinateX;
+            CoordinateY = coordinateY;
+            Shape = shape;
+            FileName = fileName;
+            _tokenService = tokenService;
+            _clientConfiguration = clientConfiguration;
+
+            var fileLocation = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "DefectImages", fileName);
+            Checksum = UploadImageAsync(fileLocation).GetAwaiter().GetResult();
+        }
+
+        public async Task<string> UploadImageAsync(string filePath)
+        {
+            using var http = new HttpClient();
+
+            var request = new HttpRequestMessage(
+                HttpMethod.Post,
+                "https://electronics-ig.apps.rhosdmz.criticalmes.dev/api/GenericService/UploadFile");
+
+            // Required headers
+            request.Headers.Authorization = new AuthenticationHeaderValue("Bearer", _tokenService.AccessToken);
+            request.Headers.Add("Cmf_ClientTenantName", _clientConfiguration.ClientTenantName);
+            request.Headers.Add("Cmf_HostName", _clientConfiguration.HostAddress);
+
+            // Create form-data body
+            var form = new MultipartFormDataContent();
+
+            var bytes = await File.ReadAllBytesAsync(filePath);
+            var fileContent = new ByteArrayContent(bytes);
+            fileContent.Headers.ContentType = new MediaTypeHeaderValue("image/jpeg"); // or png
+
+            // IMPORTANT → field name must match browser
+            form.Add(fileContent, "attachment-file", Path.GetFileName(filePath));
+
+            request.Content = form;
+
+            var response = await http.SendAsync(request);
+            response.EnsureSuccessStatusCode();
+
+            var responseBody = await response.Content.ReadAsStringAsync();
+            return responseBody;
         }
     }
 }
