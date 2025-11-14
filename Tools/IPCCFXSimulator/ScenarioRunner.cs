@@ -1,3 +1,4 @@
+using Cmf.Foundation.BusinessObjects;
 using Cmf.Foundation.BusinessOrchestration.GenericServiceManagement.InputObjects;
 using Cmf.LightBusinessObjects.Infrastructure;
 using Cmf.Navigo.BusinessObjects;
@@ -34,6 +35,8 @@ namespace IPCCFXSimulator
         private readonly string reworkResource = "RWK01";
         private readonly ConcurrentDictionary<string, string> defectBoards = [];
         private static readonly object _trackLock = new object();
+
+        private StateModel _stateModel;
 
         public ScenarioRunner(IOptions<ClientConfiguration> clientConfiguration, ITokenService tokenService, IEventsService eventsService,
             decimal speed = 1m, decimal defectProbability = 0.8m)
@@ -113,6 +116,13 @@ namespace IPCCFXSimulator
                     TerminateBoardMaterialsCreatedByMLSimulator();
                     _scenario.Log.Debug($"Terminate POs Previous Runs.");
                     TerminatePOsCreatedByMLSimulator();
+
+                    _stateModel = new GetObjectByNameInput()
+                    {
+                        Name = "SEMI E10",
+                        Type = typeof(Cmf.Foundation.BusinessObjects.StateModel),
+                        IgnoreLastServiceId = true
+                    }.GetObjectByNameSync().Instance as Cmf.Foundation.BusinessObjects.StateModel;
 
                     _scenario.Log.Debug($"Starting MES Run.");
                     await MESRun();

@@ -1,4 +1,5 @@
-﻿using Cmf.Foundation.BusinessObjects.QueryObject;
+﻿using Cmf.Foundation.BusinessObjects;
+using Cmf.Foundation.BusinessObjects.QueryObject;
 using Cmf.Foundation.BusinessOrchestration;
 using Cmf.Foundation.BusinessOrchestration.GenericServiceManagement.InputObjects;
 using Cmf.Foundation.BusinessOrchestration.QueryManagement.InputObjects;
@@ -11,7 +12,7 @@ namespace IPCCFXSimulator
 {
     public partial class ScenarioRunner
     {
-        private static Material DispatchAndTrackInMaterial(Material? material, string resourceName)
+        private static Material DispatchAndTrackInMaterial(Material? material, string resourceName, StateModel stateModel)
         {
             lock (_trackLock)
             {
@@ -26,12 +27,14 @@ namespace IPCCFXSimulator
                             }
                         }
                     },
+                    StateModel = stateModel,
+                    StateModelTransition = stateModel.StateTransitions.Find(sm => sm.Name == "Standby to Productive"),
                     IgnoreLastServiceId = true
                 }.ComplexDispatchAndTrackInMaterialsSync()).Materials.First();
             }
         }
 
-        private static Material TrackInMaterial(Material? material, string resourceName)
+        private static Material TrackInMaterial(Material? material, string resourceName, StateModel stateModel)
         {
             lock (_trackLock)
             {
@@ -42,12 +45,14 @@ namespace IPCCFXSimulator
                          GetMaterialByName(material)
                      ],
                     Resource = GetResourceByName(resourceName),
+                    StateModel = stateModel,
+                    StateModelTransition = stateModel.StateTransitions.Find(sm => sm.Name == "Standby to Productive"),
                     IgnoreLastServiceId = true
                 }.ComplexTrackInMaterialsSync()).Materials.First();
             }
         }
 
-        private static Material TrackOutAndMoveNextMaterial(Material? material, string nextFlowPath)
+        private static Material TrackOutAndMoveNextMaterial(Material? material, string nextFlowPath, StateModel stateModel)
         {
             lock (_trackLock)
             {
@@ -57,13 +62,15 @@ namespace IPCCFXSimulator
                     {
                         { GetMaterialByName(material), new ComplexTrackOutAndMoveNextParameters(){ FlowPath = nextFlowPath } }
                     },
+                    StateModel = stateModel,
+                    StateModelTransition = stateModel.StateTransitions.Find(sm => sm.Name == "Productive to Standby"),
                     IgnoreLastServiceId = true
                 }.ComplexTrackOutAndMoveMaterialsToNextStepSync()).Materials.First().Key;
                 return material;
             }
         }
 
-        private static Material TrackOutMaterial(Material? material)
+        private static Material TrackOutMaterial(Material? material, StateModel stateModel)
         {
             lock (_trackLock)
             {
@@ -73,6 +80,8 @@ namespace IPCCFXSimulator
                     {
                         { GetMaterialByName(material), new ComplexTrackOutParameters() }
                     },
+                    StateModel = stateModel,
+                    StateModelTransition = stateModel.StateTransitions.Find(sm => sm.Name == "Productive to Standby"),
                     IgnoreLastServiceId = true
                 }.ComplexTrackOutMaterialsSync()).Materials.First().Key;
                 return material;
