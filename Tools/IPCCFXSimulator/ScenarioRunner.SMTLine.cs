@@ -141,45 +141,7 @@ namespace IPCCFXSimulator
             var rand = new Random();
             int executionTime = Decimal.ToInt32(rand.Next(180, 300) * 1000 / speed);
 
-            var events = new Events(new Dictionary<string, ReflowProcessData>
-            {
-                {
-                   availableProducts[0],
-                    new ReflowProcessData()
-                    {
-                        ConveyorSpeed = 100,
-                        ConveyorSpeedSetpoint = 100,
-                        ZoneData = Events.AdjustReadingsRandomly(Events.ZoneData_A)
-                    }
-                },
-                {
-                    availableProducts[1],
-                    new ReflowProcessData()
-                    {
-                        ConveyorSpeed = 100,
-                        ConveyorSpeedSetpoint = 100,
-                        ZoneData = Events.AdjustReadingsRandomly(Events.ZoneData_B)
-                    }
-                },
-                {
-                    availableProducts[2],
-                    new ReflowProcessData()
-                    {
-                        ConveyorSpeed = 100,
-                        ConveyorSpeedSetpoint = 100,
-                        ZoneData = Events.AdjustReadingsRandomly(Events.ZoneData_C)
-                    }
-                },
-                {
-                    availableProducts[3],
-                    new ReflowProcessData()
-                    {
-                        ConveyorSpeed = 100,
-                        ConveyorSpeedSetpoint = 100,
-                        ZoneData = Events.AdjustReadingsRandomly(Events.ZoneData_D)
-                    }
-                }
-            });
+            var events = _eventsService.GetEvents();
 
             var product = new GetObjectByIdInput()
             {
@@ -191,12 +153,12 @@ namespace IPCCFXSimulator
             var processData = events.Products.FirstOrDefault(prod => prod.Key == product.Name).Value;
             if (rand.NextDouble() < (double)this._defectProbability)
             {
-                var defect = Events.Defects.ElementAt(rand.Next(Events.Defects.Count));
+                var defect = events.Defects.ElementAt(rand.Next(events.Defects.Count));
                 processData = new ReflowProcessData()
                 {
                     ConveyorSpeed = 100,
                     ConveyorSpeedSetpoint = 100,
-                    ZoneData = Events.AdjustReadingsRandomly(defect.Value, 0.3)
+                    ZoneData = Events.AdjustReadingsRandomly(defect.Value.EventContent, 0.3)
                 };
 
                 foreach (var board in panel.SubMaterials)
@@ -329,14 +291,25 @@ namespace IPCCFXSimulator
 
                         try
                         {
+                            var defectCharacteristic = this._eventsService.GetEvents().Defects[defectName];
                             panel = new RecordMaterialDefectsInput()
                             {
                                 Material = GetMaterialByName(panel),
                                 MaterialDefects = [
                                     new MaterialDefect()
                                     {
+                                        CoordinateX= defectCharacteristic.CoordinateX,
+                                        CoordinateY= defectCharacteristic.CoordinateY,
+                                        DefectSource = MaterialDefectSource.Picture,
+                                        DefectType = MaterialDefectDefectType.Location,
+                                        LocationType = MaterialDefectLocationType.Coordinates,
+                                        Picture = new Cmf.Foundation.BusinessObjects.CmfFile()
+                                        {
+                                            Filename = defectCharacteristic.FileName,
+                                            Checksum = defectCharacteristic.Checksum
+                                        },
                                         Reason = defectReason,
-                                        DefectSource = MaterialDefectSource.None
+                                        Shape = defectCharacteristic.Shape
                                     }
                                 ]
                             }.RecordMaterialDefectsSync().Material;

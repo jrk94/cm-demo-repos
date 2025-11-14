@@ -1,6 +1,8 @@
 ﻿using Cmf.LightBusinessObjects.Infrastructure;
 using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Microsoft.Extensions.Options;
 using System.Globalization;
 
 namespace IPCCFXSimulator
@@ -11,21 +13,14 @@ namespace IPCCFXSimulator
         {
             // Build a generic host for configuration, logging, env, etc.
             var builder = Host.CreateApplicationBuilder(args);
-
-            // (Optional) Be explicit; Host.CreateApplicationBuilder already loads:
-            // appsettings.json, appsettings.{Environment}.json, UserSecrets (in Development), and environment variables.
-            // If you want to ensure reload-on-change and extra sources, uncomment below.
-            //
             builder.Configuration
                 .AddJsonFile("appsettings.json", optional: false, reloadOnChange: true);
-            //.AddJsonFile($"appsettings.{builder.Environment.EnvironmentName}.json", optional: true, reloadOnChange: true)
-            //.AddEnvironmentVariables(prefix: "IPCCFX_");
 
             var configuration = builder.Configuration;
 
             // Parse CLI args
             decimal speed = 100m;
-            decimal defectProbability = 0.1m;
+            decimal defectProbability = 0.8m;
             for (int i = 0; i < args.Length; i++)
             {
                 switch (args[i].ToLowerInvariant())
@@ -75,11 +70,24 @@ namespace IPCCFXSimulator
                 return cfg;
             };
 
-            // Build the host (not strictly required here, but future-proofs logging/DI if you add it)
+            // Register ClientConfiguration in DI
+            builder.Services.Configure<ClientConfiguration>(clientConfigSection);
+            builder.Services.AddSingleton<IPCCFXSimulator.Services.ITokenService, IPCCFXSimulator.Services.TokenService>();
+            builder.Services.AddSingleton<IPCCFXSimulator.Services.IEventsService, IPCCFXSimulator.Services.EventsService>();
+            builder.Services.AddTransient<ScenarioRunner>(provider =>
+                new ScenarioRunner(
+                    provider.GetRequiredService<IOptions<ClientConfiguration>>(),
+                    provider.GetRequiredService<IPCCFXSimulator.Services.ITokenService>(),
+                    provider.GetRequiredService<IPCCFXSimulator.Services.IEventsService>(),
+                    speed,
+                    defectProbability));
+
+            // Build the host
             var host = builder.Build();
 
             Console.WriteLine($"Starting Scenario Run (speed={speed.ToString(CultureInfo.InvariantCulture)})");
-            await new ScenarioRunner().RunAsync();
+            var scenarioRunner = host.Services.GetRequiredService<ScenarioRunner>();
+            await scenarioRunner.RunAsync();
             Console.WriteLine("Finished Scenario Run");
         }
     }

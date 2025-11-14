@@ -1,6 +1,9 @@
 using Cmf.Foundation.BusinessOrchestration.GenericServiceManagement.InputObjects;
+using Cmf.LightBusinessObjects.Infrastructure;
 using Cmf.Navigo.BusinessObjects;
 using IoTTestOrchestrator;
+using IPCCFXSimulator.Services;
+using Microsoft.Extensions.Options;
 using ScenarioBuilder.Implementations.Configuration;
 using System.Collections.Concurrent;
 using System.Data;
@@ -14,6 +17,9 @@ namespace IPCCFXSimulator
         private TestScenario _scenario;
         private Dictionary<string, IPCCFX.PluginMain> _cfxSimulators = [];
         private CancellationTokenSource cts;
+        private readonly ClientConfiguration _clientConfiguration;
+        private readonly ITokenService _tokenService;
+        private readonly IEventsService _eventsService;
 
         private readonly string[] availableProducts = ["SMT PowerUnit_DP_A", "SMT PowerUnit_DP_B", "SMT PowerUnit_DP_C", "SMT PowerUnit_DP_D"];
         private readonly string flowPathSerialization = "PCBA_SingleSide:A:1/PCB Serialization:1";
@@ -29,10 +35,14 @@ namespace IPCCFXSimulator
         private readonly ConcurrentDictionary<string, string> defectBoards = [];
         private static readonly object _trackLock = new object();
 
-        public ScenarioRunner(decimal speed = 1m, decimal defectProbability = 0.8m)
+        public ScenarioRunner(IOptions<ClientConfiguration> clientConfiguration, ITokenService tokenService, IEventsService eventsService,
+            decimal speed = 1m, decimal defectProbability = 0.8m)
         {
             this._speed = speed;
             this._defectProbability = defectProbability;
+            this._clientConfiguration = clientConfiguration.Value;
+            this._tokenService = tokenService;
+            this._eventsService = eventsService;
         }
 
         public async System.Threading.Tasks.Task RunAsync()
@@ -66,7 +76,7 @@ namespace IPCCFXSimulator
                .WriteLogsTo("c:/temp/CFX-Simulator.log")// Activate this line to send the logs to a particular place
                .ManagerId(managerName)
                //.ConfigPath("C:\\cmf\\cm-demo-repos\\Tools\\IPCCFXSimulator\\Artifacts\\DataPlatform.config.full.json")
-               .ConfigPath("C:\\Users\\jroque\\Downloads\\IPCCFX_Manager\\config.full.json")
+               .ConfigPath(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "config.full.json"))
                //.ConfigPath("C:\\Users\\jroque\\Downloads\\IPC-CFXManager_MESSummit\\config.full.json")
                .StartMode<LocalStartMode.PluginMain>(new LocalStartMode.Plugin.SettingsBuilder()
                 .ManagerLocation("C:\\Users\\jroque\\Downloads\\IPCCFX_Manager")
