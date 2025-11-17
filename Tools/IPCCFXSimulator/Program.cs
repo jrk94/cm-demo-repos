@@ -2,7 +2,6 @@
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Options;
 using System.Globalization;
 
 namespace IPCCFXSimulator
@@ -21,10 +20,19 @@ namespace IPCCFXSimulator
             // Parse CLI args
             decimal speed = 100m;
             decimal defectProbability = 0.8m;
+            bool terminateOnStart = false;
             for (int i = 0; i < args.Length; i++)
             {
                 switch (args[i].ToLowerInvariant())
                 {
+                    case "--terminateonstart":
+                    case "-t":
+                        if (bool.Parse(args[i + 1]))
+                        {
+                            terminateOnStart = true;
+                        }
+                        i++;
+                        break;
                     case "--speed":
                     case "-s":
                         if (!decimal.TryParse(args[i + 1], NumberStyles.Number, CultureInfo.InvariantCulture, out speed))
@@ -32,16 +40,17 @@ namespace IPCCFXSimulator
                             Console.WriteLine("Error: --speed requires a valid decimal (e.g., --speed 1.25).");
                             return;
                         }
+                        i++;
                         break;
-                    case "--defectProbability":
+                    case "--defectprobability":
                     case "-d":
                         if (!decimal.TryParse(args[i + 1], NumberStyles.Number, CultureInfo.InvariantCulture, out defectProbability))
                         {
                             Console.WriteLine("Error: --defectProbability requires a valid decimal (e.g., --defectProbability 0.25).");
                             return;
                         }
+                        i++;
                         break;
-
                     default:
                         Console.WriteLine($"Unknown argument: {args[i]}");
                         return;
@@ -76,11 +85,10 @@ namespace IPCCFXSimulator
             builder.Services.AddSingleton<IPCCFXSimulator.Services.IEventsService, IPCCFXSimulator.Services.EventsService>();
             builder.Services.AddTransient<ScenarioRunner>(provider =>
                 new ScenarioRunner(
-                    provider.GetRequiredService<IOptions<ClientConfiguration>>(),
-                    provider.GetRequiredService<IPCCFXSimulator.Services.ITokenService>(),
                     provider.GetRequiredService<IPCCFXSimulator.Services.IEventsService>(),
                     speed,
-                    defectProbability));
+                    defectProbability,
+                    terminateOnStart));
 
             // Build the host
             var host = builder.Build();
