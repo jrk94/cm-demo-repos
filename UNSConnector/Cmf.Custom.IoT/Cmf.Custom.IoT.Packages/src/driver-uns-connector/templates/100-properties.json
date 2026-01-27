@@ -1,0 +1,95 @@
+{
+  "property": [
+    {
+      "Name": "Key",
+      "Description": "Key",
+      "DevicePropertyId": "{{key}}",
+      "DataType": "String",
+      "IsWritable": true,
+      "IsReadable": true,
+      "AutomationProtocolDataType": "String",
+      "ExtendedData": {}
+    },
+    {
+      "Name": "Value",
+      "Description": "Value",
+      "DevicePropertyId": "{{value}}",
+      "DataType": "String",
+      "IsWritable": true,
+      "IsReadable": true,
+      "AutomationProtocolDataType": "String",
+      "ExtendedData": {}
+    },
+    {
+      "Name": "EnterpriseName",
+      "Description": "ISA95 Enterprise",
+      "DevicePropertyId": "{{@1/Node/assetidentifier/assetname}}",
+      "DataType": "String",
+      "IsWritable": true,
+      "IsReadable": true,
+      "AutomationProtocolDataType": "String",
+      "ExtendedData": {
+        "path": "Enterprise.Name"
+      }
+    },
+    {
+      "Name": "SiteName",
+      "Description": "ISA95 Site",
+      "DevicePropertyId": "{{@1-2/node/assetidentifier/assetname}}",
+      "DataType": "String",
+      "IsWritable": true,
+      "IsReadable": true,
+      "AutomationProtocolDataType": "String",
+      "ExtendedData": {
+        "path": "Site.Name"
+      }
+    },
+    {
+      "Name": "AreaName",
+      "Description": "ISA95 Area",
+      "DevicePropertyId": "{{@1-3/node/assetidentifier/assetname}}",
+      "DataType": "String",
+      "IsWritable": true,
+      "IsReadable": true,
+      "AutomationProtocolDataType": "String",
+      "ExtendedData": {
+        "path": "Area.Name"
+      }
+    },
+    {
+      "Name": "StepName",
+      "Description": "ISA95 Step",
+      "DevicePropertyId": "{{@1-4/node/assetidentifier/assetname}}",
+      "DataType": "String",
+      "IsWritable": true,
+      "IsReadable": true,
+      "AutomationProtocolDataType": "String",
+      "ExtendedData": {
+        "path": "Step.Name"
+      }
+    },
+    {
+      "Name": "ResourceName",
+      "Description": "ISA95 Resource",
+      "DevicePropertyId": "{{@1-5/node/assetidentifier/assetname}}",
+      "DataType": "String",
+      "IsWritable": true,
+      "IsReadable": true,
+      "AutomationProtocolDataType": "String",
+      "ExtendedData": {
+        "path": "Resource.Name"
+      }
+    },
+    {
+      "Name": "Bulk",
+      "Description": "Bulk Events",
+      "DevicePropertyId": "",
+      "DataType": "Object",
+      "IsWritable": true,
+      "IsReadable": true,
+      "AutomationProtocolDataType": "Object",
+      "ExtendedData": {}
+    }
+  ],
+  "event": []
+}

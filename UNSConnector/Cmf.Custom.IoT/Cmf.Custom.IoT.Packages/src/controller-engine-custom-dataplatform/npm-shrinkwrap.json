@@ -1,0 +1,204 @@
+{
+  "name": "@criticalmanufacturing/connect-iot-controller-engine-custom-dataplatform",
+  "version": "0.0.0",
+  "packages": {
+    "src/controller-engine-custom-dataplatform": {
+      "name": "@criticalmanufacturing/connect-iot-controller-engine-custom-dataplatform",
+      "version": "0.0.0",
+      "dependencies": {
+        "@criticalmanufacturing/connect-iot-controller-engine": "release-1123",
+        "axios": "^1.13.4",
+        "cmf-lbos": "release-1123",
+        "inversify": "6.0.2",
+        "moment": "2.29.4",
+        "reflect-metadata": "0.1.13",
+        "zone.js": "0.14.7"
+      },
+      "devDependencies": {
+        "@criticalmanufacturing/node-package-bundler": "latest",
+        "@types/chai": "4.3.10",
+        "@types/chai-spies": "1.0.6",
+        "@types/mocha": "10.0.4",
+        "@types/node": "18.14.2",
+        "chai": "4.3.10",
+        "chai-spies": "1.1.0",
+        "mocha": "10.2.0",
+        "mocha-junit-reporter": "2.2.1",
+        "mocha-lcov-reporter": "1.3.0",
+        "mocha-multi-reporters": "1.5.1",
+        "nyc": "15.1.0",
+        "tslint": "6.1.3",
+        "typescript": "5.2.2"
+      }
+    },
+    "src/controller-engine-custom-dataplatform/node_modules/@types/chai": {
+      "version": "4.3.10",
+      "resolved": "https://dev.criticalmanufacturing.io/repository/npm-public/@types/chai/-/chai-4.3.10.tgz",
+      "integrity": "sha512-of+ICnbqjmFCiixUnqRulbylyXQrPqIGf/B3Jax1wIF3DvSheysQxAWvqHhZiW3IQrycvokcLcFQlveGp+vyNg==",
+      "dev": true,
+      "license": "MIT"
+    },
+    "src/controller-engine-custom-dataplatform/node_modules/@types/chai-spies": {
+      "version": "1.0.6",
+      "resolved": "https://dev.criticalmanufacturing.io/repository/npm-public/@types/chai-spies/-/chai-spies-1.0.6.tgz",
+      "integrity": "sha512-xkk4HmhBB9OQeTAifa9MJ+6R5/Rq9+ungDe4JidZD+vqZVeiWZwc2i7/pd1ZKjyGlSBIQePoWdyUyFUGT0rv5w==",
+      "dev": true,
+      "license": "MIT",
+      "dependencies": {
+        "@types/chai": "*"
+      }
+    },
+    "src/controller-engine-custom-dataplatform/node_modules/@types/mocha": {
+      "version": "10.0.4",
+      "resolved": "https://dev.criticalmanufacturing.io/repository/npm-public/@types/mocha/-/mocha-10.0.4.tgz",
+      "integrity": "sha512-xKU7bUjiFTIttpWaIZ9qvgg+22O1nmbA+HRxdlR+u6TWsGfmFdXrheJoK4fFxrHNVIOBDvDNKZG+LYBpMHpX3w==",
+      "dev": true,
+      "license": "MIT"
+    },
+    "src/controller-engine-custom-dataplatform/node_modules/@types/node": {
+      "version": "18.14.2",
+      "resolved": "https://dev.criticalmanufacturing.io/repository/npm-public/@types/node/-/node-18.14.2.tgz",
+      "integrity": "sha512-1uEQxww3DaghA0RxqHx0O0ppVlo43pJhepY51OxuQIKHpjbnYLA7vcdwioNPzIqmC2u3I/dmylcqjlh0e7AyUA==",
+      "dev": true,
+      "license": "MIT"
+    },
+    "src/controller-engine-custom-dataplatform/node_modules/chai": {
+      "version": "4.3.10",
+      "resolved": "https://dev.criticalmanufacturing.io/repository/npm-public/chai/-/chai-4.3.10.tgz",
+      "integrity": "sha512-0UXG04VuVbruMUYbJ6JctvH0YnC/4q3/AkT18q4NaITo91CUm0liMS9VqzT9vZhVQ/1eqPanMWjBM+Juhfb/9g==",
+      "dev": true,
+      "license": "MIT",
+      "dependencies": {
+        "assertion-error": "^1.1.0",
+        "check-error": "^1.0.3",
+        "deep-eql": "^4.1.3",
+        "get-func-name": "^2.0.2",
+        "loupe": "^2.3.6",
+        "pathval": "^1.1.1",
+        "type-detect": "^4.0.8"
+      },
+      "engines": {
+        "node": ">=4"
+      }
+    },
+    "src/controller-engine-custom-dataplatform/node_modules/chai-spies": {
+      "version": "1.1.0",
+      "resolved": "https://dev.criticalmanufacturing.io/repository/npm-public/chai-spies/-/chai-spies-1.1.0.tgz",
+      "integrity": "sha512-ikaUhQvQWchRYj2K54itFp3nrcxaFRpSDQxDlRzSn9aWgu9Pi7lD8yFxTso4WnQ39+WZ69oB/qOvqp+isJIIWA==",
+      "dev": true,
+      "license": "MIT",
+      "engines": {
+        "node": ">= 4.0.0"
+      },
+      "peerDependencies": {
+        "chai": "*"
+      }
+    },
+    "src/controller-engine-custom-dataplatform/node_modules/mkdirp": {
+      "version": "3.0.1",
+      "resolved": "https://dev.criticalmanufacturing.io/repository/npm-public/mkdirp/-/mkdirp-3.0.1.tgz",
+      "integrity": "sha512-+NsyUUAZDmo6YVHzL/stxSu3t9YS1iljliy3BSDrXJ/dkn1KYdmtZODGGjLcc9XLgVVpH4KshHB8XmZgMhaBXg==",
+      "dev": true,
+      "license": "MIT",
+      "bin": {
+        "mkdirp": "dist/cjs/src/bin.js"
+      },
+      "engines": {
+        "node": ">=10"
+      },
+      "funding": {
+        "url": "https://github.com/sponsors/isaacs"
+      }
+    },
+    "src/controller-engine-custom-dataplatform/node_modules/mocha-junit-reporter": {
+      "version": "2.2.1",
+      "resolved": "https://dev.criticalmanufacturing.io/repository/npm-public/mocha-junit-reporter/-/mocha-junit-reporter-2.2.1.tgz",
+      "integrity": "sha512-iDn2tlKHn8Vh8o4nCzcUVW4q7iXp7cC4EB78N0cDHIobLymyHNwe0XG8HEHHjc3hJlXm0Vy6zcrxaIhnI2fWmw==",
+      "dev": true,
+      "license": "MIT",
+      "dependencies": {
+        "debug": "^4.3.4",
+        "md5": "^2.3.0",
+        "mkdirp": "^3.0.0",
+        "strip-ansi": "^6.0.1",
+        "xml": "^1.0.1"
+      },
+      "peerDependencies": {
+        "mocha": ">=2.2.5"
+      }
+    },
+    "src/controller-engine-custom-dataplatform/node_modules/typescript": {
+      "version": "5.2.2",
+      "resolved": "https://dev.criticalmanufacturing.io/repository/npm-public/typescript/-/typescript-5.2.2.tgz",
+      "integrity": "sha512-mI4WrpHsbCIcwT9cF4FZvr80QUeKvsUsUvKDoR+X/7XHQH98xYD8YHZg7ANtz2GtZt/CBq2QJ0thkGJMHfqc1w==",
+      "dev": true,
+      "license": "Apache-2.0",
+      "bin": {
+        "tsc": "bin/tsc",
+        "tsserver": "bin/tsserver"
+      },
+      "engines": {
+        "node": ">=14.17"
+      }
+    },
+    "node_modules/@criticalmanufacturing/connect-iot-controller-engine": {
+      "version": "11.2.3",
+      "resolved": "https://dev.criticalmanufacturing.io/repository/npm-public/@criticalmanufacturing/connect-iot-controller-engine/-/connect-iot-controller-engine-11.2.3.tgz",
+      "integrity": "sha512-GLLrg/qmvm1/xFVEBmRdYACvuBgJNTDo44HHFoorSbxLICIMVrm+lQVM0Rqct93YwIDOGYP5gNmLLN3ikStMFw==",
+      "dependencies": {
+        "mathjs": "14.5.3"
+      },
+      "peerDependencies": {
+        "eventemitter2": "6.4.9",
+        "inversify": "6.0.2",
+        "moment": "2.29.4"
+      }
+    },
+    "node_modules/axios": {
+      "version": "1.13.4",
+      "resolved": "https://dev.criticalmanufacturing.io/repository/npm-public/axios/-/axios-1.13.4.tgz",
+      "integrity": "sha512-1wVkUaAO6WyaYtCkcYCOx12ZgpGf9Zif+qXa4n+oYzK558YryKqiL6UWwd5DqiH3VRW0GYhTZQ/vlgJrCoNQlg==",
+      "license": "MIT",
+      "dependencies": {
+        "follow-redirects": "^1.15.6",
+        "form-data": "^4.0.4",
+        "proxy-from-env": "^1.1.0"
+      }
+    },
+    "node_modules/cmf-lbos": {
+      "version": "11.2.3",
+      "resolved": "https://dev.criticalmanufacturing.io/repository/npm-public/cmf-lbos/-/cmf-lbos-11.2.3.tgz",
+      "integrity": "sha512-eYyf7Jo32YeP6UYj/5+WigBsT5a1XhnJcWZvNJga/PynO4gKk78aVZQTH1vK3dD8xctv31YWbXmEHFlZ5ni1RA==",
+      "peerDependencies": {
+        "moment": "^2.29.4"
+      }
+    },
+    "node_modules/inversify": {
+      "version": "6.0.2",
+      "resolved": "https://dev.criticalmanufacturing.io/repository/npm-public/inversify/-/inversify-6.0.2.tgz",
+      "integrity": "sha512-i9m8j/7YIv4mDuYXUAcrpKPSaju/CIly9AHK5jvCBeoiM/2KEsuCQTTP+rzSWWpLYWRukdXFSl6ZTk2/uumbiA==",
+      "license": "MIT"
+    },
+    "node_modules/moment": {
+      "version": "2.29.4",
+      "resolved": "https://dev.criticalmanufacturing.io/repository/npm-public/moment/-/moment-2.29.4.tgz",
+      "integrity": "sha512-5LC9SOxjSc2HF6vO2CyuTDNivEdoz2IvyJJGj6X8DJ0eFyfszE0QiEd+iXmBvUP3WHxSjFH/vIsA0EN00cgr8w==",
+      "license": "MIT",
+      "engines": {
+        "node": "*"
+      }
+    },
+    "node_modules/reflect-metadata": {
+      "version": "0.1.13",
+      "resolved": "https://dev.criticalmanufacturing.io/repository/npm-public/reflect-metadata/-/reflect-metadata-0.1.13.tgz",
+      "integrity": "sha512-Ts1Y/anZELhSsjMcU605fU9RE4Oi3p5ORujwbIKXfWa+0Zxs510Qrmrce5/Jowq3cHSZSJqBjypxmHarc+vEWg==",
+      "license": "Apache-2.0"
+    },
+    "node_modules/zone.js": {
+      "version": "0.14.7",
+      "resolved": "https://dev.criticalmanufacturing.io/repository/npm-public/zone.js/-/zone.js-0.14.7.tgz",
+      "integrity": "sha512-0w6DGkX2BPuiK/NLf+4A8FLE43QwBfuqz2dVgi/40Rj1WmqUskCqj329O/pwrqFJLG5X8wkeG2RhIAro441xtg==",
+      "license": "MIT"
+    }
+  }
+}

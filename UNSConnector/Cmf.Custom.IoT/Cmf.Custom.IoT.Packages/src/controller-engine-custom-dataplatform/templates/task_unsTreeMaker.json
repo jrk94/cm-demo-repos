@@ -1,0 +1,52 @@
+{
+  "converters": [],
+  "tasks": [
+    {
+      "name": "unsTreeMaker",
+      "displayName": "UNS Tree Maker",
+      "iconClass": "icon-core-et-lg-iotschema",
+      "isProtocol": false,
+      "isController": true,
+      "lifecycle": "Productive",
+      "lifecycleMessage": "",
+      "dependsOnProtocol": [],
+      "dependsOnScope": [],
+      "inputs": {
+        "raw": {
+          "type": "Static",
+          "dataType": "Object",
+          "displayName": "Raw"
+        },
+        "iotEvent": {
+          "type": "Static",
+          "dataType": "Object",
+          "displayName": "IotEvent"
+        },
+        "activate": {
+          "type": "Activate",
+          "dataType": "String",
+          "displayName": "Activate",
+          "defaultValue": ""
+        }
+      },
+      "outputs": {
+        "dataOut": {
+          "type": "Static",
+          "dataType": "Object",
+          "displayName": "DataOut"
+        },
+        "success": {
+          "type": "Success",
+          "displayName": "Success"
+        },
+        "error": {
+          "type": "Error",
+          "displayName": "Error"
+        }
+      },
+      "settings": {
+        "General": {}
+      }
+    }
+  ]
+}

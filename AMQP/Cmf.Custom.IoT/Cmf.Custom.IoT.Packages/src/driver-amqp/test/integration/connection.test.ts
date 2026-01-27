@@ -4,7 +4,7 @@ import * as chai from "chai";
 import * as chaiSpies from "chai-spies";
 import { container as MainContainer } from "../../src/inversify.config";
 import { TYPES as DRIVER_TYPES } from "@criticalmanufacturing/connect-iot-driver";
-import { DeviceDriver, CommunicationState, TYPES as COMMUNICATION_TYPES, PropertyValuePair } from "@criticalmanufacturing/connect-iot-driver";
+import { DeviceDriver, CommunicationState, TYPES as COMMUNICATION_TYPES } from "@criticalmanufacturing/connect-iot-driver";
 import { TestUtilities } from "@criticalmanufacturing/connect-iot-driver/dist/test";
 import { TYPES as COMMON_TYPES, Logger } from "@criticalmanufacturing/connect-iot-common";
 import { GenericContainer, StartedTestContainer, Wait } from "testcontainers";
@@ -23,25 +23,14 @@ describe("Connection Tests", () => {
 
     before(async () => {
         hostname = os.hostname();
-        startTestContainer = await new GenericContainer("solace/solace-pubsub-standard:latest")
-            .withExposedPorts(5672, 8080, 55555) // AMQP, SEMP, SMF
+        startTestContainer = await new GenericContainer("rabbitmq:3-management")
+            .withExposedPorts(5672, 15672) // AMQP, Management UI
             .withEnvironment({
-                "username_admin_globalaccesslevel": "admin",
-                "username_admin_password": "admin",
-                "system_scaling_maxconnectioncount": "100",  // Lower connection limit for faster boot
-                "service_webtransport_enabled": "false",     // Disable web transport service
-                "service_mqtt_enabled": "false"             // Disable MQTT if not needed
+                "RABBITMQ_DEFAULT_USER": "guest",
+                "RABBITMQ_DEFAULT_PASS": "guest"
             })
-            // CRITICAL: Solace requires at least 1GB shared memory
-            .withSharedMemorySize(1024 * 1024 * 1024) // 1GB in bytes
-
-            // Optional: Resource quotas (not supported in rootless Docker)
-            .withResourcesQuota({
-                memory: 4, // 2GB memory limit
-                cpu: 2     // 2 CPU cores
-            })
-            .withWaitStrategy(Wait.forListeningPorts())
-            .withStartupTimeout(120000) // Solace takes longer to start
+            .withWaitStrategy(Wait.forLogMessage(/Server startup complete/))
+            .withStartupTimeout(60000)
             .start();
 
         amqpPort = startTestContainer.getMappedPort(5672);
@@ -72,7 +61,7 @@ describe("Connection Tests", () => {
         done();
     });
 
-    it("Connect to Solace", async () => {
+    it("Connect to RabbitMQ", async () => {
 
         container.rebind("Configurations").toConstantValue({
             commands: [],
@@ -101,8 +90,8 @@ describe("Connection Tests", () => {
         });
     });
 
-    it("Connect to Solace Basic Auth - Happy Path", async () => {
-        await createUserInSolace(startTestContainer, hostname);
+    it("Connect to RabbitMQ Basic Auth - Happy Path", async () => {
+        await createUserInRabbitMQ(startTestContainer, hostname);
 
         container.rebind("Configurations").toConstantValue({
             commands: [],
@@ -134,9 +123,9 @@ describe("Connection Tests", () => {
         });
     });
 
-    it("Connect to Solace Basic Auth - Wrong Auth", async () => {
+    it("Connect to RabbitMQ Basic Auth - Wrong Auth", async () => {
 
-        await createUserInSolace(startTestContainer, hostname);
+        await createUserInRabbitMQ(startTestContainer, hostname);
 
         container.rebind("Configurations").toConstantValue({
             commands: [],
@@ -175,39 +164,39 @@ describe("Connection Tests", () => {
     });
 
     after(async () => {
-        startTestContainer.stop();
+        await startTestContainer.stop();
     });
 });
 
-async function createUserInSolace(startTestContainer: StartedTestContainer, hostname: string) {
-    const sempPort = startTestContainer.getMappedPort(8080);
-    const sempUrl = `http://${hostname}:${sempPort}`;
-    const adminAuth = 'Basic ' + Buffer.from('admin:admin').toString('base64');
+async function createUserInRabbitMQ(startTestContainer: StartedTestContainer, hostname: string) {
+    const managementPort = startTestContainer.getMappedPort(15672);
+    const managementUrl = `http://${hostname}:${managementPort}`;
+    const adminAuth = "Basic " + Buffer.from("guest:guest").toString("base64");
 
-    // 1. Create the client user
-    let result = await fetch(`${sempUrl}/SEMP/v2/config/msgVpns/default/clientUsernames`, {
-        method: 'POST',
+    // Create the user
+    await fetch(`${managementUrl}/api/users/testuser`, {
+        method: "PUT",
         headers: {
-            'Content-Type': 'application/json',
-            'Authorization': adminAuth
+            "Content-Type": "application/json",
+            "Authorization": adminAuth
         },
         body: JSON.stringify({
-            clientUsername: 'testuser',
-            password: 'testpass123',
-            enabled: true
+            password: "testpass123",
+            tags: ""
         })
     });
 
-    // 2. Enable basic authentication on the message VPN
-    result = await fetch(`${sempUrl}/SEMP/v2/config/msgVpns/default`, {
-        method: 'PATCH',
+    // Set permissions for the user on the default vhost
+    await fetch(`${managementUrl}/api/permissions/%2F/testuser`, {
+        method: "PUT",
         headers: {
-            'Content-Type': 'application/json',
-            'Authorization': adminAuth
+            "Content-Type": "application/json",
+            "Authorization": adminAuth
         },
         body: JSON.stringify({
-            authenticationBasicEnabled: true,
-            authenticationBasicType: "internal"
+            configure: ".*",
+            write: ".*",
+            read: ".*"
         })
     });
 }

@@ -1,0 +1,27 @@
+{
+  "packageId": "Cmf.Custom.IoT",
+  "version": "1.0.0",
+  "description": "Cmf Custom Demo Cmf.Custom.IoT Package",
+  "packageType": "Root",
+  "isInstallable": true,
+  "isUniqueInstall": false,
+  "dependencies": [
+    {
+      "id": "Cmf.Environment",
+      "version": "<%= $CLI_PARAM_MESVersion %>",
+      "mandatory": false
+    },
+    {
+      "id": "CriticalManufacturing.DeploymentMetadata",
+      "version": "<%= $CLI_PARAM_MESVersion %>"
+    },
+    {
+      "id": "Cmf.Custom.IoT.Packages",
+      "version": "1.0.0"
+    },
+	  {
+      "id": "Cmf.Custom.IoT.Data",
+      "version": "1.0.0"
+    }
+  ]
+}
