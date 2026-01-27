@@ -1,0 +1,12 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(dir:*)",
+      "Bash(npm run test)",
+      "Bash(npm run build:*)",
+      "Bash(npx mocha:*)",
+      "Bash(echo:*)",
+      "Bash(node:*)"
+    ]
+  }
+}

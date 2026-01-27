@@ -1,0 +1,60 @@
+{
+  "event": [
+    {
+      "Name": "MQTTChangesWorkOrder",
+      "Description": "MQTTChanges event",
+      "DeviceEventId": "workorder",
+      "IsEnabled": true,
+      "ExtendedData": {
+        "iotEventName": "MQTTChanges"
+      },
+      "EventProperties": [
+        {
+          "Property": "Key",
+          "Order": 1,
+          "ExtendedData": {
+            "isMandatory": true
+          }
+        },
+        {
+          "Property": "Value",
+          "Order": 2,
+          "ExtendedData": {
+            "isMandatory": true
+          }
+        },
+        {
+          "Property": "EnterpriseName",
+          "Order": 3,
+          "ExtendedData": {
+            "isMandatory": true
+          }
+        },
+        {
+          "Property": "SiteName",
+          "Order": 4,
+          "ExtendedData": {
+            "isMandatory": true
+          }
+        },
+        {
+          "Property": "AreaName",
+          "Order": 5,
+          "ExtendedData": {
+            "isMandatory": true
+          }
+        },
+        {
+          "Property": "StepName",
+          "Order": 6,
+          "ExtendedData": {}
+        },
+        {
+          "Property": "ResourceName",
+          "Order": 7,
+          "ExtendedData": {}
+        }
+      ]
+    }
+  ]
+}
