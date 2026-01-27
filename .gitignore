@@ -11,3 +11,8 @@ SQLLite/Cmf.Custom.IoT/Cmf.Custom.IoT.Packages/src/controller-engine-custom-sqli
 SQLLite/Cmf.Custom.IoT/Cmf.Custom.IoT.Packages/src/controller-engine-custom-sqlite-tasks/__TEMP__/README.md
 MTConnect/Cmf.Custom.IoT/Cmf.Custom.IoT.Packages/src/driver-mtconnect/__TEMP__/package.json
 MTConnect/Cmf.Custom.IoT/Cmf.Custom.IoT.Packages/src/driver-mtconnect/__TEMP__/lib/Cmf.Connect.IoT.Driver.MTConnect.dll
+
+appsettings.json
+/Tools/IndustrialEquipmentSimulator/k8s
+/Tools/IndustrialEquipmentSimulator/.env
+/Tools/IndustrialEquipmentSimulator/deploy.sh

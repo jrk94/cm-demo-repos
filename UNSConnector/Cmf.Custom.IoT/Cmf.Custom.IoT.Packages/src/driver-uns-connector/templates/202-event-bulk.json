@@ -1,0 +1,18 @@
+{
+  "event": [
+    {
+      "Name": "Bulk",
+      "Description": "Bulk event",
+      "DeviceEventId": "Bulk",
+      "IsEnabled": true,
+      "ExtendedData": {},
+      "EventProperties": [
+        {
+          "Property": "Bulk",
+          "Order": 1,
+          "ExtendedData": {}
+        }
+      ]
+    }
+  ]
+}

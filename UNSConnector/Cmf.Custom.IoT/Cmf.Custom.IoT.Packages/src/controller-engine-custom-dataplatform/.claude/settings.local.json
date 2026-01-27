@@ -1,0 +1,10 @@
+{
+  "permissions": {
+    "allow": [
+      "WebFetch(domain:github.com)",
+      "Bash(npx tsc:*)",
+      "Bash(npx mocha --grep \"buildCesmiiProfile\" \"test/**/*.test.js\")",
+      "Bash(npx mocha:*)"
+    ]
+  }
+}
