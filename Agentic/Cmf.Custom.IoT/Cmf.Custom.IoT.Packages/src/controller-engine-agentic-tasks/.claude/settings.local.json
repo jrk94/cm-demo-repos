@@ -1,0 +1,15 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(npx node-llama-cpp:*)",
+      "Bash(npm view:*)",
+      "Bash(python -c:*)",
+      "Bash(node -e:*)",
+      "Bash(node --input-type=module:*)",
+      "Bash(powershell -command \"Format-Hex -Path ''Qwen_Qwen3-4B-Q4_K_M.gguf'' -Count 32\")",
+      "WebSearch",
+      "WebFetch(domain:node-llama-cpp.withcat.ai)",
+      "WebFetch(domain:github.com)"
+    ]
+  }
+}
