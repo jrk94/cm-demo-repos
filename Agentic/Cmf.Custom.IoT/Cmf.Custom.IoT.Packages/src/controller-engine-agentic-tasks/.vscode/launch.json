@@ -30,8 +30,7 @@
       "program": "${workspaceRoot}/../../node_modules/mocha/bin/_mocha",
       "stopOnEntry": false,
       "args": [
-        "test/unit/**/*.test.js",
-        "test/unit/*.test.js",
+        "dist/test/**/*.test.js",
         "--no-timeouts"
       ],
       "cwd": "${workspaceRoot}",

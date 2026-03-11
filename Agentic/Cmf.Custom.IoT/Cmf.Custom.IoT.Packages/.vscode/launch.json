@@ -31,17 +31,17 @@
       "autoAttachChildProcesses": true
     },
     {
-      "name": "Run tests on Custom Data Platform",
+      "name": "Run tests on Custom Agentic Tasks",
       "type": "node",
       "request": "launch",
       "program": "${workspaceRoot}/node_modules/mocha/bin/_mocha",
       "stopOnEntry": false,
       "args": [
-        "test/unit/**/*.test.js",
-        "test/unit/*.test.js",
+        "dist/test/unit/**/*.test.js",
+        "dist/test/unit/*.test.js",
         "--no-timeouts"
       ],
-      "cwd": "${workspaceRoot}/src/controller-engine-custom-dataplatform",
+      "cwd": "${workspaceRoot}/src/controller-engine-agentic-tasks",
       "runtimeExecutable": null,
       "sourceMaps": true,
       "outputCapture": "std"

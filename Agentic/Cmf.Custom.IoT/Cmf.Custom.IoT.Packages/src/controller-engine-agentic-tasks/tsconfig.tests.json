@@ -1,0 +1,22 @@
+{
+    "$schema": "https://json.schemastore.org/tsconfig",
+    "extends": [
+        "ts-configs/tests.json",
+        "ts-configs/external-dependencies.json"
+    ],
+    "compilerOptions": {
+        "outDir": "./dist",
+        "types": [
+            "node",
+            "mocha"
+        ],
+        // TODO: Remove the following flags
+        "noImplicitAny": false,
+        "strictNullChecks": false
+    },
+    "include": [
+        "test/unit/**/*",
+        "src/**/*",
+        "templates/**/*"
+    ]
+}

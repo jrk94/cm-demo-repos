@@ -14,19 +14,18 @@
     "watch": "npm run watch -ws --if-present",
     "generateTaskLibrary": "cd src && cmf new iot taskLibrary && cd .."
   },
-  "dependencies": {
-  },
+  "dependencies": {},
   "devDependencies": {
     "@criticalmanufacturing/node-package-bundler": "latest",
-    "@typescript-eslint/eslint-plugin": "^6.10.0",
-    "@typescript-eslint/parser": "^6.10.0",
-    "concurrently": "^7.6.0",
-    "eslint": "^8.53.0",
-    "eslint-plugin-mocha": "^10.2.0",
+    "concurrently": "8.2.2",
+    "eslint": "9.24.0",
+    "eslint-configs": "0.0.0",
     "run-sequence": "2.2.1",
     "yargs": "17.6.2"
   },
   "workspaces": [
+    "configs/eslint-configs",
+    "configs/ts-configs",
     "src/*"
   ]
 }

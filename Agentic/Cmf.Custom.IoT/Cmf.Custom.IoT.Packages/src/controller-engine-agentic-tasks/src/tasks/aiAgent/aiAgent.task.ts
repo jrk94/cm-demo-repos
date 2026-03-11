@@ -1,9 +1,18 @@
-import { Task, System, TaskBase } from "@criticalmanufacturing/connect-iot-controller-engine";
-import * as path from "path";
+import type { Dependencies } from "@criticalmanufacturing/connect-iot-controller-engine";
+import { Task, System, TaskBase, TYPES, DI } from "@criticalmanufacturing/connect-iot-controller-engine";
+import { defineChatSessionFunction, getLlama, LlamaChatSession, resolveModelFile } from "node-llama-cpp";
+import { SLMManager } from "../../slm/slmManager.js";
 
 /** Default values for settings */
 export const SETTINGS_DEFAULTS: AiAgentSettings = {
-    example: "Hello World",
+    schema: undefined,
+    enablePersistencyAccess: false,
+    systemPrompt: "",
+    modelLocation: "",
+    model: "",
+    loadModelSettings: {},
+    contextSettings: {},
+    promptSettings: {}
 };
 
 /**
@@ -35,13 +44,34 @@ export class AiAgentTask extends TaskBase implements AiAgentSettings {
     /** **Inputs** */
     /** Prompt */
     public prompt: string = "";
+    public sessionId: string = "";
+    public forceCleanSession: boolean;
 
     /** **Outputs** */
-
+    response: Task.Output<string> = new Task.Output<string>();
+    sessionIdOut: Task.Output<string> = new Task.Output<string>();
 
     /** Properties Settings */
     /** Information about the example setting */
-    example: string;
+    schema: any = SETTINGS_DEFAULTS.schema;
+    enablePersistencyAccess: boolean = SETTINGS_DEFAULTS.enablePersistencyAccess;
+    systemPrompt: string = SETTINGS_DEFAULTS.systemPrompt;
+
+    modelLocation: string = SETTINGS_DEFAULTS.modelLocation;
+    model: string = SETTINGS_DEFAULTS.model;
+
+    loadModelSettings: any = SETTINGS_DEFAULTS.loadModelSettings;
+    contextSettings: any = SETTINGS_DEFAULTS.contextSettings;
+    promptSettings: any = SETTINGS_DEFAULTS.promptSettings;
+
+    @DI.Inject(TYPES.Dependencies.Logger)
+    protected _logger: Dependencies.Logger;
+
+    /**
+     * This is the representation of the SLM manager
+     */
+    @DI.Inject("GlobalSLMManagerHandler")
+    private _slmManager: SLMManager;
 
     /**
      * When one or more input values is changed this will be triggered,
@@ -51,121 +81,102 @@ export class AiAgentTask extends TaskBase implements AiAgentSettings {
         if (changes["activate"]) {
             // It is advised to reset the activate to allow being reactivated without the value being different
             this.activate = undefined;
-
+            let sessionId = this.sessionId;
             try {
-                const { getLlama, LlamaChatSession, resolveChatWrapper } =
-                    await (new Function('return import("node-llama-cpp")')() as Promise<typeof import("node-llama-cpp")>);
 
+                // Load Model
+                const modelId = await this._slmManager.loadModel(this.modelLocation, this.model, this.loadModelSettings, this.contextSettings);
+                // Get Session
+                const sessionValues = this._slmManager.getSession(modelId, this.systemPrompt, this.sessionId);
+                sessionId = sessionValues.id;
 
+                let functions: any = undefined;
+                if (this.enablePersistencyAccess) {
+                    functions = {
+                        listKeysFromPersistency: defineChatSessionFunction({
+                            description: "List all keys from the persistency layer.",
+                            handler: () => {
+                                return this._dataStore.listKeys(System.DataStoreLocation.Temporary);
+                            }
+                        }),
+                        retrieveFromStorePersistency: defineChatSessionFunction({
+                            description: "Retrieve information from the persistency layer.",
+                            params: {
+                                type: "object",
+                                properties: {
+                                    identifier: {
+                                        description: "The key to identify the data to be retrieved. Case insensitive.",
+                                        type: "string"
+                                    },
+                                    defaultValue: {
+                                        description: "The default value to return if the key is not found.",
+                                        type: "string"
+                                    },
+                                    maxSize: {
+                                        description: "The maximum number of items to retrieve. Please choose a value that makes sense for the data you are trying to retrieve, as retrieving too many items might impact performance. e.g. 2 for a list of the last 2 values of a variable.",
+                                        type: "number"
+                                    }
+                                }
+                            },
+                            handler: async (params: any) => {
+                                let identifier = params.identifier;
+                                let defaultValue = params.defaultValue;
+                                let maxSize = params.maxSize || 10;
 
-                const llama = await getLlama();
-                const model = await llama.loadModel({
-                    modelPath: path.resolve(__dirname, "../../..", "models", "hf_bartowski_Phi-3.1-mini-4k-instruct.Q8_0.gguf")
-                });
-                const context = await model.createContext({
-                    contextSize: 4096,
-                    threads: 16
-                });
-                const session = new LlamaChatSession({
-                    contextSequence: context.getSequence(),
-                    chatWrapper: resolveChatWrapper(model)
-                });
+                                let retrievedValue = await this._dataStore.retrieve(identifier, defaultValue);
 
+                                if (retrievedValue === defaultValue) {
+                                    identifier = identifier.toLowerCase();
+                                    defaultValue = defaultValue.toLowerCase();
+                                    retrievedValue = await this._dataStore.retrieve(identifier, defaultValue);
+                                }
 
-                const q1 = "What is the capital of germany?";
-                console.log("User: " + q1);
+                                retrievedValue = retrievedValue.storage ? retrievedValue.storage.map((item: any) => item.value) : retrievedValue;
 
-                const abortController = new AbortController();
-                const timeout = setTimeout(() => abortController.abort(), 60_000);
+                                if (Array.isArray(retrievedValue) && retrievedValue.length > maxSize) {
+                                    retrievedValue = (retrievedValue as Array<any>).slice(-maxSize);
+                                }
 
-                const a1 = await session.prompt(q1, {
-                    maxTokens: 256,
-                    signal: abortController.signal,
-                    onTextChunk: (chunk) => process.stdout.write(chunk)
-                });
-                clearTimeout(timeout);
-                console.log("\nAI: " + a1);
+                                return typeof retrievedValue === "string" ? retrievedValue : JSON.stringify(retrievedValue);
+                            }
+                        }),
+                        storeInPersistency: defineChatSessionFunction({
+                            description: "Store information in the persistency layer.",
+                            params: {
+                                type: "object",
+                                properties: {
+                                    identifier: {
+                                        description: "The key to identify the data to be stored. Case insensitive.",
+                                        type: "string"
+                                    },
+                                    data: {
+                                        description: "The data to be stored.",
+                                        type: "string"
+                                    }
+                                }
+                            },
+                            handler: async (params: any) => {
+                                const identifier = params.identifier.toLowerCase();
+                                const data = params.data.toLowerCase();
 
+                                return await this._dataStore.store(identifier, data, System.DataStoreLocation.Temporary);
+                            }
+                        })
+                    };
+                }
 
+                const result = await this._slmManager.promptSession(sessionId, this.prompt, this.schema, functions, this.promptSettings);
+                this.response.emit(this.stripLlamaFunctionMarkup(result.trim()));
+                this.sessionIdOut.emit(sessionId);
+                if (this.forceCleanSession === true) {
+                    this._slmManager.disposeSession(sessionId);
+                }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-                // const llama = await getLlama();
-
-                // const modelPath = path.resolve(__dirname, "../../..", "models", "hf_bartowski_Phi-3.1-mini-4k-instruct.Q8_0.gguf");
-
-                // const model = await llama.loadModel({
-                //     modelPath,
-                //     gpuLayers: {
-                //         fitContext: {
-                //             contextSize: 16384
-                //         },
-                //         max: 41
-                //     },
-                //     useMmap: true,
-                //     useDirectIo: true
-                // });
-
-                // // Use the model overload - reads jinja template directly from the model's native bindings
-                // // and correctly auto-detects the wrapper (avoids silent fallback to GeneralChatWrapper)
-                // const chatWrapper = resolveChatWrapper(model);
-                // console.log("Chat wrapper:", chatWrapper.wrapperName);
-
-                // const context = await model.createContext({
-                //     contextSize: 16384,
-                //     threads: 16
-                // });
-
-                // const session = new LlamaChatSession({
-                //     contextSequence: context.getSequence(),
-                //     chatWrapper: chatWrapper
-                // });
-
-                // console.log("Model BOS token:", model.tokens.bos, "EOS token:", model.tokens.eos);
-
-                // const userPrompt = "Hello, can you help me with a simple question? Always reply only with a yes or no.";
-                // console.log("Prompt:", userPrompt);
-
-                // const response = await session.prompt(
-                //     userPrompt,
-                //     {
-                //         temperature: 0.5,
-                //         maxTokens: 128,
-                //         repeatPenalty: {
-                //             penalty: 1.1,
-                //             lastTokens: 64
-                //         },
-                //         onTextChunk: (chunk) => process.stdout.write(chunk)
-                //     }
-                // );
-
-                // console.log("\n\nFinal:", response);
-
-                await model.dispose();
-
+                this.success.emit(true);
             } catch (error) {
-                console.error("LLM error:", error);
+                this._slmManager.disposeSession(sessionId);
+                this.logAndEmitError(`Error while executing the AiAgent task: ${error instanceof Error ? error.message : String(error)}`);
             }
-
-
-            // ... code here
-            this.success.emit(true);
-
-            // or
-            this._logger.error(`Something very wrong just happened! Log it!`);
-            this.error.emit(new Error("Will stop processing, but Error output will be triggered with this value"));
         }
     }
 
@@ -181,11 +192,58 @@ export class AiAgentTask extends TaskBase implements AiAgentSettings {
     /** Cleanup internal data, unregister any event handler, etc */
     public override async onDestroy(): Promise<void> {
     }
+
+    private stripLlamaFunctionMarkup(response: string): string {
+        const keywords = [
+            "overview",
+            "function",
+            "param",
+            "returns",
+            "description",
+            "namespace",
+            "type",
+            "enum",
+            "required",
+            "optional",
+            "report",
+        ];
+
+        const pattern = new RegExp(
+            `^\\s*\\|\\|\\s*(${keywords.join("|")})\\s*:.*$`,
+            "gmi"
+        );
+
+        return response
+            .replace(pattern, "")
+            .replace(/\n{3,}/g, "\n\n")
+            .trim();
+    }
 }
 
 // Add settings here
 /** AiAgent Settings object */
 export interface AiAgentSettings extends System.TaskDefaultSettings {
     /** Information about the example setting */
-    example: string;
+    schema: any;
+    enablePersistencyAccess: boolean;
+    systemPrompt: string;
+    modelLocation: string;
+    model: string;
+
+    loadModelSettings: any;
+    contextSettings: any;
+    promptSettings: any;
 }
+
+@Task.TaskModule({
+    task: AiAgentTask,
+    providers: [
+        {
+            class: SLMManager,
+            isSingleton: true,
+            symbol: "GlobalSLMManagerHandler",
+            scope: Task.ProviderScope.Controller,
+        }
+    ]
+})
+export class AiAgentModule { }

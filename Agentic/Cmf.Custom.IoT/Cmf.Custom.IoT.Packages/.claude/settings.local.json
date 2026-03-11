@@ -6,7 +6,10 @@
       "Bash(npm run build:*)",
       "Bash(npx mocha:*)",
       "Bash(echo:*)",
-      "Bash(node:*)"
+      "Bash(node:*)",
+      "Bash(python3 -c \"import json,sys; d=json.load\\(sys.stdin\\); print\\(json.dumps\\({k:d[k] for k in [''name'',''version'',''type'',''main'',''module'',''exports'',''types'',''typings''] if k in d}, indent=2\\)\\)\")",
+      "Bash(node-abi --help)",
+      "Bash(npx node-abi --help)"
     ]
   }
 }

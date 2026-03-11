@@ -1,0 +1,71 @@
+{
+    "$schema": "https://json.schemastore.org/tsconfig",
+    "compilerOptions": {
+        /* Base Options: */
+        // Helps mend a few of the fences between CommonJS and ES Modules.
+        "esModuleInterop": true,
+        // Skips checking the types of .d.ts files. This is important for performance, because otherwise all node_modules will be checked.
+        "skipLibCheck": true,
+        // The version of JavaScript you're targeting. I recommend es2022 over esnext for stability.
+        "target": "ES6",
+        // Disallows you to import .js and .json files. Always useful.
+        "allowJs": false,
+        "resolveJsonModule": true,
+        // This option forces TypeScript to consider all files as modules. This helps to avoid 'cannot redeclare block-scoped variable' errors.
+        "moduleDetection": "force",
+        // This option prevents a few TS features which are unsafe when treating modules as isolated files.
+        //"isolatedModules": true,
+        // This option forces you to use import type and export type, leading to more predictable behavior and fewer unnecessary imports.
+        // With module: NodeNext, it also enforces you're using the correct import syntax for ESM or CJS.
+        "verbatimModuleSyntax": true,
+        // Stylize errors and messages using color and context
+        "pretty": true,
+        /* If transpiling with TypeScript: */
+        "module": "nodenext",
+        "moduleResolution": "nodenext",
+        "sourceMap": true,
+        /* AND if you're building for a library: */
+        "declaration": true,
+        /* AND if you're building for a library in a monorepo: */
+        "composite": true,
+        "declarationMap": true,
+        /* If your code doesn't run in the DOM: */
+        "lib": [
+            "ES2022"
+        ],
+        /* Strictness */
+        // Enables all strict type checking options. Indispensable.
+        // TODO: Make sure it's possible to add the following flag
+        //"strict": true,
+        // Prevents you from accessing an array or object without first checking if it's defined.
+        // This is a great way to prevent runtime errors, and should really be included in strict.
+        // TODO: Make sure it's possible to add the following flag
+        //"noUncheckedIndexedAccess": true,
+        // Makes the override keyword actually useful in classes.
+        // TODO: Make sure it's possible to add the following flag
+        //"noImplicitOverride": true,
+        // Other rules (some maybe be already set by `strict` rule)
+        "noImplicitAny": true,
+        "noImplicitThis": true,
+        "noImplicitReturns": true,
+        "alwaysStrict": true,
+        "strictBindCallApply": true,
+        "strictNullChecks": true,
+        "strictFunctionTypes": true,
+        "strictPropertyInitialization": false,
+        "allowSyntheticDefaultImports": true,
+        // Upcoming specification of TC39 has a different runtime behavior to TypeScript’s implementation but the same syntax. This flag switches to the upcoming ECMA runtime behavior.
+        "useDefineForClassFields": false,
+        // Follows the case sensitivity rules of the file system it’s running on.
+        // Will issue an error if a program tries to include a file by a casing different from the casing on disk.
+        "forceConsistentCasingInFileNames": true,
+        /* Node proposals */
+        // Enables experimental support for emitting type metadata for decorators which works with the module reflect-metadata.
+        "emitDecoratorMetadata": true,
+        // Enables experimental support for decorators, which is a version of decorators that predates the TC39 standardization process.
+        "experimentalDecorators": true,
+        // Note: this needs to be set on the project itself 
+        //"outDir": "./dist",
+        //"types": []
+    }
+}

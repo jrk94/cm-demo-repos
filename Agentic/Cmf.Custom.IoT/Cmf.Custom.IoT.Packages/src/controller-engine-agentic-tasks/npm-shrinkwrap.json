@@ -1,0 +1,358 @@
+{
+  "name": "@criticalmanufacturing/connect-iot-controller-engine-agentic-tasks",
+  "version": "0.0.0",
+  "packages": {
+    "src/controller-engine-agentic-tasks": {
+      "name": "@criticalmanufacturing/connect-iot-controller-engine-agentic-tasks",
+      "version": "0.0.0",
+      "dependencies": {
+        "@criticalmanufacturing/connect-iot-controller-engine": "release-1124",
+        "cmf-lbos": "release-1124",
+        "inversify": "6.0.2",
+        "moment": "2.29.4",
+        "node-llama-cpp": "^3.16.2",
+        "reflect-metadata": "0.1.13",
+        "zone.js": "0.14.7"
+      },
+      "devDependencies": {
+        "@criticalmanufacturing/node-package-bundler": "latest",
+        "@types/chai": "4.3.10",
+        "@types/chai-spies": "1.0.6",
+        "@types/mocha": "10.0.4",
+        "@types/node": "22.17.0",
+        "chai": "4.3.10",
+        "chai-spies": "1.1.0",
+        "eslint-configs": "0.0.0",
+        "mocha": "10.2.0",
+        "mocha-junit-reporter": "2.2.1",
+        "mocha-lcov-reporter": "1.3.0",
+        "mocha-multi-reporters": "1.5.1",
+        "nyc": "15.1.0",
+        "ts-configs": "^0.0.0",
+        "tslint": "6.1.3",
+        "typescript": "5.4.5"
+      },
+      "engines": {
+        "node": ">=20.15.0 <23"
+      }
+    },
+    "src/controller-engine-agentic-tasks/node_modules/@types/node": {
+      "version": "22.17.0",
+      "resolved": "https://dev.criticalmanufacturing.io/repository/npm-public/@types/node/-/node-22.17.0.tgz",
+      "integrity": "sha512-bbAKTCqX5aNVryi7qXVMi+OkB3w/OyblodicMbvE38blyAz7GxXf6XYhklokijuPwwVg9sDLKRxt0ZHXQwZVfQ==",
+      "dev": true,
+      "license": "MIT",
+      "dependencies": {
+        "undici-types": "~6.21.0"
+      }
+    },
+    "src/controller-engine-agentic-tasks/node_modules/ansi-regex": {
+      "version": "6.2.2",
+      "resolved": "https://dev.criticalmanufacturing.io/repository/npm-public/ansi-regex/-/ansi-regex-6.2.2.tgz",
+      "integrity": "sha512-Bq3SmSpyFHaWjPk8If9yc6svM8c56dB5BAtW4Qbw5jHTwwXXcTLoRMkpDJp6VL0XzlWaCHTXrkFURMYmD0sLqg==",
+      "license": "MIT",
+      "engines": {
+        "node": ">=12"
+      },
+      "funding": {
+        "url": "https://github.com/chalk/ansi-regex?sponsor=1"
+      }
+    },
+    "src/controller-engine-agentic-tasks/node_modules/ansi-styles": {
+      "version": "6.2.3",
+      "resolved": "https://dev.criticalmanufacturing.io/repository/npm-public/ansi-styles/-/ansi-styles-6.2.3.tgz",
+      "integrity": "sha512-4Dj6M28JB+oAH8kFkTLUo+a2jwOFkuqb3yucU0CANcRRUbxS0cP0nZYCGjcc3BNXwRIsUVmDGgzawme7zvJHvg==",
+      "license": "MIT",
+      "engines": {
+        "node": ">=12"
+      },
+      "funding": {
+        "url": "https://github.com/chalk/ansi-styles?sponsor=1"
+      }
+    },
+    "src/controller-engine-agentic-tasks/node_modules/chalk": {
+      "version": "5.6.2",
+      "resolved": "https://dev.criticalmanufacturing.io/repository/npm-public/chalk/-/chalk-5.6.2.tgz",
+      "integrity": "sha512-7NzBL0rN6fMUW+f7A6Io4h40qQlG+xGmtMxfbnH/K7TAtt8JQWVQK+6g0UXKMeVJoyV5EkkNsErQ8pVD3bLHbA==",
+      "license": "MIT",
+      "engines": {
+        "node": "^12.17.0 || ^14.13 || >=16.0.0"
+      },
+      "funding": {
+        "url": "https://github.com/chalk/chalk?sponsor=1"
+      }
+    },
+    "src/controller-engine-agentic-tasks/node_modules/ignore": {
+      "version": "7.0.5",
+      "resolved": "https://dev.criticalmanufacturing.io/repository/npm-public/ignore/-/ignore-7.0.5.tgz",
+      "integrity": "sha512-Hs59xBNfUIunMFgWAbGX5cq6893IbWg4KnrjbYwX3tx0ztorVgTDA6B2sxf8ejHJ4wz8BqGUMYlnzNBer5NvGg==",
+      "license": "MIT",
+      "engines": {
+        "node": ">= 4"
+      }
+    },
+    "src/controller-engine-agentic-tasks/node_modules/is-fullwidth-code-point": {
+      "version": "5.1.0",
+      "resolved": "https://dev.criticalmanufacturing.io/repository/npm-public/is-fullwidth-code-point/-/is-fullwidth-code-point-5.1.0.tgz",
+      "integrity": "sha512-5XHYaSyiqADb4RnZ1Bdad6cPp8Toise4TzEjcOYDHZkTCbKgiUl7WTUCpNWHuxmDt91wnsZBc9xinNzopv3JMQ==",
+      "license": "MIT",
+      "dependencies": {
+        "get-east-asian-width": "^1.3.1"
+      },
+      "engines": {
+        "node": ">=18"
+      },
+      "funding": {
+        "url": "https://github.com/sponsors/sindresorhus"
+      }
+    },
+    "src/controller-engine-agentic-tasks/node_modules/is-unicode-supported": {
+      "version": "2.1.0",
+      "resolved": "https://dev.criticalmanufacturing.io/repository/npm-public/is-unicode-supported/-/is-unicode-supported-2.1.0.tgz",
+      "integrity": "sha512-mE00Gnza5EEB3Ds0HfMyllZzbBrmLOX3vfWoj9A9PEnTfratQ/BcaJOuMhnkhjXvb2+FkY3VuHqtAGpTPmglFQ==",
+      "license": "MIT",
+      "engines": {
+        "node": ">=18"
+      },
+      "funding": {
+        "url": "https://github.com/sponsors/sindresorhus"
+      }
+    },
+    "src/controller-engine-agentic-tasks/node_modules/isexe": {
+      "version": "4.0.0",
+      "resolved": "https://dev.criticalmanufacturing.io/repository/npm-public/isexe/-/isexe-4.0.0.tgz",
+      "integrity": "sha512-FFUtZMpoZ8RqHS3XeXEmHWLA4thH+ZxCv2lOiPIn1Xc7CxrqhWzNSDzD+/chS/zbYezmiwWLdQC09JdQKmthOw==",
+      "license": "BlueOak-1.0.0",
+      "engines": {
+        "node": ">=20"
+      }
+    },
+    "src/controller-engine-agentic-tasks/node_modules/log-symbols": {
+      "version": "7.0.1",
+      "resolved": "https://dev.criticalmanufacturing.io/repository/npm-public/log-symbols/-/log-symbols-7.0.1.tgz",
+      "integrity": "sha512-ja1E3yCr9i/0hmBVaM0bfwDjnGy8I/s6PP4DFp+yP+a+mrHO4Rm7DtmnqROTUkHIkqffC84YY7AeqX6oFk0WFg==",
+      "license": "MIT",
+      "dependencies": {
+        "is-unicode-supported": "^2.0.0",
+        "yoctocolors": "^2.1.1"
+      },
+      "engines": {
+        "node": ">=18"
+      },
+      "funding": {
+        "url": "https://github.com/sponsors/sindresorhus"
+      }
+    },
+    "src/controller-engine-agentic-tasks/node_modules/nanoid": {
+      "version": "5.1.6",
+      "resolved": "https://dev.criticalmanufacturing.io/repository/npm-public/nanoid/-/nanoid-5.1.6.tgz",
+      "integrity": "sha512-c7+7RQ+dMB5dPwwCp4ee1/iV/q2P6aK1mTZcfr1BTuVlyW9hJYiMPybJCcnBlQtuSmTIWNeazm/zqNoZSSElBg==",
+      "funding": [
+        {
+          "type": "github",
+          "url": "https://github.com/sponsors/ai"
+        }
+      ],
+      "license": "MIT",
+      "bin": {
+        "nanoid": "bin/nanoid.js"
+      },
+      "engines": {
+        "node": "^18 || >=20"
+      }
+    },
+    "src/controller-engine-agentic-tasks/node_modules/node-llama-cpp": {
+      "version": "3.16.2",
+      "resolved": "https://dev.criticalmanufacturing.io/repository/npm-public/node-llama-cpp/-/node-llama-cpp-3.16.2.tgz",
+      "integrity": "sha512-ovhuTaXSWfcoyfI8ljWxO2Rg63mNxqQQAbDGkXRhlgsL7UjPqm2Nsy1bTNa0ZaQRg3vezG4agnCJTImrICY/0A==",
+      "hasInstallScript": true,
+      "license": "MIT",
+      "dependencies": {
+        "@huggingface/jinja": "^0.5.5",
+        "async-retry": "^1.3.3",
+        "bytes": "^3.1.2",
+        "chalk": "^5.6.2",
+        "chmodrp": "^1.0.2",
+        "cmake-js": "^8.0.0",
+        "cross-spawn": "^7.0.6",
+        "env-var": "^7.5.0",
+        "filenamify": "^6.0.0",
+        "fs-extra": "^11.3.0",
+        "ignore": "^7.0.4",
+        "ipull": "^3.9.5",
+        "is-unicode-supported": "^2.1.0",
+        "lifecycle-utils": "^3.1.1",
+        "log-symbols": "^7.0.1",
+        "nanoid": "^5.1.6",
+        "node-addon-api": "^8.5.0",
+        "octokit": "^5.0.5",
+        "ora": "^9.3.0",
+        "pretty-ms": "^9.3.0",
+        "proper-lockfile": "^4.1.2",
+        "semver": "^7.7.1",
+        "simple-git": "^3.31.1",
+        "slice-ansi": "^8.0.0",
+        "stdout-update": "^4.0.1",
+        "strip-ansi": "^7.1.2",
+        "validate-npm-package-name": "^7.0.2",
+        "which": "^6.0.1",
+        "yargs": "^17.7.2"
+      },
+      "bin": {
+        "nlc": "dist/cli/cli.js",
+        "node-llama-cpp": "dist/cli/cli.js"
+      },
+      "engines": {
+        "node": ">=20.0.0"
+      },
+      "funding": {
+        "type": "github",
+        "url": "https://github.com/sponsors/giladgd"
+      },
+      "optionalDependencies": {
+        "@node-llama-cpp/linux-arm64": "3.16.2",
+        "@node-llama-cpp/linux-armv7l": "3.16.2",
+        "@node-llama-cpp/linux-x64": "3.16.2",
+        "@node-llama-cpp/linux-x64-cuda": "3.16.2",
+        "@node-llama-cpp/linux-x64-cuda-ext": "3.16.2",
+        "@node-llama-cpp/linux-x64-vulkan": "3.16.2",
+        "@node-llama-cpp/mac-arm64-metal": "3.16.2",
+        "@node-llama-cpp/mac-x64": "3.16.2",
+        "@node-llama-cpp/win-arm64": "3.16.2",
+        "@node-llama-cpp/win-x64": "3.16.2",
+        "@node-llama-cpp/win-x64-cuda": "3.16.2",
+        "@node-llama-cpp/win-x64-cuda-ext": "3.16.2",
+        "@node-llama-cpp/win-x64-vulkan": "3.16.2"
+      },
+      "peerDependencies": {
+        "typescript": ">=5.0.0"
+      },
+      "peerDependenciesMeta": {
+        "typescript": {
+          "optional": true
+        }
+      }
+    },
+    "src/controller-engine-agentic-tasks/node_modules/node-llama-cpp/node_modules/strip-ansi": {
+      "version": "7.1.2",
+      "resolved": "https://dev.criticalmanufacturing.io/repository/npm-public/strip-ansi/-/strip-ansi-7.1.2.tgz",
+      "integrity": "sha512-gmBGslpoQJtgnMAvOVqGZpEz9dyoKTCzy2nfz/n8aIFhN/jCE/rCmcxabB6jOOHV+0WNnylOxaxBQPSvcWklhA==",
+      "license": "MIT",
+      "dependencies": {
+        "ansi-regex": "^6.0.1"
+      },
+      "engines": {
+        "node": ">=12"
+      },
+      "funding": {
+        "url": "https://github.com/chalk/strip-ansi?sponsor=1"
+      }
+    },
+    "src/controller-engine-agentic-tasks/node_modules/slice-ansi": {
+      "version": "8.0.0",
+      "resolved": "https://dev.criticalmanufacturing.io/repository/npm-public/slice-ansi/-/slice-ansi-8.0.0.tgz",
+      "integrity": "sha512-stxByr12oeeOyY2BlviTNQlYV5xOj47GirPr4yA1hE9JCtxfQN0+tVbkxwCtYDQWhEKWFHsEK48ORg5jrouCAg==",
+      "license": "MIT",
+      "dependencies": {
+        "ansi-styles": "^6.2.3",
+        "is-fullwidth-code-point": "^5.1.0"
+      },
+      "engines": {
+        "node": ">=20"
+      },
+      "funding": {
+        "url": "https://github.com/chalk/slice-ansi?sponsor=1"
+      }
+    },
+    "src/controller-engine-agentic-tasks/node_modules/which": {
+      "version": "6.0.1",
+      "resolved": "https://dev.criticalmanufacturing.io/repository/npm-public/which/-/which-6.0.1.tgz",
+      "integrity": "sha512-oGLe46MIrCRqX7ytPUf66EAYvdeMIZYn3WaocqqKZAxrBpkqHfL/qvTyJ/bTk5+AqHCjXmrv3CEWgy368zhRUg==",
+      "license": "ISC",
+      "dependencies": {
+        "isexe": "^4.0.0"
+      },
+      "bin": {
+        "node-which": "bin/which.js"
+      },
+      "engines": {
+        "node": "^20.17.0 || >=22.9.0"
+      }
+    },
+    "src/controller-engine-agentic-tasks/node_modules/yargs": {
+      "version": "17.7.2",
+      "resolved": "https://dev.criticalmanufacturing.io/repository/npm-public/yargs/-/yargs-17.7.2.tgz",
+      "integrity": "sha512-7dSzzRQ++CKnNI/krKnYRV7JKKPUXMEh61soaHKg9mrWEhzFWhFnxPxGl+69cD1Ou63C13NUPCnmIcrvqCuM6w==",
+      "license": "MIT",
+      "dependencies": {
+        "cliui": "^8.0.1",
+        "escalade": "^3.1.1",
+        "get-caller-file": "^2.0.5",
+        "require-directory": "^2.1.1",
+        "string-width": "^4.2.3",
+        "y18n": "^5.0.5",
+        "yargs-parser": "^21.1.1"
+      },
+      "engines": {
+        "node": ">=12"
+      }
+    },
+    "src/controller-engine-agentic-tasks/node_modules/yargs-parser": {
+      "version": "21.1.1",
+      "resolved": "https://dev.criticalmanufacturing.io/repository/npm-public/yargs-parser/-/yargs-parser-21.1.1.tgz",
+      "integrity": "sha512-tVpsJW7DdjecAiFpbIB1e3qxIQsE6NoPc5/eTdrbbIC4h0LVsWhnoa3g+m2HclBIujHzsxZ4VJVA+GUuc2/LBw==",
+      "license": "ISC",
+      "engines": {
+        "node": ">=12"
+      }
+    },
+    "node_modules/@criticalmanufacturing/connect-iot-controller-engine": {
+      "version": "11.2.3",
+      "resolved": "https://dev.criticalmanufacturing.io/repository/npm-public/@criticalmanufacturing/connect-iot-controller-engine/-/connect-iot-controller-engine-11.2.3.tgz",
+      "integrity": "sha512-GLLrg/qmvm1/xFVEBmRdYACvuBgJNTDo44HHFoorSbxLICIMVrm+lQVM0Rqct93YwIDOGYP5gNmLLN3ikStMFw==",
+      "dependencies": {
+        "mathjs": "14.5.3"
+      },
+      "peerDependencies": {
+        "eventemitter2": "6.4.9",
+        "inversify": "6.0.2",
+        "moment": "2.29.4"
+      }
+    },
+    "node_modules/cmf-lbos": {
+      "version": "11.2.3",
+      "resolved": "https://dev.criticalmanufacturing.io/repository/npm-public/cmf-lbos/-/cmf-lbos-11.2.3.tgz",
+      "integrity": "sha512-eYyf7Jo32YeP6UYj/5+WigBsT5a1XhnJcWZvNJga/PynO4gKk78aVZQTH1vK3dD8xctv31YWbXmEHFlZ5ni1RA==",
+      "peerDependencies": {
+        "moment": "^2.29.4"
+      }
+    },
+    "node_modules/inversify": {
+      "version": "6.0.2",
+      "resolved": "https://dev.criticalmanufacturing.io/repository/npm-public/inversify/-/inversify-6.0.2.tgz",
+      "integrity": "sha512-i9m8j/7YIv4mDuYXUAcrpKPSaju/CIly9AHK5jvCBeoiM/2KEsuCQTTP+rzSWWpLYWRukdXFSl6ZTk2/uumbiA==",
+      "license": "MIT"
+    },
+    "node_modules/moment": {
+      "version": "2.29.4",
+      "resolved": "https://dev.criticalmanufacturing.io/repository/npm-public/moment/-/moment-2.29.4.tgz",
+      "integrity": "sha512-5LC9SOxjSc2HF6vO2CyuTDNivEdoz2IvyJJGj6X8DJ0eFyfszE0QiEd+iXmBvUP3WHxSjFH/vIsA0EN00cgr8w==",
+      "license": "MIT",
+      "engines": {
+        "node": "*"
+      }
+    },
+    "node_modules/reflect-metadata": {
+      "version": "0.1.13",
+      "resolved": "https://dev.criticalmanufacturing.io/repository/npm-public/reflect-metadata/-/reflect-metadata-0.1.13.tgz",
+      "integrity": "sha512-Ts1Y/anZELhSsjMcU605fU9RE4Oi3p5ORujwbIKXfWa+0Zxs510Qrmrce5/Jowq3cHSZSJqBjypxmHarc+vEWg==",
+      "license": "Apache-2.0"
+    },
+    "node_modules/zone.js": {
+      "version": "0.14.7",
+      "resolved": "https://dev.criticalmanufacturing.io/repository/npm-public/zone.js/-/zone.js-0.14.7.tgz",
+      "integrity": "sha512-0w6DGkX2BPuiK/NLf+4A8FLE43QwBfuqz2dVgi/40Rj1WmqUskCqj329O/pwrqFJLG5X8wkeG2RhIAro441xtg==",
+      "license": "MIT"
+    }
+  }
+}

@@ -4,7 +4,7 @@
     {
       "name": "aiAgent",
       "displayName": "AI Agent",
-      "iconClass": "icon-core-tasks-connect-iot-lg-logmessage",
+      "iconClass": "icon-core-st-lg-bot",
       "isProtocol": false,
       "isController": true,
       "lifecycle": "Productive",
@@ -18,6 +18,18 @@
           "displayName": "Prompt",
           "defaultValue": ""
         },
+        "sessionId": {
+          "type": "Static",
+          "dataType": "String",
+          "displayName": "SessionId",
+          "defaultValue": ""
+        },
+        "forceCleanSession": {
+          "type": "Static",
+          "dataType": "Boolean",
+          "displayName": "Force Clean Session",
+          "defaultValue": false
+        },
         "activate": {
           "type": "Activate",
           "dataType": "String",
@@ -26,6 +38,16 @@
         }
       },
       "outputs": {
+        "response": {
+          "type": "Static",
+          "dataType": "String",
+          "displayName": "Response"
+        },
+        "sessionIdOut": {
+          "type": "Static",
+          "dataType": "String",
+          "displayName": "SessionId"
+        },
         "success": {
           "type": "Success",
           "displayName": "Success"
@@ -37,14 +59,87 @@
       },
       "settings": {
         "General": {
-          "Example Section": [
+          "Model Location": [
             {
-              "name": "Example",
-              "displayName": "Example Setting",
-              "settingKey": "example",
+              "name": "modelLocation",
+              "displayName": "Model Location",
+              "settingKey": "modelLocation",
               "dataType": "string",
-              "infoMessage": "Information about the example setting",
-              "defaultValue": "Hello World"
+              "infoMessage": "The location of the model.",
+              "defaultValue": "",
+              "IsMandatory": true
+            },
+            {
+              "name": "model",
+              "displayName": "Model Name",
+              "settingKey": "model",
+              "dataType": "string",
+              "infoMessage": "The model to be used.",
+              "defaultValue": "",
+              "IsMandatory": true
+            },
+            {
+              "name": "systemPrompt",
+              "displayName": "System Prompt",
+              "settingKey": "systemPrompt",
+              "dataType": "string",
+              "infoMessage": "The system prompt to be used.",
+              "defaultValue": "",
+              "IsMandatory": false
+            }
+          ],
+          "Model Tools": [
+            {
+              "name": "schema",
+              "displayName": "Grammar Schema",
+              "settingKey": "schema",
+              "dataType": "string",
+              "infoMessage": "The grammar schema to be used for the response.",
+              "defaultValue": ""
+            },
+            {
+              "name": "enablePersistencyAccess",
+              "displayName": "Enable Persistency Access",
+              "settingKey": "enablePersistencyAccess",
+              "dataType": "boolean",
+              "infoMessage": "Enable or disable access to the persistency layer api.",
+              "defaultValue": false
+            },
+            {
+              "name": "forceCleanSession",
+              "displayName": "Force Clean Session",
+              "settingKey": "forceCleanSession",
+              "dataType": "boolean",
+              "infoMessage": "Whether to force clean the session after the prompt is done. If false, the session will be kept alive and can be reused by providing the sessionId in the input.",
+              "defaultValue": true
+            }
+          ]
+        },
+        "Model Settings": {
+          "Settings": [
+            {
+              "name": "loadModelSettings",
+              "displayName": "Load Model Settings",
+              "settingKey": "loadModelSettings",
+              "dataType": "Object",
+              "infoMessage": "The settings for loading the model.",
+              "defaultValue": ""
+            },
+            {
+              "name": "contextSettings",
+              "displayName": "Context Settings",
+              "settingKey": "contextSettings",
+              "dataType": "Object",
+              "infoMessage": "The settings for the model context.",
+              "defaultValue": ""
+            },
+            {
+              "name": "promptSettings",
+              "displayName": "Prompt Settings",
+              "settingKey": "promptSettings",
+              "dataType": "Object",
+              "infoMessage": "The settings for the prompt.",
+              "defaultValue": ""
             }
           ]
         }
