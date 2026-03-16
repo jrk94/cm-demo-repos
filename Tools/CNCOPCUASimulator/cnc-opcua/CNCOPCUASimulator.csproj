@@ -1,0 +1,77 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>net8.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Cmf.ConnectIoT.TestOrchestrator.Core.Common" Version="0.2.2" />
+    <PackageReference Include="Cmf.ConnectIoT.TestOrchestrator.Core.ScenarioBuilder" Version="0.0.5" />
+    <PackageReference Include="Cmf.ConnectIoT.TestOrchestrator.Plugin.Simulator.OPCUA" Version="0.3.3" />
+    <PackageReference Include="Cmf.ConnectIoT.TestOrchestrator.Plugin.StartMode.Local" Version="0.2.1" />
+    <PackageReference Include="Microsoft.Extensions.Hosting" Version="9.0.10" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="Cmf.LightBusinessObjects">
+      <HintPath>Libs\Cmf.LightBusinessObjects.dll</HintPath>
+      <Private>true</Private>
+    </Reference>
+    <Reference Include="Cmf.LoadBalancing">
+      <HintPath>Libs\Cmf.LoadBalancing.dll</HintPath>
+      <Private>true</Private>
+    </Reference>
+    <Reference Include="Cmf.MessageBus.Client">
+      <HintPath>Libs\Cmf.MessageBus.Client.dll</HintPath>
+      <Private>true</Private>
+    </Reference>
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>Libs\Newtonsoft.Json.dll</HintPath>
+      <Private>true</Private>
+    </Reference>
+    <Reference Include="SuperSocket.ClientEngine">
+      <HintPath>Libs\SuperSocket.ClientEngine.dll</HintPath>
+      <Private>true</Private>
+    </Reference>
+    <Reference Include="System.Configuration.ConfigurationManager">
+      <HintPath>Libs\System.Configuration.ConfigurationManager.dll</HintPath>
+      <Private>true</Private>
+    </Reference>
+    <Reference Include="System.Data.OleDb">
+      <HintPath>Libs\System.Data.OleDb.dll</HintPath>
+      <Private>true</Private>
+    </Reference>
+    <Reference Include="System.Net.Http.Formatting">
+      <HintPath>Libs\System.Net.Http.Formatting.dll</HintPath>
+      <Private>true</Private>
+    </Reference>
+    <Reference Include="WebSocket4Net">
+      <HintPath>Libs\WebSocket4Net.dll</HintPath>
+      <Private>true</Private>
+    </Reference>
+  </ItemGroup>
+
+  <!--
+    _LocalLibs is a static item group pointing directly at the Libs\ folder.
+    It is evaluated before any MSBuild targets run, so ResolveAssemblyReferences
+    cannot overwrite its paths. The target then copies these DLLs last, after
+    all NuGet assets have landed, guaranteeing the local versions win.
+  -->
+  <ItemGroup>
+    <_LocalLibs Include="Libs\*.dll" />
+  </ItemGroup>
+
+  <Target Name="PrioritizeLocalReferences" AfterTargets="CopyFilesToOutputDirectory">
+    <Copy SourceFiles="@(_LocalLibs)" DestinationFolder="$(OutDir)" OverwriteReadOnlyFiles="true" SkipUnchangedFiles="false" />
+  </Target>
+
+  <ItemGroup>
+    <None Update="appsettings.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+
+</Project>

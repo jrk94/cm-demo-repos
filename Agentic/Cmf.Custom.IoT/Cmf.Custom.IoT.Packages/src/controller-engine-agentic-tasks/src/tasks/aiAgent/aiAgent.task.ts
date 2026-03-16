@@ -113,7 +113,11 @@ export class AiAgentTask extends TaskBase implements AiAgentSettings {
                                         type: "string"
                                     },
                                     maxSize: {
-                                        description: "The maximum number of items to retrieve. Please choose a value that makes sense for the data you are trying to retrieve, as retrieving too many items might impact performance. e.g. 2 for a list of the last 2 values of a variable.",
+                                        description: "The number of items to retrieve. e.g. 1 or 2",
+                                        type: "number"
+                                    },
+                                    offset: {
+                                        description: "Skip this many items from the end to start paginating backwards. 0 = most recent, 1 = second most recent, etc.",
                                         type: "number"
                                     }
                                 }
@@ -121,7 +125,8 @@ export class AiAgentTask extends TaskBase implements AiAgentSettings {
                             handler: async (params: any) => {
                                 let identifier = params.identifier;
                                 let defaultValue = params.defaultValue;
-                                let maxSize = params.maxSize || 10;
+                                let maxSize = params.maxSize || 2;
+                                let offset = params.offset || 0;
 
                                 let retrievedValue = await this._dataStore.retrieve(identifier, defaultValue);
 
@@ -133,11 +138,51 @@ export class AiAgentTask extends TaskBase implements AiAgentSettings {
 
                                 retrievedValue = retrievedValue.storage ? retrievedValue.storage.map((item: any) => item.value) : retrievedValue;
 
-                                if (Array.isArray(retrievedValue) && retrievedValue.length > maxSize) {
-                                    retrievedValue = (retrievedValue as Array<any>).slice(-maxSize);
+                                if (Array.isArray(retrievedValue)) {
+                                    // Calculate start position: end - offset - maxSize
+                                    const startIndex = Math.max(0, retrievedValue.length - offset - maxSize);
+                                    const endIndex = retrievedValue.length - offset || undefined;
+                                    retrievedValue = retrievedValue.slice(startIndex, endIndex);
                                 }
 
-                                return typeof retrievedValue === "string" ? retrievedValue : JSON.stringify(retrievedValue);
+                                const formatForLLM = (value: any, totalLength: number): string => {
+                                    if (Array.isArray(value)) {
+                                        const showing = value.length;
+                                        const remaining = totalLength - showing;
+                                        const startIndex = Math.max(0, totalLength - showing - offset);
+                                        const lastValue = value.length > 0 ? JSON.stringify(value[value.length - 1]) : "none";
+                                        
+                                        let result = `Array: Total ${totalLength} items | Showing ${showing} items (indices ${startIndex}-${startIndex + showing - 1}) | Remaining ${remaining} items\n`;
+                                        result += `Last shown value: ${lastValue}\n`;
+                                        result += `Data: `;
+                                        
+                                        // Try to include full values, truncate individual items if needed
+                                        const processedItems = value.map((item: any, itemIndex: number) => {
+                                            let itemStr = typeof item === "string" ? item : JSON.stringify(item);
+                                            const arrayIndex = startIndex + itemIndex;
+                                            
+                                            if (itemStr.length > 300) {
+                                                return `[Index ${arrayIndex}] ${itemStr.substring(0, 300)}...[truncated at position ${arrayIndex}]`;
+                                            }
+                                            return itemStr;
+                                        });
+                                        
+                                        result += JSON.stringify(processedItems);
+                                        return result;
+                                    }
+                                    
+                                    let str = typeof value === "string" ? value : JSON.stringify(value);
+                                    
+                                    if (str.length > 500) {
+                                        return str.substring(0, 500) + "...[truncated - data too large]";
+                                    }
+                                    
+                                    return str;
+                                };
+
+                                // Get total length from storage before slicing
+                                let originalLength = Array.isArray(retrievedValue) ? (retrievedValue.length + offset + maxSize) : 1;
+                                return formatForLLM(retrievedValue, originalLength);
                             }
                         }),
                         storeInPersistency: defineChatSessionFunction({
