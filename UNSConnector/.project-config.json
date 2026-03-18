@@ -1,5 +1,5 @@
 {
-  "ProjectName": "CLI-Validators",
+  "ProjectName": "UNSConnector",
   "RepositoryType": "Customization",
   "BaseLayer": "MES",
   "NPMRegistry": "https://criticalmanufacturing.io/repository/npm/",

@@ -1,0 +1,20 @@
+{
+    "$schema": "https://json.schemastore.org/tsconfig",
+    "extends": [
+        "ts-configs/runtime.json",
+        "ts-configs/external-dependencies.json"
+    ],
+    "compilerOptions": {
+        "outDir": "./dist",
+        "types": [
+            "node"
+        ],
+        // TODO: Remove the following flags
+        "noImplicitAny": false,
+        "strictNullChecks": false
+    },
+    "include": [
+        "src/**/*",
+        "font/metadata.ts"
+    ]
+}

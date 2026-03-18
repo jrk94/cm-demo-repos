@@ -1,0 +1,59 @@
+﻿# Compiled output
+/dist
+/tmp
+/out-tsc
+/bazel-out
+
+# Node
+/node_modules
+.npm
+
+# IDEs and editors
+.idea/
+.project
+.classpath
+.c9/
+*.launch
+.settings/
+*.sublime-workspace
+.vscode/*
+!.vscode/extensions.json
+
+# Visual Studio Code
+.history/*
+
+# Misc
+/.angular/cache
+.sass-cache/
+/connect.lock
+/coverage
+/libpeerconnection.log
+npm-debug.log
+yarn-error.log
+testem.log
+/typings
+
+# System files
+.DS_Store
+Thumbs.db
+
+# Environment files
+.env
+.env.local
+.env.*.local
+src/environments/*.local.ts
+
+# Angular specific
+*.js.map
+*.d.ts
+!src/**/*.d.ts
+
+# Testing
+/e2e/*.js
+/e2e/*.map
+/cypress/videos
+/cypress/screenshots
+
+# Build artifacts
+*.ngfactory.ts
+*.ngsummary.json

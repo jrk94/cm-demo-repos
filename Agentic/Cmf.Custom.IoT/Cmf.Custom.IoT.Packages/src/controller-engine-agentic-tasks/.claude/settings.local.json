@@ -1,0 +1,21 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(npx node-llama-cpp:*)",
+      "Bash(npm view:*)",
+      "Bash(python -c:*)",
+      "Bash(node -e:*)",
+      "Bash(node --input-type=module:*)",
+      "Bash(powershell -command \"Format-Hex -Path ''Qwen_Qwen3-4B-Q4_K_M.gguf'' -Count 32\")",
+      "WebSearch",
+      "WebFetch(domain:node-llama-cpp.withcat.ai)",
+      "WebFetch(domain:github.com)",
+      "Bash(ls \"c:\\\\cmf\\\\cm-demo-repos\\\\Agentic\\\\Cmf.Custom.IoT\\\\Cmf.Custom.IoT.Packages\\\\src\\\\controller-engine-agentic-tasks\\\\dist\\\\src\"\" 2>/dev/null || echo \"dist/src does not exist \")",
+      "Bash(python3 -c \"import json,sys; d=json.load\\(sys.stdin\\); print\\(''type:'', d.get\\(''type'',''none''\\)\\); print\\(''main:'', d.get\\(''main'',''none''\\)\\); print\\(''exports:'', ''yes'' if ''exports'' in d else ''no''\\); print\\(''module:'', d.get\\(''module'',''none''\\)\\)\")",
+      "Bash(npm ls node-llama-cpp)",
+      "Bash(grep -l \"LlamaChatSession\" *.js)",
+      "Bash(npm test)",
+      "Bash(npm run build:tests)"
+    ]
+  }
+}

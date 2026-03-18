@@ -1,0 +1,47 @@
+{
+    "type": "TasksLibrary",
+    "templates": "${Source}/templates/",
+    "_UN_UNDERSCORE_NEXT_LINE_FOR_ENABLING_FONTS:": "",
+    "_font": "${Source}/font/config.json",
+    "addons": [
+        {
+            "name": "llama-addon",
+            "version": "3.16.2",
+            "fileMask": "*.node"
+        }
+    ],
+    "postActions": [
+        {
+            "type": "DeleteFile",
+            "source": "${Temp}/completion.sh.hbs"
+        },
+        {
+            "type": "DeleteDirectory",
+            "source": "${Temp}/src"
+        },
+        {
+            "type": "DeleteDirectory",
+            "source": "${Temp}/build"
+        },
+        {
+            "type": "DeleteDirectory",
+            "source": "${Temp}/locales"
+        },
+        {
+            "type": "DeleteDirectory",
+            "source": "${Temp}/addonsHandler"
+        },
+        {
+            "type": "ReplaceText",
+            "source": "${Temp}/index.js",
+            "search": "build\\\\Release\\\\",
+            "replace": "./../build/release/"
+        },
+        {
+            "type": "ReplaceText",
+            "source": "${Temp}/index.js",
+            "search": "build/Release/",
+            "replace": "./../build/release/"
+        }
+    ]
+}

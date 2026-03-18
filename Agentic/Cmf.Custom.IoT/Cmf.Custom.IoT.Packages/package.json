@@ -1,0 +1,31 @@
+{
+  "name": "connect-iot-custom-root",
+  "private": true,
+  "packageId": "Cmf.Custom.IoT.Packages",
+  "version": "1.0.0",
+  "scripts": {
+    "build": "npm run build -ws --if-present",
+    "build:test:cover": "npm run build:test:cover -ws --if-present",
+    "lint": "npm run lint -ws --if-present",
+    "lint:fix": "npm run lint:fix -ws --if-present",
+    "test": "npm run test -ws --if-present",
+    "test:cover": "npm run test:cover -ws --if-present",
+    "packagePacker": "npm run packagePacker -ws --if-present",
+    "watch": "npm run watch -ws --if-present",
+    "generateTaskLibrary": "cd src && cmf new iot taskLibrary && cd .."
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "@criticalmanufacturing/node-package-bundler": "latest",
+    "concurrently": "8.2.2",
+    "eslint": "9.24.0",
+    "eslint-configs": "0.0.0",
+    "run-sequence": "2.2.1",
+    "yargs": "17.6.2"
+  },
+  "workspaces": [
+    "configs/eslint-configs",
+    "configs/ts-configs",
+    "src/*"
+  ]
+}

@@ -1,0 +1,24 @@
+{
+    "name": "eslint-configs",
+    "version": "0.0.0",
+    "private": true,
+    "main": "./index.js",
+    "description": "Configurations for eslint",
+    "type": "module",
+    "scripts": {
+        "debug": "eslint --inspect-config"
+    },
+    "devDependencies": {
+        "@eslint/js": "^9.24.0",
+        "@stylistic/eslint-plugin-ts": "^3.1.0",
+        "eslint": "9.24.0",
+        "eslint-import-resolver-typescript": "^4.4.4",
+        "eslint-plugin-import-x": "^4.16.1",
+        "eslint-plugin-mocha": "^10.5.0",
+        "eslint-plugin-package-json": "0.29.1",
+        "typescript-eslint": "^8.30.1"
+    },
+    "peerDependencies": {
+        "eslint": ">=9.0.0 <10"
+    }
+}

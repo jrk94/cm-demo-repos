@@ -1,0 +1,85 @@
+{
+  "name": "Chat with Instance",
+  "description": "Chat with Agentic Instance",
+  "scopes": "Automation, AutomationController, AutomationControllerList",
+  "conditionType": "JSONata",
+  "condition": "",
+  "metadata": {
+    "start": "ControllersWithAgenticInstances",
+    "resultType": "Custom",
+    "finally": "",
+    "end": "",
+    "steps": [
+      {
+        "name": "ControllersWithAgenticInstances",
+        "type": "Script",
+        "resultKey": "controllersWithAgenticInstances",
+        "settings": {
+          "dataType": "Object",
+          "script": "${script(./scripts/agentic_controllers.ts)}"
+        },
+        "next": "InstancesToTalkWith"
+      },
+      {
+        "name": "InstancesToTalkWith",
+        "type": "Question",
+        "resultKey": "instanceToTalkWith",
+        "settings": {
+          "message": "Choose an Automation Instance to chat with:",
+          "dataType": "FindEntity",
+          "settings": {
+            "query": "${script(./scripts/instances_to_talk_with.ts)}"
+          }
+        },
+        "next": "AskQuestionsToInstanceWithMessage"
+      },
+      {
+        "name": "AskQuestionsToInstanceWithMessage",
+        "type": "Question",
+        "resultKey": "question",
+        "settings": {
+          "dataType": "String",
+          "message": "Ask a question to the chosen instance (to stop conversation send 'end'):"
+        },
+        "next": "EndConversationCondition"
+      },
+      {
+        "name": "EndConversationCondition",
+        "type": "Condition",
+        "settings": {
+          "condition": {
+            "question != 'end'": "SendMessageToInstance"
+          }
+        },
+        "next": ""
+      },
+      {
+        "name": "SendMessageToInstance",
+        "type": "Script",
+        "resultKey": "replyFromInstance",
+        "settings": {
+          "dataType": "String",
+          "script": "${script(./scripts/send_message_to_instance.ts)}"
+        },
+        "next": "ReplyFromInstance"
+      },
+      {
+        "name": "ReplyFromInstance",
+        "type": "Message",
+        "settings": {
+          "messageKey": "replyFromInstance"
+        },
+        "next": "AskQuestionsToInstance"
+      },
+      {
+        "name": "AskQuestionsToInstance",
+        "type": "Question",
+        "resultKey": "question",
+        "settings": {
+          "dataType": "String"
+        },
+        "next": "EndConversationCondition"
+      }
+    ]
+  }
+}
