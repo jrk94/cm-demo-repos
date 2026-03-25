@@ -1,0 +1,58 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>net8.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Cmf.ConnectIoT.TestOrchestrator.Core.Common" Version="0.2.2" />
+    <PackageReference Include="Cmf.ConnectIoT.TestOrchestrator.Core.ScenarioBuilder" Version="0.0.5" />
+    <PackageReference Include="Cmf.ConnectIoT.TestOrchestrator.Plugin.Simulator.OPCUA" Version="0.3.3" />
+    <PackageReference Include="Cmf.ConnectIoT.TestOrchestrator.Plugin.StartMode.Local" Version="0.2.1" />
+    <PackageReference Include="Microsoft.Extensions.Hosting" Version="9.0.10" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Objects\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="Cmf.LightBusinessObjects">
+      <HintPath>..\IndustrialEquipmentSimulator\Libs\Cmf.LightBusinessObjects.dll</HintPath>
+    </Reference>
+    <Reference Include="Cmf.LoadBalancing">
+      <HintPath>..\IndustrialEquipmentSimulator\Libs\Cmf.LoadBalancing.dll</HintPath>
+    </Reference>
+    <Reference Include="Cmf.MessageBus.Client">
+      <HintPath>..\IndustrialEquipmentSimulator\Libs\Cmf.MessageBus.Client.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>..\IndustrialEquipmentSimulator\Libs\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="SuperSocket.ClientEngine">
+      <HintPath>..\IndustrialEquipmentSimulator\Libs\SuperSocket.ClientEngine.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Configuration.ConfigurationManager">
+      <HintPath>..\IndustrialEquipmentSimulator\Libs\System.Configuration.ConfigurationManager.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Data.OleDb">
+      <HintPath>..\IndustrialEquipmentSimulator\Libs\System.Data.OleDb.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Net.Http.Formatting">
+      <HintPath>..\IndustrialEquipmentSimulator\Libs\System.Net.Http.Formatting.dll</HintPath>
+    </Reference>
+    <Reference Include="WebSocket4Net">
+      <HintPath>..\IndustrialEquipmentSimulator\Libs\WebSocket4Net.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="appsettings.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+
+</Project>

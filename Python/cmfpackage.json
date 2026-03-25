@@ -1,0 +1,20 @@
+{
+  "packageId": "Cmf.Custom.Package",
+  "version": "1.0.0",
+  "description": "This package deploys Critical Manufacturing cmf Customization",
+  "packageType": "Root",
+  "isInstallable": true,
+  "isUniqueInstall": false,
+  "dependencies": [
+    {
+      "id": "Cmf.Environment",
+      "version": "11.2.3",
+      "mandatory": false
+    },
+    {
+      "id": "Cmf.Custom.IoT",
+      "version": "1.0.0"
+    }
+  ],
+  "testPackages": []
+}

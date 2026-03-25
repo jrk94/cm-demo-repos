@@ -1,0 +1,12 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(node -e \"const { Utilities } = require\\(''@criticalmanufacturing/connect-iot-controller-engine''\\); console.log\\(''inputToProperty:'', Utilities.inputToProperty\\(''valueIn''\\)\\); console.log\\(''propertyToOutput:'', Utilities.propertyToOutput\\(''result''\\)\\); console.log\\(''inputToProperty\\(value\\):'', Utilities.inputToProperty\\(''value''\\)\\);\")",
+      "Bash(node -e \"require\\(''reflect-metadata''\\); const { Utilities } = require\\(''@criticalmanufacturing/connect-iot-controller-engine''\\); console.log\\(''inputToProperty\\(valueIn\\):'', Utilities.inputToProperty\\(''valueIn''\\)\\); console.log\\(''inputToProperty\\(value\\):'', Utilities.inputToProperty\\(''value''\\)\\); console.log\\(''propertyToOutput\\(result\\):'', Utilities.propertyToOutput\\(''result''\\)\\); console.log\\(''propertyToOutput\\(success\\):'', Utilities.propertyToOutput\\(''success''\\)\\);\")",
+      "Bash(node -e \"require\\(''reflect-metadata''\\); const { Utilities } = require\\(''@criticalmanufacturing/connect-iot-controller-engine''\\); [''activate'', ''activateIn'', ''myInputIn'', ''myInput'', ''nameIn'', ''name''].forEach\\(n => console.log\\(''inputToProperty\\('' + n + ''\\):'', Utilities.inputToProperty\\(n\\)\\)\\); [''success'', ''error'', ''myOutput'', ''result'', ''name''].forEach\\(n => console.log\\(''propertyToOutput\\('' + n + ''\\):'', Utilities.propertyToOutput\\(n\\)\\)\\);\")",
+      "Bash(node -e \"require\\(''reflect-metadata''\\); const { Task } = require\\(''@criticalmanufacturing/connect-iot-controller-engine''\\); console.log\\(''TaskValueType keys:'', Object.keys\\(Task.TaskValueType || {}\\)\\);\")",
+      "Bash(npm test:*)",
+      "Bash(node -e \":*)"
+    ]
+  }
+}

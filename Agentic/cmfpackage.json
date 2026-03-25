@@ -14,14 +14,6 @@
     {
       "id": "Cmf.Custom.IoT",
       "version": "1.0.0"
-    },
-    {
-      "id": "Cmf.Custom.Data",
-      "version": "1.0.0"
-    },
-    {
-      "id": "Cmf.Custom.Business",
-      "version": "1.0.0"
     }
   ],
   "testPackages": []

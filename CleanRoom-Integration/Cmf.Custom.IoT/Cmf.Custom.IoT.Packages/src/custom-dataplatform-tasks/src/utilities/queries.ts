@@ -138,15 +138,15 @@ export class Queries {
         field_resource.Position = 1;
         field_resource.Sort = Cmf.Foundation.Common.FieldSort.NoSort;
 
-        // Field field_3
-        const field_3: Cmf.Foundation.BusinessObjects.QueryObject.Field = new Cmf.Foundation.BusinessObjects.QueryObject.Field();
-        field_3.Alias = "Area";
-        field_3.ObjectName = "Area";
-        field_3.ObjectAlias = "Resource_Area_2";
-        field_3.IsUserAttribute = false;
-        field_3.Name = "Name";
-        field_3.Position = 2;
-        field_3.Sort = Cmf.Foundation.Common.FieldSort.NoSort;
+        // Field field_area
+        const field_area: Cmf.Foundation.BusinessObjects.QueryObject.Field = new Cmf.Foundation.BusinessObjects.QueryObject.Field();
+        field_area.Alias = "Area";
+        field_area.ObjectName = "Area";
+        field_area.ObjectAlias = "Resource_Area_2";
+        field_area.IsUserAttribute = false;
+        field_area.Name = "Name";
+        field_area.Position = 2;
+        field_area.Sort = Cmf.Foundation.Common.FieldSort.NoSort;
 
         // Field field_facility
         const field_facility: Cmf.Foundation.BusinessObjects.QueryObject.Field = new Cmf.Foundation.BusinessObjects.QueryObject.Field();
@@ -179,6 +179,7 @@ export class Queries {
         field_enterprise.Sort = Cmf.Foundation.Common.FieldSort.NoSort;
 
         fieldCollection.push(field_resource);
+        fieldCollection.push(field_area);
         fieldCollection.push(field_facility);
         fieldCollection.push(field_site);
         fieldCollection.push(field_enterprise);
