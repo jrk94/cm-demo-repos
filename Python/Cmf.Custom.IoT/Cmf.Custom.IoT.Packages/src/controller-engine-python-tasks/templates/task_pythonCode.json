@@ -1,0 +1,95 @@
+{
+  "converters": [],
+  "tasks": [
+    {
+      "name": "pythonCode",
+      "displayName": "Python Code",
+      "dependsOnDesignerScope": [
+        "DataFlow",
+        "ControlFlow"
+      ],
+      "iconClass": "icon-coreatl-tasks-connect-iot-lg-codeexecution",
+      "isProtocol": true,
+      "isController": true,
+      "lifecycle": "",
+      "lifecycleMessage": "",
+      "dependsOnProtocol": [],
+      "dependsOnScope": [],
+      "category": "Workflow",
+      "section": "Actions",
+      "selectedTab": "Code",
+      "saveOnKeyboardShortcut": true,
+      "inputs": {
+        "activate": {
+          "type": "Activate",
+          "displayName": "Activate"
+        },
+        "_inputs": {
+          "type": "AutoPort",
+          "dataType": "String",
+          "displayName": "Link here to add new",
+          "settings": {
+            "settingKey": "inputs",
+            "destination": "Input",
+            "excludeSuffix": false
+          }
+        }
+      },
+      "outputs": {
+        "success": {
+          "type": "Success",
+          "displayName": "Success"
+        },
+        "error": {
+          "type": "Error",
+          "displayName": "Error"
+        },
+        "_outputs": {
+          "type": "AutoPort",
+          "dataType": "String",
+          "displayName": "Link here to add new",
+          "settings": {
+            "settingKey": "outputs",
+            "destination": "Output",
+            "excludeSuffix": false
+          }
+        }
+      },
+      "settings": {
+        "General": {
+          "Settings": [
+            {
+              "name": "contextExpirationInMilliseconds",
+              "displayName": "Expiration Time",
+              "settingKey": "contextExpirationInMilliseconds",
+              "dataType": "Integer",
+              "defaultValue": 10000
+            },
+            {
+              "name": "executionExpirationInMilliseconds",
+              "settingKey": "executionExpirationInMilliseconds",
+              "dataType": "Integer",
+              "defaultValue": 0,
+              "condition": "false"
+            }
+          ]
+        },
+        "Code": {
+          "": [
+            {
+              "name": "pyCode",
+              "settingKey": "pyCode",
+              "dataType": "Code"
+            }
+          ]
+        }
+      },
+      "designer": {
+        "controlFlow": {
+          "type": "Function",
+          "displayName": "Execute custom python code in the workflow"
+        }
+      }
+    }
+  ]
+}
