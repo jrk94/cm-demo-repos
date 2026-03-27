@@ -1,0 +1,17 @@
+{
+  "packageId": "Cmf.Custom.MESProject.HTML",
+  "version": "1.0.0",
+  "description": "Cmf Custom CMFLabs Cmf.Custom.MESProject.HTML Package",
+  "packageType": "Html",
+  "isInstallable": true,
+  "isUniqueInstall": false,
+  "contentToPack": [
+    {
+      "source": "dist/cmf.custom.mesproject.html/**",
+      "target": "",
+      "ignoreFiles": [
+        ".npmignore"
+      ]
+    }
+  ]
+}
