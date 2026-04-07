@@ -1,0 +1,24 @@
+{
+  "packageId": "Cmf.Custom.MESProject.IoT.Python",
+  "version": "1.0.0",
+  "description": "Cmf Custom CMFLabs Cmf.Custom.MESProject.IoT.Python Package",
+  "packageType": "Root",
+  "isInstallable": true,
+  "isUniqueInstall": false,
+  "dependencies": [
+    {
+      "id": "Cmf.Environment",
+      "version": "<%= $CLI_PARAM_MESVersion %>",
+      "mandatory": false
+    },
+    {
+      "id": "CriticalManufacturing.DeploymentMetadata",
+      "version": "<%= $CLI_PARAM_MESVersion %>",
+      "mandatory": false
+    },
+    {
+      "id": "Cmf.Custom.MESProject.IoT.Python.Packages",
+      "version": "1.0.0"
+    }
+  ]
+}

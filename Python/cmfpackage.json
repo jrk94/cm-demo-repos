@@ -1,5 +1,5 @@
 {
-  "packageId": "Cmf.Custom.Package",
+  "packageId": "Cmf.Custom.MESProject",
   "version": "1.0.0",
   "description": "This package deploys Critical Manufacturing cmf Customization",
   "packageType": "Root",
@@ -12,7 +12,11 @@
       "mandatory": false
     },
     {
-      "id": "Cmf.Custom.IoT",
+      "id": "Cmf.Custom.MESProject.IoT.Python",
+      "version": "1.0.0"
+    },
+    {
+      "id": "Cmf.Custom.MESProject.HTML",
       "version": "1.0.0"
     }
   ],
