@@ -1,0 +1,56 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>net8.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Reference Include="Cmf.LightBusinessObjects">
+      <HintPath>..\..\..\..\Users\jroque\Downloads\LBOs\NetStandard\Cmf.LightBusinessObjects.dll</HintPath>
+    </Reference>
+    <Reference Include="Cmf.LoadBalancing">
+      <HintPath>..\..\..\..\Users\jroque\Downloads\LBOs\NetStandard\Libs\Cmf.LoadBalancing.dll</HintPath>
+    </Reference>
+    <Reference Include="Cmf.MessageBus.Client">
+      <HintPath>..\..\..\..\Users\jroque\Downloads\LBOs\NetStandard\Libs\Cmf.MessageBus.Client.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>Libs\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="SuperSocket.ClientEngine">
+      <HintPath>Libs\SuperSocket.ClientEngine.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Configuration.ConfigurationManager">
+      <HintPath>Libs\System.Configuration.ConfigurationManager.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Data.OleDb">
+      <HintPath>Libs\System.Data.OleDb.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Net.Http.Formatting">
+      <HintPath>Libs\System.Net.Http.Formatting.dll</HintPath>
+    </Reference>
+    <Reference Include="WebSocket4Net">
+      <HintPath>Libs\WebSocket4Net.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="appsettings.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Objects\" />
+    <Folder Include="Utilities\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.Extensions.Hosting" Version="10.0.6" />
+    <PackageReference Include="SharpCompress" Version="0.47.4" />
+  </ItemGroup>
+
+</Project>
