@@ -1,0 +1,118 @@
+{
+  "converters": [],
+  "tasks": [
+    {
+      "name": "agentic",
+      "displayName": "Agentic",
+      "iconClass": "icon-core-st-lg-bot",
+      "isProtocol": false,
+      "isController": true,
+      "lifecycle": "Productive",
+      "lifecycleMessage": "",
+      "dependsOnProtocol": [],
+      "dependsOnScope": [],
+      "inputs": {
+        "systemPrompt": {
+          "displayName": "System Prompt",
+          "dataType": "String",
+          "type": "Static"
+        },
+        "prompt": {
+          "displayName": "Prompt",
+          "dataType": "String",
+          "type": "Static"
+        },
+        "destroySessionOnSuccess": {
+          "displayName": "Always Close Session",
+          "dataType": "Boolean",
+          "type": "Static"
+        },
+        "activate": {
+          "type": "Activate",
+          "dataType": "String",
+          "displayName": "Activate",
+          "defaultValue": ""
+        }
+      },
+      "outputs": {
+        "result": {
+          "type": "Static",
+          "dataType": "String",
+          "displayName": "Result"
+        },
+        "success": {
+          "type": "Success",
+          "displayName": "Success"
+        },
+        "error": {
+          "type": "Error",
+          "displayName": "Error"
+        }
+      },
+      "settings": {
+        "General": {
+          "Agentic Configurations": [
+            {
+              "name": "model",
+              "displayName": "LLM Model",
+              "settingKey": "model",
+              "dataType": "string",
+              "infoMessage": "LLM Model to use",
+              "defaultValue": "gpt-4.1-2025-04-14"
+            },
+            {
+              "name": "temperature",
+              "displayName": "Model Temperature",
+              "settingKey": "temperature",
+              "dataType": "Decimal",
+              "infoMessage": "Model temperature",
+              "defaultValue": 0.7
+            },
+            {
+              "name": "apiKey",
+              "displayName": "API Key",
+              "settingKey": "apiKey",
+              "dataType": "password",
+              "infoMessage": "API Key for LLM",
+              "defaultValue": ""
+            },
+            {
+              "name": "destroySessionOnSuccess",
+              "displayName": "Always Close Session",
+              "settingKey": "destroySessionOnSuccess",
+              "dataType": "Boolean",
+              "infoMessage": "When the task finishes close the Session",
+              "defaultValue": true
+            }
+          ]
+        },
+        "Prompt Configurations": {
+          "Settings": [
+            {
+              "name": "systemPrompt",
+              "displayName": "System Prompt",
+              "settingKey": "systemPrompt",
+              "dataType": "Text",
+              "settings": {
+                "rows": 15
+              },
+              "infoMessage": "System Prompt",
+              "defaultValue": ""
+            },
+            {
+              "name": "prompt",
+              "displayName": "Prompt",
+              "settingKey": "prompt",
+              "dataType": "Text",
+              "settings": {
+                "rows": 15
+              },
+              "infoMessage": "Prompt",
+              "defaultValue": ""
+            }
+          ]
+        }
+      }
+    }
+  ]
+}
