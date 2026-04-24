@@ -14,6 +14,14 @@
     {
       "id": "Cmf.Custom.MESProject.IoT.OData",
       "version": "1.0.0"
+    },
+    {
+      "id": "Cmf.Custom.MESProject.IoT.Python",
+      "version": "1.0.0"
+    },
+    {
+      "id": "Cmf.Custom.Data",
+      "version": "1.0.0"
     }
   ],
   "testPackages": []

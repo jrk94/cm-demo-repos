@@ -1,0 +1,1270 @@
+{
+  "<DM>AutomationController": {
+    "1": {
+      "Name": "Resource State Change Enrichment [A.1]",
+      "IsTemplate": "No",
+      "Type": "General",
+      "ControllerPackageVersion": "NA",
+      "TasksPackages": [
+        "@criticalmanufacturing/connect-iot-controller-engine-core-tasks",
+        "@criticalmanufacturing/connect-iot-controller-engine-dataplatform-tasks",
+        "@criticalmanufacturing/connect-iot-controller-engine-factoryautomation-tasks",
+        "@criticalmanufacturing/connect-iot-controller-engine-odata-tasks",
+        "@criticalmanufacturing/connect-iot-controller-engine-python-tasks"
+      ],
+      "Scope": "DataPlatform",
+      "LinkConnector": "Smooth",
+      "LinkRouter": "Normal",
+      "TasksLibraryPackages": [
+        "@criticalmanufacturing/connect-iot-controller-engine-core-tasks@11.2.4",
+        "@criticalmanufacturing/connect-iot-controller-engine-dataplatform-tasks@11.2.4",
+        "@criticalmanufacturing/connect-iot-controller-engine-factoryautomation-tasks@11.2.4",
+        "@criticalmanufacturing/connect-iot-controller-engine-odata-tasks@0.0.0"
+      ],
+      "DefaultWorkflowType": "ControlFlow"
+    }
+  },
+  "AutomationControllerIoTEventDef": {
+    "1": {
+      "AutomationController": "Resource State Change Enrichment [A.1]",
+      "IoTEventDefinition": "ResourceStateChange",
+      "SupportedEventVariant": "Standard",
+      "Order": "1"
+    }
+  },
+  "AutomationControllerWorkflow": {
+    "1": {
+      "AutomationController": "Resource State Change Enrichment [A.1]",
+      "Name": "AutomationWorkflow_4d0c30b4-a2b9-49c0-b18c-a65d1b1a5072",
+      "DisplayName": "Main",
+      "Workflow": {
+        "tasks": [
+          {
+            "id": "1776434505528732",
+            "name": "job",
+            "type": {
+              "name": "jobStart",
+              "package": "@criticalmanufacturing/connect-iot-controller-engine-factoryautomation-tasks",
+              "version": "11.2.4"
+            },
+            "x": 290,
+            "y": 190,
+            "isCollapsed": false,
+            "isDisabled": false,
+            "settings": {
+              "selectedFactoryAutomationEvents": [
+                {
+                  "Name": "ResourceStateChange",
+                  "Folder": {
+                    "Path": "\\IoTEventDefinitions\\CDM\\Resource"
+                  },
+                  "$type": "Cmf.Foundation.BusinessObjects.IoTEventDefinition, Cmf.Foundation.BusinessObjects"
+                }
+              ],
+              "outputs": [
+                {
+                  "name": "Header",
+                  "valueType": {
+                    "type": 10,
+                    "friendlyName": "Header"
+                  },
+                  "_automaticGenerated": true
+                },
+                {
+                  "name": "Enterprise",
+                  "valueType": {
+                    "type": 10,
+                    "friendlyName": "Enterprise"
+                  },
+                  "_automaticGenerated": true
+                },
+                {
+                  "name": "Site",
+                  "valueType": {
+                    "type": 10,
+                    "friendlyName": "Site"
+                  },
+                  "_automaticGenerated": true
+                },
+                {
+                  "name": "Facility",
+                  "valueType": {
+                    "type": 10,
+                    "friendlyName": "Facility"
+                  },
+                  "_automaticGenerated": true
+                },
+                {
+                  "name": "Resource",
+                  "valueType": {
+                    "type": 10,
+                    "friendlyName": "Resource"
+                  },
+                  "_automaticGenerated": true
+                },
+                {
+                  "name": "Area",
+                  "valueType": {
+                    "type": 10,
+                    "friendlyName": "Area"
+                  },
+                  "_automaticGenerated": true
+                },
+                {
+                  "name": "Calendar",
+                  "valueType": {
+                    "type": 10,
+                    "friendlyName": "Calendar"
+                  },
+                  "_automaticGenerated": true
+                },
+                {
+                  "name": "Employee",
+                  "valueType": {
+                    "type": 10,
+                    "friendlyName": "Employee"
+                  },
+                  "_automaticGenerated": true
+                },
+                {
+                  "name": "Previous",
+                  "valueType": {
+                    "type": 10,
+                    "friendlyName": "Previous"
+                  },
+                  "_automaticGenerated": true
+                }
+              ]
+            },
+            "inputs": [
+              {
+                "name": "HeaderIn",
+                "displayName": "Header",
+                "value": "",
+                "dataType": "Object"
+              },
+              {
+                "name": "EnterpriseIn",
+                "displayName": "Enterprise",
+                "value": "",
+                "dataType": "Object"
+              },
+              {
+                "name": "SiteIn",
+                "displayName": "Site",
+                "value": "",
+                "dataType": "Object"
+              },
+              {
+                "name": "FacilityIn",
+                "displayName": "Facility",
+                "value": "",
+                "dataType": "Object"
+              },
+              {
+                "name": "ResourceIn",
+                "displayName": "Resource",
+                "value": "",
+                "dataType": "Object"
+              },
+              {
+                "name": "AreaIn",
+                "displayName": "Area",
+                "value": "",
+                "dataType": "Object"
+              },
+              {
+                "name": "CalendarIn",
+                "displayName": "Calendar",
+                "value": "",
+                "dataType": "Object"
+              },
+              {
+                "name": "EmployeeIn",
+                "displayName": "Employee",
+                "value": "",
+                "dataType": "Object"
+              },
+              {
+                "name": "PreviousIn",
+                "displayName": "Previous",
+                "value": "",
+                "dataType": "Object"
+              }
+            ],
+            "outputs": [
+              {
+                "name": "Header",
+                "displayName": "Header",
+                "value": "{{ $this.HeaderOut }}",
+                "dataType": "Object"
+              },
+              {
+                "name": "Enterprise",
+                "displayName": "Enterprise",
+                "value": "{{ $this.EnterpriseOut }}",
+                "dataType": "Object"
+              },
+              {
+                "name": "Site",
+                "displayName": "Site",
+                "value": "{{ $this.SiteOut }}",
+                "dataType": "Object"
+              },
+              {
+                "name": "Facility",
+                "displayName": "Facility",
+                "value": "{{ $this.FacilityOut }}",
+                "dataType": "Object"
+              },
+              {
+                "name": "Resource",
+                "displayName": "Resource",
+                "value": "{{ $this.ResourceOut }}",
+                "dataType": "Object"
+              },
+              {
+                "name": "Area",
+                "displayName": "Area",
+                "value": "{{ $this.AreaOut }}",
+                "dataType": "Object"
+              },
+              {
+                "name": "Calendar",
+                "displayName": "Calendar",
+                "value": "{{ $this.CalendarOut }}",
+                "dataType": "Object"
+              },
+              {
+                "name": "Employee",
+                "displayName": "Employee",
+                "value": "{{ $this.EmployeeOut }}",
+                "dataType": "Object"
+              },
+              {
+                "name": "Previous",
+                "displayName": "Previous",
+                "value": "{{ $this.PreviousOut }}",
+                "dataType": "Object"
+              },
+              {
+                "name": "raw",
+                "displayName": "raw",
+                "value": "{{ $this.__rawOut }}",
+                "dataType": "Any"
+              },
+              {
+                "name": "iotEvent",
+                "displayName": "iotEvent",
+                "value": "{{ $this.__iotEventOut }}",
+                "dataType": "Any"
+              },
+              {
+                "name": "jobId",
+                "displayName": "jobId",
+                "value": "{{ $this.__jobIdOutOut }}",
+                "dataType": "String"
+              },
+              {
+                "displayName": "data",
+                "name": "data",
+                "value": "{{ $this.__iotEvent.value.Data }}",
+                "dataType": "Any"
+              }
+            ],
+            "caption": "When the job start execution",
+            "branches": [
+              {
+                "name": "handler",
+                "settings": {},
+                "tasks": [
+                  {
+                    "id": "177687215693523871",
+                    "name": "tryCatch_0e3b",
+                    "type": {
+                      "name": "tryCatch",
+                      "package": "@criticalmanufacturing/connect-iot-controller-engine-core-tasks",
+                      "version": "11.2.4"
+                    },
+                    "isCollapsed": false,
+                    "isDisabled": false,
+                    "settings": {},
+                    "inputs": [],
+                    "outputs": [],
+                    "caption": "Try to execute",
+                    "color": "#7e8081",
+                    "branches": [
+                      {
+                        "name": "try",
+                        "settings": {},
+                        "tasks": [
+                          {
+                            "id": "1776679685102733",
+                            "name": "condition_a648",
+                            "type": {
+                              "name": "condition",
+                              "package": "@criticalmanufacturing/connect-iot-controller-engine-core-tasks",
+                              "version": "11.2.4"
+                            },
+                            "isCollapsed": false,
+                            "isDisabled": false,
+                            "settings": {},
+                            "inputs": [],
+                            "outputs": [],
+                            "caption": "Check {{handler.type}} {{handler.condition}}",
+                            "color": "#0c6e0e",
+                            "branches": [
+                              {
+                                "name": "handler",
+                                "settings": {
+                                  "type": "If",
+                                  "condition": "{{ $job.Resource.SEMIE10State == \"Unscheduled Down\" and $job.Header.Operation == \"LogEvent\" }}"
+                                },
+                                "tasks": [
+                                  {
+                                    "id": "17764357238211355",
+                                    "name": "workflow_e762",
+                                    "type": {
+                                      "name": "workflow",
+                                      "package": "@criticalmanufacturing/connect-iot-controller-engine-core-tasks",
+                                      "version": "11.2.4"
+                                    },
+                                    "isCollapsed": false,
+                                    "isDisabled": false,
+                                    "settings": {
+                                      "retries": 30,
+                                      "contextsExpirationInMilliseconds": 60000,
+                                      "executionExpirationInMilliseconds": 1200000,
+                                      "executeWhenAllInputsDefined": false,
+                                      "automationWorkflow": {
+                                        "displayName": "Enrichment",
+                                        "isShared": false,
+                                        "name": null
+                                      },
+                                      "inputs": [
+                                        {
+                                          "name": "resourceName",
+                                          "valueType": "String",
+                                          "defaultValue": "{{ $job.Resource.Name }}"
+                                        },
+                                        {
+                                          "name": "resource_state_change",
+                                          "valueType": "Object",
+                                          "defaultValue": "{{ $job.data}}"
+                                        }
+                                      ],
+                                      "outputs": [
+                                        {
+                                          "name": "result",
+                                          "valueType": {
+                                            "friendlyName": "Result",
+                                            "name": "String",
+                                            "type": 4,
+                                            "collectionType": 0,
+                                            "referenceType": null,
+                                            "referenceTypeName": null,
+                                            "referenceTypeId": null
+                                          }
+                                        }
+                                      ]
+                                    },
+                                    "inputs": [
+                                      {
+                                        "name": "resourceNameIn",
+                                        "displayName": "resourceName",
+                                        "value": "{{ $job.Resource.Name }}",
+                                        "dataType": "String"
+                                      },
+                                      {
+                                        "name": "resource_state_changeIn",
+                                        "displayName": "resource_state_change",
+                                        "value": "{{ $job.data}}",
+                                        "dataType": "Object"
+                                      }
+                                    ],
+                                    "outputs": [
+                                      {
+                                        "name": "result",
+                                        "displayName": "result",
+                                        "value": "{{ $this.resultOut }}",
+                                        "dataType": "String"
+                                      }
+                                    ],
+                                    "caption": "Call SubWorkflow Enrichment",
+                                    "color": "#95d6a5",
+                                    "branches": []
+                                  }
+                                ],
+                                "order": 1
+                              },
+                              {
+                                "name": "else",
+                                "settings": {
+                                  "type": "Else"
+                                },
+                                "tasks": [],
+                                "order": 2
+                              }
+                            ]
+                          }
+                        ],
+                        "order": 1
+                      },
+                      {
+                        "name": "catch",
+                        "settings": {
+                          "variableName": "ex"
+                        },
+                        "tasks": [],
+                        "order": 2
+                      }
+                    ]
+                  },
+                  {
+                    "id": "1776434505534733",
+                    "name": "return_1aeb",
+                    "type": {
+                      "name": "return",
+                      "package": "@criticalmanufacturing/connect-iot-controller-engine-core-tasks",
+                      "version": "11.2.4"
+                    },
+                    "isCollapsed": false,
+                    "isDisabled": false,
+                    "settings": {
+                      "data": "{}"
+                    },
+                    "inputs": [],
+                    "outputs": [],
+                    "caption": "Return {{data}} to caller",
+                    "branches": []
+                  }
+                ],
+                "order": 1
+              }
+            ]
+          }
+        ],
+        "layout": {
+          "general": {
+            "color": null
+          },
+          "drawer": {
+            "tasks": {},
+            "x": -104.02127573062,
+            "y": -307.7802360387743,
+            "zoom": 1.5540994623655915,
+            "fill": true
+          }
+        }
+      },
+      "Order": "1",
+      "IsTemplate": "No",
+      "IsShared": "No",
+      "Indentation": "0",
+      "WorkflowType": "ControlFlow"
+    },
+    "2": {
+      "AutomationController": "Resource State Change Enrichment [A.1]",
+      "Name": "AutomationWorkflow_548d6572-6ec8-4f09-8df9-705b7226ead7",
+      "DisplayName": "Enrichment",
+      "Workflow": {
+        "tasks": [
+          {
+            "id": "task_1491",
+            "reference": {
+              "name": "subWorkflowStart",
+              "package": {
+                "name": "@criticalmanufacturing/connect-iot-controller-engine-core-tasks",
+                "version": "11.2.4"
+              }
+            },
+            "settings": {
+              "outputs": [
+                {
+                  "name": "resourceName",
+                  "valueType": {
+                    "name": "String",
+                    "type": 4,
+                    "collectionType": 0,
+                    "referenceType": null,
+                    "referenceTypeName": null,
+                    "referenceTypeId": null,
+                    "friendlyName": "resourceName"
+                  },
+                  "defaultValue": null
+                },
+                {
+                  "name": "resource_state_change",
+                  "friendlyName": "resource_state_change",
+                  "valueType": {
+                    "friendlyName": "resource_state_change",
+                    "name": "Object",
+                    "type": 10,
+                    "collectionType": 0,
+                    "referenceType": null,
+                    "referenceTypeName": null,
+                    "referenceTypeId": null
+                  }
+                }
+              ],
+              "___cmf___name": "SubWorkflow Start"
+            }
+          },
+          {
+            "id": "task_1497",
+            "reference": {
+              "name": "subWorkflowEnd",
+              "package": {
+                "name": "@criticalmanufacturing/connect-iot-controller-engine-core-tasks",
+                "version": "11.2.4"
+              }
+            },
+            "settings": {
+              "inputs": [
+                {
+                  "name": "result",
+                  "friendlyName": "result",
+                  "valueType": {
+                    "friendlyName": "Result",
+                    "name": "String",
+                    "type": 4,
+                    "collectionType": 0,
+                    "referenceType": null,
+                    "referenceTypeName": null,
+                    "referenceTypeId": null
+                  }
+                }
+              ]
+            }
+          },
+          {
+            "id": "task_1581",
+            "reference": {
+              "name": "queryOData",
+              "package": {
+                "name": "@criticalmanufacturing/connect-iot-controller-engine-odata-tasks",
+                "version": "0.0.0"
+              }
+            },
+            "settings": {
+              "inputs": [
+                {
+                  "name": "resourceName",
+                  "valueType": {
+                    "name": "String",
+                    "type": 4,
+                    "collectionType": 0,
+                    "referenceType": null,
+                    "referenceTypeName": null,
+                    "referenceTypeId": null,
+                    "friendlyName": ""
+                  },
+                  "defaultValue": null
+                },
+                {
+                  "name": "startInterval",
+                  "valueType": {
+                    "name": "String",
+                    "type": 4,
+                    "collectionType": 0,
+                    "referenceType": null,
+                    "referenceTypeName": null,
+                    "referenceTypeId": null,
+                    "friendlyName": ""
+                  },
+                  "defaultValue": null
+                },
+                {
+                  "name": "stopInterval",
+                  "valueType": {
+                    "name": "String",
+                    "type": 4,
+                    "collectionType": 0,
+                    "referenceType": null,
+                    "referenceTypeName": null,
+                    "referenceTypeId": null,
+                    "friendlyName": ""
+                  },
+                  "defaultValue": null
+                }
+              ],
+              "defaultSelect": "",
+              "___cmf___name": "Query OData",
+              "folder": "CDM",
+              "dataset": "Resource.ResourceAlarm",
+              "defaultFilter": "Header_StartDateTime ge {startInterval} and Header_StartDateTime le {stopInterval} and  Resource_Name  eq '{resourceName}'",
+              "___cmf___description": "Resource.ResourceAlarm Last 10 minutes",
+              "___cmf___color": "#709bff"
+            }
+          },
+          {
+            "id": "task_1587",
+            "reference": {
+              "name": "pythonCode",
+              "package": {
+                "name": "@criticalmanufacturing/connect-iot-controller-engine-python-tasks",
+                "version": "0.0.0"
+              }
+            },
+            "settings": {
+              "pyCode": [
+                "class Code:",
+                "    def __init__(self, framework):",
+                "        self.logger = framework['logger']",
+                "        self.data_store = framework['data_store']",
+                "        self.message_bus = framework['message_bus']",
+                "        self.system = framework['system']",
+                "        self.utils = framework['utils']",
+                "        self.lbos = framework['lbos']",
+                "        # self.driver = framework['driver']",
+                "",
+                "    def merge(self, alarms: list[dict], resource_state: dict) -> dict:",
+                "        calendar = resource_state.get(\"Calendar\", {})",
+                "        shift = calendar.get(\"Shift\", {})",
+                "        employee = resource_state.get(\"Employee\", {})",
+                "        enterprise = resource_state.get(\"Enterprise\", {})",
+                "        site = resource_state.get(\"Site\", {})",
+                "        facility = resource_state.get(\"Facility\", {})",
+                "        area = resource_state.get(\"Area\", {})",
+                "        resource = resource_state.get(\"Resource\", {})",
+                "",
+                "        state_resource_uid = resource.get(\"UID\")",
+                "",
+                "        import json",
+                "        ",
+                "        self.logger.debug(f'Merge: resource- {json.dumps(resource, sort_keys=True)}')",
+                "        self.logger.debug(f'Merge: calendar- {json.dumps(calendar, sort_keys=True)}')",
+                "        self.logger.debug(f'Merge: shift- {json.dumps(shift, sort_keys=True)}')",
+                "        self.logger.debug(f'Merge: state_resource_uid- {json.dumps(state_resource_uid, sort_keys=True)}')",
+                "",
+                "        joined_alarms = []",
+                "        for alarm in alarms:",
+                "            self.logger.debug(f'UID: alarm - {json.dumps(alarm.get(\"Resource_UID\"), sort_keys=True)}')",
+                "            if alarm.get(\"Resource_UID\") != state_resource_uid:",
+                "                continue",
+                "",
+                "            joined_alarms.append({",
+                "                \"alarm_code\": alarm.get(\"Alarm_Code\"),",
+                "                \"alarm_type\": alarm.get(\"Alarm_Type\"),",
+                "                \"alarm_severity\": alarm.get(\"Alarm_Severity\"),",
+                "                \"alarm_cause\": alarm.get(\"Alarm_Cause\"),",
+                "                \"alarm_description\": alarm.get(\"Alarm_Description\"),",
+                "                \"alarm_timestamp\": alarm.get(\"Timestamp\"),",
+                "                \"alarm_action\": alarm.get(\"Action\"),",
+                "            })",
+                "",
+                "        return {",
+                "            \"resource\": {",
+                "                \"uid\": state_resource_uid,",
+                "                \"name\": resource.get(\"Name\"),",
+                "                \"enterprise\": enterprise.get(\"Name\"),",
+                "                \"site\": site.get(\"Name\"),",
+                "                \"facility\": facility.get(\"Name\"),",
+                "                \"area\": area.get(\"Name\"),",
+                "            },",
+                "            \"resource_state\": {",
+                "                \"system_state\": resource.get(\"SystemState\"),",
+                "                \"previous_system_state\": resource.get(\"PreviousSystemState\"),",
+                "                \"control_state\": resource.get(\"ControlState\"),",
+                "                \"semie10_state\": resource.get(\"SEMIE10State\"),",
+                "                \"modified_by\": resource.get(\"ModifiedBy\"),",
+                "                \"modified_on\": resource.get(\"ModifiedOn\"),",
+                "            },",
+                "            \"operator\": {",
+                "                \"name\": employee.get(\"Name\"),",
+                "                \"number\": employee.get(\"Number\"),",
+                "            },",
+                "            \"shift\": {",
+                "                \"name\": shift.get(\"Name\"),",
+                "                \"start\": shift.get(\"StartTime\"),",
+                "                \"end\": shift.get(\"EndTime\"),",
+                "                \"date\": calendar.get(\"CD\"),",
+                "                \"timezone\": calendar.get(\"Timezone\"),",
+                "            },",
+                "            \"alarms\": joined_alarms,",
+                "        }",
+                "",
+                "    async def main(self, inputs, outputs):",
+                "        import json",
+                "        ",
+                "        self.logger.debug(f'Starting python script: alarms- {json.dumps(inputs['alarms'], sort_keys=True)} resource_state_change- {json.dumps(inputs['resource_state_change'], sort_keys=True)} times')",
+                "        dataset = self.merge(inputs['alarms'], inputs['resource_state_change'])",
+                "        outputs.join_datasets.emit(dataset)",
+                "        self.logger.debug(\"Finished python script\")",
+                "        pass",
+                ""
+              ],
+              "pyCodeBase64": "Y2xhc3MgQ29kZToKICAgIGRlZiBfX2luaXRfXyhzZWxmLCBmcmFtZXdvcmspOgogICAgICAgIHNlbGYubG9nZ2VyID0gZnJhbWV3b3JrWydsb2dnZXInXQogICAgICAgIHNlbGYuZGF0YV9zdG9yZSA9IGZyYW1ld29ya1snZGF0YV9zdG9yZSddCiAgICAgICAgc2VsZi5tZXNzYWdlX2J1cyA9IGZyYW1ld29ya1snbWVzc2FnZV9idXMnXQogICAgICAgIHNlbGYuc3lzdGVtID0gZnJhbWV3b3JrWydzeXN0ZW0nXQogICAgICAgIHNlbGYudXRpbHMgPSBmcmFtZXdvcmtbJ3V0aWxzJ10KICAgICAgICBzZWxmLmxib3MgPSBmcmFtZXdvcmtbJ2xib3MnXQogICAgICAgICMgc2VsZi5kcml2ZXIgPSBmcmFtZXdvcmtbJ2RyaXZlciddCgogICAgZGVmIG1lcmdlKHNlbGYsIGFsYXJtczogbGlzdFtkaWN0XSwgcmVzb3VyY2Vfc3RhdGU6IGRpY3QpIC0+IGRpY3Q6CiAgICAgICAgY2FsZW5kYXIgPSByZXNvdXJjZV9zdGF0ZS5nZXQoIkNhbGVuZGFyIiwge30pCiAgICAgICAgc2hpZnQgPSBjYWxlbmRhci5nZXQoIlNoaWZ0Iiwge30pCiAgICAgICAgZW1wbG95ZWUgPSByZXNvdXJjZV9zdGF0ZS5nZXQoIkVtcGxveWVlIiwge30pCiAgICAgICAgZW50ZXJwcmlzZSA9IHJlc291cmNlX3N0YXRlLmdldCgiRW50ZXJwcmlzZSIsIHt9KQogICAgICAgIHNpdGUgPSByZXNvdXJjZV9zdGF0ZS5nZXQoIlNpdGUiLCB7fSkKICAgICAgICBmYWNpbGl0eSA9IHJlc291cmNlX3N0YXRlLmdldCgiRmFjaWxpdHkiLCB7fSkKICAgICAgICBhcmVhID0gcmVzb3VyY2Vfc3RhdGUuZ2V0KCJBcmVhIiwge30pCiAgICAgICAgcmVzb3VyY2UgPSByZXNvdXJjZV9zdGF0ZS5nZXQoIlJlc291cmNlIiwge30pCgogICAgICAgIHN0YXRlX3Jlc291cmNlX3VpZCA9IHJlc291cmNlLmdldCgiVUlEIikKCiAgICAgICAgaW1wb3J0IGpzb24KICAgICAgICAKICAgICAgICBzZWxmLmxvZ2dlci5kZWJ1ZyhmJ01lcmdlOiByZXNvdXJjZS0ge2pzb24uZHVtcHMocmVzb3VyY2UsIHNvcnRfa2V5cz1UcnVlKX0nKQogICAgICAgIHNlbGYubG9nZ2VyLmRlYnVnKGYnTWVyZ2U6IGNhbGVuZGFyLSB7anNvbi5kdW1wcyhjYWxlbmRhciwgc29ydF9rZXlzPVRydWUpfScpCiAgICAgICAgc2VsZi5sb2dnZXIuZGVidWcoZidNZXJnZTogc2hpZnQtIHtqc29uLmR1bXBzKHNoaWZ0LCBzb3J0X2tleXM9VHJ1ZSl9JykKICAgICAgICBzZWxmLmxvZ2dlci5kZWJ1ZyhmJ01lcmdlOiBzdGF0ZV9yZXNvdXJjZV91aWQtIHtqc29uLmR1bXBzKHN0YXRlX3Jlc291cmNlX3VpZCwgc29ydF9rZXlzPVRydWUpfScpCgogICAgICAgIGpvaW5lZF9hbGFybXMgPSBbXQogICAgICAgIGZvciBhbGFybSBpbiBhbGFybXM6CiAgICAgICAgICAgIHNlbGYubG9nZ2VyLmRlYnVnKGYnVUlEOiBhbGFybSAtIHtqc29uLmR1bXBzKGFsYXJtLmdldCgiUmVzb3VyY2VfVUlEIiksIHNvcnRfa2V5cz1UcnVlKX0nKQogICAgICAgICAgICBpZiBhbGFybS5nZXQoIlJlc291cmNlX1VJRCIpICE9IHN0YXRlX3Jlc291cmNlX3VpZDoKICAgICAgICAgICAgICAgIGNvbnRpbnVlCgogICAgICAgICAgICBqb2luZWRfYWxhcm1zLmFwcGVuZCh7CiAgICAgICAgICAgICAgICAiYWxhcm1fY29kZSI6IGFsYXJtLmdldCgiQWxhcm1fQ29kZSIpLAogICAgICAgICAgICAgICAgImFsYXJtX3R5cGUiOiBhbGFybS5nZXQoIkFsYXJtX1R5cGUiKSwKICAgICAgICAgICAgICAgICJhbGFybV9zZXZlcml0eSI6IGFsYXJtLmdldCgiQWxhcm1fU2V2ZXJpdHkiKSwKICAgICAgICAgICAgICAgICJhbGFybV9jYXVzZSI6IGFsYXJtLmdldCgiQWxhcm1fQ2F1c2UiKSwKICAgICAgICAgICAgICAgICJhbGFybV9kZXNjcmlwdGlvbiI6IGFsYXJtLmdldCgiQWxhcm1fRGVzY3JpcHRpb24iKSwKICAgICAgICAgICAgICAgICJhbGFybV90aW1lc3RhbXAiOiBhbGFybS5nZXQoIlRpbWVzdGFtcCIpLAogICAgICAgICAgICAgICAgImFsYXJtX2FjdGlvbiI6IGFsYXJtLmdldCgiQWN0aW9uIiksCiAgICAgICAgICAgIH0pCgogICAgICAgIHJldHVybiB7CiAgICAgICAgICAgICJyZXNvdXJjZSI6IHsKICAgICAgICAgICAgICAgICJ1aWQiOiBzdGF0ZV9yZXNvdXJjZV91aWQsCiAgICAgICAgICAgICAgICAibmFtZSI6IHJlc291cmNlLmdldCgiTmFtZSIpLAogICAgICAgICAgICAgICAgImVudGVycHJpc2UiOiBlbnRlcnByaXNlLmdldCgiTmFtZSIpLAogICAgICAgICAgICAgICAgInNpdGUiOiBzaXRlLmdldCgiTmFtZSIpLAogICAgICAgICAgICAgICAgImZhY2lsaXR5IjogZmFjaWxpdHkuZ2V0KCJOYW1lIiksCiAgICAgICAgICAgICAgICAiYXJlYSI6IGFyZWEuZ2V0KCJOYW1lIiksCiAgICAgICAgICAgIH0sCiAgICAgICAgICAgICJyZXNvdXJjZV9zdGF0ZSI6IHsKICAgICAgICAgICAgICAgICJzeXN0ZW1fc3RhdGUiOiByZXNvdXJjZS5nZXQoIlN5c3RlbVN0YXRlIiksCiAgICAgICAgICAgICAgICAicHJldmlvdXNfc3lzdGVtX3N0YXRlIjogcmVzb3VyY2UuZ2V0KCJQcmV2aW91c1N5c3RlbVN0YXRlIiksCiAgICAgICAgICAgICAgICAiY29udHJvbF9zdGF0ZSI6IHJlc291cmNlLmdldCgiQ29udHJvbFN0YXRlIiksCiAgICAgICAgICAgICAgICAic2VtaWUxMF9zdGF0ZSI6IHJlc291cmNlLmdldCgiU0VNSUUxMFN0YXRlIiksCiAgICAgICAgICAgICAgICAibW9kaWZpZWRfYnkiOiByZXNvdXJjZS5nZXQoIk1vZGlmaWVkQnkiKSwKICAgICAgICAgICAgICAgICJtb2RpZmllZF9vbiI6IHJlc291cmNlLmdldCgiTW9kaWZpZWRPbiIpLAogICAgICAgICAgICB9LAogICAgICAgICAgICAib3BlcmF0b3IiOiB7CiAgICAgICAgICAgICAgICAibmFtZSI6IGVtcGxveWVlLmdldCgiTmFtZSIpLAogICAgICAgICAgICAgICAgIm51bWJlciI6IGVtcGxveWVlLmdldCgiTnVtYmVyIiksCiAgICAgICAgICAgIH0sCiAgICAgICAgICAgICJzaGlmdCI6IHsKICAgICAgICAgICAgICAgICJuYW1lIjogc2hpZnQuZ2V0KCJOYW1lIiksCiAgICAgICAgICAgICAgICAic3RhcnQiOiBzaGlmdC5nZXQoIlN0YXJ0VGltZSIpLAogICAgICAgICAgICAgICAgImVuZCI6IHNoaWZ0LmdldCgiRW5kVGltZSIpLAogICAgICAgICAgICAgICAgImRhdGUiOiBjYWxlbmRhci5nZXQoIkNEIiksCiAgICAgICAgICAgICAgICAidGltZXpvbmUiOiBjYWxlbmRhci5nZXQoIlRpbWV6b25lIiksCiAgICAgICAgICAgIH0sCiAgICAgICAgICAgICJhbGFybXMiOiBqb2luZWRfYWxhcm1zLAogICAgICAgIH0KCiAgICBhc3luYyBkZWYgbWFpbihzZWxmLCBpbnB1dHMsIG91dHB1dHMpOgogICAgICAgIGltcG9ydCBqc29uCiAgICAgICAgCiAgICAgICAgc2VsZi5sb2dnZXIuZGVidWcoZidTdGFydGluZyBweXRob24gc2NyaXB0OiBhbGFybXMtIHtqc29uLmR1bXBzKGlucHV0c1snYWxhcm1zJ10sIHNvcnRfa2V5cz1UcnVlKX0gcmVzb3VyY2Vfc3RhdGVfY2hhbmdlLSB7anNvbi5kdW1wcyhpbnB1dHNbJ3Jlc291cmNlX3N0YXRlX2NoYW5nZSddLCBzb3J0X2tleXM9VHJ1ZSl9IHRpbWVzJykKICAgICAgICBkYXRhc2V0ID0gc2VsZi5tZXJnZShpbnB1dHNbJ2FsYXJtcyddLCBpbnB1dHNbJ3Jlc291cmNlX3N0YXRlX2NoYW5nZSddKQogICAgICAgIG91dHB1dHMuam9pbl9kYXRhc2V0cy5lbWl0KGRhdGFzZXQpCiAgICAgICAgc2VsZi5sb2dnZXIuZGVidWcoIkZpbmlzaGVkIHB5dGhvbiBzY3JpcHQiKQogICAgICAgIHBhc3MK",
+              "inputs": [
+                {
+                  "name": "alarms",
+                  "valueType": {
+                    "name": "Object",
+                    "type": 10,
+                    "collectionType": 1,
+                    "referenceType": null,
+                    "referenceTypeName": null,
+                    "referenceTypeId": null,
+                    "friendlyName": ""
+                  },
+                  "defaultValue": null
+                },
+                {
+                  "name": "resource_state_change",
+                  "valueType": {
+                    "name": "Object",
+                    "type": 10,
+                    "collectionType": 0,
+                    "referenceType": null,
+                    "referenceTypeName": null,
+                    "referenceTypeId": null,
+                    "friendlyName": ""
+                  },
+                  "defaultValue": ""
+                }
+              ],
+              "outputs": [
+                {
+                  "name": "join_datasets",
+                  "valueType": {
+                    "name": "Object",
+                    "type": 10,
+                    "collectionType": 0,
+                    "referenceType": null,
+                    "referenceTypeName": null,
+                    "referenceTypeId": null,
+                    "friendlyName": ""
+                  },
+                  "defaultValue": null
+                }
+              ],
+              "packages": [],
+              "contextExpirationInMilliseconds": 10000,
+              "executionTimeoutMs": 0,
+              "___cmf___name": "Python Code",
+              "___cmf___color": "#31b927"
+            }
+          },
+          {
+            "id": "task_3960",
+            "reference": {
+              "name": "agentic",
+              "package": {
+                "name": "@criticalmanufacturing/connect-iot-controller-engine-odata-tasks",
+                "version": "0.0.0"
+              }
+            },
+            "settings": {
+              "model": "gpt-4.1-2025-04-14",
+              "temperature": 0.7,
+              "apiKey": "",
+              "destroySessionOnSuccess": true,
+              "systemPrompt": "You are a senior machine engineer with deep expertise in industrial systems, diagnostics, maintenance, and failure analysis.\n\nYour role is to analyze machine alarms, logs, and sensor data and produce accurate technical reports that explain what happened, why it happened, and what actions should be taken.\n\nYou must prioritize clarity, structure, and visual readability over strict markup formats.\n\n---\n\n# OUTPUT STYLE RULES (MANDATORY)\n\n## 1. Visual Structure Rules\n\nYou MUST structure all responses using:\n\n- Clear section headers using ALL CAPS\n- Indentation for hierarchy using 2 spaces\n- Labels using COLON FORMAT\n- Emphasis using ALL CAPS or [BRACKETS]\n- Output must be in vanilla HTML5\n\n---\n\n## 2. Formatting Conventions\n\n### Emphasis Rules\n- CRITICAL ITEMS → ALL CAPS\n- Important labels → Label:\n- Optional emphasis → [LIKE THIS]\n\n### Alarms\nAlways format alarms like:\n• ALARM: ALARM_123\n• ALARM: ALARM_ABC\n\nNever paraphrase alarm codes. Always breakline between alarms.\n\n---\n\n## 3. Required Report Structure (STRICT ORDER)\n\nEvery response MUST follow this structure:\n\nSUMMARY\nKEY ALARMS & OBSERVATIONS\nLIKELY ROOT CAUSE\nIMPACT ON MACHINE\nRECOMMENDED ACTIONS\nCONFIDENCE LEVEL\n\n---\n\n## 4. Section Rules\n\n### SUMMARY\n- 2–4 sentences max\n- Plain readable explanation\n- No bullet overload\n\n---\n\n### KEY ALARMS & OBSERVATIONS\n- Bullet list only\n- Must include timestamps if available\n- Must preserve alarm codes exactly\n\nExample:\n• ALARM: OVERCURRENT_01 triggered at 10:32:14\n• EVENT: MOTOR_TORQUE_SPIKE detected 2 seconds later\n\n---\n\n### LIKELY ROOT CAUSE\n\nMust include:\n\nWho was the operator:\n• ...\n\nPrimary Cause:\n• ...\n\nContributing Factors:\n• ...\n\nAssumptions:\n• If unknown, explicitly state \"INSUFFICIENT DATA\"\n\n---\n\n### IMPACT ON MACHINE\n\nMust include:\n\nAffected Systems:\n• ...\n\nSeverity:\n• LOW / MEDIUM / HIGH / CRITICAL\n\nRisks:\n• Equipment damage\n• Production downtime\n• Safety risk (if applicable)\n\n---\n\n### RECOMMENDED ACTIONS\n\nMust be split into:\n\nIMMEDIATE:\n• Actions required now to prevent damage\n\nSHORT-TERM:\n• Repairs, inspections, replacements\n\nLONG-TERM:\n• Preventive improvements and tuning\n\n---\n\n### CONFIDENCE LEVEL\n\nFormat:\n\nConfidence: HIGH / MEDIUM / LOW\nReason:\n• Short justification based on data completeness and consistency\n\n---\n\n## 5. ENGINEERING PRINCIPLES\n\n- Prefer simplest explanation that fits all alarms\n- Do not hallucinate machine types, models, or missing signals\n- If data is insufficient, explicitly state uncertainty\n- Rank multiple hypotheses by likelihood when needed\n- Avoid generic maintenance advice unless it ties to observed alarms\n\n---\n\n## 6. SANITY CHECKS (MANDATORY BEFORE FINAL ANSWER)\n\nBefore responding, validate:\n\n• Does the alarm sequence make causal sense?\n• Are time intervals physically plausible?\n• Are multiple alarms being incorrectly treated as independent?\n• Are values being summed incorrectly instead of compared?\n\nIf inconsistencies exist:\n→ Explicitly mention them in ASSUMPTIONS\n\n---\n\n## 7. VISUAL REPORTING GOAL\n\nYour output should behave like a:\n\"well-structured industrial maintenance report displayed in a SCADA dashboard\"\n\nPriorities:\n1. Readability\n2. Deterministic structure\n3. Fast scanning by engineers\n4. No formatting fragility\n",
+              "prompt": "",
+              "___cmf___name": "Agentic",
+              "___cmf___color": "#02d6f2"
+            }
+          },
+          {
+            "id": "task_6151",
+            "reference": {
+              "name": "createNotification",
+              "package": {
+                "name": "@criticalmanufacturing/connect-iot-controller-engine-core-tasks",
+                "version": "11.2.4"
+              }
+            },
+            "settings": {
+              "type": "Alarm Summary",
+              "notificationTitle": "Alarm Summary",
+              "notificationSeverity": "Critical",
+              "assignmentTo": "Everyone",
+              "clearanceMode": "ManualSingleUser",
+              "___cmf___name": "Create notification",
+              "___cmf___color": "#fb3737"
+            }
+          },
+          {
+            "id": "task_29204",
+            "reference": {
+              "name": "logMessage",
+              "package": {
+                "name": "@criticalmanufacturing/connect-iot-controller-engine-core-tasks",
+                "version": "11.2.4"
+              }
+            },
+            "settings": {
+              "inputs": [],
+              "mode": "RawText",
+              "verbosity": "Debug",
+              "clearInputs": true,
+              "___cmf___name": "Log Message"
+            }
+          },
+          {
+            "id": "task_1767",
+            "reference": {
+              "name": "logMessage",
+              "package": {
+                "name": "@criticalmanufacturing/connect-iot-controller-engine-core-tasks",
+                "version": "11.2.4"
+              }
+            },
+            "settings": {
+              "inputs": [
+                {
+                  "name": "resourceName",
+                  "friendlyName": "resourceName",
+                  "valueType": {
+                    "friendlyName": "resourceName",
+                    "name": "String",
+                    "type": 4,
+                    "collectionType": 0,
+                    "referenceType": null,
+                    "referenceTypeName": null,
+                    "referenceTypeId": null
+                  }
+                },
+                {
+                  "name": "resource_state_change",
+                  "friendlyName": "resource_state_change",
+                  "valueType": {
+                    "friendlyName": "resource_state_change",
+                    "name": "Object",
+                    "type": 10,
+                    "collectionType": 0,
+                    "referenceType": null,
+                    "referenceTypeName": null,
+                    "referenceTypeId": null
+                  }
+                }
+              ],
+              "mode": "MultipleInputs",
+              "verbosity": "Warning",
+              "clearInputs": true,
+              "___cmf___name": "Log Message",
+              "message": ""
+            }
+          },
+          {
+            "id": "task_9871",
+            "reference": {
+              "name": "logMessage",
+              "package": {
+                "name": "@criticalmanufacturing/connect-iot-controller-engine-core-tasks",
+                "version": "11.2.4"
+              }
+            },
+            "settings": {
+              "inputs": [
+                {
+                  "name": "value",
+                  "friendlyName": "value",
+                  "valueType": {
+                    "friendlyName": "Value",
+                    "collectionType": 0,
+                    "referenceType": null,
+                    "referenceTypeName": null,
+                    "referenceTypeId": null
+                  }
+                }
+              ],
+              "mode": "MultipleInputs",
+              "verbosity": "Information",
+              "clearInputs": true,
+              "message": "",
+              "___cmf___name": "Log Message"
+            }
+          }
+        ],
+        "converters": [
+          {
+            "id": "@criticalmanufacturing/connect-iot-controller-engine-core-tasks#anyToConstant",
+            "reference": {
+              "name": "anyToConstant",
+              "package": {
+                "name": "@criticalmanufacturing/connect-iot-controller-engine-core-tasks",
+                "version": "11.2.4"
+              }
+            }
+          },
+          {
+            "id": "@criticalmanufacturing/connect-iot-controller-engine-odata-tasks#toTime",
+            "reference": {
+              "name": "toTime",
+              "package": {
+                "name": "@criticalmanufacturing/connect-iot-controller-engine-odata-tasks",
+                "version": "0.0.0"
+              }
+            }
+          },
+          {
+            "id": "@criticalmanufacturing/connect-iot-controller-engine-core-tasks#anyToString",
+            "reference": {
+              "name": "anyToString",
+              "package": {
+                "name": "@criticalmanufacturing/connect-iot-controller-engine-core-tasks",
+                "version": "11.2.4"
+              }
+            }
+          },
+          {
+            "id": "@criticalmanufacturing/connect-iot-controller-engine-odata-tasks#unixToISOString",
+            "reference": {
+              "name": "unixToISOString",
+              "package": {
+                "name": "@criticalmanufacturing/connect-iot-controller-engine-odata-tasks",
+                "version": "0.0.0"
+              }
+            }
+          }
+        ],
+        "links": [
+          {
+            "id": "fa688a2b-af0c-44e6-9174-d34b8e49d310",
+            "sourceId": "task_1491",
+            "targetId": "task_1581",
+            "inputName": "startIntervalIn",
+            "outputName": "activateOut",
+            "converters": [
+              {
+                "id": "@criticalmanufacturing/connect-iot-controller-engine-core-tasks#anyToConstant",
+                "params": {
+                  "type": "String",
+                  "value": "-10m"
+                }
+              },
+              {
+                "id": "@criticalmanufacturing/connect-iot-controller-engine-odata-tasks#toTime",
+                "params": {}
+              },
+              {
+                "id": "@criticalmanufacturing/connect-iot-controller-engine-odata-tasks#unixToISOString",
+                "params": {}
+              }
+            ]
+          },
+          {
+            "id": "e66fafa4-8a91-4c6e-af28-d06adcc4540e",
+            "sourceId": "task_1491",
+            "targetId": "task_1581",
+            "inputName": "stopIntervalIn",
+            "outputName": "activateOut",
+            "converters": [
+              {
+                "id": "@criticalmanufacturing/connect-iot-controller-engine-core-tasks#anyToConstant",
+                "params": {
+                  "type": "Integer",
+                  "value": 0
+                }
+              },
+              {
+                "id": "@criticalmanufacturing/connect-iot-controller-engine-odata-tasks#toTime",
+                "params": {}
+              },
+              {
+                "id": "@criticalmanufacturing/connect-iot-controller-engine-odata-tasks#unixToISOString",
+                "params": {}
+              }
+            ]
+          },
+          {
+            "id": "af8fd3ae-882c-47b9-babc-3880033a56cc",
+            "sourceId": "task_1581",
+            "targetId": "task_1587",
+            "inputName": "alarmsIn",
+            "outputName": "value"
+          },
+          {
+            "id": "0a747dd4-d769-4b88-944d-3ae55b7f8549",
+            "sourceId": "task_1581",
+            "targetId": "task_1587",
+            "inputName": "activate",
+            "outputName": "success"
+          },
+          {
+            "id": "a736c8b2-ffb0-4d79-8f89-8f44c11b6d4b",
+            "sourceId": "task_1587",
+            "targetId": "task_3960",
+            "inputName": "activate",
+            "outputName": "success"
+          },
+          {
+            "id": "b570fa92-b6e4-49ed-a0c5-8f12e8852340",
+            "sourceId": "task_1587",
+            "targetId": "task_3960",
+            "inputName": "prompt",
+            "outputName": "join_datasetsOut",
+            "converters": [
+              {
+                "id": "@criticalmanufacturing/connect-iot-controller-engine-core-tasks#anyToString",
+                "params": {}
+              }
+            ]
+          },
+          {
+            "id": "154b2e65-fbd6-406a-bd4b-146e8eebccc8",
+            "sourceId": "task_3960",
+            "targetId": "task_1497",
+            "inputName": "result",
+            "outputName": "result"
+          },
+          {
+            "id": "1be5578b-ca07-426a-8061-cbcf5f7b12a8",
+            "sourceId": "task_3960",
+            "targetId": "task_6151",
+            "inputName": "notificationDetails",
+            "outputName": "result"
+          },
+          {
+            "id": "cb1fbaef-cae1-4ae0-a3d8-5fb660ef6f49",
+            "sourceId": "task_6151",
+            "targetId": "task_1497",
+            "inputName": "success",
+            "outputName": "success"
+          },
+          {
+            "id": "678ce280-2a81-41ba-9c65-e092dd9a7314",
+            "sourceId": "task_1491",
+            "targetId": "task_1581",
+            "inputName": "activate",
+            "outputName": "activateOut"
+          },
+          {
+            "id": "b94d17c5-69da-426d-afdd-cfb81a94c59d",
+            "sourceId": "task_1491",
+            "targetId": "task_1581",
+            "inputName": "resourceNameIn",
+            "outputName": "resourceNameOut"
+          },
+          {
+            "id": "80811bd3-fd5a-4f6f-9071-dbf7d5c12905",
+            "sourceId": "task_3960",
+            "targetId": "task_6151",
+            "inputName": "activate",
+            "outputName": "success"
+          },
+          {
+            "id": "fdd9bc8b-135b-41bb-9197-c52b7ffd6125",
+            "sourceId": "task_1587",
+            "targetId": "task_29204",
+            "inputName": "message",
+            "outputName": "join_datasetsOut",
+            "converters": [
+              {
+                "id": "@criticalmanufacturing/connect-iot-controller-engine-core-tasks#anyToString",
+                "params": {}
+              }
+            ]
+          },
+          {
+            "id": "4b5fc92c-9bca-4c8b-b517-174bf8e59a25",
+            "sourceId": "task_1587",
+            "targetId": "task_29204",
+            "inputName": "activate",
+            "outputName": "success"
+          },
+          {
+            "id": "1045cd47-e64e-4fca-a929-d952ecfcd786",
+            "sourceId": "task_1491",
+            "targetId": "task_1587",
+            "inputName": "resource_state_changeIn",
+            "outputName": "resource_state_changeOut"
+          },
+          {
+            "id": "b11b9e5d-eaa2-4807-82fb-0f20d9d3698f",
+            "sourceId": "task_1491",
+            "targetId": "task_1767",
+            "inputName": "resourceNameIn",
+            "outputName": "resourceNameOut"
+          },
+          {
+            "id": "31f2573d-3d00-4498-bcac-8aab11f349a9",
+            "sourceId": "task_1491",
+            "targetId": "task_1767",
+            "inputName": "resource_state_changeIn",
+            "outputName": "resource_state_changeOut"
+          },
+          {
+            "id": "86878b6f-d5a7-47a7-a660-027cf9bd90be",
+            "sourceId": "task_1491",
+            "targetId": "task_1767",
+            "inputName": "activate",
+            "outputName": "activateOut"
+          },
+          {
+            "id": "18c4f476-52cb-4c1d-9e42-822359d48fb1",
+            "sourceId": "task_1581",
+            "targetId": "task_9871",
+            "inputName": "valueIn",
+            "outputName": "value"
+          },
+          {
+            "id": "d3921905-3058-4773-9470-de13ba4d18fd",
+            "sourceId": "task_1581",
+            "targetId": "task_9871",
+            "inputName": "activate",
+            "outputName": "success"
+          }
+        ],
+        "layout": {
+          "general": {
+            "color": null,
+            "notes": []
+          },
+          "drawers": {
+            "DIAGRAM": {
+              "tasks": {
+                "task_1491": {
+                  "collapsed": false,
+                  "position": {
+                    "x": 257,
+                    "y": 729
+                  },
+                  "outdated": false
+                },
+                "task_1587": {
+                  "collapsed": false,
+                  "position": {
+                    "x": 1374,
+                    "y": 285
+                  },
+                  "outdated": false
+                },
+                "task_1497": {
+                  "collapsed": false,
+                  "position": {
+                    "x": 2781,
+                    "y": 319
+                  },
+                  "outdated": false
+                },
+                "task_3960": {
+                  "collapsed": true,
+                  "position": {
+                    "x": 1892,
+                    "y": 463
+                  },
+                  "outdated": false
+                },
+                "task_1581": {
+                  "collapsed": false,
+                  "position": {
+                    "x": 838,
+                    "y": 82
+                  },
+                  "outdated": false
+                },
+                "task_29204": {
+                  "collapsed": true,
+                  "position": {
+                    "x": 1374,
+                    "y": 244
+                  },
+                  "outdated": false
+                },
+                "task_1767": {
+                  "collapsed": true,
+                  "position": {
+                    "x": 257,
+                    "y": 1015
+                  },
+                  "outdated": false
+                },
+                "task_9871": {
+                  "collapsed": true,
+                  "position": {
+                    "x": 1373,
+                    "y": 203
+                  },
+                  "outdated": false
+                },
+                "task_6151": {
+                  "collapsed": true,
+                  "position": {
+                    "x": 2363,
+                    "y": 469
+                  },
+                  "outdated": false
+                }
+              },
+              "links": {
+                "af8fd3ae-882c-47b9-babc-3880033a56cc": {
+                  "vertices": []
+                },
+                "0a747dd4-d769-4b88-944d-3ae55b7f8549": {
+                  "vertices": []
+                },
+                "a736c8b2-ffb0-4d79-8f89-8f44c11b6d4b": {
+                  "vertices": []
+                },
+                "154b2e65-fbd6-406a-bd4b-146e8eebccc8": {
+                  "vertices": []
+                },
+                "1be5578b-ca07-426a-8061-cbcf5f7b12a8": {
+                  "vertices": []
+                },
+                "cb1fbaef-cae1-4ae0-a3d8-5fb660ef6f49": {
+                  "vertices": []
+                },
+                "678ce280-2a81-41ba-9c65-e092dd9a7314": {
+                  "vertices": []
+                },
+                "b94d17c5-69da-426d-afdd-cfb81a94c59d": {
+                  "vertices": []
+                },
+                "80811bd3-fd5a-4f6f-9071-dbf7d5c12905": {
+                  "vertices": []
+                },
+                "4b5fc92c-9bca-4c8b-b517-174bf8e59a25": {
+                  "vertices": []
+                },
+                "1045cd47-e64e-4fca-a929-d952ecfcd786": {
+                  "vertices": []
+                },
+                "b11b9e5d-eaa2-4807-82fb-0f20d9d3698f": {
+                  "vertices": []
+                },
+                "31f2573d-3d00-4498-bcac-8aab11f349a9": {
+                  "vertices": []
+                },
+                "86878b6f-d5a7-47a7-a660-027cf9bd90be": {
+                  "vertices": []
+                },
+                "18c4f476-52cb-4c1d-9e42-822359d48fb1": {
+                  "vertices": []
+                },
+                "d3921905-3058-4773-9470-de13ba4d18fd": {
+                  "vertices": []
+                },
+                "fa688a2b-af0c-44e6-9174-d34b8e49d310": {
+                  "vertices": []
+                },
+                "e66fafa4-8a91-4c6e-af28-d06adcc4540e": {
+                  "vertices": []
+                },
+                "b570fa92-b6e4-49ed-a0c5-8f12e8852340": {
+                  "vertices": []
+                },
+                "fdd9bc8b-135b-41bb-9197-c52b7ffd6125": {
+                  "vertices": []
+                }
+              },
+              "notes": {},
+              "pan": {
+                "x": 153,
+                "y": 1
+              },
+              "zoom": 0.67
+            }
+          }
+        }
+      },
+      "Order": "2",
+      "IsTemplate": "No",
+      "IsShared": "No",
+      "Indentation": "0",
+      "WorkflowType": "DataFlow"
+    }
+  }
+}
