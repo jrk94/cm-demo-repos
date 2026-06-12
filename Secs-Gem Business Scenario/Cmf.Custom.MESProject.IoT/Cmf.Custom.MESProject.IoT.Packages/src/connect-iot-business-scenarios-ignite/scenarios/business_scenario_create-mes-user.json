@@ -1,0 +1,105 @@
+{
+    "name": "Create MES User",
+    "description": "Guides the user through creating a new MES user by collecting account details, display name, email address, primary role, authentication strategy, and password.",
+    "scopes": "Security",
+    "conditionType": "JSONata",
+    "condition": "",
+    "metadata": {
+        "start": "AskUserAccount",
+        "finally": "",
+        "end": "CreateUser",
+        "resultType": "Script",
+        "steps": [
+            {
+                "name": "AskUserAccount",
+                "type": "Question",
+                "resultKey": "userAccount",
+                "settings": {
+                    "message": "Please provide the user account (login name):",
+                    "dataType": "String"
+                },
+                "next": "AskName"
+            },
+            {
+                "name": "AskName",
+                "type": "Question",
+                "resultKey": "userName",
+                "settings": {
+                    "message": "Please provide the user display name:",
+                    "dataType": "String"
+                },
+                "next": "AskEmail"
+            },
+            {
+                "name": "AskEmail",
+                "type": "Question",
+                "resultKey": "mailAddress",
+                "settings": {
+                    "message": "Please provide the user email address:",
+                    "dataType": "String"
+                },
+                "next": "LoadRoles"
+            },
+            {
+                "name": "LoadRoles",
+                "type": "Script",
+                "resultKey": "rolesList",
+                "settings": {
+                    "script": "${script(./scripts/create-mes-user/load_roles.ts)}"
+                },
+                "next": "AskPrimaryRole"
+            },
+            {
+                "name": "AskPrimaryRole",
+                "type": "Question",
+                "resultKey": "primaryRole",
+                "settings": {
+                    "message": "Please select the primary role for this user:",
+                    "dataType": "Enum",
+                    "settings": {
+                        "data": [
+                            "this.answers.rolesList;"
+                        ]
+                    }
+                },
+                "next": "AskAuthStrategy"
+            },
+            {
+                "name": "AskAuthStrategy",
+                "type": "Question",
+                "resultKey": "authenticationStrategy",
+                "settings": {
+                    "message": "Please select the authentication strategy:",
+                    "dataType": "Enum",
+                    "defaultValue": "LocalUsers",
+                    "settings": {
+                        "enumValues": [
+                            "LocalUsers",
+                            "ActiveDirectory",
+                            "SingleSign-On"
+                        ]
+                    }
+                },
+                "next": "AskPassword"
+            },
+            {
+                "name": "AskPassword",
+                "type": "Question",
+                "resultKey": "password",
+                "settings": {
+                    "message": "Please provide a password for the user:",
+                    "dataType": "Password"
+                },
+                "next": ""
+            },
+            {
+                "name": "CreateUser",
+                "type": "Script",
+                "settings": {
+                    "script": "${script(./scripts/create-mes-user/create_user.ts)}"
+                },
+                "next": ""
+            }
+        ]
+    }
+}

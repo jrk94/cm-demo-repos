@@ -1,0 +1,476 @@
+{
+    "name": "SECS/GEM Integration",
+    "description": "Guides the user through configuring SECS/GEM communication settings (IP, port, mode) and optionally setting up data collections with events (CEID), reports (RPTID), and status variables (SVID).",
+    "scopes": "Automation, AutomationController, AutomationControllerList",
+    "conditionType": "JSONata",
+    "condition": "",
+    "metadata": {
+        "start": "NameIntegration",
+        "finally": "GenerateSecsGemIntegration",
+        "end": "",
+        "resultType": "MasterData",
+        "steps": [
+            {
+                "name": "NameIntegration",
+                "type": "Question",
+                "resultKey": "integrationName",
+                "settings": {
+                    "message": "Please provide a name for this SECS/GEM integration:",
+                    "dataType": "String",
+                    "defaultValue": "Secs-Gem DataCollection Integration"
+                },
+                "next": "ValidateResourceIsConnectIoTEnabled"
+            },
+            {
+                "name": "ValidateResourceIsConnectIoTEnabled",
+                "type": "Script",
+                "resultKey": "iotEnabledEntities",
+                "settings": {
+                    "script": "${script(./scripts/setup-secs-gem-connection/validate_resource_entity.ts)}"
+                },
+                "next": "AskIpAddressPort"
+            },
+            {
+                "name": "AskIpAddressPort",
+                "type": "Question",
+                "resultKey": "ipAddressPort",
+                "settings": {
+                    "message": "What is the IP Address and Port for the connection? (e.g. 127.0.0.1:5000)",
+                    "dataType": "String",
+                    "defaultValue": "127.0.0.1:5000"
+                },
+                "next": "AskMode"
+            },
+            {
+                "name": "AskMode",
+                "type": "Question",
+                "resultKey": "mode",
+                "settings": {
+                    "message": "What is the connection mode?",
+                    "dataType": "Enum",
+                    "settings": {
+                        "enumValues": [
+                            "Active",
+                            "Passive"
+                        ]
+                    },
+                    "defaultValue": "Active"
+                },
+                "next": "RetrieveProtocolSettings"
+            },
+            {
+                "name": "RetrieveProtocolSettings",
+                "type": "Script",
+                "settings": {
+                    "script": "${script(./scripts/setup-secs-gem-connection/retrieve_protocol_settings.ts)}"
+                },
+                "next": "AskMoreCommunicationSettings"
+            },
+            {
+                "name": "AskMoreCommunicationSettings",
+                "type": "Question",
+                "resultKey": "moreCommSettings",
+                "settings": {
+                    "message": "Do you want to specify more Communication Settings?",
+                    "dataType": "Boolean",
+                    "defaultValue": "false"
+                },
+                "next": "ConditionMoreCommSettings"
+            },
+            {
+                "name": "ConditionMoreCommSettings",
+                "type": "Condition",
+                "settings": {
+                    "condition": {
+                        "moreCommSettings == true": "CommunicationSettingsToChange"
+                    }
+                },
+                "next": "AskCollectMachineEventData"
+            },
+            {
+                "name": "CommunicationSettingsToChange",
+                "type": "Question",
+                "resultKey": "settingToChange",
+                "settings": {
+                    "message": "Select the communication setting to change:",
+                    "dataType": "Enum",
+                    "settings": {
+                        "data": [
+                            "this.answers.automationProtocolParametersEnum;"
+                        ]
+                    }
+                },
+                "next": "DataTypeRouting"
+            },
+            {
+                "name": "DataTypeRouting",
+                "type": "Script",
+                "settings": {
+                    "script": "${script(./scripts/setup-secs-gem-connection/datatype_routing.ts)}"
+                },
+                "next": "InputTypeCondition"
+            },
+            {
+                "name": "InputTypeCondition",
+                "type": "Condition",
+                "settings": {
+                    "condition": {
+                        "paramDatatypeRender == 'datetime'": "AskDateTime",
+                        "paramDatatypeRender == 'number'": "AskNumber",
+                        "paramDatatypeRender == 'enum'": "AskEnum",
+                        "paramDatatypeRender == 'string'": "AskString",
+                        "paramDatatypeRender == 'boolean'": "AskBoolean",
+                        "paramDatatypeRender == 'object'": "AskObject"
+                    }
+                },
+                "next": "Error"
+            },
+            {
+                "name": "AskDateTime",
+                "type": "Question",
+                "resultKey": "settingNewValue",
+                "settings": {
+                    "message": "Please pick a date and time:",
+                    "dataType": "DateTime"
+                },
+                "next": "SetProtocolSetting"
+            },
+            {
+                "name": "AskNumber",
+                "type": "Question",
+                "resultKey": "settingNewValue",
+                "settings": {
+                    "message": "Please enter a number:",
+                    "dataType": "Decimal"
+                },
+                "next": "SetProtocolSetting"
+            },
+            {
+                "name": "AskString",
+                "type": "Question",
+                "resultKey": "settingNewValue",
+                "settings": {
+                    "message": "Please enter a text value:",
+                    "dataType": "String"
+                },
+                "next": "SetProtocolSetting"
+            },
+            {
+                "name": "AskEnum",
+                "type": "Question",
+                "resultKey": "settingNewValue",
+                "settings": {
+                    "message": "Please select a value:",
+                    "dataType": "Enum",
+                    "settings": {
+                        "data": [
+                            "this.answers.paramDatatypeEnum;"
+                        ]
+                    }
+                },
+                "next": "SetProtocolSetting"
+            },
+            {
+                "name": "AskBoolean",
+                "type": "Question",
+                "resultKey": "settingNewValue",
+                "settings": {
+                    "message": "Please enter a boolean value:",
+                    "dataType": "Boolean"
+                },
+                "next": "SetProtocolSetting"
+            },
+            {
+                "name": "AskObject",
+                "type": "Question",
+                "resultKey": "settingNewValue",
+                "settings": {
+                    "message": "Please enter an object value:",
+                    "dataType": "Object"
+                },
+                "next": "SetProtocolSetting"
+            },
+            {
+                "name": "SetProtocolSetting",
+                "type": "Script",
+                "settings": {
+                    "script": "${script(./scripts/setup-secs-gem-connection/set_protocol_param.ts)}"
+                },
+                "next": "AskMoreSettings"
+            },
+            {
+                "name": "AskMoreSettings",
+                "type": "Question",
+                "resultKey": "moreSettings",
+                "settings": {
+                    "message": "Do you want to change any more settings?",
+                    "dataType": "Boolean"
+                },
+                "next": "ConditionMoreSettings"
+            },
+            {
+                "name": "ConditionMoreSettings",
+                "type": "Condition",
+                "settings": {
+                    "condition": {
+                        "moreSettings == true": "CommunicationSettingsToChange"
+                    }
+                },
+                "next": "AskCollectMachineEventData"
+            },
+            {
+                "name": "AskCollectMachineEventData",
+                "type": "Question",
+                "resultKey": "collectMachineEventData",
+                "settings": {
+                    "message": "Do you wish to collect machine event data to a data collection?",
+                    "dataType": "Boolean"
+                },
+                "next": "ConditionCollectMachineEventData"
+            },
+            {
+                "name": "ConditionCollectMachineEventData",
+                "type": "Condition",
+                "settings": {
+                    "condition": {
+                        "collectMachineEventData == true": "AskDataCollection"
+                    }
+                },
+                "next": "ApplyConfiguration"
+            },
+            {
+                "name": "AskDataCollection",
+                "type": "Question",
+                "resultKey": "currentDataCollection",
+                "settings": {
+                    "message": "What is your data Collection?",
+                    "dataType": "FindEntity",
+                    "settings": {
+                        "query": "${script(./scripts/secs-gem-integration/data_collections.ts)}"
+                    }
+                },
+                "next": "AskDataCollectionMode"
+            },
+            {
+                "name": "AskDataCollectionMode",
+                "type": "Question",
+                "resultKey": "currentDataCollectionMode",
+                "settings": {
+                    "message": "Select the mode for collecting data for this Data Collection:",
+                    "dataType": "Enum",
+                    "settings": {
+                        "enumValues": [
+                            "Perform to Resource",
+                            "Perform to First Material In Resource",
+                            "Perform to All Materials In Resource"
+                        ]
+                    },
+                    "defaultValue": "Perform to Resource"
+                },
+                "next": "AskEventCEID"
+            },
+            {
+                "name": "AskEventCEID",
+                "type": "Question",
+                "resultKey": "eventCEID",
+                "settings": {
+                    "message": "What is your event Collection Event ID (CEID)?",
+                    "dataType": "Integer"
+                },
+                "next": "SetEvent"
+            },
+            {
+                "name": "SetEvent",
+                "type": "Script",
+                "settings": {
+                    "script": "${script(./scripts/secs-gem-integration/create_event.ts)}"
+                },
+                "next": "AskRPTID"
+            },
+            {
+                "name": "AskRPTID",
+                "type": "Question",
+                "resultKey": "rptid",
+                "settings": {
+                    "message": "What is your Report Id (RPTID)? (Order is important if you plan to add multiple RPTIDs)",
+                    "dataType": "Integer"
+                },
+                "next": "SetRPTID"
+            },
+            {
+                "name": "SetRPTID",
+                "type": "Script",
+                "settings": {
+                    "script": "${script(./scripts/secs-gem-integration/set_rptid.ts)}"
+                },
+                "next": "AskSVID"
+            },
+            {
+                "name": "AskSVID",
+                "type": "Question",
+                "resultKey": "svid",
+                "settings": {
+                    "message": "What is your Status Variable Id (SVID)?",
+                    "dataType": "Integer"
+                },
+                "next": "AskSVIDDataType"
+            },
+            {
+                "name": "AskSVIDDataType",
+                "type": "Question",
+                "resultKey": "svidDataType",
+                "settings": {
+                    "message": "What is the data type for your Status Variable Id (SVID)?",
+                    "dataType": "Enum",
+                    "settings": {
+                        "data": [
+                            "this.answers.automationProtocolDataTypesEnum;"
+                        ]
+                    }
+                },
+                "next": "SetSVID"
+            },
+            {
+                "name": "SetSVID",
+                "type": "Script",
+                "settings": {
+                    "script": "${script(./scripts/secs-gem-integration/set_svid.ts)}"
+                },
+                "next": "AskMapToParameter"
+            },
+            {
+                "name": "AskMapToParameter",
+                "type": "Question",
+                "resultKey": "mapToParameter",
+                "settings": {
+                    "message": "Do you wish to map this SVID to a parameter?",
+                    "dataType": "Boolean"
+                },
+                "next": "ConditionMapToParameter"
+            },
+            {
+                "name": "ConditionMapToParameter",
+                "type": "Condition",
+                "settings": {
+                    "condition": {
+                        "mapToParameter == true": "AskChooseDCParameter"
+                    }
+                },
+                "next": "AskAddAdditionalSVID"
+            },
+            {
+                "name": "AskChooseDCParameter",
+                "type": "Question",
+                "resultKey": "dcParameter",
+                "settings": {
+                    "message": "Choose the DC Parameter to map this SVID to:",
+                    "dataType": "FindEntity",
+                    "settings": {
+                        "query": "${script(./scripts/secs-gem-integration/data_collection_parameters.ts)}"
+                    }
+                },
+                "next": "SetDCParamToSVID"
+            },
+            {
+                "name": "SetDCParamToSVID",
+                "type": "Script",
+                "settings": {
+                    "script": "${script(./scripts/secs-gem-integration/set_dc_param_to_svid.ts)}"
+                },
+                "next": "AskAddAdditionalSVID"
+            },
+            {
+                "name": "AskAddAdditionalSVID",
+                "type": "Question",
+                "resultKey": "addAnotherSVID",
+                "settings": {
+                    "message": "Do you wish to add another SVID?",
+                    "dataType": "Boolean",
+                    "defaultValue": "false"
+                },
+                "next": "ConditionAddSVID"
+            },
+            {
+                "name": "ConditionAddSVID",
+                "type": "Condition",
+                "settings": {
+                    "condition": {
+                        "addAnotherSVID == true": "AskSVID"
+                    }
+                },
+                "next": "AskAddAdditionalRPTID"
+            },
+            {
+                "name": "AskAddAdditionalRPTID",
+                "type": "Question",
+                "resultKey": "addAnotherRPTID",
+                "settings": {
+                    "message": "Do you wish to add another RPTID?",
+                    "dataType": "Boolean",
+                    "defaultValue": "false"
+                },
+                "next": "ConditionAddRPTID"
+            },
+            {
+                "name": "ConditionAddRPTID",
+                "type": "Condition",
+                "settings": {
+                    "condition": {
+                        "addAnotherRPTID == true": "AskRPTID"
+                    }
+                },
+                "next": "AskAddAdditionalEvents"
+            },
+            {
+                "name": "AskAddAdditionalEvents",
+                "type": "Question",
+                "resultKey": "addAnotherEvent",
+                "settings": {
+                    "message": "Do you wish to add another event?",
+                    "dataType": "Boolean",
+                    "defaultValue": "false"
+                },
+                "next": "ConditionAddEvent"
+            },
+            {
+                "name": "ConditionAddEvent",
+                "type": "Condition",
+                "settings": {
+                    "condition": {
+                        "addAnotherEvent == true": "AskEventCEID"
+                    }
+                },
+                "next": "AskAddAdditionalDataCollections"
+            },
+            {
+                "name": "AskAddAdditionalDataCollections",
+                "type": "Question",
+                "resultKey": "addAnotherDC",
+                "settings": {
+                    "message": "Do you wish to add another Data Collection?",
+                    "dataType": "Boolean",
+                    "defaultValue": "false"
+                },
+                "next": "ConditionAddDC"
+            },
+            {
+                "name": "ConditionAddDC",
+                "type": "Condition",
+                "settings": {
+                    "condition": {
+                        "addAnotherDC == true": "AskDataCollection"
+                    }
+                },
+                "next": ""
+            },
+            {
+                "name": "GenerateSecsGemIntegration",
+                "type": "Script",
+                "settings": {
+                    "script": "${script(./scripts/secs-gem-integration/generate_secs-gem_integration.ts)}"
+                },
+                "next": ""
+            }
+        ]
+    }
+}

@@ -1,0 +1,24 @@
+{
+  "packageId": "Cmf.Custom.MESProject.IoT",
+  "version": "11.3.0",
+  "description": "Cmf Custom CMFLabs Cmf.Custom.MESProject.IoT Package",
+  "packageType": "Root",
+  "isInstallable": true,
+  "isUniqueInstall": false,
+  "dependencies": [
+    {
+      "id": "Cmf.Environment",
+      "version": "11.3.0",
+      "mandatory": false
+    },
+    {
+      "id": "CriticalManufacturing.DeploymentMetadata",
+      "version": "11.3.0",
+      "mandatory": false
+    },
+    {
+      "id": "Cmf.Custom.MESProject.IoT.Packages",
+      "version": "1.0.0"
+    }
+  ]
+}
