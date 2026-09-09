@@ -1,0 +1,123 @@
+{
+  "id": "IPCCFX_Manager",
+  "cache": "${temp}/ConnectIoT/Cache",
+  "hostName": "localhost",
+  "monitorApplication": "${pwd}/monitor.js",
+  "repository": {
+    "type": "System"
+  },
+  "system": {
+    "tenantName": "cmf",
+    "address": "electronics-ig.apps.rhosdmz.criticalmes.dev",
+    "port": 443,
+    "timeout": 120000,
+    "useSsl": true,
+    "isLoadBalancingEnabled": false,
+    "authentication": {
+      "type": "SecurityPortal",
+      "settings": {
+        "clientId": "MES",
+        "accessToken": "${SMT_SIMULATOR_ACCESS_TOKEN}",
+        "openIdConfiguration": "https://electronics-ig.apps.rhosdmz.criticalmes.dev/SecurityPortal/tenant/cmf/.well-known/openid-configuration"
+      }
+    }
+  },
+  "isMinimal": false,
+  "storage": {
+    "type": "Directory",
+    "settings": {
+      "path": "${temp}/ConnectIoT/Persistency",
+      "retentionTime": "30d"
+    }
+  },
+  "logging": [
+    {
+      "type": "Console",
+      "options": {
+        "level": "debug",
+        "prettyPrint": true,
+        "colorizeMessage": true,
+        "isEnabled": true
+      },
+      "applications": [
+        "*"
+      ]
+    },
+    {
+      "type": "OTLP",
+      "options": {
+        "level": "debug",
+        "isEnabled": true
+      },
+      "applications": [
+        "*"
+      ]
+    },
+    {
+      "id": "Controllers",
+      "type": "File",
+      "options": {
+        "filename": "${applicationName}_${date}.log",
+        "dirname": "${temp}/ConnectIoT/Logs/Instances/${entityNameNormalized}/${componentId}",
+        "level": "info",
+        "timestampFormat": "HH:mm:ss.SSSSS",
+        "maxSize": "10m",
+        "maxFiles": "30d",
+        "isEnabled": true
+      },
+      "applications": [
+        "AutomationController"
+      ]
+    },
+    {
+      "id": "Drivers",
+      "type": "File",
+      "options": {
+        "filename": "${applicationName}_${date}.log",
+        "dirname": "${temp}/ConnectIoT/Logs/Instances/${entityNameNormalized}/${componentId}",
+        "level": "debug",
+        "timestampFormat": "HH:mm:ss.SSSSS",
+        "maxSize": "10m",
+        "maxFiles": "30d",
+        "isEnabled": true
+      },
+      "applications": [
+        "Driver*"
+      ]
+    },
+    {
+      "id": "ManagerAndMonitor",
+      "type": "File",
+      "options": {
+        "filename": "${applicationName}_${date}.log",
+        "dirname": "${temp}/ConnectIoT/Logs/${applicationName}/${managerId}",
+        "level": "info",
+        "timestampFormat": "HH:mm:ss.SSSSS",
+        "maxSize": "10m",
+        "maxFiles": "30d",
+        "isEnabled": true
+      },
+      "applications": [
+        "AutomationMonitor",
+        "AutomationManager"
+      ]
+    },
+    {
+      "id": "Jobs",
+      "type": "File",
+      "options": {
+        "filename": "Job_${jobId}_${date}.log",
+        "dirname": "${temp}/ConnectIoT/Jobs",
+        "auditFile": "${temp}/ConnectIoT/Jobs/.audit.json",
+        "level": "info",
+        "timestampFormat": "HH:mm:ss.SSSSS",
+        "maxSize": "10m",
+        "maxFiles": "30d",
+        "isEnabled": true
+      },
+      "applications": [
+        "AutomationJob"
+      ]
+    }
+  ]
+}

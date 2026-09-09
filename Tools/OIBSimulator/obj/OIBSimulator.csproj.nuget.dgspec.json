@@ -1,0 +1,90 @@
+{
+  "format": 1,
+  "restore": {
+    "C:\\cmf\\cm-demo-repos\\Tools\\OIBSimulator\\OIBSimulator.csproj": {}
+  },
+  "projects": {
+    "C:\\cmf\\cm-demo-repos\\Tools\\OIBSimulator\\OIBSimulator.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\cmf\\cm-demo-repos\\Tools\\OIBSimulator\\OIBSimulator.csproj",
+        "projectName": "OIBSimulator",
+        "projectPath": "C:\\cmf\\cm-demo-repos\\Tools\\OIBSimulator\\OIBSimulator.csproj",
+        "packagesPath": "C:\\Users\\jroque\\.nuget\\packages\\",
+        "outputPath": "C:\\cmf\\cm-demo-repos\\Tools\\OIBSimulator\\obj\\",
+        "projectStyle": "PackageReference",
+        "skipContentFileWrite": true,
+        "UsingMicrosoftNETSdk": false,
+        "fallbackFolders": [
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+        ],
+        "configFilePaths": [
+          "C:\\Users\\jroque\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "net472"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "C:\\cmf\\nugetServer": {},
+          "https://api.nuget.org/v3/index.json": {},
+          "https://criticalmanufacturing.io/repository/nuget/index.json": {}
+        },
+        "frameworks": {
+          "net472": {
+            "framework": "net472",
+            "projectReferences": {}
+          }
+        },
+        "restoreAuditProperties": {
+          "enableAudit": "true",
+          "auditLevel": "low",
+          "auditMode": "direct"
+        }
+      },
+      "frameworks": {
+        "net472": {
+          "framework": "net472",
+          "dependencies": {
+            "Cmf.ConnectIoT.TestOrchestrator.Core.Common": {
+              "target": "Package",
+              "version": "[0.5.2, )"
+            },
+            "Cmf.ConnectIoT.TestOrchestrator.Core.ScenarioBuilder": {
+              "target": "Package",
+              "version": "[0.3.0, )"
+            },
+            "Cmf.ConnectIoT.TestOrchestrator.Plugin.Simulator.OIB": {
+              "target": "Package",
+              "version": "[0.1.*, )"
+            },
+            "Cmf.ConnectIoT.TestOrchestrator.Plugin.StartMode.Local": {
+              "target": "Package",
+              "version": "[0.5.0, )"
+            },
+            "Microsoft.Extensions.Hosting": {
+              "target": "Package",
+              "version": "[10.0.11, )"
+            }
+          }
+        }
+      },
+      "runtimes": {
+        "win": {
+          "#import": []
+        },
+        "win-arm64": {
+          "#import": []
+        },
+        "win-x64": {
+          "#import": []
+        },
+        "win-x86": {
+          "#import": []
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,161 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\cmf\\cm-demo-repos\\Tools\\OIBSimulator\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{EB787777-E202-4404-AC3A-8AA41054D9B7}|OIBSimulator.csproj|c:\\cmf\\cm-demo-repos\\tools\\oibsimulator\\scenariorunner.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{EB787777-E202-4404-AC3A-8AA41054D9B7}|OIBSimulator.csproj|solutionrelative:scenariorunner.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{EB787777-E202-4404-AC3A-8AA41054D9B7}|OIBSimulator.csproj|c:\\cmf\\cm-demo-repos\\tools\\oibsimulator\\utilities\\utilities.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{EB787777-E202-4404-AC3A-8AA41054D9B7}|OIBSimulator.csproj|solutionrelative:utilities\\utilities.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{EB787777-E202-4404-AC3A-8AA41054D9B7}|OIBSimulator.csproj|c:\\cmf\\cm-demo-repos\\tools\\oibsimulator\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{EB787777-E202-4404-AC3A-8AA41054D9B7}|OIBSimulator.csproj|solutionrelative:program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{EB787777-E202-4404-AC3A-8AA41054D9B7}|OIBSimulator.csproj|c:\\cmf\\cm-demo-repos\\tools\\oibsimulator\\services\\ieventsservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{EB787777-E202-4404-AC3A-8AA41054D9B7}|OIBSimulator.csproj|solutionrelative:services\\ieventsservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{EB787777-E202-4404-AC3A-8AA41054D9B7}|OIBSimulator.csproj|c:\\cmf\\cm-demo-repos\\tools\\oibsimulator\\services\\eventsservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{EB787777-E202-4404-AC3A-8AA41054D9B7}|OIBSimulator.csproj|solutionrelative:services\\eventsservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{EB787777-E202-4404-AC3A-8AA41054D9B7}|OIBSimulator.csproj|c:\\cmf\\cm-demo-repos\\tools\\oibsimulator\\services\\itokenservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{EB787777-E202-4404-AC3A-8AA41054D9B7}|OIBSimulator.csproj|solutionrelative:services\\itokenservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{EB787777-E202-4404-AC3A-8AA41054D9B7}|OIBSimulator.csproj|c:\\cmf\\cm-demo-repos\\tools\\oibsimulator\\services\\tokenservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{EB787777-E202-4404-AC3A-8AA41054D9B7}|OIBSimulator.csproj|solutionrelative:services\\tokenservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 4,
+          "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:129:0:{13b12e3e-c1b4-4539-9371-4fe9a0d523fc}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:128:0:{13b12e3e-c1b4-4539-9371-4fe9a0d523fc}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:128:0:{1fc202d4-d401-403c-9834-5b218574bb67}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "Utilities.cs",
+              "DocumentMoniker": "C:\\cmf\\cm-demo-repos\\Tools\\OIBSimulator\\Utilities\\Utilities.cs",
+              "RelativeDocumentMoniker": "Utilities\\Utilities.cs",
+              "ToolTip": "C:\\cmf\\cm-demo-repos\\Tools\\OIBSimulator\\Utilities\\Utilities.cs",
+              "RelativeToolTip": "Utilities\\Utilities.cs",
+              "ViewState": "AgIAAA8AAAAAAAAAAAAxwDIAAABiAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-09-04T14:13:00.074Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "ScenarioRunner.cs",
+              "DocumentMoniker": "C:\\cmf\\cm-demo-repos\\Tools\\OIBSimulator\\ScenarioRunner.cs",
+              "RelativeDocumentMoniker": "ScenarioRunner.cs",
+              "ToolTip": "C:\\cmf\\cm-demo-repos\\Tools\\OIBSimulator\\ScenarioRunner.cs",
+              "RelativeToolTip": "ScenarioRunner.cs",
+              "ViewState": "AgIAABQAAAAAAAAAAAAiwKwAAAAnAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-09-04T14:11:39.602Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "IEventsService.cs",
+              "DocumentMoniker": "C:\\cmf\\cm-demo-repos\\Tools\\OIBSimulator\\Services\\IEventsService.cs",
+              "RelativeDocumentMoniker": "Services\\IEventsService.cs",
+              "ToolTip": "C:\\cmf\\cm-demo-repos\\Tools\\OIBSimulator\\Services\\IEventsService.cs",
+              "RelativeToolTip": "Services\\IEventsService.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAgAAAADAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-09-04T14:10:49.562Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "TokenService.cs",
+              "DocumentMoniker": "C:\\cmf\\cm-demo-repos\\Tools\\OIBSimulator\\Services\\TokenService.cs",
+              "RelativeDocumentMoniker": "Services\\TokenService.cs",
+              "ToolTip": "C:\\cmf\\cm-demo-repos\\Tools\\OIBSimulator\\Services\\TokenService.cs",
+              "RelativeToolTip": "Services\\TokenService.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAACkAAAAfAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-09-04T14:08:39.043Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "ITokenService.cs",
+              "DocumentMoniker": "C:\\cmf\\cm-demo-repos\\Tools\\OIBSimulator\\Services\\ITokenService.cs",
+              "RelativeDocumentMoniker": "Services\\ITokenService.cs",
+              "ToolTip": "C:\\cmf\\cm-demo-repos\\Tools\\OIBSimulator\\Services\\ITokenService.cs",
+              "RelativeToolTip": "Services\\ITokenService.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAsAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-09-04T14:08:38.192Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "EventsService.cs",
+              "DocumentMoniker": "C:\\cmf\\cm-demo-repos\\Tools\\OIBSimulator\\Services\\EventsService.cs",
+              "RelativeDocumentMoniker": "Services\\EventsService.cs",
+              "ToolTip": "C:\\cmf\\cm-demo-repos\\Tools\\OIBSimulator\\Services\\EventsService.cs",
+              "RelativeToolTip": "Services\\EventsService.cs",
+              "ViewState": "AgIAAB0AAAAAAAAAAAAIwDkAAAADAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-09-04T14:08:21.43Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "Program.cs",
+              "DocumentMoniker": "C:\\cmf\\cm-demo-repos\\Tools\\OIBSimulator\\Program.cs",
+              "RelativeDocumentMoniker": "Program.cs",
+              "ToolTip": "C:\\cmf\\cm-demo-repos\\Tools\\OIBSimulator\\Program.cs",
+              "RelativeToolTip": "Program.cs",
+              "ViewState": "AgIAAEMAAAAAAAAAAAAwwFIAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-09-04T14:05:12.859Z",
+              "EditorCaption": ""
+            }
+          ]
+        },
+        {
+          "DockedWidth": 402,
+          "SelectedChildIndex": -1,
+          "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{1c4feeaa-4718-4aa9-859d-94ce25d182ba}"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
