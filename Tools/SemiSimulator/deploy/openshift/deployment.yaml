@@ -1,0 +1,66 @@
+# One simulator per MES: it creates orders and drives lots, so two replicas would compete for the same resources.
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: semisimulator
+  annotations:
+    # Redeploy when a new image is built, and resolve the image from the ImageStream (no registry address to write here)
+    image.openshift.io/triggers: >-
+      [{"from":{"kind":"ImageStreamTag","name":"semisimulator:latest"},"fieldPath":"spec.template.spec.containers[?(@.name==\"simulator\")].image"}]
+spec:
+  replicas: 1
+  # Recreate: never two simulators at once, not even while rolling out
+  strategy:
+    type: Recreate
+  selector:
+    matchLabels:
+      app: semisimulator
+  template:
+    metadata:
+      labels:
+        app: semisimulator
+    spec:
+      # SIGTERM lets the lots in progress finish their current step (the simulator waits up to 10 minutes); killing it
+      # sooner leaves lots in process in the MES, which then block their resources until they are cleaned up
+      terminationGracePeriodSeconds: 660
+      containers:
+        - name: simulator
+          image: semisimulator:latest
+          # Real-fab cadence: --speed 1. A faster demo: raise SEMISIM_Simulation__Speed
+          env:
+            - name: SEMISIM_ClientConfiguration__Connection__EnvironmentAddress
+              value: https://architectureandadvocacy-semi.apps.rhos.cm-mes.dev
+            - name: SEMISIM_ClientConfiguration__Authentication__ClientId
+              value: MES
+            - name: SEMISIM_ClientConfiguration__Authentication__SecurityAccessToken
+              valueFrom:
+                secretKeyRef:
+                  name: semisimulator
+                  key: access-token
+            - name: SEMISIM_Simulation__Speed
+              value: "1"
+            # The line comes from the ConfigMap below (generated from line.json), not from the one baked in the image
+            - name: SEMISIM_LINE_FILE
+              value: /config/line.json
+            # Orders to launch before stopping (0: no limit). A long-running demo: 0
+            - name: SEMISIM_Line__Order__MaxOrders
+              value: "0"
+            # true: terminate what earlier runs left behind each time the pod starts. It terminates every simulator
+            # order of the MES (PO SC.<8 hex>), so only turn it on when this simulator owns the environment
+            - name: SEMISIM_Line__Startup__TerminatePreviousRuns
+              value: "false"
+          volumeMounts:
+            - name: line
+              mountPath: /config
+              readOnly: true
+          resources:
+            requests:
+              cpu: 100m
+              memory: 256Mi
+            limits:
+              cpu: 500m
+              memory: 512Mi
+      volumes:
+        - name: line
+          configMap:
+            name: semisimulator-line

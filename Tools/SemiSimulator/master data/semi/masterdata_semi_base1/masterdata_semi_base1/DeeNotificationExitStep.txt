@@ -1,0 +1,41 @@
+//---Start DEE Code---
+
+UseReference("", "Cmf.Foundation.Common.Exceptions");
+UseReference("Cmf.Navigo.BusinessObjects.dll", "Cmf.Navigo.BusinessObjects");  
+var serviceProvider = (IServiceProvider)Input["ServiceProvider"];  
+
+Dictionary<string, object> Output = new Dictionary<string, object>();  
+
+IMaterial material = null;
+if (Input.ContainsKey("Material")) 
+{
+    material = (IMaterial)Input["Material"];
+}  
+
+string oldFlowPath = null; 
+if (Input.ContainsKey("OldFlowPath")) 
+{
+    oldFlowPath = Input["OldFlowPath"].ToString();
+}  
+
+string newFlowPath = null; 
+if (Input.ContainsKey("NewFlowPath")) 
+{
+    newFlowPath = Input["NewFlowPath"].ToString();
+}  
+
+IUser currentUser = serviceProvider.GetService<IUser>(); currentUser.Load(Utilities.DomainUserName);  
+
+Cmf.Navigo.BusinessObjects.Abstractions.INotification notification = serviceProvider.GetService<Cmf.Navigo.BusinessObjects.Abstractions.INotification>(); 
+notification.Title = $"Material {material.Name} left Step {material.Step?.Name}!"; 
+notification.Details = @$"<p><strong>New FlowPath:</strong> {newFlowPath}</p> <p><strong>Old FlowPath:</strong> {oldFlowPath}</p>"; 
+notification.Type = "General"; 
+notification.Severity = "Information"; 
+notification.AssignmentType = NotificationAssignmentType.User; 
+notification.AssignedToUser = currentUser; 
+notification.Create();  
+
+Output.Add("Result", true); 
+return Output;
+
+//---End DEE Code---

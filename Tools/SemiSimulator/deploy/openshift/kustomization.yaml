@@ -1,0 +1,9 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+
+# The ConfigMap with the line (semisimulator-line, from the repository's line.json) and the Secret with the access token
+# (semisimulator) are created by deploy.ps1: kustomize can't read line.json from outside this folder, and the token
+# must not be in a file.
+resources:
+  - build.yaml
+  - deployment.yaml

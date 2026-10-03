@@ -1,0 +1,20 @@
+//---Start DEE Code---
+
+UseReference("", "Cmf.Foundation.Common.Exceptions");
+UseReference("Cmf.Navigo.BusinessObjects.dll", "Cmf.Navigo.BusinessObjects");  
+var serviceProvider = (IServiceProvider)Input["ServiceProvider"];  
+
+Dictionary<string, object> Output = new Dictionary<string, object>();  
+
+IMaterial material = null;
+if (Input.ContainsKey("Material")) 
+{
+    material = (IMaterial)Input["Material"];
+} 
+
+bool result = material.Type == "Production";
+
+Output.Add("Result", result); 
+return Output;
+
+//---End DEE Code---
